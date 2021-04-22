@@ -1,0 +1,114 @@
+
+/** ADD YOUR AWESOME CODES HERE **/
+
+.name-food {
+	font-size: 20px;
+	margin: -25px 0 0 -80px;
+	font-weight: bold;
+}
+
+.food-price {
+	margin-left: 60px;
+    font-size: 20px;
+    color: red;
+}
+
+.food-quanlity {
+	width: 50px;
+	margin-left: -80px;
+	border: none;
+	border-bottom: 1px soild;
+	outline: none;
+	text-align: center;
+	font-size: 17px;
+}
+
+.food-orderd {
+	margin-left: 85px;
+}
+
+.dish-orederd {
+	font-size: 17px;
+}
+
+.form-group.row {
+	border-bottom: groove;
+	width: 90%;
+	margin-left: 10px;
+}
+
+.btn-footer {
+	margin-left: 10px; 
+}
+
+.quanlityfood {
+	margin-left: 10px;
+    font-size: 17px;
+}
+
+.quanlityfoodordered {
+	font-weight: bold;
+}
+
+.modal-footer {
+	background: #f2f2f2;
+}
+
+.icon-edit {
+	margin-right: 10px;
+}
+
+.card-header {
+	height: 50px;
+    background: #d0a772;
+}
+
+.user-avata {
+	margin-left: 20px;
+	border-radius: 50%;
+	height: auto;
+	width: 2.1rem;
+}
+
+/*.user-avata:hover {
+	box-shadow: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset, rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+}
+
+.user-avata:active {
+	box-shadow: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset, rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;	
+}*/
+
+.column-info {
+	float: left;
+	font-size: 18px;
+	font-weight: bold;
+}
+
+.column-info-detail {
+	float: left;
+	font-size: 18px;
+}
+
+.colum-edit {
+	float: right;
+}
+
+.edit-info {
+	color: #0000ff;
+	text-decoration-line: underline;
+	text-decoration-color: #0000ff;
+}
+
+
+.input-search {
+	margin-left: 144px;
+    font-size: 15px;
+    border-radius: 15px;
+    margin-bottom: 2px;
+}
+
+.button-search{
+	height: inherit;
+    line-height: 6px;
+    border-radius: 25px;
+}

@@ -164,7 +164,7 @@
                             <td th:text="${monAn.DonGia}"></td>
                             <td><img th:src="${monAn.hinhAnh}" /></td>
                             <td style="text-align: center;">
-                              <a href="#"><i class="fas fa-user-edit" data-toggle="modal" data-target="#inforModal"
+                              <a th:href="@{/admin/monAn/edit/{id}(id=${monAn.maMonAn})}"><i class="fas fa-user-edit" 
                                   style="margin-right: 10px;"></i></a>
                               <a href="#"><i class="fas fa-trash-alt"></i></a>
                             </td>

@@ -14,9 +14,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.iuh.detai23.entities.MonAn;
 import com.iuh.detai23.model.MonAnModel;
+import com.iuh.detai23.model.UpdateMonAnModel;
 import com.iuh.detai23.service.LoaiMonAnService;
 import com.iuh.detai23.service.MonAnService;
 
@@ -63,9 +65,9 @@ public class MonAnController {
 	
 	@GetMapping("/deleteMonAn/{id}")
 	public String getDeletePost(@PathVariable("id") String id) {
-		//System.out.println(postM);
-		//postService.deletePost(postModel.getId());
-		monAnService.delete(Integer.valueOf(id));
+		MonAn monAn = monAnService.findById(Integer.valueOf(id));
+		monAn.setTinhTrang("NGUNG KINH DOANH");
+		monAnService.save(monAn);
 		return "redirect:/adminMonAn";
 	}
 	@GetMapping("/getMonAn/{id}")
@@ -75,5 +77,31 @@ public class MonAnController {
 		//postService.deletePost(postModel.getId());
 		MonAn monAn = monAnService.findBy(Integer.valueOf(id)).get();
 		return monAn;
+	}
+	@GetMapping("admin/monAn/edit/{id}")
+	public ModelAndView getEditMonAn(@PathVariable("id") int id) {
+		ModelAndView modelAndView = new ModelAndView("admin/chinhSuaMonAn");
+		
+		MonAn monAn =  monAnService.findById(id);
+		UpdateMonAnModel monAnModel = new UpdateMonAnModel(monAn.getMaMonAn(), monAn.getTenMonAn(), monAn.getDonGia(), monAn.getMoTa(), monAn.getHinhAnh(), monAn.getTinhTrang(), monAn.getLoaiMonAn().getMaLoaiMonAn());
+		modelAndView.addObject("monAn",monAnModel);
+		modelAndView.addObject("loaiMonAn",loaiMonAnService.findAll());
+		return modelAndView;
+	}
+	@PostMapping("admin/monAn/edit/{id}")
+	public String getEditMonAnUpdate(@PathVariable("id") int id, @ModelAttribute UpdateMonAnModel monAnModel, RedirectAttributes redirect) {
+		ModelAndView modelAndView = new ModelAndView("admin/chinhSuaMonAn");
+		
+		MonAn monAn =  monAnService.findById(id);
+		monAn.setTenMonAn(monAnModel.getTenMonAn());
+		monAn.setDonGia(monAnModel.getDonGia());
+		monAn.setMoTa(monAnModel.getMoTa());
+		monAn.setLoaiMonAn(loaiMonAnService.findByMaLoaiMonAn(monAnModel.getMaLoaiMonAn()));
+		monAnService.save(monAn);
+		//monAnModel = new UpdateMonAnModel(monAn.getMaMonAn(), monAn.getTenMonAn(), monAn.getDonGia(), monAn.getMoTa(), monAn.getHinhAnh(), monAn.getTinhTrang(), monAn.getLoaiMonAn().getMaLoaiMonAn());
+//		modelAndView.addObject("monAn",monAnModel);
+//		modelAndView.addObject("loaiMonAn",loaiMonAnService.findAll());
+		redirect.addAttribute("susscess", "thanhCong");
+		return "redirect:/admin/monAn/";
 	}
 }

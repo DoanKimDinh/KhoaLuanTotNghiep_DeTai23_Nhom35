@@ -25,6 +25,7 @@ public class MonAn {
 	private double DonGia;
 	private String moTa;
 	private String hinhAnh;
+	private String tinhTrang;
 	
 	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private LoaiMonAn loaiMonAn;
@@ -34,16 +35,17 @@ public class MonAn {
 		this.tenMonAn = tenMonAn;
 		DonGia = donGia;
 		this.moTa = moTa;
-		this.hinhAnh = hinhAnh;
+		this.hinhAnh = hinhAnh; 
 	}
 
-	public MonAn(String tenMonAn, double donGia, String moTa, String hinhAnh, LoaiMonAn loaiMonAn) {
+	public MonAn(String tenMonAn, double donGia, String moTa, String hinhAnh, LoaiMonAn loaiMonAn, String tinhTrang) {
 		super();
 		this.tenMonAn = tenMonAn;
 		DonGia = donGia;
 		this.moTa = moTa;
 		this.hinhAnh = hinhAnh;
 		this.loaiMonAn = loaiMonAn;
+		this.tinhTrang = tinhTrang;
 	}	
 	
 	

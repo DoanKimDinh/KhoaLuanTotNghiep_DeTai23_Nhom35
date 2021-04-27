@@ -112,3 +112,14 @@
     line-height: 6px;
     border-radius: 25px;
 }
+
+.btn.btn-add {
+	background-color: #d0a772;
+	color: white;
+	border-radius: 10px;
+	outline: none;
+}
+
+.btn.btn-add:hover {
+	opacity: 0.9;
+}

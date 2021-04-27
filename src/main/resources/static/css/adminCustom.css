@@ -1,0 +1,8 @@
+.navbar-brand {
+	position: absolute; 
+	left: 275px;
+}
+
+.navbar.navbar-expand-lg.navbar-light.bg-light {
+	height: 76px;
+}

@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org"><!-- Basic -->
+<head>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">   
+   
+    <!-- Mobile Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+ 
+     <!-- Site Metas -->
+    <title>Đặt bàn</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Site Icons -->
+    <link rel="shortcut icon" th:href="@{/images/favicon.ico}" type="image/x-icon">
+    <link rel="apple-touch-icon" th:href="@{/images/apple-touch-icon.png}">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">    
+	<!-- Site CSS -->
+    <link rel="stylesheet" th:href="@{/css/style.css}">    
+	<!-- Pickadate CSS -->
+    <link rel="stylesheet" th:href="@{/css/classic.css}">    
+	<link rel="stylesheet" th:href="@{/css/classic.date.css}">    
+	<link rel="stylesheet" th:href="@{/css/classic.time.css}">    
+    <!-- Responsive CSS -->
+    <link rel="stylesheet" th:href="@{/css/responsive.css}">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" th:href="@{/css/custom.css}">
+
+    
+     <script>
+		$(document).ready(function() {
+			$('#loginModal').modal('show');
+
+			$('#signUpModal').modal('show');
+
+			$(function () {
+				$('[data-toggle="tooltip"]').tooltip()
+			})
+		});
+		function anModalDangNhap() {
+			$('#loginModal').modal('hide');
+		};
+		function anModalDangKy() {
+			$('#signUpModal').modal('hide');
+		};
+
+		$(document).ready(function () {
+	      	$('#inforModal').modal('show');			
+	      	$(function () {
+	       		$('[data-toggle="tooltip"]').tooltip()
+      		});
+    	});
+
+		function orderFood() {
+			var checkboxes = $('input:checkbox:checked').length;
+			// alert(checkboxes);
+			$('#quanlityfoodordered').html(checkboxes);
+		};
+
+    	function UserLogin() {
+    		window.location = '/TRANMINHTRUC/KLTN/KLTN_UI/UI/yamifood/html/user_index.html';
+    	};
+	</script>
+</head>
+
+<body>
+	<!-- Start header -->
+	<div th:replace="header"></div>
+	<!-- End header -->
+	
+	<!-- Start All Pages -->
+	<div class="all-page-title page-breadcrumb">
+		<div class="container text-center">
+			<div class="row">
+				<div class="col-lg-12">
+					<h1>Đặt bàn trước</h1>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- End All Pages -->
+	
+	<!-- Start Reservation -->
+	<div class="reservation-box">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="heading-title text-center">
+						<h2>Đặt bàn</h2>
+						<p>Nhà hàng chúng tôi rất hân hạnh được phục vụ quý khách</p>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-12 col-sm-12 col-xs-12">
+					<div class="contact-block">
+						<form id="contactForm" action="" method="POST">
+							<div class="row">
+								<div class="col-md-6">
+									<h3>Thông tin đặt bàn</h3>
+									<div class="col-md-12">
+										<div class="form-group">
+											<input id="soluong" class="form-control" name="soNguoi" type="number" value="" required data-error="Vui lòng nhập số người"  placeholder="Số người" min="1">
+											<div class="help-block with-errors"></div>
+										</div> 
+									</div>
+									<div class="col-md-12">
+										<div class="form-group">
+											<input id="input_date" class="datepicker picker__input form-control" name="ngayDen" type="text" value="" required data-error="Vui lòng chọn ngày đến" placeholder="Ngày đến">
+											<div class="help-block with-errors"></div>
+										</div>                                 
+									</div>
+									<div class="col-md-12">
+										<div class="form-group">
+											<input id="input_time" class="time form-control picker__input" name="thoiGianDen" placeholder="Thời gian đến" required data-error="Vui lòng chọn ngày đến">
+											<div class="help-block with-errors"></div>
+										</div>                                 
+									</div>
+									<div class="col-md-12">
+										<div class="form-group">
+											<input id="input_ghichu" class="form-control" placeholder="Ghi chú" type="text" name="ghiChu">
+											
+										</div>                                 
+									</div>	
+									<div class="col-md-12">
+										<div class="form-group">
+											<input id="diaChi" class="form-control" placeholder="Địa chỉ" type="text" name="diaChi">
+											
+										</div>                                 
+									</div>	
+								</div>
+								<div class="col-md-6">
+									<h3>Thông tin liên hệ</h3>
+									<div class="col-md-12">
+										<div class="form-group">
+											<input type="text" class="form-control" id="name" name="name" th:value="${khachHang.tenKhachHang}" placeholder="Họ và tên" required data-error="Vui lòng nhập họ và tên">
+											<div class="help-block with-errors"></div>
+										</div>                                 
+									</div>
+									<div class="col-md-12">
+										<div class="form-group">
+											<input type="text" placeholder="Địa chỉ Email" id="email" th:value="${khachHang.email}" class="form-control" name="email" required data-error="Vui lòng nhập địa chỉ email">
+											<div class="help-block with-errors"></div>
+										</div> 
+									</div>
+									<div class="col-md-12">
+										<div class="form-group">
+											<input type="text" placeholder="Số điện thoại" id="phone" th:value="${khachHang.sdt}" class="form-control" name="phone" required data-error="Vui lòng nhập số điện thoại"/>
+											<div class="help-block with-errors"></div>
+										</div> 
+									</div>
+									<div class="col-md-12">
+										<div class="form-group">
+											<input type="text" placeholder="Địa chỉ" id="phone" class="form-control" th:value="${khachHang.diaChi}" name="phone" required data-error="Vui lòng nhập số điện thoại"/>
+											<div class="help-block with-errors"></div>
+										</div> 
+									</div>
+									<div class="col-md-12">
+										<div class="form-group">
+											<input type="button" name="order" id="order" class="btn btn-common" value="Đặt món" data-toggle="modal" data-target="#inforModal">
+											<span class="quanlityfood">Bạn đã đặt: 
+												<span id="quanlityfoodordered">0 </span>
+												món
+											</span>
+											<div class="help-block with-errors"></div>
+
+										</div>     
+									</div>
+								</div>
+								<div class="col-md-12">
+									<div class="submit-button text-center">
+										<button class="btn btn-common" id="submit" type="submit">Đặt bàn</button>
+										<div id="msgSubmit" class="h3 text-center hidden"></div> 
+										<div class="clearfix"></div> 
+									</div>
+								</div>
+							</div>            
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- End Reservation -->
+	
+	<!-- Start Contact info -->
+	<div class="contact-imfo-box">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-4">
+					<i class="fa fa-volume-control-phone"></i>
+					<div class="overflow-hidden">
+						<h4>Điện thoại</h4>
+						<p class="lead">
+							+01 123-456-4590
+						</p>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<i class="fa fa-envelope"></i>
+					<div class="overflow-hidden">
+						<h4>Email</h4>
+						<p class="lead">
+							lienhechungtoi@gmail.com
+						</p>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<i class="fa fa-map-marker"></i>
+					<div class="overflow-hidden">
+						<h4>Địa chỉ</h4>
+						<p class="lead">
+							12 Nguyễn Văn Bảo, Phường 4, Quận Gò Vấp, Hồ Chí Minh
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- End Contact info -->
+	
+	<!-- Start Footer -->
+	<footer class="footer-area bg-f">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-4 col-md-7">
+					<h3>Về chúng tôi</h3>
+					<p>Nhà hàng tiêu chuẩn 5* luôn hướng đến sự hành lòng của khách hàng. Sự ngon miệng và hài lòng của khách hàng là niềm tin vững chắc để chúng tôi tiếp tục phát triển không ngừng.</p>
+				</div>
+				<div class="col-lg-4 col-md-7">
+					<h3>Thời gian hoạt động</h3>
+					<!-- <p><span class="text-color">Thứ 2 - Thứ 6: </span>Closed</p> -->
+					<p><span class="text-color">Thứ 2 - Thứ 6 :</span> 9:00 - 22:00</p>
+					<p><span class="text-color">Thứ 7 - Chủ nhật :</span> 9:00 - 00:00</p>
+					<!-- <p><span class="text-color">Thu-Fri :</span> 9:Am - 10PM</p>
+					<p><span class="text-color">Sat-Sun :</span> 5:PM - 10PM</p> -->
+				</div>
+				<div class="col-lg-4 col-md-7">
+					<h3>Thông tin liên hệ</h3>
+					<p class="lead">12 Nguyễn Văn Bảo, Phường 4, Quận Gò Vấp, Hồ Chí Minh</p>
+					<p class="lead"><a href="">+01 2000 800 9999</a></p>
+					<p><a th:href="#">lienhechungtoi@admin.com</a></p>
+				</div>
+			</div>
+		</div>
+		
+		<div class="copyright">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-12">
+						<p class="company-name">Coppy right. &copy; 2021 <a th:href="#"></a> Thiết kế : 
+					<a th:href="https://html.design/">iuh design</a></p>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+	</footer>
+	<!-- End Footer -->
+
+	<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header border-bottom-0">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="form-title text-center">
+            <h2>Đăng nhập</h2>
+          </div>
+          <div class="d-flex flex-column text-center">
+            <form>
+              <div class="form-group">
+                <input type="email" class="form-control" id="email1"
+                  placeholder="Địa chỉ mail của bạn ...">
+              </div>
+              <div class="form-group">
+                <input type="password" class="form-control" id="password1" placeholder="Mật khẩu ...">
+              </div>
+              <button type="button" class="btn btn-info btn-block btn-round" id="loginUser" onclick="UserLogin()">Đăng Nhập</button>
+            </form>
+
+            <div class="text-center text-muted delimiter">or ...</div>
+
+          </div>
+        </div>
+        <div class="modal-footer d-flex justify-content-center">
+          <div class="signup-section">Bạn không phải thành viên? <a th:href="#a" class="text-info"
+              data-toggle="modal" data-target="#signUpModal" onclick="anModalDangNhap()"> Đăng ký</a>.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <div class="modal fade" id="signUpModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header border-bottom-0">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="form-title text-center">
+            <h2>ĐĂNG KÝ TÀI KHOẢN</h2>
+          </div>
+          <div class="d-flex flex-column text-center">
+            <form>
+              <div class="form-group">
+                <input type="email" class="form-control" id="name"
+                  placeholder="Nhập họ tên của bạn ...">
+              </div>
+              <div class="form-group">
+                <input type="email" class="form-control" id="sdt" placeholder="Nhập số điện thoại ...">
+              </div>
+              <div class="form-group">
+                <input type="email" class="form-control" id="email"
+                  placeholder="Nhập địa chỉ email ...">
+              </div>
+              <div class="form-group">
+                <input type="password" class="form-control" id="password1"
+                  placeholder="Nhập mật khẩu ...">
+              </div>
+              <div class="form-group">
+                <input type="password" class="form-control" id="password2"
+                  placeholder="Nhập lại mật khẩu ...">
+              </div>
+              <button type="button" class="btn btn-info btn-block btn-round">Đăng Ký</button>
+            </form>
+
+            <div class="text-center text-muted delimiter">or ...</div>
+
+          </div>
+        </div>
+        <div class="modal-footer d-flex justify-content-center">
+          <div class="signup-section">Bạn là thành viên? <a th:href="#a" class="text-info" data-toggle="modal"
+              data-target="#loginModal" onclick="anModalDangKy()"> Đăng nhập</a>.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Start Modal -->
+  <div class="modal fade" id="inforModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document" style="min-width: 980px; min-height: 600px;">
+        <div class="modal-content">
+          <div class="modal-header border-bottom-0">
+          	<div><h3 style="font-weight: bold;">Danh sách món ăn</h3></div>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+                <form>
+                	<div class="form-row">
+                		<div class="form-group col-md-6">
+                			<div class="form-group row">
+                				<div class="col-md-6">
+                					<img th:src="@{/images/gallery-img-06.jpg}" class="img-order col-md-8">
+                				</div>
+                				<div class="form-group col-md-6">
+                					<div>
+                						<label for="namefood" class="name-food">Combo 1</label>
+                						<span class="food-price">160.000 vnd</span>
+                					</div>
+                					<div>
+                						<input type="number" name="food-quanlity" value="1" min="1" class="food-quanlity">
+                						<input type="checkbox" id="food-ordered" name="food-ordered" class="food-orderd" value="Combo 1">
+                						<label for="food-ordered" class="dish-orederd">Đặt món</label>
+                					</div>
+                				</div>
+                			</div>
+                		</div>
+                		<div class="form-group col-md-6">
+                			<div class="form-group row">
+                				<div class="col-md-6">
+                					<img th:src="@{/images/gallery-img-06.jpg}" class="img-order col-md-8">
+                				</div>
+                				<div class="form-group col-md-6">
+                					<div>
+                						<label for="namefood" class="name-food">Combo 1</label>
+                						<span class="food-price">160.000 vnd</span>
+                					</div>
+                					<div>
+                						<input type="number" name="food-quanlity" value="1" min="1" class="food-quanlity">
+                						<input type="checkbox" id="food-ordered" name="food-ordered" class="food-orderd" value="Combo 1">
+                						<label for="food-ordered" class="dish-orederd">Đặt món</label>
+                					</div>
+                				</div>
+                			</div>
+                		</div>
+                		<div class="form-group col-md-6">
+                			<div class="form-group row">
+                				<div class="col-md-6">
+                					<img th:src="@{/images/gallery-img-06.jpg}" class="img-order col-md-8">
+                				</div>
+                				<div class="form-group col-md-6">
+                					<div>
+                						<label for="namefood" class="name-food">Combo 1</label>
+                						<span class="food-price">160.000 vnd</span>
+                					</div>
+                					<div>
+                						<input type="number" name="food-quanlity" value="1" min="1" class="food-quanlity">
+                						<input type="checkbox" id="food-ordered" name="food-ordered" class="food-orderd" value="Combo 1">
+                						<label for="food-ordered" class="dish-orederd">Đặt món</label>
+                					</div>
+                				</div>
+                			</div>
+                		</div>
+                		<div class="form-group col-md-6">
+                			<div class="form-group row">
+                				<div class="col-md-6">
+                					<img th:src="@{/images/gallery-img-06.jpg}" class="img-order col-md-8">
+                				</div>
+                				<div class="form-group col-md-6">
+                					<div>
+                						<label for="namefood" class="name-food">Combo 1</label>
+                						<span class="food-price">160.000 vnd</span>
+                					</div>
+                					<div>
+                						<input type="number" name="food-quanlity" value="1" min="1" class="food-quanlity">
+                						<input type="checkbox" id="food-ordered" name="food-ordered" class="food-orderd" value="Combo 1">
+                						<label for="food-ordered" class="dish-orederd">Đặt món</label>
+                					</div>
+                				</div>
+                			</div>
+                		</div>
+                		<div class="form-group col-md-6">
+                			<div class="form-group row">
+                				<div class="col-md-6">
+                					<img th:src="@{/images/gallery-img-06.jpg}" class="img-order col-md-8">
+                				</div>
+                				<div class="form-group col-md-6">
+                					<div>
+                						<label for="namefood" class="name-food">Combo 1</label>
+                						<span class="food-price">160.000 vnd</span>
+                					</div>
+                					<div>
+                						<input type="number" name="food-quanlity" value="1" min="1" class="food-quanlity">
+                						<input type="checkbox" id="food-ordered" name="food-ordered" class="food-orderd" value="Combo 1">
+                						<label for="food-ordered" class="dish-orederd">Đặt món</label>
+                					</div>
+                				</div>
+                			</div>
+                		</div>
+                		<div class="form-group col-md-6">
+                			<div class="form-group row">
+                				<div class="col-md-6">
+                					<img th:src="@{/images/gallery-img-06.jpg}" class="img-order col-md-8">
+                				</div>
+                				<div class="form-group col-md-6">
+                					<div>
+                						<label for="namefood" class="name-food">Combo 1</label>
+                						<span class="food-price">160.000 vnd</span>
+                					</div>
+                					<div>
+                						<input type="number" name="food-quanlity" value="1" min="1" class="food-quanlity">
+                						<input type="checkbox" id="food-ordered" name="food-ordered" class="food-orderd" value="Combo 1">
+                						<label for="food-ordered" class="dish-orederd">Đặt món</label>
+                					</div>
+                				</div>
+                			</div>
+                		</div>
+                		<div class="form-group col-md-6">
+                			<div class="form-group row">
+                				<div class="col-md-6">
+                					<img th:src="@{/images/gallery-img-06.jpg}" class="img-order col-md-8">
+                				</div>
+                				<div class="form-group col-md-6">
+                					<div>
+                						<label for="namefood" class="name-food">Combo 1</label>
+                						<span class="food-price">160.000 vnd</span>
+                					</div>
+                					<div>
+                						<input type="number" name="food-quanlity" value="1" min="1" class="food-quanlity">
+                						<input type="checkbox" id="food-ordered" name="food-ordered" class="food-orderd" value="Combo 1">
+                						<label for="food-ordered" class="dish-orederd">Đặt món</label>
+                					</div>
+                				</div>
+                			</div>
+                		</div>
+                	</div>
+
+                </form>
+          </div>
+          <div class="modal-footer d-flex justify-content-center">
+            <div class="order-footer">
+            	<input type="button" data-dismiss="modal" aria-label="Close" class="btn btn-common btn-footer" value="Hủy">
+            	<input type="button" name="ordered" value="Đặt món" id="ordered" data-dismiss="modal" aria-label="Close" class="btn btn-common btn-footer" onclick="orderFood()">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+	<a th:href="#" id="back-to-top" title="Back to top" style="display: none;">&uarr;</a>
+
+	<!-- ALL JS FILES -->
+	<script th:src="@{/js/jquery-3.2.1.min.js}"></script>
+	<script th:src="@{/js/popper.min.js}"></script>
+	<script th:src="@{/js/bootstrap.min.js}"></script>
+    <!-- ALL PLUGINS -->
+	<script th:src="@{/js/jquery.superslides.min.js}"></script>
+	<script th:src="@{/js/images-loded.min.js}"></script>
+	<script th:src="@{/js/isotope.min.js}"></script>
+	<script th:src="@{/js/baguetteBox.min.js"></script>
+	<script th:src="@{/js/picker.js"></script>
+	<script th:src="@{/js/picker.date.js"></script>
+	<script th:src="@{/js/picker.time.js"></script>
+	<script th:src="@{/js/legacy.js"></script>
+	<script th:src="@{/js/form-validator.min.js"></script>
+    <script th:src="@{/js/contact-form-script.js"></script>
+    <script th:src="@{/js/custom.js"></script>
+</body>
+</html>

@@ -98,10 +98,13 @@ public class InstallController {
 		
 		
 		KhachHang kh1 = new KhachHang("Doan Kim Dinh", "01231231234", "dinh@gmail.com", "doankimdinh", "123456");
+		kh1.setDiaChi("Go Vap");
 		kh1.setQuyenTruyCap(quyen1);
 		KhachHang kh2 = new KhachHang("Tran Minh Truc", "03434234234", "truc@gmail.com", "tranminhtruc", "123456");
+		kh2.setDiaChi("Quan 1");
 		kh2.setQuyenTruyCap(quyen1);
 		KhachHang kh3 = new KhachHang("Nguyen Bao Thy", "023423432543", "thy@gmail.com", "nguyenbaothy", "123456");
+		kh3.setDiaChi("Quan 2");
 		kh3.setQuyenTruyCap(quyen1);
 		
 		
@@ -124,7 +127,7 @@ public class InstallController {
 		nhanVienService.save(nv3);
 		
 		
-		BanDatTruoc ban1 = new BanDatTruoc(LocalDateTime.now(), 12, "ghi chú 1", TypeDatTruoc.ChuaXacNhan);	
+		BanDatTruoc ban1 = new BanDatTruoc(LocalDateTime.now().toString(), 12, "ghi chú 1", TypeDatTruoc.ChuaXacNhan);	
 		System.out.println(ban1.getMaDatTruoc()+"===>");
 		List<ChiTietMonDatTruoc> listct1 = new ArrayList<ChiTietMonDatTruoc>();
 		listct1.add(new ChiTietMonDatTruoc( new ChiTietMonDatTruocKey(),monAn1, ban1, 2, monAn1.getDonGia()));
@@ -132,14 +135,14 @@ public class InstallController {
 		ban1.setChiTietMonDatTruoc(listct1);
 		ban1.setKhachHang(kh2);
 		
-		BanDatTruoc ban2 = new BanDatTruoc(LocalDateTime.now(), 12, "ghi chú 1", TypeDatTruoc.ChuaXacNhan);
+		BanDatTruoc ban2 = new BanDatTruoc(LocalDateTime.now().toString(), 12, "ghi chú 1", TypeDatTruoc.ChuaXacNhan);
 		List<ChiTietMonDatTruoc> listct2 = new ArrayList<ChiTietMonDatTruoc>();
 		listct2.add(new ChiTietMonDatTruoc( new ChiTietMonDatTruocKey(),monAn2, ban2, 4, monAn2.getDonGia()));
 		ban2.setChiTietMonDatTruoc(listct2);
 		ban2.setKhachHang(kh3);
 		
 		
-		BanDatTruoc ban3 = new BanDatTruoc(LocalDateTime.now(), 12, "ghi chú 1", TypeDatTruoc.ChuaXacNhan);
+		BanDatTruoc ban3 = new BanDatTruoc(LocalDateTime.now().toString(), 12, "ghi chú 1", TypeDatTruoc.ChuaXacNhan);
 		List<ChiTietMonDatTruoc> listct3 = new ArrayList<ChiTietMonDatTruoc>();
 		ban3.setChiTietMonDatTruoc(listct3);
 		ban3.setKhachHang(kh1);

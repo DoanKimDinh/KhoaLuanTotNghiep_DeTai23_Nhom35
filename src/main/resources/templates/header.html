@@ -11,19 +11,22 @@
 			</button>
 			<form class="form-inline my-2 my-lg-0 form-search">
 				<input class="form-control mr-sm-2 input-search" type="search"
-					placeholder="Tìm kiếm" aria-label="Search" style="width: 100%;">
+					placeholder="TĂ¬m kiáº¿m" aria-label="Search" style="width: 100%;">
 			</form>
 			<div class="collapse navbar-collapse" id="navbars-rs-food">
 				<ul class="navbar-nav ml-auto">
 					<li class="nav-item active"><a class="nav-link"
-						href="index.html">Trang chủ</a></li>
-					<li class="nav-item"><a class="nav-link" href="menu.html">Món
-							Ăn</a></li>
+						th:href="@{/}">Trang chủ</a></li>
+					<li class="nav-item"><a class="nav-link" th:href="@{/}">Món
+							Ä‚n</a></li>
 					<li class="nav-item"><a class="nav-link"
-						href="reservation.html" id="login">Đặt bàn</a></li>
-					<li class="nav-item" id="login"><a class="nav-link" href="#"
+						th:href="@{client/datBan}" id="login">Đặt bàn</a></li>
+					<li class="nav-item" id="login" th:unless="${session.idAccount}"><a class="nav-link" href="#"
 						style="margin-left: 5px; margin-right: -10px;" data-toggle="modal"
-						data-target="#loginModal">Đăng nhập</a></li>
+						data-target="#loginModal">Ä�Äƒng nháº­p</a></li>
+					<li class="nav-item" th:if="${session.idAccount}"><a class="nav-link" th:href="@{/client/dangXuat}"
+						style="margin-left: 5px; margin-right: -10px;"
+						>Đăng xuất</a></li>
 					<!-- <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li> -->
 				</ul>
 			</div>

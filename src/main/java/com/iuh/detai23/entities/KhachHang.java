@@ -19,13 +19,14 @@ import lombok.NoArgsConstructor;
 public class KhachHang {
 	@Id
 	@SequenceGenerator(name = "maKhachHang_seq", allocationSize = 1)
-	@GeneratedValue(generator = "maKhachHang_seq")
-	private int maKhachHang;
-	private String tenKhachHang;
-	private String sdt;
-	private String email;
-	private String tenTaiKhoan;
-	private String matKhau;
+	@GeneratedValue(generator = "maKhachHang_seq")  
+	private int maKhachHang;  
+	private String tenKhachHang;  
+	private String sdt;  
+	private String email;  
+	private String tenTaiKhoan;  
+	private String matKhau;  
+	private String diaChi;  
 	
 	@OneToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
 	private QuyenTruyCap quyenTruyCap;

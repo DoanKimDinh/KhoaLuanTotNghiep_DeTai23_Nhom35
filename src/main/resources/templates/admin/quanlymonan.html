@@ -65,7 +65,12 @@
 
       $(function () {
         $('[data-toggle="tooltip"]').tooltip()
-      })
+      });
+
+      $("#btn-confirm").on("click", function(){
+        $("#mi-modal").modal('show');
+      });
+      
     });
   </script>
 
@@ -166,7 +171,7 @@
                             <td style="text-align: center;">
                               <a th:href="@{/admin/monAn/edit/{id}(id=${monAn.maMonAn})}"><i class="fas fa-user-edit" 
                                   style="margin-right: 10px;"></i></a>
-                              <a href="#"><i class="fas fa-trash-alt"></i></a>
+                              <a href="#"><i class="fas fa-trash-alt" id="btn-confirm"></i></a>
                             </td>
                           </tr>
                           <!-- <tr>
@@ -249,6 +254,23 @@
 
       </footer>
       <!-- End Footer -->
+      
+       <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true"
+        id="mi-modal">
+        <div class="modal-dialog modal-sm">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                  aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" id="myModalLabel">Bạn chắc chắn muốn tạm ngưng kinh doanh sản phẩm này</h4>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" id="modal-btn-si">Đồng Ý</button>
+              <button type="button" class="btn btn-primary" id="modal-btn-no">Hủy Bỏ</button>
+            </div>
+          </div>
+        </div>
+      </div>
 
       <div class="modal fade" id="inforModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
@@ -256,7 +278,7 @@
           <div class="modal-content">
             <div class="modal-header border-bottom-0">
               <div class="form-title text-center">
-                <h4>Cập nhật món ăn</h4>
+                <h4>Thêm Mới Món Ăn</h4>
               </div>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
@@ -265,24 +287,24 @@
             <div class="modal-body">
               <div>
                 <div class="panel-body">
-                  <form action="#" th:action="@{/addMonAn}" th:object="${monAn}" method="post" enctype="multipart/form-data">
+                  <form action="" th:action="@{/addMonAn}" method="post" enctype="multipart/form-data">
                     <div class="form-group">
                       <label class="col-sm-6 control-label">Tên Món Ăn</label>
-                      <input class="form-control" type="text" name="tenMonAn" placeholder="Nhập tên món ăn"
-                        ng-model="me.email">
+                      <input class="form-control" type="text" name="tenMonAn" placeholder="Nhập tên món ăn" required>
                     </div>
                     <div class="form-group">
                       <label class="col-sm-6 control-label">Đơn Giá</label>
-                      <input class="form-control" required="required" type="text" name="donGia" placeholder="Nhập đơn giá"
+                     <input class="form-control" required type="number" name="donGia" placeholder="Nhập đơn giá"
                         ng-model="me.email">
                     </div>
                     <div class="form-group">
                       <label class="col-sm-6 control-label">Mô Tả</label>
-                      <input class="form-control" type="text" name="moTa" placeholder="Nhập mô tả" ng-model="me.email">
+                      <textarea class="form-control" th:text="${monAn.moTa}" name="moTa"
+                        placeholder="Nhập mô tả"></textarea>
                     </div>
                     <div class="form-group">
                       <label class="col-sm-6 control-label">Hình Ảnh</label>
-                      <input class="form-control" type="file" name="file">
+                     <input class="form-control" type="file" name="file" required>
                     </div>
                     <div class="form-group">
                       <label class="col-sm-6 control-label">Loại Món Ăn</label>
@@ -297,11 +319,11 @@
                 </div>
               </div>
             </div>
-            <div class="modal-footer">
+           <!-- <div class="modal-footer">
               <div class="col-sm-offset-2 col-sm-10">
                 <button class="btn btn-common" ng-click="updateMe()" style="margin-left: 350px;">Submit</button>
               </div>
-            </div>
+            </div> -->
           </div>
         </div>
       </div>

@@ -44,7 +44,7 @@ public class HomeController {
 	@Autowired
 	private BanDatTruocService banDatTruocService;
 	
-	@GetMapping("/home")
+	@GetMapping("/")
 	public ModelAndView getHome() {
 		ModelAndView modelAndView = new ModelAndView("index");
 		List<MonAn> listMonAn = monAnService.findAll();

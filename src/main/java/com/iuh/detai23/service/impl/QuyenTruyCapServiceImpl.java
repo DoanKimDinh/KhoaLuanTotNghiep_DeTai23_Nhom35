@@ -31,7 +31,7 @@ public class QuyenTruyCapServiceImpl implements QuyenTruyCapService{
 	@Override
 	public Optional<QuyenTruyCap> findById(int id) {
 		// TODO Auto-generated method stub
-		return null;
+		return quyenTruyCap.findById(id);
 	}
 
 	@Override

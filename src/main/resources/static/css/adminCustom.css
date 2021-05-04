@@ -6,3 +6,9 @@
 .navbar.navbar-expand-lg.navbar-light.bg-light {
 	height: 76px;
 }
+
+.card-header {
+	top: 8px;
+    background-color: #f5f5f0;
+    color: black;
+}

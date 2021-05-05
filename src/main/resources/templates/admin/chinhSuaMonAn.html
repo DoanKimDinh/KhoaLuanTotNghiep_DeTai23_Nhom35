@@ -99,8 +99,8 @@
 
 							<div class="col-md-12">
 								<div class="card card-info">
-									<div class="card-header">
-										<h3 class="card-title">thông tin</h3>
+									<div class="card-header" style="color: #fff;">
+										<h3 class="card-title">Thông tin món ăn</h3>
 									</div>
 									<!-- /.card-header -->
 									<!-- form start -->
@@ -121,26 +121,26 @@
 												<div class="form-group">
 													<label for="email">Mã món ăn:</label>
 													<input type="text" class="form-control" readonly
-														th:value="${monAn.maMonAn}" placeholder="Enter email" name="maMonAn">
+														th:value="${monAn.maMonAn}" placeholder="Mã món ăn" name="maMonAn">
 												</div>
 												<div class="form-group">
 													<label for="email">Tên món ăn:</label>
 													<input type="text" class="form-control" th:value="${monAn.tenMonAn}"
-														placeholder="Enter email" required="required" name="tenMonAn">
+														placeholder="Tên món ăn" required="required" name="tenMonAn">
 												</div>
 												<div class="form-group">
 													<label for="email">Đơn giá:</label>
 													<input type="number" class="form-control" th:value="${monAn.DonGia}" 
-														placeholder="Enter email" required="required" name="DonGia">
+														placeholder="Đơn giá" required="required" name="DonGia">
 												</div>
 												<div class="form-group">
 													<label for="email">Mô tả:</label>
 													<textarea class="form-control" th:text="${monAn.moTa}" name="moTa"
-														placeholder="Enter email"></textarea>
+														placeholder="Mô tả"></textarea>
 												  </div>
 												  <div class="form-group">
 													<label for="email">Hình ảnh:</label>
-													<input type="file" class="form-control" placeholder="Enter email">
+													<input type="file" class="form-control" data-buttonText="Hình ảnh">
 													<input type="hidden" name="hinhAnh" th:value="${monAn.hinhAnh}">
 												  </div>
 												  <div class="form-group">
@@ -151,7 +151,7 @@
 														</option>
 													</select>
 												  </div>
-												<button type="submit" class="btn btn-primary">Cập Nhật Món Ăn</button>
+												<button type="submit" class="btn btn-update">Cập Nhật Món Ăn</button>
 											  </form>
 										</div>
 									</div>

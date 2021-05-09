@@ -104,4 +104,14 @@ public class MonAnController {
 		redirect.addAttribute("susscess", "thanhCong");
 		return "redirect:/admin/monAn/";
 	}
+	
+	@PostMapping("admin/monAn/delete/{id}")
+	public String deleteMonAn(@PathVariable("id") int id, @ModelAttribute UpdateMonAnModel monAnModel, RedirectAttributes redirect) {
+		//ModelAndView modelAndView - new ModelAndView("");
+		MonAn monAn = monAnService.findById(id);
+		monAn.setTinhTrang(monAnModel.getTinhTrang());
+		monAnService.save(monAn);
+		redirect.addAttribute("susscess", "thanhCong");
+		return "redirect:/admin/monAn";
+	}
 }

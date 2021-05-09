@@ -11,4 +11,5 @@ public interface QuyenTruyCapService {
 	public List<QuyenTruyCap> findAll();
 	public Optional<QuyenTruyCap> findById(int id);
 	public void delete(int id);
+	public QuyenTruyCap findByMaQuyenTruyCap(int id);
 }

@@ -15,11 +15,11 @@ public class QuyenTruyCapServiceImpl implements QuyenTruyCapService{
 
 	
 	@Autowired
-	private QuyenTruyCapRepository quyenTruyCap;
+	private QuyenTruyCapRepository quyenTruyCapRepository;
 	@Override
 	public QuyenTruyCap save(QuyenTruyCap banDatTruoc) {
 		// TODO Auto-generated method stub
-		return quyenTruyCap.save(banDatTruoc);
+		return quyenTruyCapRepository.save(banDatTruoc);
 	}
 
 	@Override
@@ -31,13 +31,19 @@ public class QuyenTruyCapServiceImpl implements QuyenTruyCapService{
 	@Override
 	public Optional<QuyenTruyCap> findById(int id) {
 		// TODO Auto-generated method stub
-		return quyenTruyCap.findById(id);
+		return quyenTruyCapRepository.findById(id);
 	}
 
 	@Override
 	public void delete(int id) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public QuyenTruyCap findByMaQuyenTruyCap(int id) {
+		// TODO Auto-generated method stub
+		return quyenTruyCapRepository.getOne(id);
 	}
 	
 }

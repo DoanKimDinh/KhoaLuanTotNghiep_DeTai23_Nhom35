@@ -29,9 +29,9 @@ public class NhanVienServiceImpl implements NhanVienService{
 	}
 
 	@Override
-	public Optional<NhanVien> findById(int id) {
+	public NhanVien findById(int id) {
 		// TODO Auto-generated method stub
-		return nhanVienRepository.findById(id);
+		return nhanVienRepository.getOne(Integer.valueOf(id));
 	}
 
 	@Override

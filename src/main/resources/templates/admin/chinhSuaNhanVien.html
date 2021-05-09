@@ -5,7 +5,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Admin Page</title>
-<link rel="shortcut icon" th:href="@{/images/favicon.ico}" type="image/x-icon">
+	<link rel="shortcut icon" th:href="@{/images/favicon.ico}" type="image/x-icon">
   <link rel="apple-touch-icon" th:href="@{/images/apple-touch-icon.png}">
 
   <link rel="stylesheet" th:href="@{/plugins/fontawesome-free/css/all.min.css}">
@@ -27,6 +27,8 @@
   <link rel="stylesheet" th:href="@{/css/responsive.css}">
   <!-- Custom CSS -->
   <link rel="stylesheet" th:href="@{/css/custom.css}">
+<!--   <link rel="stylesheet" th:href="@{/css/adminCustom.css}"> -->
+
 
 	<style>
 		.modal-dialog {
@@ -41,6 +43,7 @@
 			width: 1%;
 		}
 	</style>
+
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -57,7 +60,7 @@
 				<div class="container-fluid">
 					<div class="row mb-2">
 						<div class="col-sm-6">
-							<h1 class="m-0">Chỉnh sửa thông tin món ăn</h1>
+							<h1 class="m-0">Chỉnh sửa thông tin nhân viên</h1>
 						</div>
 						<!-- /.col -->
 					</div>
@@ -72,7 +75,7 @@
 							<div class="col-md-12">
 								<div class="card card-info">
 									<div class="card-header" style="color: #fff;">
-										<h3 class="card-title">Thông tin món ăn</h3>
+										<h3 class="card-title">Thông tin nhân viên</h3>
 									</div>
 									<!-- /.card-header -->
 									<!-- form start -->
@@ -91,39 +94,55 @@
 											<form action="" method="POST" enctype="multipart/form-data">
 												
 												<div class="form-group">
-													<label for="email">Mã món ăn:</label>
+													<label for="maNhanVien">Mã nhân viên:</label>
 													<input type="text" class="form-control" readonly
-														th:value="${monAn.maMonAn}" placeholder="Mã món ăn" name="maMonAn">
+														th:value="${nhanVien.maNhanVien}" placeholder="Mã nhân viên" name="maNhanVien">
 												</div>
 												<div class="form-group">
-													<label for="email">Tên món ăn:</label>
-													<input type="text" class="form-control" th:value="${monAn.tenMonAn}"
-														placeholder="Tên món ăn" required="required" name="tenMonAn">
+													<label for="tenNhanVien">Tên nhân viên:</label>
+													<input type="text" class="form-control" th:value="${nhanVien.tenNhanVien}"
+														placeholder="Tên nhân viên" required="required" name="tenNhanVien">
 												</div>
 												<div class="form-group">
-													<label for="email">Đơn giá:</label>
-													<input type="number" class="form-control" th:value="${monAn.DonGia}" 
-														placeholder="Đơn giá" required="required" name="DonGia">
+													<label for="soDienThoai">Số điện thoại:</label>
+													<input type="number" class="form-control" th:value="${nhanVien.soDienThoai}" 
+														placeholder="Số điện thoại" required="required" name="soDienThoai">
 												</div>
 												<div class="form-group">
-													<label for="email">Mô tả:</label>
-													<textarea class="form-control" th:text="${monAn.moTa}" name="moTa"
-														placeholder="Mô tả"></textarea>
-												  </div>
-												  <div class="form-group">
-													<label for="email">Hình ảnh:</label>
-													<input type="file" class="form-control" data-buttonText="Hình ảnh">
-													<input type="hidden" name="hinhAnh" th:value="${monAn.hinhAnh}">
-												  </div>
-												  <div class="form-group">
-													<label for="email">Loại món ăn:</label>
-													<select class="form-select" name="maLoaiMonAn">
-														<option th:each="item : ${loaiMonAn}" th:value="${item.maLoaiMonAn}" th:text="${item.tenLoai}" th:selected="(${item.maLoaiMonAn}==${monAn.maLoaiMonAn})">
+													<label for="email">Email:</label>
+													<input type="email" class="form-control" th:value="${nhanVien.email}" 
+														placeholder="Email" required="required" name="email">
+												 </div>
+												 <div class="form-group">
+													<label for="chungMinhNhanDan">Chứng minh nhân dân:</label>
+													<input type="number" class="form-control" th:value="${nhanVien.chungMinhNhanDan}" 
+														placeholder="Chứng minh nhân dân" required="required" name="chungMinhNhanDan">
+												</div>
+												<div class="form-group">
+													<label for="diaChi">Địa chỉ:</label>
+													<input type="text" class="form-control" th:value="${nhanVien.diaChi}" 
+														placeholder="Địa chỉ" required="required" name="diaChi">
+												 </div>
+												 <div class="form-group">
+													<label for="tenTaiKhoan">Tên tài khoản:</label>
+													<input type="text" class="form-control" th:value="${nhanVien.tenTaiKhoan}" 
+														placeholder="Tên tài khoản" required="required" name="tenTaiKhoan" readonly>
+												 </div>
+												 <div class="form-group">
+													<label for="matKhau">Mật khẩu:</label>
+													<input type="password" class="form-control" th:value="${nhanVien.matKhau}" 
+														placeholder="Mật khẩu" required="required" name="matKhau">
+												 </div>
+												 
+												 <!--  <div class="form-group">
+													<label for="quyenTruyCap">Quyền truy cập:</label>
+													<select class="form-select" name="maQuyenTruyCap">
+														<option th:each="item : ${quyenTruyCap}" th:value="${item.maQuyenTruyCap}" th:text="${item.tenQuyenTruyCap}" th:selected="(${item.maQuyenTruyCap}==${khachHang.maQuyenTruyCap})">
 
 														</option>
 													</select>
-												  </div>
-												<button type="submit" class="btn btn-update">Cập Nhật Món Ăn</button>
+												  </div> -->
+												<button type="submit" class="btn btn-update">Cập nhật thông tin</button>
 											  </form>
 										</div>
 									</div>
@@ -185,7 +204,7 @@
 			</footer>
 			<!-- End Footer -->
 
-			<div class="modal fade" id="inforModal" tabindex="-1" role="dialog"
+<!-- 			<div class="modal fade" id="inforModal" tabindex="-1" role="dialog"
 				aria-labelledby="exampleModalLabel" aria-hidden="true">
 				<div class="modal-dialog modal-dialog-centered" role="document">
 					<div class="modal-content">
@@ -245,11 +264,11 @@
 						</div>
 					</div>
 				</div>
-			</div>
+			</div> -->
 		</div>
 	</div>
-	
-  <script th:src="@{/plugins/jquery/jquery.min.js}"></script>
+	<!-- ./wrapper -->
+ <script th:src="@{/plugins/jquery/jquery.min.js}"></script>
   <script th:src="@{/plugins/jquery-ui/jquery-ui.min.js}"></script>
   <script th:src="@{/plugins/bootstrap/js/bootstrap.bundle.min.js}"></script>
   <script th:src="@{/plugins/daterangepicker/daterangepicker.js}"></script>
@@ -281,6 +300,19 @@
   <script th:src="@{/plugins/datatables-buttons/js/buttons.colVis.min.js}"></script>
 
 
+  <style type="text/css">
+	.dataTables_filter {
+		float: right
+	}
+</style>
 </body>
+	<!-- <script>
+		$(document).ready(function () {
+			$('#inforModal').modal('show');
 
+			$(function () {
+				$('[data-toggle="tooltip"]').tooltip()
+			})
+		});
+	</script> -->
 </html>

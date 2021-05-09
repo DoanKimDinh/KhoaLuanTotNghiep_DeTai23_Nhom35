@@ -43,14 +43,6 @@
       width: 1%;
     }
   </style>
-  <script>
-    $(document).ready(function () {
-      $('#inforModal').modal('show');
-      $(function () {
-        $('[data-toggle="tooltip"]').tooltip()
-      })
-    });
-  </script>
 
 </head>
 
@@ -120,7 +112,7 @@
                         <div class="col-sm-12 col-md-6">
                           <div class="dt-buttons btn-group flex-wrap">
                             <button class="btn btn-add" type="button" data-toggle="modal"
-                              data-target="#inforModal">Thêm khách hàng</button>
+                              data-target="#inforModal" id="btnAdd">Thêm khách hàng</button>
                           </div>
                         </div>
                         <div class="col-sm-12 col-md-6">
@@ -150,39 +142,10 @@
                             <td th:text="${khachHang.tenTaiKhoan}"></td>
                             <td th:text="${khachHang.quyenTruyCap.tenQuyenTruyCap}"></td>
                             <td style="text-align: center;">
-                              <a href="#"><i class="fas fa-user-edit" data-toggle="modal" data-target="#inforModal"
-                                  style="margin-right: 10px;"></i></a>
+                              <a th:href="@{/admin/quanlykhachhang/edit/{id}(id=${khachHang.maKhachHang})}"><i class="fas fa-user-edit" style="margin-right: 10px;"></i></a>
                               <a href="#"><i class="fas fa-trash-alt"></i></a>
                             </td>
                           </tr>
-                          <!-- <tr>
-                    <td>MA001</td>
-                    <td>Combo1</td>
-                    <td>Món ăn chính</td>
-                    <td>100.000 vnđ</td>
-                    <td style="text-align: center;">
-                      <a th:href="#"><i class="fas fa-user-edit" data-toggle="modal" data-target="#inforModal" style="margin-right: 10px;"></i></a>
-                      <a th:href="#"><i class="fas fa-trash-alt"></i></a>
-                    </td>
-                  </tr><tr>
-                    <td>MA001</td>
-                    <td>Combo1</td>
-                    <td>Món ăn chính</td>
-                    <td>100.000 vnđ</td>
-                    <td style="text-align: center;">
-                      <a th:href="#"><i class="fas fa-user-edit" data-toggle="modal" data-target="#inforModal" style="margin-right: 10px;"></i></a>
-                      <a th:href="#"><i class="fas fa-trash-alt"></i></a>
-                    </td>
-                  </tr><tr>
-                    <td>MA001</td>
-                    <td>Combo1</td>
-                    <td>Món ăn chính</td>
-                    <td>100.000 vnđ</td>
-                    <td style="text-align: center;">
-                      <a th:href="#"><i class="fas fa-user-edit" data-toggle="modal" data-target="#inforModal" style="margin-right: 10px;"></i></a>
-                      <a th:href="#"><i class="fas fa-trash-alt"></i></a>
-                    </td>
-                  </tr> -->
                         </tbody>
                         <tfoot>
                         </tfoot>
@@ -243,7 +206,7 @@
           <div class="modal-content">
             <div class="modal-header border-bottom-0">
               <div class="form-title text-center">
-                <h4>Cập nhật món ăn</h4>
+                <h4>Thêm khách hàng</h4>
               </div>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
@@ -252,53 +215,113 @@
             <div class="modal-body">
               <div>
                 <div class="panel-body">
-                  <form action="#" th:action="@{/addMonAn}" th:object="${monAn}" method="post" enctype="multipart/form-data">
+                  <form action="#" th:action="@{/addKhachHang}" th:object="${khachHang}" method="post" enctype="multipart/form-data">
                     <div class="form-group">
-                      <label class="col-sm-6 control-label">Tên Món Ăn</label>
-                      <input class="form-control" type="text" name="tenMonAn" placeholder="Nhập tên món ăn"
+                      <label class="col-sm-6 control-label">Tên khách hàng</label>
+                      <input class="form-control" type="text" name="tenKhachHang" placeholder="Nhập tên khách hàng"
+                        ng-model="me.email" required="required">
+                    </div>
+                    <div class="form-group">
+                      <label class="col-sm-6 control-label">Số điện thoại</label>
+                      <input class="form-control" required="required" type="text" name="sdt" placeholder="Nhập số điện thoại"
                         ng-model="me.email">
                     </div>
                     <div class="form-group">
-                      <label class="col-sm-6 control-label">Đơn Giá</label>
-                      <input class="form-control" required="required" type="text" name="donGia" placeholder="Nhập đơn giá"
-                        ng-model="me.email">
+                      <label class="col-sm-6 control-label">Email</label>
+                      <input class="form-control" type="email" name="email" placeholder="Nhập Email" ng-model="me.email" required="required">
                     </div>
                     <div class="form-group">
-                      <label class="col-sm-6 control-label">Mô Tả</label>
-                      <input class="form-control" type="text" name="moTa" placeholder="Nhập mô tả" ng-model="me.email">
+                      <label class="col-sm-6 control-label">Địa chỉ</label>
+                      <input class="form-control" type="text" name="diaChi" placeholder="Nhập Email" ng-model="me.email" required="required">
                     </div>
                     <div class="form-group">
-                      <label class="col-sm-6 control-label">Hình Ảnh</label>
-                      <input class="form-control" type="file" name="file">
+                      <label class="col-sm-6 control-label">Tên tài khoản</label>
+                      <input class="form-control" type="text" name="tenTaiKhoan" placeholder="Nhập tên tài khoản" ng-model="me.email" required="required">
                     </div>
                     <div class="form-group">
-                      <label class="col-sm-6 control-label">Loại Món Ăn</label>
-                      <select class="form-control" aria-label=".form-select-lg example" name="idLoaiMonAn">
-                        <option selected th:each="loai : ${listLoaiMonAn}" th:text="${loai.tenLoai}"
-                          th:value="${loai.maLoaiMonAn}"></option>
-                      </select>
+                      <label class="col-sm-6 control-label">Mật khẩu</label>
+                      <input class="form-control" type="password" name="matKhau" placeholder="Nhập mật khẩu" ng-model="me.email" required="required">
                     </div>
-                    
-                    <button type="submit" class="btn btn-primary">Thêm Món Ăn</button>
+                    <div class="form-group" style="display: none;">
+                      <input class="form-control" type="text" name="maQuyenTruyCap" ng-model="me.email" required="required" value="1">
+                    </div>                    
+                    <button type="submit" class="btn btn-add">Thêm khách hàng</button>
                   </form>
                 </div>
               </div>
-            </div>
-            <div class="modal-footer">
-              <div class="col-sm-offset-2 col-sm-10">
-                <button class="btn btn-common" ng-click="updateMe()" style="margin-left: 350px;">Submit</button>
-              </div>
-            </div>
+            </div>            
           </div>
         </div>
       </div>
+      
+      <!-- Chinh sua thong tin khach hang -->
+     <!--  <div class="modal fade" id="modal_edit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true" th:action="@{/admin/quanlykhachhang/edit/{id}(id=${khachHang.maKhachHang})}">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header border-bottom-0">
+              <div class="form-title text-center">
+                <h4>Thông tin khách hàng</h4>
+              </div>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div>
+                <div class="panel-body">
+                  <form th:action="" method="POST" enctype="multipart/form-data">
+					<div class="form-group">
+						<label for="maKhachHang">Mã khách hàng:</label>
+						<input type="text" class="form-control" readonly
+							th:value="${khachHang.maKhachHang}" placeholder="Mã khách hàng" name="maKhachHang">
+					</div>
+					<div class="form-group">	
+						<label for="tenKhachHang">Tên khách hàng:</label>
+							<input type="text" class="form-control" th:value="${khachHang.tenKhachHang}"
+								placeholder="Tên khách hàng" required="required" name="tenKhachHang">
+					</div>
+					<div class="form-group">
+						<label for="soDienThoai">Số điện thoại:</label>
+						<input type="number" class="form-control" th:value="${khachHang.sdt}" 
+							placeholder="Số điện thoại" required="required" name="sdt">
+					</div>
+					<div class="form-group">
+						<label for="email">Email:</label>
+						<input type="email" class="form-control" th:value="${khachHang.email}" 
+							placeholder="Email" required="required" name="email">
+					 </div>
+					 <div class="form-group">
+						<label for="tenTaiKhoan">Tên tài khoản:</label>
+						<input type="text" class="form-control" th:value="${khachHang.tenTaiKhoan}" 
+							placeholder="Tên tài khoản" required="required" name="tenTaiKhoan" readonly>
+					 </div>
+					 <div class="form-group">
+						<label for="matKhau">Mật khẩu:</label>
+						<input type="password" class="form-control" th:value="${khachHang.matKhau}" 
+							placeholder="Mật khẩu" required="required" name="matKhau">
+					 </div>
+					 <div class="form-group">
+						<label for="diaChi">Địa chỉ:</label>
+						<input type="text" class="form-control" th:value="${khachHang.diaChi}" 
+							placeholder="Địa chỉ" required="required" name="diaChi">
+					 </div>					 
+						<button type="submit" class="btn btn-update">Cập Nhật khách hàng</button>
+					</form>
+                </div>
+              </div>
+            </div>            
+          </div>
+        </div>
+      </div> -->
+      <!-- end modal chinh sua thong tin khach hang -->
     </div>
 
   <script th:src="@{/plugins/jquery/jquery.min.js}"></script>
   <script th:src="@{/plugins/jquery-ui/jquery-ui.min.js}"></script>
   <script th:src="@{/plugins/bootstrap/js/bootstrap.bundle.min.js}"></script>
   <script th:src="@{/plugins/daterangepicker/daterangepicker.js}"></script>
-  <script th:src="@{/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js}"></script>
+  
   <script th:src="@{/plugins/summernote/summernote-bs4.min.js}"></script>
   <script th:src="@{/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js}"></script>
   <script th:src="@{/dist/js/adminlte.js}"></script>
@@ -332,8 +355,11 @@
               "url": "//cdn.datatables.net/plug-ins/1.10.24/i18n/Vietnamese.json"
           }
       });
+      
+      $("#btnAdd").click(function(){
+    	  $("#inforModal").modal();
+      })
     });
-
   </script>
   
   <style type="text/css">

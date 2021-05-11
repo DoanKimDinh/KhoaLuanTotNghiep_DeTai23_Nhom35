@@ -31,9 +31,9 @@ public class KhachHangServiceImpl implements KhachHangService{
 	}
 
 	@Override
-	public Optional<KhachHang> findById(int id) {
+	public KhachHang findById(int id) {
 		// TODO Auto-generated method stub
-		return khachHangRepository.findById(id);
+		return khachHangRepository.getOne(Integer.valueOf(id));
 	}
 
 	@Override

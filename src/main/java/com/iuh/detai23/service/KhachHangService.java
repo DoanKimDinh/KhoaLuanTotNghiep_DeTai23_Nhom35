@@ -9,7 +9,7 @@ import com.iuh.detai23.model.DangNhapModel;
 public interface KhachHangService {
 	public KhachHang save(KhachHang khachHang);
 	public List<KhachHang> findAll();
-	public Optional<KhachHang> findById(int id);
+	public KhachHang findById(int id);
 	public void delete(int id);
 	public boolean checkDangNhap(DangNhapModel dangNhapModel);
 	public KhachHang getKhachHangByAccount(String tenTaiKhoan);

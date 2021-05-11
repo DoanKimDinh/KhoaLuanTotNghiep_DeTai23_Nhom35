@@ -30,13 +30,14 @@ public class NhanVien {
 	private String chungMinhNhanDan;
 	private String diaChi;
 	private TypeGioiTinh gioiTinh;
+	private String tenTaiKhoan;
 	private String matKhau;
 
 	@OneToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
 	private QuyenTruyCap quyenTruyCap;
 
 	public NhanVien(String tenNhanVien, String soDienThoai, String email, String chungMinhNhanDan, String diaChi,
-			TypeGioiTinh gioiTinh, String matKhau) {
+			TypeGioiTinh gioiTinh,String tenTaiKhoan, String matKhau) {
 		super();
 		this.tenNhanVien = tenNhanVien;
 		this.soDienThoai = soDienThoai;
@@ -44,6 +45,7 @@ public class NhanVien {
 		this.chungMinhNhanDan = chungMinhNhanDan;
 		this.diaChi = diaChi;
 		this.gioiTinh = gioiTinh;
+		this.tenTaiKhoan = tenTaiKhoan;
 		this.matKhau = matKhau;
 	}
 

@@ -43,21 +43,6 @@
       width: 1%;
     }
   </style>
-  <script>
-    $(document).ready(function () {
-      $('#inforModal').modal('show');
-
-      $(function () {
-        $('[data-toggle="tooltip"]').tooltip()
-      });
-
-      $("#btn-confirm").on("click", function(){
-        $("#mi-modal").modal('show');
-      });
-      
-    });
-  </script>
-
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -127,7 +112,7 @@
                         <div class="col-sm-12 col-md-6">
                           <div class="dt-buttons btn-group flex-wrap">
                             <button class="btn btn-add" type="button" data-toggle="modal"
-                              data-target="#inforModal">Thêm món ăn</button>
+                              data-target="#inforModal" id="btnAdd">Thêm món ăn</button>
                           </div>
                         </div>
                         <div class="col-sm-12 col-md-6">
@@ -157,7 +142,8 @@
                             <td style="text-align: center;">
                               <a th:href="@{/admin/monAn/edit/{id}(id=${monAn.maMonAn})}"><i class="fas fa-user-edit" 
                                   style="margin-right: 10px;"></i></a>
-                              <a href="#"><i class="fas fa-trash-alt" id="btn-confirm"></i></a>
+                              <a href="#" data-toggle="modal" id="btnDelete"
+                              data-target="#mi-modal"><i class="fas fa-trash-alt" id="btn-confirm"></i></a>
                             </td>
                           </tr>
                           <!-- <tr>
@@ -257,8 +243,9 @@
           </div>
         </div>
       </div>
-
-      <div class="modal fade" id="inforModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    </div>
+    
+    <div class="modal fade" id="inforModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
@@ -300,7 +287,7 @@
                       </select>
                     </div>
                     
-                    <button type="submit" class="btn btn-primary">Thêm Món Ăn</button>
+                    <button type="submit" class="btn btn-add">Thêm Món Ăn</button>
                   </form>
                 </div>
               </div>
@@ -319,7 +306,6 @@
   <script th:src="@{/plugins/jquery-ui/jquery-ui.min.js}"></script>
   <script th:src="@{/plugins/bootstrap/js/bootstrap.bundle.min.js}"></script>
   <script th:src="@{/plugins/daterangepicker/daterangepicker.js}"></script>
-  <script th:src="@{/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js}"></script>
   <script th:src="@{/plugins/summernote/summernote-bs4.min.js}"></script>
   <script th:src="@{/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js}"></script>
   <script th:src="@{/dist/js/adminlte.js}"></script>
@@ -353,8 +339,28 @@
               "url": "//cdn.datatables.net/plug-ins/1.10.24/i18n/Vietnamese.json"
           }
       });
+      
+      $("#btnAdd").click(function(){
+    	  $("#inforModal").modal();
+      });
+      
+      $("#btnDelete").click(function(){
+    	  $("#mi-modal").modal();
+      })
     });
+ 
+    /* $(document).ready(function () {
+      $('#inforModal').modal('show');
 
+      $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+      });
+      
+    });
+    
+    $(document).ready(function() {
+    	$('#mi-modal').modal('show');
+    }) */
   </script>
   
   <style type="text/css">

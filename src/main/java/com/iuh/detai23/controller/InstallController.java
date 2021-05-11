@@ -67,15 +67,15 @@ public class InstallController {
 		loaiMonAnService.save(loaiMonAn2);
 		loaiMonAnService.save(loaiMonAn3);
 
-		MonAn monAn1 = new MonAn("Lẩu Thái", 120000, "Món Ăn Hà Nội", "img-01.jpg", loaiMonAn1,"DANG KINH DOANH");
-		MonAn monAn2 = new MonAn("Lẩu Hải Sản", 130000, "Món Ăn Hà Nội", "img-02.jpg", loaiMonAn1,"DANG KINH DOANH");
-		MonAn monAn3 = new MonAn("Lẩu Cá Kèo", 140000, "Món Ăn Hà Nội", "img-03.jpg", loaiMonAn1,"DANG KINH DOANH");
-		MonAn monAn4 = new MonAn("Tôm Sú", 160000, "Món Ăn Hà Nội", "img-04.jpg", loaiMonAn2,"DANG KINH DOANH");
-		MonAn monAn5 = new MonAn("Tôm Càng", 110000, "Món Ăn Hà Nội", "img-05.jpg", loaiMonAn2,"DANG KINH DOANH");
-		MonAn monAn6 = new MonAn("Tôm Hùm", 220000, "Món Ăn Hà Nội", "img-06.jpg", loaiMonAn2,"DANG KINH DOANH");
-		MonAn monAn7 = new MonAn("Cá Lăng", 320000, "Món Ăn Hà Nội", "img-07.jpg", loaiMonAn2,"DANG KINH DOANH");
-		MonAn monAn8 = new MonAn("Gỏi Cá Trích", 1220000, "Món Ăn Hà Nội", "img-08.jpg", loaiMonAn3,"DANG KINH DOANH");
-		MonAn monAn9 = new MonAn("Gỏi Tiến Vua", 1210000, "Món Ăn Hà Nội", "img-09.jpg", loaiMonAn3,"DANG KINH DOANH");
+		MonAn monAn1 = new MonAn("Lẩu Thái", 120000, "Món Ăn Hà Nội", "img-01.jpg", loaiMonAn1,"DangKinhDoanh");
+		MonAn monAn2 = new MonAn("Lẩu Hải Sản", 130000, "Món Ăn Hà Nội", "img-02.jpg", loaiMonAn1,"DangKinhDoanh");
+		MonAn monAn3 = new MonAn("Lẩu Cá Kèo", 140000, "Món Ăn Hà Nội", "img-03.jpg", loaiMonAn1,"DangKinhDoanh");
+		MonAn monAn4 = new MonAn("Tôm Sú", 160000, "Món Ăn Hà Nội", "img-04.jpg", loaiMonAn2,"DangKinhDoanh");
+		MonAn monAn5 = new MonAn("Tôm Càng", 110000, "Món Ăn Hà Nội", "img-05.jpg", loaiMonAn2,"DangKinhDoanh");
+		MonAn monAn6 = new MonAn("Tôm Hùm", 220000, "Món Ăn Hà Nội", "img-06.jpg", loaiMonAn2,"DangKinhDoanh");
+		MonAn monAn7 = new MonAn("Cá Lăng", 320000, "Món Ăn Hà Nội", "img-07.jpg", loaiMonAn2,"DangKinhDoanh");
+		MonAn monAn8 = new MonAn("Gỏi Cá Trích", 1220000, "Món Ăn Hà Nội", "img-08.jpg", loaiMonAn3,"NgungKinhDoanh");
+		MonAn monAn9 = new MonAn("Gỏi Tiến Vua", 1210000, "Món Ăn Hà Nội", "img-09.jpg", loaiMonAn3,"NgungKinhDoanh");
 		
 		monAnService.save(monAn1);
 		monAnService.save(monAn2);
@@ -114,9 +114,9 @@ public class InstallController {
 		
 		
 		
-		NhanVien nv1 = new NhanVien("Nguyen Tien Linh", "0123432323", "linh@gmail.com", "342356443", "Quan 1", TypeGioiTinh.Nam, "123456");
-		NhanVien nv2 = new NhanVien("Mac Hong Quan", "0234232323", "quan@gmail.com", "342356445", "Quan 2", TypeGioiTinh.Nam, "123456");
-		NhanVien nv3 = new NhanVien("Nguyen Trong Hoang", "0464232323", "hoang@gmail.com", "342356466", "Quan 3", TypeGioiTinh.Nu, "123456");
+		NhanVien nv1 = new NhanVien("Nguyen Tien Linh", "0123432323", "linh@gmail.com", "342356443", "Quan 1", TypeGioiTinh.Nam, "nguyentienlinh", "123456");
+		NhanVien nv2 = new NhanVien("Mac Hong Quan", "0234232323", "quan@gmail.com", "342356445", "Quan 2", TypeGioiTinh.Nam, "machongquan", "123456");
+		NhanVien nv3 = new NhanVien("Nguyen Trong Hoang", "0464232323", "hoang@gmail.com", "342356466", "Quan 3", TypeGioiTinh.Nu, "nguyentronghoang", "123456");
 		
 		nv1.setQuyenTruyCap(quyen2);
 		nv2.setQuyenTruyCap(quyen2);

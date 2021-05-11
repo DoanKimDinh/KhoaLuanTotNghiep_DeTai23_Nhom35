@@ -43,15 +43,6 @@ img {
 	width: 1%;
 }
 </style>
-<script>
-	$(document).ready(function() {
-		$('#inforModal').modal('show');
-
-		$(function() {
-			$('[data-toggle="tooltip"]').tooltip()
-		})
-	});
-</script>
 
 </head>
 
@@ -130,7 +121,7 @@ img {
 												<div class="col-sm-12 col-md-6">
 													<div class="dt-buttons btn-group flex-wrap">
 														<button class="btn btn-add" type="button"
-															data-toggle="modal" data-target="#inforModal">Thêm nhân viên</button>
+															data-toggle="modal" data-target="#inforModal" id="btnAdd">Thêm nhân viên</button>
 													</div>
 												</div>
 												<div class="col-sm-12 col-md-6">
@@ -164,9 +155,8 @@ img {
 														<td th:text="${nhanVien.diaChi}"></td>
 														<td th:text="${nhanVien.gioiTinh}"></td>
 														<td th:text="${nhanVien.quyenTruyCap.tenQuyenTruyCap}"></td>
-														<td style="text-align: center;"><a href="#"><i
-																class="fas fa-user-edit" data-toggle="modal"
-																data-target="#inforModal" style="margin-right: 10px;"></i></a>
+														<td style="text-align: center;"><a th:href="@{/admin/quanlynhanvien/edit/{id}(id=${nhanVien.maNhanVien})}"><i
+																class="fas fa-user-edit" style="margin-right: 10px;"></i></a>
 															<a href="#"><i class="fas fa-trash-alt"></i></a></td>
 													</tr>
 
@@ -240,7 +230,7 @@ img {
 					<div class="modal-content">
 						<div class="modal-header border-bottom-0">
 							<div class="form-title text-center">
-								<h4>Cập nhật món ăn</h4>
+								<h4>Thêm nhân viên</h4>
 							</div>
 							<button type="button" class="close" data-dismiss="modal"
 								aria-label="Close">
@@ -250,58 +240,81 @@ img {
 						<div class="modal-body">
 							<div>
 								<div class="panel-body">
-									<form action="#" th:action="@{/addMonAn}" th:object="${monAn}"
+									<form action="#" th:action="@{/addNhanVien}" th:object="${khachHang}"
 										method="post" enctype="multipart/form-data">
 										<div class="form-group">
-											<label class="col-sm-6 control-label">Tên Món Ăn</label> <input
-												class="form-control" type="text" name="tenMonAn"
-												placeholder="Nhập tên món ăn" ng-model="me.email">
+											<label class="col-sm-6 control-label">Tên nhân viên</label> 
+											<input class="form-control" type="text" name="tenNhanVien"
+												placeholder="Nhập tên nhân viên" ng-model="me.email">
 										</div>
 										<div class="form-group">
-											<label class="col-sm-6 control-label">Đơn Giá</label> <input
-												class="form-control" required="required" type="text"
-												name="donGia" placeholder="Nhập đơn giá" ng-model="me.email">
+											<label class="col-sm-6 control-label">Số điện thoại</label> 
+											<input class="form-control" required="required" type="number"
+												name="soDienThoai" placeholder="Nhập số điện thoại" ng-model="me.email">
 										</div>
 										<div class="form-group">
-											<label class="col-sm-6 control-label">Mô Tả</label> <input
-												class="form-control" type="text" name="moTa"
-												placeholder="Nhập mô tả" ng-model="me.email">
+											<label class="col-sm-6 control-label">Email</label> 
+											<input class="form-control" type="email" name="email"
+												placeholder="Nhập Email" ng-model="me.email">
 										</div>
 										<div class="form-group">
-											<label class="col-sm-6 control-label">Hình Ảnh</label> <input
-												class="form-control" type="file" name="file">
+											<label class="col-sm-6 control-label">Chứng minh nhân dân</label> 
+											<input class="form-control" required="required" type="number"
+												name="chungMinhNhanDan" placeholder="Nhập chứng minh nhân dân" ng-model="me.email">
 										</div>
 										<div class="form-group">
-											<label class="col-sm-6 control-label">Loại Món Ăn</label> <select
-												class="form-control" aria-label=".form-select-lg example"
-												name="idLoaiMonAn">
-												<option selected th:each="loai : ${listLoaiMonAn}"
-													th:text="${loai.tenLoai}" th:value="${loai.maLoaiMonAn}"></option>
-											</select>
+											<label class="col-sm-6 control-label">Địa chỉ</label> 
+											<input class="form-control" type="text" name="diaChi"
+												placeholder="Nhập địa chỉ" ng-model="me.email">
 										</div>
-
-										<button type="submit" class="btn btn-primary">Thêm
-											Món Ăn</button>
+										<div class="form-group">
+											<label class="col-sm-3 control-label">Giới tính:</label>
+											<div class="form-check-inline">
+												<label class="form-check-label">
+													<input type="radio" class="form-check-input" name="gioiTinh" value="0" checked>Nam
+												</label>
+											</div>
+											<div class="form-check-inline">
+												<label class="form-check-label">
+													<input type="radio" class="form-check-input" name="gioiTinh" value="1">Nữ
+												</label>
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="col-sm-6 control-label">Tên tài khoản</label> 
+											<input class="form-control" type="text" name="tenTaiKhoan"
+												placeholder="Nhập tên tài khoản" ng-model="me.email">
+										</div>
+										<div class="form-group">
+											<label class="col-sm-6 control-label">Mật khẩu</label> 
+											<input class="form-control" type="password" name="matKhau"
+												placeholder="Nhập mật khẩu" ng-model="me.email">
+										</div>
+										<div class="form-group" style="display: none">											 
+											<input class="form-control" type="password" name="maQuyenTruyCap"
+												placeholder="Nhập mật khẩu" ng-model="me.email" value="1">
+										</div>
+										<button type="submit" class="btn btn-add">Thêm Nhân viên</button>
 									</form>
 								</div>
 							</div>
 						</div>
-						<div class="modal-footer">
+						<!-- <div class="modal-footer">
 							<div class="col-sm-offset-2 col-sm-10">
 								<button class="btn btn-common" ng-click="updateMe()"
 									style="margin-left: 350px;">Submit</button>
 							</div>
-						</div>
+						</div> -->
 					</div>
 				</div>
 			</div>
 		</div>
 
-	<script th:src="@{/plugins/jquery/jquery.min.js}"></script>
+  <script th:src="@{/plugins/jquery/jquery.min.js}"></script>
   <script th:src="@{/plugins/jquery-ui/jquery-ui.min.js}"></script>
   <script th:src="@{/plugins/bootstrap/js/bootstrap.bundle.min.js}"></script>
   <script th:src="@{/plugins/daterangepicker/daterangepicker.js}"></script>
-  <script th:src="@{/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js}"></script>
+  
   <script th:src="@{/plugins/summernote/summernote-bs4.min.js}"></script>
   <script th:src="@{/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js}"></script>
   <script th:src="@{/dist/js/adminlte.js}"></script>
@@ -327,7 +340,6 @@ img {
   <script th:src="@{/plugins/datatables-buttons/js/buttons.html5.min.js}"></script>
   <script th:src="@{/plugins/datatables-buttons/js/buttons.print.min.js}"></script>
   <script th:src="@{/plugins/datatables-buttons/js/buttons.colVis.min.js}"></script>
-  
   <script>
     $(document).ready(function () {
       $('#myTable').DataTable({
@@ -335,6 +347,10 @@ img {
               "url": "//cdn.datatables.net/plug-ins/1.10.24/i18n/Vietnamese.json"
           }
       });
+      
+      $("#btnAdd").click(function(){
+    	  $("#inforModal").modal();
+      })
     });
 
   </script>

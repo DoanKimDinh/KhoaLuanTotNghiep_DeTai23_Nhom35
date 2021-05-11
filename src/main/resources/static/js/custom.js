@@ -68,19 +68,14 @@
 				filter: filterValue
 			});
 		});
-		var $grid = $('.special-list').isotope({
-			itemSelector: '.special-grid'
-		});
+		
 	});
 	
 	/* ..............................................
     BaguetteBox
     ................................................. */
 	
-	baguetteBox.run('.tz-gallery', {
-		animation: 'fadeIn',
-		noScrollbars: true
-	});
+	
 	
 	
 	
@@ -88,9 +83,8 @@
     Datepicker
     ................................................. */
 	
-	$('.datepicker').pickadate();
 	
-	$('.time').pickatime();
+	
 	
 	
 	

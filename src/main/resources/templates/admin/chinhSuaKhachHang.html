@@ -5,7 +5,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Admin Page</title>
-<link rel="shortcut icon" th:href="@{/images/favicon.ico}" type="image/x-icon">
+  <link rel="shortcut icon" th:href="@{/images/favicon.ico}" type="image/x-icon">
   <link rel="apple-touch-icon" th:href="@{/images/apple-touch-icon.png}">
 
   <link rel="stylesheet" th:href="@{/plugins/fontawesome-free/css/all.min.css}">
@@ -57,7 +57,7 @@
 				<div class="container-fluid">
 					<div class="row mb-2">
 						<div class="col-sm-6">
-							<h1 class="m-0">Chỉnh sửa thông tin món ăn</h1>
+							<h1 class="m-0">Chỉnh sửa thông tin khách hàng</h1>
 						</div>
 						<!-- /.col -->
 					</div>
@@ -72,7 +72,7 @@
 							<div class="col-md-12">
 								<div class="card card-info">
 									<div class="card-header" style="color: #fff;">
-										<h3 class="card-title">Thông tin món ăn</h3>
+										<h3 class="card-title">Thông tin khách hàng</h3>
 									</div>
 									<!-- /.card-header -->
 									<!-- form start -->
@@ -91,39 +91,49 @@
 											<form action="" method="POST" enctype="multipart/form-data">
 												
 												<div class="form-group">
-													<label for="email">Mã món ăn:</label>
+													<label for="maKhachHang">Mã khách hàng:</label>
 													<input type="text" class="form-control" readonly
-														th:value="${monAn.maMonAn}" placeholder="Mã món ăn" name="maMonAn">
+														th:value="${khachHang.maKhachHang}" placeholder="Mã khách hàng" name="maKhachHang">
 												</div>
 												<div class="form-group">
-													<label for="email">Tên món ăn:</label>
-													<input type="text" class="form-control" th:value="${monAn.tenMonAn}"
-														placeholder="Tên món ăn" required="required" name="tenMonAn">
+													<label for="tenKhachHang">Tên khách hàng:</label>
+													<input type="text" class="form-control" th:value="${khachHang.tenKhachHang}"
+														placeholder="Tên khách hàng" required="required" name="tenKhachHang">
 												</div>
 												<div class="form-group">
-													<label for="email">Đơn giá:</label>
-													<input type="number" class="form-control" th:value="${monAn.DonGia}" 
-														placeholder="Đơn giá" required="required" name="DonGia">
+													<label for="soDienThoai">Số điện thoại:</label>
+													<input type="number" class="form-control" th:value="${khachHang.sdt}" 
+														placeholder="Số điện thoại" required="required" name="sdt">
 												</div>
 												<div class="form-group">
-													<label for="email">Mô tả:</label>
-													<textarea class="form-control" th:text="${monAn.moTa}" name="moTa"
-														placeholder="Mô tả"></textarea>
-												  </div>
-												  <div class="form-group">
-													<label for="email">Hình ảnh:</label>
-													<input type="file" class="form-control" data-buttonText="Hình ảnh">
-													<input type="hidden" name="hinhAnh" th:value="${monAn.hinhAnh}">
-												  </div>
-												  <div class="form-group">
-													<label for="email">Loại món ăn:</label>
-													<select class="form-select" name="maLoaiMonAn">
-														<option th:each="item : ${loaiMonAn}" th:value="${item.maLoaiMonAn}" th:text="${item.tenLoai}" th:selected="(${item.maLoaiMonAn}==${monAn.maLoaiMonAn})">
+													<label for="email">Email:</label>
+													<input type="email" class="form-control" th:value="${khachHang.email}" 
+														placeholder="Email" required="required" name="email">
+												 </div>
+												 <div class="form-group">
+													<label for="tenTaiKhoan">Tên tài khoản:</label>
+													<input type="text" class="form-control" th:value="${khachHang.tenTaiKhoan}" 
+														placeholder="Tên tài khoản" required="required" name="tenTaiKhoan" readonly>
+												 </div>
+												 <div class="form-group">
+													<label for="matKhau">Mật khẩu:</label>
+													<input type="password" class="form-control" th:value="${khachHang.matKhau}" 
+														placeholder="Mật khẩu" required="required" name="matKhau">
+												 </div>
+												 <div class="form-group">
+													<label for="diaChi">Địa chỉ:</label>
+													<input type="text" class="form-control" th:value="${khachHang.diaChi}" 
+														placeholder="Địa chỉ" required="required" name="diaChi">
+												 </div>
+												 <!--  <div class="form-group">
+													<label for="quyenTruyCap">Quyền truy cập:</label>
+													<select class="form-select" name="maQuyenTruyCap">
+														<option th:each="item : ${quyenTruyCap}" th:value="${item.maQuyenTruyCap}" th:text="${item.tenQuyenTruyCap}" th:selected="(${item.maQuyenTruyCap}==${khachHang.maQuyenTruyCap})">
 
 														</option>
 													</select>
-												  </div>
-												<button type="submit" class="btn btn-update">Cập Nhật Món Ăn</button>
+												  </div> -->
+												<button type="submit" class="btn btn-update">Cập Nhật khách hàng</button>
 											  </form>
 										</div>
 									</div>
@@ -247,8 +257,6 @@
 				</div>
 			</div>
 		</div>
-	</div>
-	
   <script th:src="@{/plugins/jquery/jquery.min.js}"></script>
   <script th:src="@{/plugins/jquery-ui/jquery-ui.min.js}"></script>
   <script th:src="@{/plugins/bootstrap/js/bootstrap.bundle.min.js}"></script>
@@ -279,8 +287,20 @@
   <script th:src="@{/plugins/datatables-buttons/js/buttons.html5.min.js}"></script>
   <script th:src="@{/plugins/datatables-buttons/js/buttons.print.min.js}"></script>
   <script th:src="@{/plugins/datatables-buttons/js/buttons.colVis.min.js}"></script>
-
-
+	
+<style type="text/css">
+.dataTables_filter {
+	float: right
+}
+</style>
 </body>
+	<!-- <script>
+		$(document).ready(function () {
+			$('#inforModal').modal('show');
 
+			$(function () {
+				$('[data-toggle="tooltip"]').tooltip()
+			})
+		});
+	</script> -->
 </html>

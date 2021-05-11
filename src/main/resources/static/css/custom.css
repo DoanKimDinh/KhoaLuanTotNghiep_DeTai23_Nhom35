@@ -123,3 +123,14 @@
 .btn.btn-add:hover {
 	opacity: 0.9;
 }
+
+.btn.btn-update {
+	background-color: #d0a772;
+	color: white;
+	border-radius: 10px;
+	outline: none;
+}
+
+.btn.btn-update:hover {
+	opacity: 0.9;
+}

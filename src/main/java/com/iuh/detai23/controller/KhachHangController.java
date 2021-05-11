@@ -9,12 +9,18 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.iuh.detai23.entities.KhachHang;
+import com.iuh.detai23.entities.QuyenTruyCap;
 import com.iuh.detai23.service.KhachHangService;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.iuh.detai23.model.DangNhapModel;
+import com.iuh.detai23.model.KhachHangModel;
+import com.iuh.detai23.model.MonAnModel;
+import com.iuh.detai23.model.UpdateKhachHangModel;
+import com.iuh.detai23.model.UpdateMonAnModel;
 import com.iuh.detai23.service.QuyenTruyCapService;
 
 @Controller
@@ -28,7 +34,7 @@ public class KhachHangController {
 //	@Autowired
 //	private ModelAndView modelAndView;
 
-	@GetMapping("admin/quanlykhachhang")
+	@GetMapping("/admin/quanlykhachhang")
 	public ModelAndView getQuanLyKhachHang() {
 		ModelAndView modelAndView = new ModelAndView();
 		List<KhachHang> listKhachHang = khachHangService.findAll();
@@ -75,5 +81,45 @@ public class KhachHangController {
 	public String destroySession(HttpServletRequest request) {
 		request.getSession().invalidate();
 		return "redirect:/";
+	}
+	
+	@GetMapping("admin/quanlykhachhang/edit/{id}")
+	public ModelAndView getEditKhachHang(@PathVariable("id") int id) {
+		ModelAndView modelAndView = new ModelAndView("admin/chinhSuaKhachHang");
+		KhachHang khachHang = khachHangService.findById(id);
+		UpdateKhachHangModel khacHangModel = new UpdateKhachHangModel(khachHang.getMaKhachHang(),khachHang.getTenKhachHang(), khachHang.getSdt(), khachHang.getEmail(), khachHang.getTenTaiKhoan(), khachHang.getMatKhau(), khachHang.getDiaChi(), khachHang.getQuyenTruyCap().getMaQuyenTruyCap());
+		modelAndView.addObject("khachHang", khacHangModel);
+		modelAndView.addObject("quyenTruyCap", quyenTruyCapService.findAll());
+		
+		return modelAndView;
+	}
+	
+	@PostMapping("admin/quanlykhachhang/edit/{id}")
+	public String getEditKhachHangUpdate(@PathVariable("id") int id, @ModelAttribute UpdateKhachHangModel khachHangModel, RedirectAttributes redirect) {
+		KhachHang khachHang = khachHangService.findById(id);
+		khachHang.setTenKhachHang(khachHangModel.getTenKhachHang());
+		khachHang.setSdt(khachHangModel.getSdt());
+		khachHang.setDiaChi(khachHangModel.getDiaChi());
+		khachHang.setEmail(khachHangModel.getEmail());
+		khachHang.setMatKhau(khachHangModel.getMatKhau());
+		khachHangService.save(khachHang);
+		redirect.addAttribute("success", "thanhCong");
+		
+		return "redirect:/admin/quanlykhachhang/";
+	}
+	
+	@PostMapping("/addKhachHang")
+	public String addKhacHang(@ModelAttribute KhachHangModel khachHangModel) {
+		KhachHang khachHang = new KhachHang();
+		khachHang.setTenKhachHang(khachHangModel.getTenKhachHang());
+		khachHang.setSdt(khachHangModel.getSdt());
+		khachHang.setEmail(khachHangModel.getEmail());
+		khachHang.setDiaChi(khachHangModel.getDiaChi());
+		khachHang.setTenTaiKhoan(khachHangModel.getTenTaiKhoan());
+		khachHang.setMatKhau(khachHangModel.getMatKhau());
+		khachHang.setQuyenTruyCap(quyenTruyCapService.findByMaQuyenTruyCap(khachHangModel.getMaQuyenTruyCap()));
+		khachHangService.save(khachHang);
+		
+		return "redirect:/admin/quanlykhachhang";
 	}
 }

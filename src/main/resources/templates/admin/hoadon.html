@@ -43,16 +43,7 @@
 		width: 1%;
 	}
 	</style>
-	<script>
-		$(document).ready(function() {
-			$('#inforModal').modal('show');
 	
-			$(function() {
-				$('[data-toggle="tooltip"]').tooltip()
-			})
-		});
-	</script>
-
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -160,7 +151,7 @@
 
 														<td style="text-align: center;"><a href="#"><i
 																class="fas fa-info-circle" data-toggle="modal" th:attr="data-maHoaDon=${hoaDon.maHoaDon}"
-																data-target="#inforModal"></i></a></td>
+																data-target="#inforModal" id="billDetail"></i></a></td>
 													</tr>
 
 												</tbody>
@@ -356,7 +347,6 @@
   <script th:src="@{/plugins/jquery-ui/jquery-ui.min.js}"></script>
   <script th:src="@{/plugins/bootstrap/js/bootstrap.bundle.min.js}"></script>
   <script th:src="@{/plugins/daterangepicker/daterangepicker.js}"></script>
-  <script th:src="@{/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js}"></script>
   <script th:src="@{/plugins/summernote/summernote-bs4.min.js}"></script>
   <script th:src="@{/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js}"></script>
   <script th:src="@{/dist/js/adminlte.js}"></script>
@@ -390,8 +380,11 @@
               "url": "//cdn.datatables.net/plug-ins/1.10.24/i18n/Vietnamese.json"
           }
       });
+      
+      $("#buildDetail").click(function(){
+    	  $('#inforModal').modal();  
+      })      
     });
-
   </script>
 
 	<style type="text/css">

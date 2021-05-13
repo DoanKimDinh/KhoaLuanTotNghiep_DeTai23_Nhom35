@@ -8,9 +8,14 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class BanDatTruocAddModel {
+	private int soNguoi; 
 	private String ngayDen; 
 	private String thoiGianDen; 
-	private int soNguoi; 
+	
 	private String ghiChu;
+	
+	private String tenKhachHang;
+	private String email;
+	private String phone;
 	private String diaChi; 
 }

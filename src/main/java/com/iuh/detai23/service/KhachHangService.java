@@ -13,4 +13,5 @@ public interface KhachHangService {
 	public void delete(int id);
 	public boolean checkDangNhap(DangNhapModel dangNhapModel);
 	public KhachHang getKhachHangByAccount(String tenTaiKhoan);
+	public KhachHang getKhachHangByEmail(String email);
 }

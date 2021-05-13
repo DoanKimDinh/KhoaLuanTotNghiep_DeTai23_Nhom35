@@ -67,4 +67,17 @@ public class KhachHangServiceImpl implements KhachHangService{
 		return null;
 	}
 
+	@Override
+	public KhachHang getKhachHangByEmail(String email) {
+		// TODO Auto-generated method stub
+		List<KhachHang> listKhachHang = new ArrayList<KhachHang>();
+		listKhachHang = khachHangRepository.findAll();
+		for (KhachHang khachHang : listKhachHang) {
+			if(khachHang.getEmail().equals(email)) {
+				return khachHang;
+			}
+		}
+		return null;
+	}
+
 }

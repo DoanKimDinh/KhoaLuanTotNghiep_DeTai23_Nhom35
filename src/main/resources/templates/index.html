@@ -32,7 +32,7 @@
 <link rel="stylesheet" th:href="@{/css/custom.css}">
 <style type="text/css">
 .alert {
-	position: absolute;
+	position: fixed;
 	height: fit-content;
 	z-index: 999;
 	width: 100%;
@@ -48,8 +48,6 @@
     <![endif]-->
 <script>
 	$(document).ready(function() {
-
-
 		$(function() {
 			$('[data-toggle="tooltip"]').tooltip()
 		})
@@ -64,28 +62,55 @@
 	function UserLogin() {
 		window.location = '/DHKTPM13A/nam4/hocki2_2020-2021/KhoaLuan/GiaoDien/yamifood/html/user_index.html';
 	};
+	function datBan(){
+		var order = document.getElementById("datBan");
+		var datBan = order.getAttribute("data-session");
+		
+		if (datBan == null) {
+			document.getElementById("myAlert").style.display = "block";
+			setTimeout(function(){
+				document.getElementById("myAlert").style.display = "none";
+			}, 2000);
+		}
+		else{
+			window.location.href="/client/datBan";
+		}
+	}
 </script>
 <script th:if="${message}">
+	window.addEventListener('DOMContentLoaded',function(){
+		document.getElementById("myAlert-loggin-success").style.display = "block";
+		setTimeout(function(){
+			document.getElementById("myAlert-loggin-success").style.display = "none";
+		}, 2000); 
+	});
+</script>
 
-
-	console.log('dinhjjj');
-	$(".myAlert-top").show();
-
-
+<script th:if="${completedDatBan}">
+	window.addEventListener('DOMContentLoaded',function(){
+		document.getElementById("myAlert-datBan-Completed").style.display = "block";
+		setTimeout(function(){
+			document.getElementById("myAlert-datBan-Completed").style.display = "none";
+		}, 2000); 
+	});
 </script>
 </head>
 
 <body>
-	<div th:text="${message}">
-		<h2>Doan kim dih ahihi</h2>
-	</div>
-	<div class="myAlert-top alert alert-success">
+	
+	<div class="myAlert-top alert alert-warning" id="myAlert">
 		<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-		<strong>Thành công!</strong> Bạn đã tạo tài khoản thành công.
+		<strong>Bạn chưa đăng nhập!</strong> Vui lòng đăng nhập tài khoản để thực hiện đặt bàn. 
 	</div>
-	<div class="myAlert-top alert alert-success">
+	
+	<div class="myAlert-top alert alert-success" id="myAlert-datBan-Completed">
 		<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-		<strong>Success!</strong> Indicates a successful or positive action.
+		<strong>Đặt Bàn Thành Công !</strong>
+	</div>
+	
+	<div class="myAlert-top alert alert-success" id="myAlert-loggin-success">
+		<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+		<strong>Đăng Nhập Thành Công!</strong>
 	</div>
 	<!-- Start header -->
 	<div th:replace="header"></div>
@@ -175,96 +200,7 @@
 							<h5 th:text="${monAn.DonGia}+' VNĐ'"></h5>
 						</div>
 					</div>
-				</div>
-
-				<!-- <div class="col-lg-4 col-md-6 special-grid drinks">
-					<div class="gallery-single fix">
-						<img th:src="@{/images/img-02.jpg}" class="img-fluid" alt="Image">
-						<div class="why-text">
-							<h4>Combo 1</h4>
-							<p>Món ngon hòa vị</p>
-							<h5> 150.000 vnd</h5>
-						</div>
-					</div>
-				</div>
-				
-				<div class="col-lg-4 col-md-6 special-grid drinks">
-					<div class="gallery-single fix">
-						<img th:src="@{/images/img-03.jpg}" class="img-fluid" alt="Image">
-						<div class="why-text">
-							<h4>Combo 1</h4>
-							<p>Món ngon hòa vị</p>
-							<h5> 150.000 vnd</h5>
-						</div>
-					</div>
-				</div>
-				
-				<div class="col-lg-4 col-md-6 special-grid lunch">
-					<div class="gallery-single fix">
-						<img th:src="@{/images/img-04.jpg}" class="img-fluid" alt="Image">
-						<div class="why-text">
-							<h4>Combo 1</h4>
-							<p>Món ngon hòa vị</p>
-							<h5> 150.000 vnd</h5>
-						</div>
-					</div>
-				</div>
-				
-				<div class="col-lg-4 col-md-6 special-grid lunch">
-					<div class="gallery-single fix">
-						<img th:src="@{/images/img-05.jpg}" class="img-fluid" alt="Image">
-						<div class="why-text">
-							<h4>Combo 1</h4>
-							<p>Món ngon hòa vị</p>
-							<h5> 150.000 vnd</h5>
-						</div>
-					</div>
-				</div>
-				
-				<div class="col-lg-4 col-md-6 special-grid lunch">
-					<div class="gallery-single fix">
-						<img th:src="@{/images/img-06.jpg}" class="img-fluid" alt="Image">
-						<div class="why-text">
-							<h4>Combo 1</h4>
-							<p>Món ngon hòa vị</p>
-							<h5> 150.000 vnd</h5>
-						</div>
-					</div>
-				</div>
-				
-				<div class="col-lg-4 col-md-6 special-grid dinner">
-					<div class="gallery-single fix">
-						<img th:src="@{/images/img-07.jpg}" class="img-fluid" alt="Image">
-						<div class="why-text">
-							<h4>Combo 1</h4>
-							<p>Món ngon hòa vị</p>
-							<h5> 150.000 vnd</h5>
-						</div>
-					</div>
-				</div>
-				
-				<div class="col-lg-4 col-md-6 special-grid dinner">
-					<div class="gallery-single fix">
-						<img th:src="@{/images/img-08.jpg}" class="img-fluid" alt="Image">
-						<div class="why-text">
-							<h4>Combo 1</h4>
-							<p>Món ngon hòa vị</p>
-							<h5> 150.000 vnd</h5>
-						</div>
-					</div>
-				</div>
-				
-				<div class="col-lg-4 col-md-6 special-grid dinner">
-					<div class="gallery-single fix">
-						<img th:src="@{/images/img-09.jpg}" class="img-fluid" alt="Image">
-						<div class="why-text">
-							<h4>Combo 1</h4>
-							<p>Món ngon hòa vị</p>
-							<h5> 150.000 vnd</h5>
-						</div>
-					</div>
-				</div> -->
-
+				</div>			
 			</div>
 		</div>
 	</div>
@@ -421,7 +357,7 @@
 	<script th:src="@{/js/isotope.min.js}"></script>
 	<script th:src="@{/js/baguetteBox.min.js}"></script>
 	<script th:src="@{/js/form-validator.min.js}"></script>
-<script th:src="@{/js/contact-form-script.js}"></script>
+   	<script th:src="@{/js/contact-form-script.js}"></script>
 	<script th:src="@{/js/custom.js}"></script>
 
 	<div class="modal fade" id="loginModal" tabindex="-1" role="dialog"

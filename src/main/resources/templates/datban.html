@@ -29,13 +29,14 @@
     <link rel="stylesheet" th:href="@{/css/responsive.css}">
     <!-- Custom CSS -->
     <link rel="stylesheet" th:href="@{/css/custom.css}">
-
+    <script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    
+	
 
      <script>
 		$(document).ready(function() {
-			$('#loginModal').modal('show');
-
-			$('#signUpModal').modal('show');
+			
 
 			$(function () {
 				$('[data-toggle="tooltip"]').tooltip()
@@ -49,7 +50,7 @@
 		};
 
 		$(document).ready(function () {
-	      	$('#inforModal').modal('show');			
+	      	
 	      	$(function () {
 	       		$('[data-toggle="tooltip"]').tooltip()
       		});
@@ -98,74 +99,85 @@
 			<div class="row">
 				<div class="col-lg-12 col-sm-12 col-xs-12">
 					<div class="contact-block">
-						<form id="contactForm" action="" method="POST">
+						<form id="contactForm" th:action="@{/client/datBan}" action="" method="POST">
 							<div class="row">
 								<div class="col-md-6">
 									<h3>Thông tin đặt bàn</h3>
 									<div class="col-md-12">
 										<div class="form-group">
+											<strong><label>Số người:</label></strong>
 											<input id="soluong" class="form-control" name="soNguoi" type="number" value="" required data-error="Vui lòng nhập số người"  placeholder="Số người" min="1">
 											<div class="help-block with-errors"></div>
 										</div> 
 									</div>
 									<div class="col-md-12">
 										<div class="form-group">
-											<input id="input_date" class="datepicker picker__input form-control" name="ngayDen" type="text" value="" required data-error="Vui lòng chọn ngày đến" placeholder="Ngày đến">
+											<strong><label>Ngày đến:</label></strong>
+											<input type="date" id="input_date" class="datepicker picker__input form-control" name="ngayDen"  value="" required data-error="Vui lòng chọn ngày đến" placeholder="Ngày đến">
 											<div class="help-block with-errors"></div>
 										</div>                                 
 									</div>
 									<div class="col-md-12">
 										<div class="form-group">
-											<input id="input_time" class="time form-control picker__input" name="thoiGianDen" placeholder="Thời gian đến" required data-error="Vui lòng chọn ngày đến">
+											<strong><label>Thời gian đến:</label></strong>
+											<input type="time" id="input_time" class="time form-control picker__input" name="thoiGianDen" placeholder="Thời gian đến" required data-error="Vui lòng chọn ngày đến">
 											<div class="help-block with-errors"></div>
 										</div>                                 
 									</div>
 									<div class="col-md-12">
 										<div class="form-group">
+											<strong><label>Ghi chú:</label></strong>
 											<input id="input_ghichu" class="form-control" placeholder="Ghi chú" type="text" name="ghiChu">
 
 										</div>                                 
 									</div>	
-									<div class="col-md-12">
+									<!-- <div class="col-md-12">
 										<div class="form-group">
 											<input id="diaChi" class="form-control" placeholder="Địa chỉ" type="text" name="diaChi">
 
 										</div>                                 
-									</div>	
+									</div>	-->
 								</div>
 								<div class="col-md-6">
 									<h3>Thông tin liên hệ</h3>
 									<div class="col-md-12">
 										<div class="form-group">
-											<input type="text" class="form-control" id="name" name="name" th:value="${khachHang.tenKhachHang}" placeholder="Họ và tên" required data-error="Vui lòng nhập họ và tên">
+											<strong><label>Tên người liên hệ:</label></strong>
+											<input type="text" class="form-control" name="tenKhachHang" th:value="${khachHang.tenKhachHang}" placeholder="Họ và tên" required data-error="Vui lòng nhập họ và tên" readonly="readonly">
 											<div class="help-block with-errors"></div>
 										</div>                                 
 									</div>
 									<div class="col-md-12">
 										<div class="form-group">
-											<input type="text" placeholder="Địa chỉ Email" id="email" th:value="${khachHang.email}" class="form-control" name="email" required data-error="Vui lòng nhập địa chỉ email">
+											<strong><label>Địa chị email:</label></strong>
+											<input type="text" placeholder="Địa chỉ Email" th:value="${khachHang.email}" class="form-control" name="email" required data-error="Vui lòng nhập địa chỉ email" readonly="readonly">
 											<div class="help-block with-errors"></div>
 										</div> 
 									</div>
 									<div class="col-md-12">
 										<div class="form-group">
-											<input type="text" placeholder="Số điện thoại" id="phone" th:value="${khachHang.sdt}" class="form-control" name="phone" required data-error="Vui lòng nhập số điện thoại"/>
+											<strong><label>Số điện thoại:</label></strong>
+											<input type="text" placeholder="Số điện thoại"
+												th:value="${khachHang.sdt}" class="form-control"
+												name="phone" required
+												data-error="Vui lòng nhập số điện thoại" readonly="readonly" />
 											<div class="help-block with-errors"></div>
 										</div> 
 									</div>
 									<div class="col-md-12">
 										<div class="form-group">
-											<input type="text" placeholder="Địa chỉ" id="phone" class="form-control" th:value="${khachHang.diaChi}" name="phone" required data-error="Vui lòng nhập số điện thoại"/>
+											<strong><label>Địa chỉ:</label></strong>
+											<input type="text" placeholder="Địa chỉ" class="form-control" th:value="${khachHang.diaChi}" name="diaChi" required data-error="Vui lòng nhập địa chỉ" readonly="readonly"/>
 											<div class="help-block with-errors"></div>
 										</div> 
 									</div>
 									<div class="col-md-12">
 										<div class="form-group">
-											<input type="button" name="order" id="order" class="btn btn-common" value="Đặt món" data-toggle="modal" data-target="#inforModal">
-											<span class="quanlityfood">Bạn đã đặt: 
+											<input type="submit"  id="order" class="btn btn-common" name="action" value="Đặt món">
+											<!-- <span class="quanlityfood">Bạn đã đặt: 
 												<span id="quanlityfoodordered">0 </span>
 												món
-											</span>
+											</span>  -->
 											<div class="help-block with-errors"></div>
 
 										</div>     
@@ -173,7 +185,7 @@
 								</div>
 								<div class="col-md-12">
 									<div class="submit-button text-center">
-										<button class="btn btn-common" id="submit" type="submit">Đặt bàn</button>
+										<input class="btn btn-common" id="submit" type="submit" value="Đặt Bàn" name="action">
 										<div id="msgSubmit" class="h3 text-center hidden"></div> 
 										<div class="clearfix"></div> 
 									</div>
@@ -243,7 +255,7 @@
 					<h3>Thông tin liên hệ</h3>
 					<p class="lead">12 Nguyễn Văn Bảo, Phường 4, Quận Gò Vấp, Hồ Chí Minh</p>
 					<p class="lead"><a href="">+01 2000 800 9999</a></p>
-					<p><a th:href="#">lienhechungtoi@admin.com</a></p>
+					<p><a href="#">lienhechungtoi@admin.com</a></p>
 				</div>
 			</div>
 		</div>
@@ -252,8 +264,8 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-lg-12">
-						<p class="company-name">Coppy right. &copy; 2021 <a th:href="#"></a> Thiết kế : 
-					<a th:href="https://html.design/">iuh design</a></p>
+						<p class="company-name">Coppy right. &copy; 2021 <a href="#"></a> Thiết kế : 
+						<a href="https://html.design/">iuh design</a></p>
 					</div>
 				</div>
 			</div>
@@ -292,7 +304,7 @@
           </div>
         </div>
         <div class="modal-footer d-flex justify-content-center">
-          <div class="signup-section">Bạn không phải thành viên? <a th:href="#a" class="text-info"
+          <div class="signup-section">Bạn không phải thành viên? <a href="#a" class="text-info"
               data-toggle="modal" data-target="#signUpModal" onclick="anModalDangNhap()"> Đăng ký</a>.
           </div>
         </div>
@@ -344,7 +356,7 @@
           </div>
         </div>
         <div class="modal-footer d-flex justify-content-center">
-          <div class="signup-section">Bạn là thành viên? <a th:href="#a" class="text-info" data-toggle="modal"
+          <div class="signup-section">Bạn là thành viên? <a href="#a" class="text-info" data-toggle="modal"
               data-target="#loginModal" onclick="anModalDangKy()"> Đăng nhập</a>.</div>
         </div>
       </div>
@@ -505,7 +517,7 @@
       </div>
     </div>
 
-	<a th:href="#" id="back-to-top" title="Back to top" style="display: none;">&uarr;</a>
+	<a href="#" id="back-to-top" title="Back to top" style="display: none;">&uarr;</a>
 
 	<!-- ALL JS FILES -->
 	<script th:src="@{/js/jquery-3.2.1.min.js}"></script>
@@ -515,13 +527,13 @@
 	<script th:src="@{/js/jquery.superslides.min.js}"></script>
 	<script th:src="@{/js/images-loded.min.js}"></script>
 	<script th:src="@{/js/isotope.min.js}"></script>
-	<script th:src="@{/js/baguetteBox.min.js"></script>
-	<script th:src="@{/js/picker.js"></script>
-	<script th:src="@{/js/picker.date.js"></script>
+	<!--<script th:src="@{/js/baguetteBox.min.js"></script>-->
+	<!--  <script th:src="@{/js/picker.js"></script> -->
+	<!--  <script th:src="@{/js/picker.date.js"></script>
 	<script th:src="@{/js/picker.time.js"></script>
 	<script th:src="@{/js/legacy.js"></script>
 	<script th:src="@{/js/form-validator.min.js"></script>
-    <script th:src="@{/js/contact-form-script.js"></script>
-    <script th:src="@{/js/custom.js"></script>
+    <script th:src="@{/js/contact-form-script.js"></script> -->
+    <!--  <script th:src="@{/js/custom.js"></script> -->
 </body>
 </html>

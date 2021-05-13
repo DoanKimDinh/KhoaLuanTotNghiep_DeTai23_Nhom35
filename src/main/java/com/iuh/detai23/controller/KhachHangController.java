@@ -56,7 +56,7 @@ public class KhachHangController {
 		//System.out.println(id);
 		KhachHang kh = khachHangService.save(khachHang);
 		if(kh!=null) {
-			redirectAttributes.addFlashAttribute("message", "Thêm thành công");
+			//redirectAttributes.addFlashAttribute("message", "Thêm thành công");
 			//request.getSession().setAttribute("id", kh.getMaKhachHang());
 		}
 
@@ -72,6 +72,7 @@ public class KhachHangController {
 			//redirectAttributes.addFlashAttribute("idAccount", kh.getMaKhachHang());
 			request.getSession().setAttribute("idAccount", kh.getMaKhachHang());
 			System.out.println("da vao nha");
+			redirectAttributes.addFlashAttribute("message", "Thêm thành công");
 		}
 
 		return "redirect:/";
@@ -79,7 +80,9 @@ public class KhachHangController {
 
 	@GetMapping("client/dangXuat")
 	public String destroySession(HttpServletRequest request) {
-		request.getSession().invalidate();
+		if(request.getSession().getAttribute("idAccount")!=null) {
+			request.getSession().removeAttribute("idAccount");
+		}
 		return "redirect:/";
 	}
 	

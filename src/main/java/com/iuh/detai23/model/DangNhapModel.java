@@ -10,4 +10,5 @@ import lombok.NoArgsConstructor;
 public class DangNhapModel {
 	private String tenDangNhap;
 	private String matKhau;
+	private int maQuyenTruyCap;
 }

@@ -52,7 +52,7 @@ public class DatTruocController {
 		try {
 			if (request.getSession().getAttribute("idAccount") != null) {
 				int id = (int) request.getSession().getAttribute("idAccount");
-				KhachHang kh = khachHangService.findById(id).get();
+				KhachHang kh = khachHangService.findById(id);
 				modelAndView.addObject("khachHang", kh);
 			}
 		} catch (Exception e) {

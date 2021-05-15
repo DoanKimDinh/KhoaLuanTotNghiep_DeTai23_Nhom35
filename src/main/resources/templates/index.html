@@ -59,9 +59,7 @@
 	function anModalDangKy() {
 		$('#signUpModal').modal('hide');
 	};
-	function UserLogin() {
-		window.location = '/DHKTPM13A/nam4/hocki2_2020-2021/KhoaLuan/GiaoDien/yamifood/html/user_index.html';
-	};
+	
 	function datBan(){
 		var order = document.getElementById("datBan");
 		var datBan = order.getAttribute("data-session");
@@ -375,7 +373,7 @@
 						<h2>Đăng nhập</h2>
 					</div>
 					<div class="d-flex flex-column text-center">
-						<form th:action="@{client/dangNhap}" method="POST" action="">
+						<form th:action="@{/user/dangNhap}" method="POST" action="">
 							<div class="form-group">
 								<input type="text" class="form-control" id="email1" name="tenDangNhap"
 									placeholder="Địa chỉ mail của bạn ...">

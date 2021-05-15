@@ -63,25 +63,25 @@ public class KhachHangController {
 
 		return "redirect:/";
 	}
-	@PostMapping("client/dangNhap")
-	public String getDangNhap(DangNhapModel dangNhapModel,RedirectAttributes redirectAttributes, HttpServletRequest request) {
-		boolean flag = khachHangService.checkDangNhap(dangNhapModel);
-		System.out.println("hello");
-		if(flag) {
-			KhachHang kh = khachHangService.getKhachHangByAccount(dangNhapModel.getTenDangNhap());
-			//redirectAttributes.addFlashAttribute("idAccount", kh.getMaKhachHang());
-			request.getSession().setAttribute("idAccount", kh.getMaKhachHang());
-			System.out.println("da vao nha");
-			redirectAttributes.addFlashAttribute("message", "Thêm thành công");
-		}
-
-		return "redirect:/";
-	}
+	
+//	  @PostMapping("client/dangNhap") public String getDangNhap(DangNhapModel
+//	  dangNhapModel,RedirectAttributes redirectAttributes, HttpServletRequest
+//	  request) { boolean flag = khachHangService.checkDangNhap(dangNhapModel);
+//	  System.out.println("hello"); if(flag) { KhachHang kh =
+//	  khachHangService.getKhachHangByAccount(dangNhapModel.getTenDangNhap());
+//	  //redirectAttributes.addFlashAttribute("idAccount", kh.getMaKhachHang());
+//	  request.getSession().setAttribute("idAccount", kh.getMaKhachHang());
+//	  System.out.println("da vao nha");
+//	  redirectAttributes.addFlashAttribute("message", "Thêm thành công"); }
+//	  
+//	  return "redirect:/"; }
+	 
 
 	@GetMapping("client/dangXuat")
 	public String destroySession(HttpServletRequest request) {
 		if(request.getSession().getAttribute("idAccount")!=null) {
 			request.getSession().removeAttribute("idAccount");
+			request.getSession().removeAttribute("idAdmin");
 		}
 		return "redirect:/";
 	}

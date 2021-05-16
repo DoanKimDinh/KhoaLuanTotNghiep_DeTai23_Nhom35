@@ -2,6 +2,8 @@ package com.iuh.detai23.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,20 +29,26 @@ public class NhanVienController {
 	private QuyenTruyCapService quyenTruyCapService;
 	
 	@GetMapping("admin/quanlynhanvien")
-	public ModelAndView getQuanLyNhanVien() {
-		ModelAndView modelAndView = new ModelAndView("admin/quanLyNhanVien");
-		List<NhanVien> listNhanVien = nhanVienService.findAll();
-		modelAndView.addObject("listNhanVien", listNhanVien);
-		return modelAndView;
+	public ModelAndView getQuanLyNhanVien(HttpServletRequest request) {
+		if(request.getSession().getAttribute("idAdmin") != null) {
+			ModelAndView modelAndView = new ModelAndView("admin/quanLyNhanVien");
+			List<NhanVien> listNhanVien = nhanVienService.findAll();
+			modelAndView.addObject("listNhanVien", listNhanVien);
+			return modelAndView;
+		}
+		return new ModelAndView("redirect:/");
 	}
 	
 	@GetMapping("admin/quanlynhanvien/edit/{id}")
-	public ModelAndView getEditNhanVien(@PathVariable("id") int id) {
-		ModelAndView modelAndView = new ModelAndView("admin/chinhSuaNhanVien");
-		NhanVien nhanVien = nhanVienService.findById(id);
-		UpdateNhanVienModel nhanVienModel = new UpdateNhanVienModel(nhanVien.getMaNhanVien(), nhanVien.getTenNhanVien(), nhanVien.getSoDienThoai(), nhanVien.getEmail(), nhanVien.getChungMinhNhanDan(), nhanVien.getDiaChi(), nhanVien.getGioiTinh(), nhanVien.getTenTaiKhoan(), nhanVien.getMatKhau());
-		modelAndView.addObject("nhanVien", nhanVienModel);
-		return modelAndView;
+	public ModelAndView getEditNhanVien(@PathVariable("id") int id, HttpServletRequest request) {
+		if(request.getSession().getAttribute("idAdmin") != null) {
+			ModelAndView modelAndView = new ModelAndView("admin/chinhSuaNhanVien");
+			NhanVien nhanVien = nhanVienService.findById(id);
+			UpdateNhanVienModel nhanVienModel = new UpdateNhanVienModel(nhanVien.getMaNhanVien(), nhanVien.getTenNhanVien(), nhanVien.getSoDienThoai(), nhanVien.getEmail(), nhanVien.getChungMinhNhanDan(), nhanVien.getDiaChi(), nhanVien.getGioiTinh(), nhanVien.getTenTaiKhoan(), nhanVien.getMatKhau());
+			modelAndView.addObject("nhanVien", nhanVienModel);
+			return modelAndView;
+		}
+		return new ModelAndView("redirect:/");
 	}
 	
 	@PostMapping("admin/quanlynhanvien/edit/{id}")

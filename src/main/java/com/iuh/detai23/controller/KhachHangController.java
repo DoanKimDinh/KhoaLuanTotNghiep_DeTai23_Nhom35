@@ -35,32 +35,19 @@ public class KhachHangController {
 //	private ModelAndView modelAndView;
 
 	@GetMapping("/admin/quanlykhachhang")
-	public ModelAndView getQuanLyKhachHang() {
-		ModelAndView modelAndView = new ModelAndView();
-		List<KhachHang> listKhachHang = khachHangService.findAll();
-		modelAndView.addObject("listKhachHang",listKhachHang);
-		return modelAndView;
+	public ModelAndView getQuanLyKhachHang(HttpServletRequest request) {
+		if(request.getSession().getAttribute("idAdmin") != null) {
+			ModelAndView modelAndView = new ModelAndView();
+			List<KhachHang> listKhachHang = khachHangService.findAll();
+			modelAndView.addObject("listKhachHang",listKhachHang);
+			return modelAndView;
+		}
+		return new ModelAndView("redirect:/");
 	}
 	@PostMapping("client/dangKyTaiKhoan")
 	public String getDangKyTaiKhoan(@ModelAttribute KhachHang khachHang, RedirectAttributes redirectAttributes, HttpServletRequest request) {
-	//	ModelAndView modelAndView = new ModelAndView("");
-		System.out.println(khachHang.getDiaChi());
-		System.out.println(khachHang.getEmail());
-		System.out.println(khachHang.getSdt());
-		System.out.println(khachHang.getTenKhachHang());
-		System.out.println(khachHang.getTenTaiKhoan());
-		System.out.println(khachHang.getMatKhau());
 		khachHang.setQuyenTruyCap(quyenTruyCapService.findById(1).get());
-
-		//int id = (int) request.getSession().getAttribute("id");
-		//System.out.println(id);
-		KhachHang kh = khachHangService.save(khachHang);
-		if(kh!=null) {
-			//redirectAttributes.addFlashAttribute("message", "Thêm thành công");
-			//request.getSession().setAttribute("id", kh.getMaKhachHang());
-		}
-
-
+		khachHangService.save(khachHang);
 		return "redirect:/";
 	}
 	
@@ -87,14 +74,17 @@ public class KhachHangController {
 	}
 	
 	@GetMapping("admin/quanlykhachhang/edit/{id}")
-	public ModelAndView getEditKhachHang(@PathVariable("id") int id) {
-		ModelAndView modelAndView = new ModelAndView("admin/chinhSuaKhachHang");
-		KhachHang khachHang = khachHangService.findById(id);
-		UpdateKhachHangModel khacHangModel = new UpdateKhachHangModel(khachHang.getMaKhachHang(),khachHang.getTenKhachHang(), khachHang.getSdt(), khachHang.getEmail(), khachHang.getTenTaiKhoan(), khachHang.getMatKhau(), khachHang.getDiaChi(), khachHang.getQuyenTruyCap().getMaQuyenTruyCap());
-		modelAndView.addObject("khachHang", khacHangModel);
-		modelAndView.addObject("quyenTruyCap", quyenTruyCapService.findAll());
-		
-		return modelAndView;
+	public ModelAndView getEditKhachHang(@PathVariable("id") int id, HttpServletRequest request) {
+		if(request.getSession().getAttribute("idAdmin") != null) {
+			ModelAndView modelAndView = new ModelAndView("admin/chinhSuaKhachHang");
+			KhachHang khachHang = khachHangService.findById(id);
+			UpdateKhachHangModel khacHangModel = new UpdateKhachHangModel(khachHang.getMaKhachHang(),khachHang.getTenKhachHang(), khachHang.getSdt(), khachHang.getEmail(), khachHang.getTenTaiKhoan(), khachHang.getMatKhau(), khachHang.getDiaChi(), khachHang.getQuyenTruyCap().getMaQuyenTruyCap());
+			modelAndView.addObject("khachHang", khacHangModel);
+			modelAndView.addObject("quyenTruyCap", quyenTruyCapService.findAll());
+			
+			return modelAndView;
+		}
+		return new ModelAndView("redirect:/");
 	}
 	
 	@PostMapping("admin/quanlykhachhang/edit/{id}")

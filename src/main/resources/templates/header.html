@@ -21,7 +21,7 @@
 							Ăn</a></li>
 					<li class="nav-item"><a class="nav-link" href="#"
 						onClick="datBan()" th:data-session="${session.idAccount}" id="datBan">Đặt bàn</a></li>
-					<li class="nav-item" th:if="${session.idAdmin}"><a class="nav-link">Quản lý</a></li>
+					<li class="nav-item" th:if="${session.idAdmin}"><a class="nav-link" th:href="@{/admin/quanlykhachhang}">Quản lý</a></li>
 					<li class="nav-item" id="login" th:unless="${session.idAccount}"><a class="nav-link" href="#"
 						style="margin-left: 5px; margin-right: -10px;" data-toggle="modal"
 						data-target="#loginModal">Đăng Nhập</a></li>

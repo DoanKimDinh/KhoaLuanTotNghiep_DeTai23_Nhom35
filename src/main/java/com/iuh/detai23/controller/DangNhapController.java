@@ -38,6 +38,10 @@ public class DangNhapController {
 			request.getSession().setAttribute("idAccount", nv.getMaNhanVien());
 			request.getSession().setAttribute("idAdmin", nv.getMaNhanVien());
 			redirectAttributes.addFlashAttribute("message", "Thêm thành công");
+		}else if(flag == 0) {
+//			request.getSession().setAttribute("idUser", "Không thành công");
+			redirectAttributes.addFlashAttribute("faild", "Đăng nhập không thành công");
+			System.err.println("dsnefsd");
 		}
 		return "redirect:/";
 	}

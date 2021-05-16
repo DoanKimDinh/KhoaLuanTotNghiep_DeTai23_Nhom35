@@ -10,7 +10,7 @@
   <link rel="apple-touch-icon" th:href="@{/images/apple-touch-icon.png}">
 
   <link rel="stylesheet" th:href="@{/plugins/fontawesome-free/css/all.min.css}">
-  <link rel="stylesheet" th:href="@{/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css}">
+  <!-- <link rel="stylesheet" th:href="@{/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css}"> -->
 
   <!-- Site CSS -->
   <link rel="stylesheet" th:href="@{/css/style.css}">
@@ -65,10 +65,10 @@
         </button>
         <div class="collapse navbar-collapse" id="navbars-rs-food">
           <ul class="navbar-nav ml-auto">
-            <li class="nav-item active"><a class="nav-link" th:href="admin_index.html">Trang chủ</a></li>
+            <li class="nav-item"><a class="nav-link" th:href="@{/}">Trang chủ</a></li>
             <li class="nav-item"><a class="nav-link" th:href="admin_menu.html">Món Ăn</a></li>
             <li class="nav-item"><a class="nav-link" th:href="admin_reservation.html" id="login">Đặt bàn</a></li>
-            <li class="nav-item"><a class="nav-link" th:href="quanlydatban.html" id="login">Quản lý</a></li>
+            <li class="nav-item active"><a class="nav-link" th:href="@{/admin/monAn}" id="login">Quản lý</a></li>
             <li class="nav-item" id="login"><a class="nav-link" href="#"
                 style="margin-left: 5px; margin-right: -10px;">Admin</a></li>
             <!-- <li class="nav-item"><a class="nav-link" th:href="contact.html">Contact</a></li> -->
@@ -145,35 +145,7 @@
                               <a href="#" data-toggle="modal" id="btnDelete"
                               data-target="#mi-modal"><i class="fas fa-trash-alt" id="btn-confirm"></i></a>
                             </td>
-                          </tr>
-                          <!-- <tr>
-                    <td>MA001</td>
-                    <td>Combo1</td>
-                    <td>Món ăn chính</td>
-                    <td>100.000 vnđ</td>
-                    <td style="text-align: center;">
-                      <a th:href="#"><i class="fas fa-user-edit" data-toggle="modal" data-target="#inforModal" style="margin-right: 10px;"></i></a>
-                      <a th:href="#"><i class="fas fa-trash-alt"></i></a>
-                    </td>
-                  </tr><tr>
-                    <td>MA001</td>
-                    <td>Combo1</td>
-                    <td>Món ăn chính</td>
-                    <td>100.000 vnđ</td>
-                    <td style="text-align: center;">
-                      <a th:href="#"><i class="fas fa-user-edit" data-toggle="modal" data-target="#inforModal" style="margin-right: 10px;"></i></a>
-                      <a th:href="#"><i class="fas fa-trash-alt"></i></a>
-                    </td>
-                  </tr><tr>
-                    <td>MA001</td>
-                    <td>Combo1</td>
-                    <td>Món ăn chính</td>
-                    <td>100.000 vnđ</td>
-                    <td style="text-align: center;">
-                      <a th:href="#"><i class="fas fa-user-edit" data-toggle="modal" data-target="#inforModal" style="margin-right: 10px;"></i></a>
-                      <a th:href="#"><i class="fas fa-trash-alt"></i></a>
-                    </td>
-                  </tr> -->
+                          </tr>                      
                         </tbody>
                         <tfoot>
                         </tfoot>
@@ -227,24 +199,30 @@
       </footer>
       <!-- End Footer -->
       
+      <!-- MODAL DELETE FOR ALL --> 
        <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true"
         id="mi-modal">
-        <div class="modal-dialog modal-sm">
+        <div class="modal-dialog modal-dialog-centered" style="width: 475px;">
           <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                  aria-hidden="true">&times;</span></button>
-              <h4 class="modal-title" id="myModalLabel">Bạn chắc chắn muốn tạm ngưng kinh doanh sản phẩm này</h4>
+            <div class="modal-header border-bottom-0" style="height: 35px; padding: 5px 10px 10px;">
+              	<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                  aria-hidden="true">&times;</span></button>              
             </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-default" id="modal-btn-si">Đồng Ý</button>
-              <button type="button" class="btn btn-primary" id="modal-btn-no">Hủy Bỏ</button>
+            <div class="modal-body">
+				<div class="form-title text-center">
+					<h5>Bạn có thật sự muốn ngừng kinh sản phẩm này?</h5>
+				</div>
+            </div>
+            <div class="modal-footer" style="height: 60px; padding: 5px 15px 10px;">
+            	<button type="button" class="btn btn-add" id="modal-btn-no">Đồng ý</button>
+              	<button type="button" class="btn btn-default	" id="modal-btn-si" data-dismiss="modal" aria-label="Close">Hủy bỏ</button>
             </div>
           </div>
         </div>
       </div>
     </div>
-    
+
+	<!-- MODAL ADD NEW DISHES -->    
     <div class="modal fade" id="inforModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">

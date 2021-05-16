@@ -40,7 +40,6 @@ public class NhanVienController {
 		NhanVien nhanVien = nhanVienService.findById(id);
 		UpdateNhanVienModel nhanVienModel = new UpdateNhanVienModel(nhanVien.getMaNhanVien(), nhanVien.getTenNhanVien(), nhanVien.getSoDienThoai(), nhanVien.getEmail(), nhanVien.getChungMinhNhanDan(), nhanVien.getDiaChi(), nhanVien.getGioiTinh(), nhanVien.getTenTaiKhoan(), nhanVien.getMatKhau());
 		modelAndView.addObject("nhanVien", nhanVienModel);
-		//modelAndView.addObject("quyenTruyCap", quyenTruyCapService.findAll());
 		return modelAndView;
 	}
 	

@@ -18,14 +18,9 @@
 <link rel="shortcut icon" th:href="@{/images/favicon.ico}"
 	type="image/x-icon">
 <link rel="apple-touch-icon" th:href="@{/images/apple-touch-icon.png}">
-
-
-<!-- Bootstrap CSS -->
-
 <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
 <!-- Site CSS -->
 <link rel="stylesheet" th:href="@{/css/style.css}">
-
 <!-- Responsive CSS -->
 <link rel="stylesheet" th:href="@{/css/responsive.css}">
 <!-- Custom CSS -->
@@ -41,11 +36,6 @@
 </style>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
-<!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
 <script>
 	$(document).ready(function() {
 		$(function() {
@@ -81,6 +71,16 @@
 		setTimeout(function(){
 			document.getElementById("myAlert-loggin-success").style.display = "none";
 		}, 2000); 
+	});
+</script>
+
+<script th:if="${faild}">
+	window.addEventListener('DOMContentLoaded',function(){
+		document.getElementById("notifyToast").style.display = "block";
+		console.log("enfsdnfsd");
+		/* setTimeout(function(){
+			document.getElementById("myAlert-loggin-success").style.display = "none";
+		}, 2000);  */
 	});
 </script>
 
@@ -308,8 +308,6 @@
 					<p>
 						<span class="text-color">Thứ 7 - Chủ nhật :</span> 9:00 - 00:00
 					</p>
-					<!-- <p><span class="text-color">Thu-Fri :</span> 9:Am - 10PM</p>
-					<p><span class="text-color">Sat-Sun :</span> 5:PM - 10PM</p> -->
 				</div>
 				<div class="col-lg-4 col-md-7">
 					<h3>Thông tin liên hệ</h3>
@@ -358,36 +356,37 @@
    	<script th:src="@{/js/contact-form-script.js}"></script>
 	<script th:src="@{/js/custom.js}"></script>
 
+	<!-- FORM LOGIN -->
 	<div class="modal fade" id="loginModal" tabindex="-1" role="dialog"
 		aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<div class="modal-dialog modal-dialog-centered" role="document">
 			<div class="modal-content">
 				<div class="modal-header border-bottom-0">
+					<div class="form-title text-center">
+						<h2 style="font-weight: bold">Đăng nhập</h2>
+					</div>
 					<button type="button" class="close" data-dismiss="modal"
 						aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
-				<div class="modal-body">
-					<div class="form-title text-center">
-						<h2>Đăng nhập</h2>
-					</div>
+				<div class="modal-body">				
 					<div class="d-flex flex-column text-center">
 						<form th:action="@{/user/dangNhap}" method="POST" action="">
 							<div class="form-group">
 								<input type="text" class="form-control" id="email1" name="tenDangNhap"
-									placeholder="Địa chỉ mail của bạn ...">
+									placeholder="Tên đăng nhập">
 							</div>
 							<div class="form-group">
 								<input type="password" class="form-control" id="password1" name="matKhau"
-									placeholder="Mật khẩu ...">
+									placeholder="Mật khẩu">
 							</div>
-							<button type="submit" class="btn btn-info btn-block btn-round"
+							<div id="notifyToast" style="display: none">
+								<span style="color: red">Tên đăng nhập hoặc mật khẩu không chính xác. Vui lòng đăng nhập lại! </span>
+							</div>
+							<button type="submit" class="btn btn-add btn-block btn-round"
 								>Đăng Nhập</button>
 						</form>
-
-						<div class="text-center text-muted delimiter">or ...</div>
-
 					</div>
 				</div>
 				<div class="modal-footer d-flex justify-content-center">
@@ -401,22 +400,21 @@
 		</div>
 	</div>
 
-
-
+	<!-- FORM REGISTER -->
 	<div class="modal fade" id="signUpModal" tabindex="-1" role="dialog"
 		aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<div class="modal-dialog modal-dialog-centered" role="document">
 			<div class="modal-content">
 				<div class="modal-header border-bottom-0">
+					<div class="form-title text-center">
+						<h2 style="font-weight: bold">Đăng ký tài khoản</h2>
+					</div>
 					<button type="button" class="close" data-dismiss="modal"
 						aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
 				<div class="modal-body">
-					<div class="form-title text-center">
-						<h2>ĐĂNG KÝ TÀI KHOẢN</h2>
-					</div>
 					<div class="d-flex flex-column text-center">
 						<form action="" th:action="@{client/dangKyTaiKhoan}" method="POST">
 							<div class="form-group">
@@ -449,12 +447,9 @@
 								<input type="password" class="form-control" id="password2"
 									placeholder="Nhập lại mật khẩu ...">
 							</div>
-							<button type="submit" class="btn btn-info btn-block btn-round">Đăng
+							<button type="submit" class="btn btn-add btn-block btn-round">Đăng
 								Ký</button>
 						</form>
-
-						<div class="text-center text-muted delimiter">or ...</div>
-
 					</div>
 				</div>
 				<div class="modal-footer d-flex justify-content-center">

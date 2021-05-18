@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,9 +21,14 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.thymeleaf.TemplateEngine;
 
+import com.iuh.detai23.entities.BanDatTruoc;
+import com.iuh.detai23.entities.ChiTietMonDatTruoc;
+import com.iuh.detai23.entities.ChiTietMonDatTruocKey;
 import com.iuh.detai23.entities.KhachHang;
 import com.iuh.detai23.entities.MonAn;
 import com.iuh.detai23.model.BanDatTruocAddModel;
+import com.iuh.detai23.model.UpdateMonAnModel;
+import com.iuh.detai23.model.AddMonAnEditDatBanModel;
 import com.iuh.detai23.model.AddMonAnModel;
 import com.iuh.detai23.service.BanDatTruocService;
 import com.iuh.detai23.service.KhachHangService;
@@ -52,7 +58,7 @@ public class DatTruocController {
 		try {
 			if (request.getSession().getAttribute("idAccount") != null) {
 				int id = (int) request.getSession().getAttribute("idAccount");
-				KhachHang kh = khachHangService.findById(id).get();
+				KhachHang kh = khachHangService.findById(id);
 				modelAndView.addObject("khachHang", kh);
 			}
 		} catch (Exception e) {
@@ -67,14 +73,15 @@ public class DatTruocController {
 	public String getAddDatBan(HttpServletRequest request, @ModelAttribute BanDatTruocAddModel banDatTruoc,
 			@RequestParam("action") String action, RedirectAttributes redirect) {
 
-		System.out.println(banDatTruoc.getSoNguoi());
+		// System.out.println(banDatTruoc.getSoNguoi());
 		if (action.toUpperCase().equals("ĐẶT MÓN")) {
 			request.getSession().setAttribute("banDatTruoc", banDatTruoc);
 			// redirect.addFlashAttribute("banDatTruoc", banDatTruoc);
 
 			return "redirect:/client/checkoutDatBan";
 		} else {
-			banDatTruocService.save(banDatTruoc);
+			banDatTruocService.save(banDatTruoc, new ArrayList<AddMonAnModel>());
+			redirect.addFlashAttribute("datThanhCong", banDatTruoc);
 			return "redirect:/";
 		}
 //		System.out.println(banDatTruoc.getSoNguoi());
@@ -90,8 +97,8 @@ public class DatTruocController {
 	@GetMapping("/client/checkoutDatBan")
 	public ModelAndView getCheckoutDatBan(@ModelAttribute("banDatTRuoc") BanDatTruocAddModel banDatTRuoc,
 			HttpServletRequest request) {
-		System.out.println("=====================>>>>>");
-		System.out.println(banDatTRuoc.getTenKhachHang());
+		// System.out.println("=====================>>>>>");
+		// System.out.println(banDatTRuoc.getTenKhachHang());
 		ModelAndView modelAndView = new ModelAndView("checkoutDatBan");
 		List<MonAn> listMonAn = monAnService.findAll();
 
@@ -102,11 +109,12 @@ public class DatTruocController {
 		if (listMonAn != null) {
 			for (MonAn monAn : listMonAn) {
 				monAn.setHinhAnh("http://localhost:8080/download/" + monAn.getHinhAnh());
+				System.out.println(monAn.getDonGia());
 			}
 			modelAndView.addObject("listMonAn", listMonAn);
 		}
 		BanDatTruocAddModel fawef = (BanDatTruocAddModel) request.getSession().getAttribute("banDatTruoc");
-		System.out.println("hihi" + fawef.getSoNguoi());
+		// System.out.println("hihi" + fawef.getSoNguoi());
 		modelAndView.addObject("banDatTruoc", fawef);
 		return modelAndView;
 	}
@@ -114,9 +122,10 @@ public class DatTruocController {
 	@PostMapping("/client/addRowMonAn")
 	@ResponseBody
 	public List<AddMonAnModel> addRowMonAn(@RequestBody AddMonAnModel monAn, HttpServletRequest request) {
-		System.out.println(monAn.getId());
-		System.out.println(monAn.getSoLuong());
-		System.out.println(monAn.getTenMonAn());
+//		System.out.println(monAn.getId());
+//		System.out.println(monAn.getSoLuong());
+//		System.out.println(monAn.getTenMonAn());
+		System.out.println("dong gia " + monAn.getDonGia());
 		ArrayList<AddMonAnModel> list;
 		if (request.getSession().getAttribute("list-cart-food") == null) {
 			list = new ArrayList<AddMonAnModel>();
@@ -126,37 +135,37 @@ public class DatTruocController {
 
 			list = (ArrayList<AddMonAnModel>) request.getSession().getAttribute("list-cart-food");
 			int tamp = 0;
-			for (int i =0;i<list.size();i++) {
-				System.out.println(monAn.getId()+"=========="+list.get(i).getId());
+			for (int i = 0; i < list.size(); i++) {
+				// System.out.println(monAn.getId()+"=========="+list.get(i).getId());
 				if (list.get(i).getId() == monAn.getId()) {
-					System.out.println("con don");
+					// System.out.println("con don");
 					list.get(i).setSoLuong(list.get(i).getSoLuong() + monAn.getSoLuong());
 					tamp = 1;
 				}
 			}
 			if (tamp == 0) {
-				System.err.println("da vao");
+				// System.err.println("da vao");
 				list.add(monAn);
 			}
 		}
 		return list;
 	}
-	
+
 	@PostMapping("/client/removeRowMonAn")
 	@ResponseBody
 	public List<AddMonAnModel> removeRowMonAn(@RequestBody AddMonAnModel monAn, HttpServletRequest request) {
-		System.out.println(monAn.getId());
+		// System.out.println(monAn.getId());
 		ArrayList<AddMonAnModel> list;
 		ArrayList<AddMonAnModel> listNew = new ArrayList<AddMonAnModel>();
 		if (request.getSession().getAttribute("list-cart-food") == null) {
 			list = new ArrayList<AddMonAnModel>();
 			request.getSession().setAttribute("list-cart-food", list);
-			
+
 		} else {
 			list = (ArrayList<AddMonAnModel>) request.getSession().getAttribute("list-cart-food");
-			
-			for (int i =0;i<list.size();i++) {
-				if (list.get(i).getId()!=monAn.getId()) {
+
+			for (int i = 0; i < list.size(); i++) {
+				if (list.get(i).getId() != monAn.getId()) {
 					listNew.add(list.get(i));
 				}
 			}
@@ -164,14 +173,136 @@ public class DatTruocController {
 		}
 		return listNew;
 	}
-	
+
 	@PostMapping("/client/completedDatBan")
-	public String completedDatBan(HttpServletRequest request) {
-		BanDatTruocAddModel bn = (BanDatTruocAddModel)request.getSession().getAttribute("banDatTruoc");
+	public String completedDatBan(HttpServletRequest request, RedirectAttributes redirect) {
+		BanDatTruocAddModel banDatTruoc = (BanDatTruocAddModel) request.getSession().getAttribute("banDatTruoc");
 		ArrayList<AddMonAnModel> list = (ArrayList<AddMonAnModel>) request.getSession().getAttribute("list-cart-food");
-		
-		System.err.println(bn.getTenKhachHang()+"ffffffffffffffff");
-		System.out.println(list.get(0).getTenMonAn());
+
+		banDatTruocService.save(banDatTruoc, list);
+		redirect.addFlashAttribute("datThanhCong", banDatTruoc);
+//		System.err.println(bn.getTenKhachHang()+"ffffffffffffffff");
+//		System.out.println(list.get(0).getTenMonAn()+"ttttt");
+
 		return "redirect:/";
 	}
+
+//	@PostMapping("/admin/banDatTruoc/edit/{id}")
+//	public String getEditBanDatTruocUpdate(@PathVariable("id") int id, @ModelAttribute UpdateMonAnModel monAnModel, RedirectAttributes redirect) {
+//		ModelAndView modelAndView = new ModelAndView("admin/chinhSuaBanDatTruoc");
+//		
+//		MonAn monAn =  monAnService.findById(id);
+//		monAn.setTenMonAn(monAnModel.getTenMonAn());
+//		monAn.setDonGia(monAnModel.getDonGia());
+//		monAn.setMoTa(monAnModel.getMoTa());
+//		
+//		monAnService.save(monAn);
+//
+//		redirect.addAttribute("susscess", "thanhCong");
+//		return "redirect:/admin/monAn/";
+//	}
+
+	@GetMapping("/admin/banDatTruoc/edit/{id}")
+	public ModelAndView getEditMonAn(@PathVariable("id") int id, HttpServletRequest request) {
+		ModelAndView modelAndView = new ModelAndView("admin/chinhSuaBanDatTruoc");
+		// @RequestBody AddMonAnModel monAn
+		BanDatTruoc banDatTruoc = banDatTruocService.findById(id).get();
+		modelAndView.addObject("banDatTruoc", banDatTruoc);
+
+		List<AddMonAnEditDatBanModel> listMonAnEdit = new ArrayList<AddMonAnEditDatBanModel>();
+		int i = 0;
+		for (ChiTietMonDatTruoc chiTietMonAnDatTruoc : banDatTruoc.getChiTietMonDatTruoc()) {
+			listMonAnEdit.add(new AddMonAnEditDatBanModel(chiTietMonAnDatTruoc.getMonAn().getMaMonAn(),
+					chiTietMonAnDatTruoc.getSoLuong(), chiTietMonAnDatTruoc.getMonAn().getTenMonAn(),
+					chiTietMonAnDatTruoc.getMonAn().getDonGia() * chiTietMonAnDatTruoc.getSoLuong(), ++i));
+		}
+		modelAndView.addObject("listMonDatTruoc", listMonAnEdit);
+
+		modelAndView.addObject("listMonAn", monAnService.findAll());
+
+		request.getSession().setAttribute("edit-banDatTruoc", banDatTruoc);
+		request.getSession().setAttribute("list-food-edit", banDatTruoc.getChiTietMonDatTruoc());
+
+		return modelAndView;
+	}
+
+	@GetMapping("/admin/banDatTruoc/edit/add/{id}/{idMonAn}")
+	public ModelAndView getEditMonAnAdd(@PathVariable("id") int id, @PathVariable("idMonAn") int idMonAn,
+			HttpServletRequest request) {
+		ModelAndView modelAndView = new ModelAndView("admin/chinhSuaBanDatTruoc");
+		// @RequestBody AddMonAnModel monAn
+		BanDatTruoc banDatTruoc = banDatTruocService.findById(id).get();
+		MonAn monAn = monAnService.findById(id);
+
+		List<ChiTietMonDatTruoc> list = banDatTruoc.getChiTietMonDatTruoc();
+		int tamp = 0;
+		for (ChiTietMonDatTruoc chiTietMonDatTruoc : list) {
+			if (chiTietMonDatTruoc.getMonAn().getMaMonAn() == monAn.getMaMonAn()) {
+				chiTietMonDatTruoc.setSoLuong(chiTietMonDatTruoc.getSoLuong() + 1);
+				tamp = 1;
+			}
+		}
+		if (tamp == 0) {
+			list.add(new ChiTietMonDatTruoc(new ChiTietMonDatTruocKey(), monAn, banDatTruoc, 1, monAn.getDonGia()));
+		}
+		banDatTruoc.setChiTietMonDatTruoc(list);
+		banDatTruocService.save(banDatTruoc);
+		
+		
+		
+
+		modelAndView.addObject("banDatTruoc", banDatTruoc);
+
+		List<AddMonAnEditDatBanModel> listMonAnEdit = new ArrayList<AddMonAnEditDatBanModel>();
+
+		int i = 0;
+		for (ChiTietMonDatTruoc chiTietMonAnDatTruoc : banDatTruoc.getChiTietMonDatTruoc()) {
+			listMonAnEdit.add(new AddMonAnEditDatBanModel(chiTietMonAnDatTruoc.getMonAn().getMaMonAn(),
+					chiTietMonAnDatTruoc.getSoLuong(), chiTietMonAnDatTruoc.getMonAn().getTenMonAn(),
+					chiTietMonAnDatTruoc.getMonAn().getDonGia() * chiTietMonAnDatTruoc.getSoLuong(), ++i));
+		}
+		modelAndView.addObject("listMonDatTruoc", listMonAnEdit);
+
+		modelAndView.addObject("listMonAn", monAnService.findAll());
+
+		request.getSession().setAttribute("edit-banDatTruoc", banDatTruoc);
+		request.getSession().setAttribute("list-food-edit", banDatTruoc.getChiTietMonDatTruoc());
+
+		return modelAndView;
+	}
+
+	@PostMapping("/admin/chinhSuaMonAn/AddRowMonAn")
+	public String addRowMonAnEdit(@RequestBody AddMonAnModel monAn, HttpServletRequest request) {
+		ModelAndView modelAndView = new ModelAndView("admin/chinhSuaBanDatTruoc");
+		// @RequestBody AddMonAnModel monAn
+
+		BanDatTruoc banDatTruoc = (BanDatTruoc) request.getSession().getAttribute("edit-banDatTruoc");
+		List<ChiTietMonDatTruoc> listChiTiet = (List<ChiTietMonDatTruoc>) request.getSession()
+				.getAttribute("list-food-edit");
+
+		int tamp = 0;
+		for (ChiTietMonDatTruoc chiTietMonDatTruoc : listChiTiet) {
+			if (chiTietMonDatTruoc.getMonAn().getMaMonAn() == monAn.getId()) {
+				chiTietMonDatTruoc.setSoLuong(chiTietMonDatTruoc.getSoLuong() + monAn.getSoLuong());
+				tamp = 1;
+			}
+		}
+		if (tamp == 0) {
+			listChiTiet.add(new ChiTietMonDatTruoc(new ChiTietMonDatTruocKey(), monAnService.findById(monAn.getId()),
+					banDatTruoc, monAn.getSoLuong(), monAn.getDonGia()));
+		}
+
+		banDatTruocService.save(banDatTruoc);
+
+		// BanDatTruoc banDatTruoc = banDatTruocService.findById(id).get();
+//		modelAndView.addObject("banDatTruoc", banDatTruoc);
+//		modelAndView.addObject("listMonDatTruoc", banDatTruoc.getChiTietMonDatTruoc());
+//		modelAndView.addObject("listMonAn", monAnService.findAll());
+
+//		request.getSession().setAttribute("edit-banDatTruoc", banDatTruoc);
+//		request.getSession().setAttribute("list-food-edit", banDatTruoc.getChiTietMonDatTruoc());
+
+		return "redirect:/admin/banDatTruoc/edit/" + banDatTruoc.getMaDatTruoc();
+	}
+
 }

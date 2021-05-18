@@ -116,73 +116,220 @@ img {
 		<!-- Content Wrapper. Contains page content -->
 		<div class="content-wrapper">
 			<!-- Content Header (Page header) -->
-			<div class="content-header">
-				<div class="container-fluid">
-					<div class="row mb-2">
-						<div class="col-sm-6">
-							<h1 class="m-0">Quản lý</h1>
+			<div class="reservation-box">
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-12">
+							<div class="heading-title text-center">
+								<h2>Đặt bàn</h2>
+								<p>Nhà hàng chúng tôi rất hân hạnh được phục vụ quý khách</p>
+							</div>
 						</div>
-						<!-- /.col -->
 					</div>
-				</div>
-
-				<!-- Main content -->
-				<section class="content">
-					<!-- /.container-fluid -->
-					<div class="container-fluid">
-						<div class="row">
-
-							<div class="col-md-12">
-								<div class="card card-primary">
-									<div class="card-header">
-										<h3 class="card-title">Chỉnh sửa thông tin bàn đặt trước</h3>
-									</div>
-									<!-- /.card-header -->
-									<!-- form start -->
-									<div class="card-body">
-										<div id="example1_wrapper"
-											class="dataTables_wrapper dt-bootstrap4 no-footer">
-											<div class="row">
-												<div class="col-sm-12 col-md-6">
-													<div class="dt-buttons btn-group flex-wrap"></div>
-												</div>
-												<div class="col-sm-12 col-md-6">
-													<div id="example1_filter" class="dataTables_filter">
-														
-													</div>
+					<div class="row">
+						<div class="col-lg-12 col-sm-12 col-xs-12">
+							<div class="contact-block">
+								<form id="contactForm" th:action="@{/client/datBan}" action=""
+									method="POST">
+									<div class="row">
+										<div class="col-md-6">
+											<h3>Thông tin đặt bàn</h3>
+											<div class="col-md-12">
+												<div class="form-group">
+													<strong><label>Số người:</label></strong> <input
+														id="soluong" class="form-control" name="soNguoi"
+														type="number" th:value="${banDatTruoc.soNguoi}" required
+														data-error="Vui lòng nhập số người" placeholder="Số người"
+														min="1">
+													<div class="help-block with-errors"></div>
 												</div>
 											</div>
-											<form>
+											<div class="col-md-12">
 												<div class="form-group">
-													<label for="exampleInputEmail1">Email address</label> <input
-														type="email" class="form-control" id="exampleInputEmail1"
-														aria-describedby="emailHelp" placeholder="Enter email">
-													<small id="emailHelp" class="form-text text-muted">We'll
-														never share your email with anyone else.</small>
+													<strong><label>Ngày đến:</label></strong> <input
+														type="date" id="input_date"
+														class="datepicker picker__input form-control"
+														name="ngayDen" th:value="${banDatTruoc.ngayDen}" required
+														data-error="Vui lòng chọn ngày đến" placeholder="Ngày đến">
+													<div class="help-block with-errors"></div>
 												</div>
+											</div>
+											<div class="col-md-12">
 												<div class="form-group">
-													<label for="exampleInputPassword1">Password</label> <input
-														type="password" class="form-control"
-														id="exampleInputPassword1" placeholder="Password">
+													<strong><label>Thời gian đến:</label></strong> <input
+														type="time" id="input_time"
+														class="time form-control picker__input" name="thoiGianDen"
+														th:value="${banDatTruoc.thoiGianDen}"
+														placeholder="Thời gian đến" required
+														data-error="Vui lòng chọn ngày đến">
+													<div class="help-block with-errors"></div>
 												</div>
-												<div class="form-group form-check">
-													<input type="checkbox" class="form-check-input"
-														id="exampleCheck1"> <label
-														class="form-check-label" for="exampleCheck1">Check
-														me out</label>
-												</div>
-												<button type="submit" class="btn btn-primary">Submit</button>
-											</form>
+											</div>
+											<div class="col-md-12">
+												<div class="form-group">
+													<strong><label>Ghi chú:</label></strong> <input
+														id="input_ghichu" class="form-control"
+														placeholder="Ghi chú" type="text" name="ghiChu"
+														th:value="${banDatTruoc.ghiChu}">
 
+												</div>
+											</div>
+											<!-- <div class="col-md-12">
+										<div class="form-group">
+											<input id="diaChi" class="form-control" placeholder="Địa chỉ" type="text" name="diaChi">
+
+										</div>                                 
+									</div>	-->
+										</div>
+										<div class="col-md-6">
+											<h3>Thông tin liên hệ</h3>
+											<div class="col-md-12">
+												<div class="form-group">
+													<strong><label>Tên người liên hệ:</label></strong> <input
+														type="text" class="form-control" name="tenKhachHang"
+														th:value="${banDatTruoc.khachHang.tenKhachHang}"
+														placeholder="Họ và tên" required
+														data-error="Vui lòng nhập họ và tên" readonly="readonly">
+													<div class="help-block with-errors"></div>
+												</div>
+											</div>
+											<div class="col-md-12">
+												<div class="form-group">
+													<strong><label>Địa chị email:</label></strong> <input
+														type="text" placeholder="Địa chỉ Email"
+														th:value="${banDatTruoc.khachHang.email}"
+														class="form-control" name="email" required
+														data-error="Vui lòng nhập địa chỉ email"
+														readonly="readonly">
+													<div class="help-block with-errors"></div>
+												</div>
+											</div>
+											<div class="col-md-12">
+												<div class="form-group">
+													<strong><label>Số điện thoại:</label></strong> <input
+														type="text" placeholder="Số điện thoại"
+														th:value="${banDatTruoc.khachHang.sdt}"
+														class="form-control" name="phone" required
+														data-error="Vui lòng nhập số điện thoại"
+														readonly="readonly" />
+													<div class="help-block with-errors"></div>
+												</div>
+											</div>
+											<div class="col-md-12">
+												<div class="form-group">
+													<strong><label>Địa chỉ:</label></strong> <input type="text"
+														placeholder="Địa chỉ" class="form-control"
+														th:value="${banDatTruoc.khachHang.diaChi}" name="diaChi"
+														required data-error="Vui lòng nhập địa chỉ"
+														readonly="readonly" />
+													<div class="help-block with-errors"></div>
+												</div>
+											</div>
+											<div class="col-md-12">
+												<div class="form-group">
+													<input type="submit" id="order" class="btn btn-common"
+														name="action" value="Đặt món">
+													<!-- <span class="quanlityfood">Bạn đã đặt: 
+												<span id="quanlityfoodordered">0 </span>
+												món
+											</span>  -->
+													<div class="help-block with-errors"></div>
+
+												</div>
+											</div>
+										</div>
+										<div class="col-md-12">
+											<div class="submit-button text-center">
+												<input class="btn btn-common" id="submit" type="submit"
+													value="Đặt Bàn" name="action">
+												<div id="msgSubmit" class="h3 text-center hidden"></div>
+												<div class="clearfix"></div>
+											</div>
 										</div>
 									</div>
+								</form>
+								<div class="row">
+									<form th:action="@{/admin/chinhSuaMonAn/AddRowMonAn}"
+										method="POST">
+										<table id="myTable" class="table table-bordered table-striped"
+											style="width: 100%">
+											<thead>
+												<tr>
+													<th>Mã món ăn</th>
+													<th>Loại</th>
+													<th>Tên món ăn</th>
+													<th>Đơn giá</th>
+													<th>Số lượng</th>
+													<th>Chỉnh sửa</th>
+												</tr>
+											</thead>
+
+											<tbody>
+												<tr th:each="monAn : ${listMonAn}">
+													<td th:text="${monAn.maMonAn}"></td>
+													<td th:text="${monAn.loaiMonAn.tenLoai}"></td>
+													<td th:text="${monAn.tenMonAn}"></td>
+													<td th:text="${monAn.DonGia}"></td>
+													<td><input type="number" name="soLuong" value="1" /></td>
+													<td style="text-align: center;"><input type="hidden"
+														name="id" th:value="${monAn.maMonAn}" /> <input
+														type="hidden" name="donGia" th:value="${monAn.DonGia}" />
+														<input type="hidden" name="tenMonAn"
+														th:value="${monAn.tenMonAn}" /> <a th:href="@{/admin/banDatTruoc/edit/add/{id}(id=${banDatTruoc.maDatTruoc})/{idMonAn}(idMonAn=${monAn.maMonAn})"></a></td>
+
+												</tr>
+											</tbody>
+
+											<tfoot>
+											</tfoot>
+										</table>
+									</form>
+								</div>
+
+
+								<div class="row">
+									<form th:action="@{/admin/chinhSuaMonAn/AddRowMonAn}"
+										method="POST">
+										<table id="myTable2"
+											class="table table-bordered table-striped"
+											style="width: 100%">
+											<thead>
+												<tr>
+													<th scope="col">#</th>
+													<th scope="col">Tên món</th>
+													<th scope="col">Số lượng</th>
+													<th scope="col">Tổng tiền</th>
+													<th scope="col">Tùy Chọn</th>
+												</tr>
+											</thead>
+
+											<tbody>
+												<tr th:each="datTruoc : ${listMonDatTruoc}">
+													<td th:text="${datTruoc.stt}"></td>
+													<td th:text="${datTruoc.tenMonAn}"></td>
+													<td><input type="number" name="soLuong" value="1" /></td>
+													<td ><input type="number" th:value="${datTruoc.soLuong}"
+														name="soLuong" value="1"/></td>
+													<td th:text="${datTruoc.tongTien}"></td>
+													<td style="text-align: center;"><input type="hidden"
+														name="id" /> <input type="submit" value="Cập Nhật"
+														name="action"><input type="submit" name="action"
+														value="Xóa Bỏ"></td>
+												</tr>
+											</tbody>
+
+											<tfoot>
+											</tfoot>
+										</table>
+									</form>
 								</div>
 							</div>
 						</div>
-				</section>
-				<!-- /.content -->
+					</div>
+				</div>
 			</div>
 			<!-- /.content-wrapper -->
+
 			<!-- Start Footer -->
 			<footer class="footer-area bg-f">
 				<div class="container">
@@ -384,6 +531,31 @@ img {
         });
       });
     </script> -->
+
+
+	<script>
+		$(document)
+				.ready(
+						function() {
+							$('#myTable')
+									.DataTable(
+											{
+												"language" : {
+													"url" : "//cdn.datatables.net/plug-ins/1.10.24/i18n/Vietnamese.json"
+												},
+												"pageLength" : 5
+											});
+							$('#myTable2')
+									.DataTable(
+											{
+												"language" : {
+													"url" : "//cdn.datatables.net/plug-ins/1.10.24/i18n/Vietnamese.json"
+												},
+												"pageLength" : 5
+											});
+						});
+	</script>
+
 
 	<style type="text/css">
 .dataTables_filter {

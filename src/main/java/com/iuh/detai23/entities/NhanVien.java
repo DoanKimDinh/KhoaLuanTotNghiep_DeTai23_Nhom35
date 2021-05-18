@@ -40,7 +40,7 @@ public class NhanVien {
 			TypeGioiTinh gioiTinh,String tenTaiKhoan, String matKhau) {
 		super();
 		this.tenNhanVien = tenNhanVien;
-		this.soDienThoai = soDienThoai;
+		this.soDienThoai = soDienThoai; 
 		this.email = email;
 		this.chungMinhNhanDan = chungMinhNhanDan;
 		this.diaChi = diaChi;

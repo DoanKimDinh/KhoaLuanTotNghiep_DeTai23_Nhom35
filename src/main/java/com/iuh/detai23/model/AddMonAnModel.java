@@ -10,6 +10,7 @@ public class AddMonAnModel implements Serializable{
 	private int id;
 	private int soLuong;
 	private String tenMonAn;
+	private double donGia;
 
 	
 
@@ -46,6 +47,14 @@ public class AddMonAnModel implements Serializable{
 
 	public void setTenMonAn(String tenMonAn) {
 		this.tenMonAn = tenMonAn;
+	}
+
+	public double getDonGia() {
+		return donGia;
+	}
+
+	public void setDonGia(double donGia) {
+		this.donGia = donGia;
 	}
 
 	

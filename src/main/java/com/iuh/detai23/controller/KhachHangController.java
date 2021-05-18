@@ -113,6 +113,6 @@ public class KhachHangController {
 		khachHang.setQuyenTruyCap(quyenTruyCapService.findByMaQuyenTruyCap(khachHangModel.getMaQuyenTruyCap()));
 		khachHangService.save(khachHang);
 		
-		return "redirect:/admin/quanlykhachhang";
+		return "redirect:/admin/quanlykhachhang";  
 	}
 }

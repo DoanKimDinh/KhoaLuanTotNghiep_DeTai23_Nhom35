@@ -92,6 +92,15 @@
 		}, 2000); 
 	});
 </script>
+
+<script th:if="${datThanhCong}">
+	window.addEventListener('DOMContentLoaded',function(){
+		document.getElementById("myAlert-datBan-Completed").style.display = "block";
+		setTimeout(function(){
+			document.getElementById("myAlert-datBan-Completed").style.display = "none";
+		}, 2000); 
+	});
+</script>
 </head>
 
 <body>

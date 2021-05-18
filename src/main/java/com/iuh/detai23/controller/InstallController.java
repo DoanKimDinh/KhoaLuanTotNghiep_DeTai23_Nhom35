@@ -1,6 +1,8 @@
 package com.iuh.detai23.controller;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -82,7 +84,7 @@ public class InstallController {
 		monAnService.save(monAn3);
 		monAnService.save(monAn4);
 		monAnService.save(monAn5);
-		monAnService.save(monAn6);
+		monAnService.save(monAn6); 
 		monAnService.save(monAn7);
 		monAnService.save(monAn8);
 		monAnService.save(monAn9);
@@ -113,13 +115,13 @@ public class InstallController {
 		khachHangService.save(kh3);		
 		
 		
-		
 		NhanVien nv1 = new NhanVien("Nguyen Tien Linh", "0123432323", "linh@gmail.com", "342356443", "Quan 1", TypeGioiTinh.Nam, "nguyentienlinh", "123456");
 		NhanVien nv2 = new NhanVien("Mac Hong Quan", "0234232323", "quan@gmail.com", "342356445", "Quan 2", TypeGioiTinh.Nam, "machongquan", "123456");
 		NhanVien nv3 = new NhanVien("Nguyen Trong Hoang", "0464232323", "hoang@gmail.com", "342356466", "Quan 3", TypeGioiTinh.Nu, "nguyentronghoang", "123456");
 		
-		nv1.setQuyenTruyCap(quyen2);
-		nv2.setQuyenTruyCap(quyen2);
+		
+		nv1.setQuyenTruyCap(quyen2); 
+		nv2.setQuyenTruyCap(quyen2); 
 		nv3.setQuyenTruyCap(quyen2);
 		
 		nhanVienService.save(nv1);
@@ -127,7 +129,8 @@ public class InstallController {
 		nhanVienService.save(nv3);
 		
 		
-		BanDatTruoc ban1 = new BanDatTruoc(LocalDateTime.now().toString(), 12, "ghi chú 1", TypeDatTruoc.ChuaXacNhan);	
+		BanDatTruoc ban1 = new BanDatTruoc(LocalDate.now().toString(), 12, "ghi chú 1", TypeDatTruoc.ChuaXacNhan);
+		ban1.setThoiGianDen(LocalTime.of(9, 30).toString());
 		System.out.println(ban1.getMaDatTruoc()+"===>");
 		List<ChiTietMonDatTruoc> listct1 = new ArrayList<ChiTietMonDatTruoc>();
 		listct1.add(new ChiTietMonDatTruoc( new ChiTietMonDatTruocKey(),monAn1, ban1, 2, monAn1.getDonGia()));
@@ -135,14 +138,16 @@ public class InstallController {
 		ban1.setChiTietMonDatTruoc(listct1);
 		ban1.setKhachHang(kh2);
 		
-		BanDatTruoc ban2 = new BanDatTruoc(LocalDateTime.now().toString(), 12, "ghi chú 1", TypeDatTruoc.ChuaXacNhan);
+		BanDatTruoc ban2 = new BanDatTruoc(LocalDate.now().toString(), 12, "ghi chú 1", TypeDatTruoc.ChuaXacNhan);
+		ban2.setThoiGianDen(LocalTime.of(8, 30).toString());
 		List<ChiTietMonDatTruoc> listct2 = new ArrayList<ChiTietMonDatTruoc>();
 		listct2.add(new ChiTietMonDatTruoc( new ChiTietMonDatTruocKey(),monAn2, ban2, 4, monAn2.getDonGia()));
 		ban2.setChiTietMonDatTruoc(listct2);
 		ban2.setKhachHang(kh3);
 		
 		
-		BanDatTruoc ban3 = new BanDatTruoc(LocalDateTime.now().toString(), 12, "ghi chú 1", TypeDatTruoc.ChuaXacNhan);
+		BanDatTruoc ban3 = new BanDatTruoc(LocalDate.now().toString(), 12, "ghi chú 1", TypeDatTruoc.ChuaXacNhan);
+		ban3.setThoiGianDen(LocalTime.of(7, 30).toString());
 		List<ChiTietMonDatTruoc> listct3 = new ArrayList<ChiTietMonDatTruoc>();
 		ban3.setChiTietMonDatTruoc(listct3);
 		ban3.setKhachHang(kh1);

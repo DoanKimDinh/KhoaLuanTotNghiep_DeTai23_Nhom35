@@ -15,13 +15,9 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<!-- Site Icons -->
 <link rel="shortcut icon" th:href="@{/images/favicon.ico}"
 	type="image/x-icon">
 <link rel="apple-touch-icon" th:href="@{/images/apple-touch-icon.png}">
-
-<!-- Bootstrap CSS -->
-
 <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
 <!-- Site CSS -->
 <link rel="stylesheet" th:href="@{/css/style.css}">
@@ -66,24 +62,33 @@
 			<div class="row special-list">
 				<div class="col-lg-4 col-md-6 special-grid drinks"
 					th:each="monAn : ${listMonAn}">
-					<div class="gallery-single fix">
-						<form th:action="@{/client/addMonAn}" method="POST">
+					<form th:action="@{/client/addMonAn}" method="POST">
+						<div class="gallery-single fix">
 							<img th:src="@{${monAn.hinhAnh}}" class="img-fluid" alt="Image">
 							<div class="why-text">
-								<p th:text="${monAn.tenMonAn}"></p>
-								<h5 th:text="${monAn.DonGia}+' VNĐ'"></h5>
-								<div class="d-flex justify-content-around">
+								<p th:text="${monAn.moTa}"></p>
+								<!-- <h5 th:text="${monAn.DonGia}+' VNĐ'"></h5> -->
+								<!-- <div class="d-flex justify-content-around">
 									<input type="hidden" value="${monAn.tenMonAn}" name="tenMonAn">
 									<input type="hidden" value="${monAn.maMonAn}" name="maMonAn">
 									<input type="hidden" th:value="${monAn.DonGia}" name="donGia">
 									<input type="number" class="p-2 bd-highlight"
-										style="width: 20%" value="1" name="soLuong"> <input
-										type="button" class="p-2 bd-highlight btn btn-primary addRow" 
+										style="width: 20%" value="1" name="soLuong"> 
+									<input type="button" class="p-2 bd-highlight btn btn-primary addRow" 
 										style="background-color: #ffc107;" th:data-idMonAn="${monAn.maMonAn}" th:data-donGia="${monAn.DonGia}" th:data-tenMon="${monAn.tenMonAn}" value="Thêm Món">
-								</div>
+								</div> -->
 							</div>
-						</form>
-					</div>
+						</div>
+						<div class="food-detail" style="text-align: center;font-size: 24px;/* position: absolute; */">
+							<h4 style="font-size: 24px;" th:text="${monAn.tenMonAn}"></h4>
+							<h5 style="font-size: 24px;" th:text="${monAn.DonGia}+' VNĐ'"></h5>
+							<input type="hidden" value="${monAn.tenMonAn}" name="tenMonAn">
+							<input type="hidden" value="${monAn.maMonAn}" name="maMonAn">
+							<input type="hidden" th:value="${monAn.DonGia}" name="donGia">
+							<input type="number" class="food-quanlity" value="1" name="soLuong" min = "1" max = "100"> 
+							<input type="button" class="p-2 bd-highlight btn btn-add addRow" th:data-idMonAn="${monAn.maMonAn}" th:data-donGia="${monAn.DonGia}" th:data-tenMon="${monAn.tenMonAn}" value="Thêm Món">
+						</div>
+					</form>
 				</div>
 			</div>
 		</div>
@@ -267,14 +272,6 @@
 	</footer>
 	<!-- End Footer -->
 
-
-
-
-
-
-	<!-- Start Modal -->
-
-
 	<a href="#" id="back-to-top" title="Back to top" style="display: none;">&uarr;</a>
 
 	<!-- ALL JS FILES -->
@@ -323,7 +320,7 @@
 						+'<td >'+result[i].tenMonAn+'</td>'
 						+'<td >'+result[i].soLuong+'</td>'
 						+'<td >'+tongTien+'</td>'
-						+'<td><a class="removeFood" data-idMonAn="'+result[i].id+'">Xóa Bỏ</a></td></tr>';
+						+'<td><a href="" class="removeFood" data-idMonAn="'+result[i].id+'">Xóa Bỏ</a></td></tr>';
 						totalMoney = totalMoney + tongTien;
 					}
 					$("#addItem").html(html);
@@ -362,7 +359,7 @@
 						+'<td >'+result[i].tenMonAn+'</td>'
 						+'<td >'+result[i].soLuong+'</td>'
 						+'<td >'+tongTien+'</td>'
-						+'<td><a class="removeFood" data-idMonAn="'+result[i].id+'">Xóa Bỏ</a></td></tr>';
+						+'<td><a href="" class="removeFood" data-idMonAn="'+result[i].id+'">Xóa Bỏ</a></td></tr>';
 						totalMoney = totalMoney + tongTien;
 					}
 					$("#addItem").html(html);

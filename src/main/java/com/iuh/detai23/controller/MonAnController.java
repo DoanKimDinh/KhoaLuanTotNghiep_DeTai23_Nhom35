@@ -39,9 +39,8 @@ public class MonAnController {
 	@GetMapping("/admin/monAn")
 	public ModelAndView getAdminMonAn(HttpServletRequest request) {
 			if(request.getSession().getAttribute("idAdmin") != null) {
-				System.err.println("check session");
 				ModelAndView modelAndView = new ModelAndView("admin/quanlymonan");
-				List<MonAn> listMonAn = monAnService.findAll();
+				List<MonAn> listMonAn = monAnService.finDall();
 				for (MonAn monAn : listMonAn) {
 					monAn.setHinhAnh("http://localhost:8080/download/"+monAn.getHinhAnh());
 				}
@@ -74,11 +73,12 @@ public class MonAnController {
 	}
 	
 	@GetMapping("/deleteMonAn/{id}")
-	public String getDeletePost(@PathVariable("id") String id) {
-		MonAn monAn = monAnService.findById(Integer.valueOf(id));
-		monAn.setTinhTrang("NGUNG KINH DOANH");
+	public String getDeletePost(@PathVariable("id") int id) {
+		MonAn monAn = monAnService.findById(id);
+		monAn.setTinhTrang("NgungKinhDoanh");
+		System.err.println(monAn.getMaMonAn());
 		monAnService.save(monAn);
-		return "redirect:/adminMonAn";
+		return "redirect:/admin/monAn";
 	}
 	
 	@GetMapping("/getMonAn/{id}")
@@ -125,10 +125,10 @@ public class MonAnController {
 //		return "redirect:/admin/monAn";
 //	}
 	
-	@PostMapping("/admin/monAn/deleteMonAn")
-	public Optional<MonAn> deleteMonAn(@RequestBody MonAn monAn){
-		monAn.setTinhTrang("");
-		monAnService.save(monAn);
-		return Optional.ofNullable(monAn);
-	}
+//	@PostMapping("/admin/monAn/deleteMonAn")
+//	public Optional<MonAn> deleteMonAn(@RequestBody MonAn monAn){
+//		monAn.setTinhTrang("");
+//		monAnService.save(monAn);
+//		return Optional.ofNullable(monAn);
+//	}
 }

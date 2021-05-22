@@ -2,291 +2,319 @@
 <html xmlns:th="http://thymeleaf.org">
 
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Admin Page</title>
-  <link rel="shortcut icon" th:href="@{/images/favicon.ico}" type="image/x-icon">
-  <link rel="apple-touch-icon" th:href="@{/images/apple-touch-icon.png}">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Admin Page</title>
+<link rel="shortcut icon" th:href="@{/images/favicon.ico}"
+	type="image/x-icon">
+<link rel="apple-touch-icon" th:href="@{/images/apple-touch-icon.png}">
 
-  <link rel="stylesheet" th:href="@{/plugins/fontawesome-free/css/all.min.css}">
-  <link rel="stylesheet" th:href="@{/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css}">
+<link rel="stylesheet"
+	th:href="@{/plugins/fontawesome-free/css/all.min.css}">
+<link rel="stylesheet"
+	th:href="@{/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css}">
 
-  <!-- Site CSS -->
-  <link rel="stylesheet" th:href="@{/css/style.css}">
- 
-  <link rel="stylesheet" th:href="@{/dist/css/adminlte.min.css}">
-  <!-- overlayScrollbars -->
-  <link rel="stylesheet" th:href="@{/plugins/overlayScrollbars/css/OverlayScrollbars.min.css}">
-  <!-- Daterange picker -->
-  <link rel="stylesheet" th:href="@{/plugins/daterangepicker/daterangepicker.css}">
-  <!-- summernote -->
-  <link rel="stylesheet" th:href="@{/plugins/summernote/summernote-bs4.min.css}">
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
-  <!-- Responsive CSS -->
-  <link rel="stylesheet" th:href="@{/css/responsive.css}">
-  <!-- Custom CSS -->
-  <link rel="stylesheet" th:href="@{/css/custom.css}">
+<!-- Site CSS -->
+<link rel="stylesheet" th:href="@{/css/style.css}">
 
-	<style>
-		.modal-dialog {
-			max-width: 600px;
-		}
+<link rel="stylesheet" th:href="@{/dist/css/adminlte.min.css}">
+<!-- overlayScrollbars -->
+<link rel="stylesheet"
+	th:href="@{/plugins/overlayScrollbars/css/OverlayScrollbars.min.css}">
+<!-- Daterange picker -->
+<link rel="stylesheet"
+	th:href="@{/plugins/daterangepicker/daterangepicker.css}">
+<!-- summernote -->
+<link rel="stylesheet"
+	th:href="@{/plugins/summernote/summernote-bs4.min.css}">
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+<!-- Responsive CSS -->
+<link rel="stylesheet" th:href="@{/css/responsive.css}">
+<!-- Custom CSS -->
+<link rel="stylesheet" th:href="@{/css/custom.css}">
+<link rel="stylesheet" th:href="@{/css/adminCustom.css}">
 
-		img {
-			width: 25%;
-		}
+<style>
+.modal-dialog {
+	max-width: 600px;
+}
 
-		.table td {
-			width: 1%;
-		}
-	</style>
+img {
+	width: 25%;
+}
+
+.table td {
+	width: 1%;
+}
+</style>
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
 	<div class="wrapper">
+		<!-- Preloader -->
+		<div
+			class="preloader flex-column justify-content-center align-items-center">
+			<img class="animation__shake" th:src="@{/dist/img/AdminLTELogo.png}"
+				alt="AdminLTELogo" height="60" width="60">
+		</div>
+	</div>
+	<!-- Main Sidebar Container -->
+	<div th:replace="admin/headeradmin"></div>
+	
+	<div th:replace="admin/sibarAdmin"></div>
 
-
-		<!-- Main Sidebar Container -->
-		<div th:replace="admin/sibarAdmin"></div>
-
-		<!-- Content Wrapper. Contains page content -->
-		<div class="content-wrapper">
-			<!-- Content Header (Page header) -->
-			<div class="content-header">
-				<div class="container-fluid">
-					<div class="row mb-2">
-						<div class="col-sm-6">
-							<h1 class="m-0">Chỉnh sửa thông tin khách hàng</h1>
-						</div>
-						<!-- /.col -->
+	<!-- Content Wrapper. Contains page content -->
+	<div class="content-wrapper">
+		<!-- Content Header (Page header) -->
+		<div class="content-header">
+			<div class="container-fluid">
+				<div class="row mb-2">
+					<div class="col-sm-6">
+						<h1 class="m-0">Chỉnh sửa thông tin khách hàng</h1>
 					</div>
+					<!-- /.col -->
 				</div>
+			</div>
 
-				<!-- Main content -->
-				<section class="content">
-					<!-- /.container-fluid -->
-					<div class="container-fluid">
-						<div class="row">
+			<!-- Main content -->
+			<section class="content">
+				<!-- /.container-fluid -->
+				<div class="container-fluid">
+					<div class="row">
 
-							<div class="col-md-12">
-								<div class="card card-info">
-									<div class="card-header" style="color: #fff;">
-										<h3 class="card-title">Thông tin khách hàng</h3>
-									</div>
-									<!-- /.card-header -->
-									<!-- form start -->
-									<div class="card-body">
-										<div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
-											<div class="row">
-												<div class="col-sm-12 col-md-6">
-													<div class="dt-buttons btn-group flex-wrap"></div>
-												</div>
-												<div class="col-sm-12 col-md-6">
-													<div id="example1_filter" class="dataTables_filter">
-
-													</div>
-												</div>
+						<div class="col-md-12">
+							<div class="card card-info">
+								<div class="card-header" style="color: black;">
+									<h3 class="card-title">Thông tin khách hàng</h3>
+								</div>
+								<!-- /.card-header -->
+								<!-- form start -->
+								<div class="card-body">
+									<div id="example1_wrapper"
+										class="dataTables_wrapper dt-bootstrap4 no-footer">
+										<div class="row">
+											<div class="col-sm-12 col-md-6">
+												<div class="dt-buttons btn-group flex-wrap"></div>
 											</div>
-											<form action="" method="POST" enctype="multipart/form-data">
-												
-												<div class="form-group">
-													<label for="maKhachHang">Mã khách hàng:</label>
-													<input type="text" class="form-control" readonly
-														th:value="${khachHang.maKhachHang}" placeholder="Mã khách hàng" name="maKhachHang">
-												</div>
-												<div class="form-group">
-													<label for="tenKhachHang">Tên khách hàng:</label>
-													<input type="text" class="form-control" th:value="${khachHang.tenKhachHang}"
-														placeholder="Tên khách hàng" required="required" name="tenKhachHang">
-												</div>
-												<div class="form-group">
-													<label for="soDienThoai">Số điện thoại:</label>
-													<input type="number" class="form-control" th:value="${khachHang.sdt}" 
-														placeholder="Số điện thoại" required="required" name="sdt">
-												</div>
-												<div class="form-group">
-													<label for="email">Email:</label>
-													<input type="email" class="form-control" th:value="${khachHang.email}" 
-														placeholder="Email" required="required" name="email">
-												 </div>
-												 <div class="form-group">
-													<label for="tenTaiKhoan">Tên tài khoản:</label>
-													<input type="text" class="form-control" th:value="${khachHang.tenTaiKhoan}" 
-														placeholder="Tên tài khoản" required="required" name="tenTaiKhoan" readonly>
-												 </div>
-												 <div class="form-group">
-													<label for="matKhau">Mật khẩu:</label>
-													<input type="password" class="form-control" th:value="${khachHang.matKhau}" 
-														placeholder="Mật khẩu" required="required" name="matKhau">
-												 </div>
-												 <div class="form-group">
-													<label for="diaChi">Địa chỉ:</label>
-													<input type="text" class="form-control" th:value="${khachHang.diaChi}" 
-														placeholder="Địa chỉ" required="required" name="diaChi">
-												 </div>
-												<button type="submit" class="btn btn-update">Cập Nhật khách hàng</button>
-											  </form>
+											<div class="col-sm-12 col-md-6">
+												<div id="example1_filter" class="dataTables_filter"></div>
+											</div>
 										</div>
+										<form action="" method="POST" enctype="multipart/form-data">
+
+											<div class="form-group">
+												<label for="maKhachHang">Mã khách hàng:</label> <input
+													type="text" class="form-control" readonly
+													th:value="${khachHang.maKhachHang}"
+													placeholder="Mã khách hàng" name="maKhachHang">
+											</div>
+											<div class="form-group">
+												<label for="tenKhachHang">Tên khách hàng:</label> <input
+													type="text" class="form-control"
+													th:value="${khachHang.tenKhachHang}"
+													placeholder="Tên khách hàng" required="required"
+													name="tenKhachHang">
+											</div>
+											<div class="form-group">
+												<label for="soDienThoai">Số điện thoại:</label> <input
+													type="number" class="form-control"
+													th:value="${khachHang.sdt}" placeholder="Số điện thoại"
+													required="required" name="sdt">
+											</div>
+											<div class="form-group">
+												<label for="email">Email:</label> <input type="email"
+													class="form-control" th:value="${khachHang.email}"
+													placeholder="Email" required="required" name="email">
+											</div>
+											<div class="form-group">
+												<label for="tenTaiKhoan">Tên tài khoản:</label> <input
+													type="text" class="form-control"
+													th:value="${khachHang.tenTaiKhoan}"
+													placeholder="Tên tài khoản" required="required"
+													name="tenTaiKhoan" readonly>
+											</div>
+											<div class="form-group">
+												<label for="matKhau">Mật khẩu:</label> <input
+													type="password" class="form-control"
+													th:value="${khachHang.matKhau}" placeholder="Mật khẩu"
+													required="required" name="matKhau">
+											</div>
+											<div class="form-group">
+												<label for="diaChi">Địa chỉ:</label> <input type="text"
+													class="form-control" th:value="${khachHang.diaChi}"
+													placeholder="Địa chỉ" required="required" name="diaChi">
+											</div>
+											<button type="submit" class="btn btn-update">Cập
+												Nhật khách hàng</button>
+										</form>
 									</div>
 								</div>
 							</div>
 						</div>
-				</section>
-				<!-- /.content -->
+					</div>
+			</section>
+			<!-- /.content -->
+		</div>
+		<!-- /.content-wrapper -->
+		<!-- Start Footer -->
+		<footer class="footer-area bg-f">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-4 col-md-7">
+						<h3>Về chúng tôi</h3>
+						<p>Nhà hàng tiêu chuẩn 5* luôn hướng đến sự hành lòng của
+							khách hàng. Sự ngon miệng và hài lòng của khách hàng là niềm tin
+							vững chắc để chúng tôi tiếp tục phát triển không ngừng.</p>
+					</div>
+					<div class="col-lg-4 col-md-7">
+						<h3>Thời gian hoạt động</h3>
+						<!-- <p><span class="text-color">Thứ 2 - Thứ 6: </span>Closed</p> -->
+						<p>
+							<span class="text-color">Thứ 2 - Thứ 6 :</span> 9:00 - 22:00
+						</p>
+						<p>
+							<span class="text-color">Thứ 7 - Chủ nhật :</span> 9:00 - 00:00
+						</p>
+					</div>
+					<div class="col-lg-4 col-md-7">
+						<h3>Thông tin liên hệ</h3>
+						<p class="lead">12 Nguyễn Văn Bảo, Phường 4, Quận Gò Vấp, Hồ
+							Chí Minh</p>
+						<p class="lead">
+							<a href="#">+01 2000 800 9999</a>
+						</p>
+						<p>
+							<a href="#"> lienhechungtoi@admin.com</a>
+						</p>
+					</div>
+
+				</div>
 			</div>
-			<!-- /.content-wrapper -->
-			<!-- Start Footer -->
-			<footer class="footer-area bg-f">
+
+			<div class="copyright">
 				<div class="container">
 					<div class="row">
-						<div class="col-lg-4 col-md-7">
-							<h3>Về chúng tôi</h3>
-							<p>Nhà hàng tiêu chuẩn 5* luôn hướng đến sự hành lòng của
-								khách hàng. Sự ngon miệng và hài lòng của khách hàng là niềm tin
-								vững chắc để chúng tôi tiếp tục phát triển không ngừng.</p>
-						</div>
-						<div class="col-lg-4 col-md-7">
-							<h3>Thời gian hoạt động</h3>
-							<!-- <p><span class="text-color">Thứ 2 - Thứ 6: </span>Closed</p> -->
-							<p>
-								<span class="text-color">Thứ 2 - Thứ 6 :</span> 9:00 - 22:00
+						<div class="col-lg-12">
+							<p class="company-name">
+								Coppy right. &copy; 2021 <a href="#"></a> Thiết kế : <a href="#">iuh
+									design</a>
 							</p>
-							<p>
-								<span class="text-color">Thứ 7 - Chủ nhật :</span> 9:00 - 00:00
-							</p>
-						</div>
-						<div class="col-lg-4 col-md-7">
-							<h3>Thông tin liên hệ</h3>
-							<p class="lead">12 Nguyễn Văn Bảo, Phường 4, Quận Gò Vấp, Hồ
-								Chí Minh</p>
-							<p class="lead">
-								<a href="#">+01 2000 800 9999</a>
-							</p>
-							<p>
-								<a href="#"> lienhechungtoi@admin.com</a>
-							</p>
-						</div>
-
-					</div>
-				</div>
-
-				<div class="copyright">
-					<div class="container">
-						<div class="row">
-							<div class="col-lg-12">
-								<p class="company-name">
-									Coppy right. &copy; 2021 <a href="#"></a> Thiết kế : <a
-										href="#">iuh design</a>
-								</p>
-							</div>
 						</div>
 					</div>
 				</div>
+			</div>
 
-			</footer>
-			<!-- End Footer -->
+		</footer>
+		<!-- End Footer -->
 
-			<div class="modal fade" id="inforModal" tabindex="-1" role="dialog"
-				aria-labelledby="exampleModalLabel" aria-hidden="true">
-				<div class="modal-dialog modal-dialog-centered" role="document">
-					<div class="modal-content">
-						<div class="modal-header border-bottom-0">
-							<div class="form-title text-center">
-								<h4>Cập nhật món ăn</h4>
-							</div>
-							<button type="button" class="close" data-dismiss="modal"
-								aria-label="Close">
-								<span aria-hidden="true">&times;</span>
-							</button>
+		<div class="modal fade" id="inforModal" tabindex="-1" role="dialog"
+			aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered" role="document">
+				<div class="modal-content">
+					<div class="modal-header border-bottom-0">
+						<div class="form-title text-center">
+							<h4>Cập nhật món ăn</h4>
 						</div>
-						<div class="modal-body">
-							<div>
-								<div class="panel-body">
-									<form action="#" th:action="@{/addMonAn}" th:object="${monAn}"
-										method="post" enctype="multipart/form-data">
-										<div class="form-group">
-											<label class="col-sm-6 control-label">Tên Món Ăn</label> <input
-												class="form-control" type="text" name="tenMonAn"
-												placeholder="Nhập tên món ăn" ng-model="me.email">
-										</div>
-										<div class="form-group">
-											<label class="col-sm-6 control-label">Đơn Giá</label> <input
-												class="form-control" required="required" type="text"
-												name="donGia" placeholder="Nhập đơn giá" ng-model="me.email">
-										</div>
-										<div class="form-group">
-											<label class="col-sm-6 control-label">Mô Tả</label> <input
-												class="form-control" type="text" name="moTa"
-												placeholder="Nhập mô tả" ng-model="me.email">
-										</div>
-										<div class="form-group">
-											<label class="col-sm-6 control-label">Hình Ảnh</label> <input
-												class="form-control" type="file" name="file">
-										</div>
-										<div class="form-group">
-											<label class="col-sm-6 control-label">Loại Món Ăn</label> <select
-												class="form-control" aria-label=".form-select-lg example"
-												name="idLoaiMonAn">
-												<option selected th:each="loai : ${listLoaiMonAn}"
-													th:text="${loai.tenLoai}" th:value="${loai.maLoaiMonAn}"></option>
-											</select>
-										</div>
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<div>
+							<div class="panel-body">
+								<form action="#" th:action="@{/addMonAn}" th:object="${monAn}"
+									method="post" enctype="multipart/form-data">
+									<div class="form-group">
+										<label class="col-sm-6 control-label">Tên Món Ăn</label> <input
+											class="form-control" type="text" name="tenMonAn"
+											placeholder="Nhập tên món ăn" ng-model="me.email">
+									</div>
+									<div class="form-group">
+										<label class="col-sm-6 control-label">Đơn Giá</label> <input
+											class="form-control" required="required" type="text"
+											name="donGia" placeholder="Nhập đơn giá" ng-model="me.email">
+									</div>
+									<div class="form-group">
+										<label class="col-sm-6 control-label">Mô Tả</label> <input
+											class="form-control" type="text" name="moTa"
+											placeholder="Nhập mô tả" ng-model="me.email">
+									</div>
+									<div class="form-group">
+										<label class="col-sm-6 control-label">Hình Ảnh</label> <input
+											class="form-control" type="file" name="file">
+									</div>
+									<div class="form-group">
+										<label class="col-sm-6 control-label">Loại Món Ăn</label> <select
+											class="form-control" aria-label=".form-select-lg example"
+											name="idLoaiMonAn">
+											<option selected th:each="loai : ${listLoaiMonAn}"
+												th:text="${loai.tenLoai}" th:value="${loai.maLoaiMonAn}"></option>
+										</select>
+									</div>
 
-										<button type="submit" class="btn btn-primary">Thêm
-											Món Ăn</button>
-									</form>
-								</div>
+									<button type="submit" class="btn btn-primary">Thêm Món
+										Ăn</button>
+								</form>
 							</div>
 						</div>
-						<div class="modal-footer">
-							<div class="col-sm-offset-2 col-sm-10">
-								<button class="btn btn-common" ng-click="updateMe()"
-									style="margin-left: 350px;">Submit</button>
-							</div>
+					</div>
+					<div class="modal-footer">
+						<div class="col-sm-offset-2 col-sm-10">
+							<button class="btn btn-common" ng-click="updateMe()"
+								style="margin-left: 350px;">Submit</button>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-  <script th:src="@{/plugins/jquery/jquery.min.js}"></script>
-  <script th:src="@{/plugins/jquery-ui/jquery-ui.min.js}"></script>
-  <script th:src="@{/plugins/bootstrap/js/bootstrap.bundle.min.js}"></script>
-  <script th:src="@{/plugins/daterangepicker/daterangepicker.js}"></script>
-  
-  <script th:src="@{/plugins/summernote/summernote-bs4.min.js}"></script>
-  <script th:src="@{/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js}"></script>
-  <script th:src="@{/dist/js/adminlte.js}"></script>
-  <script th:src="@{/dist/js/demo.js}"></script>
-  <!-- ALL JS FILES -->
-  <script th:src="@{/js/jquery-3.2.1.min.js}"></script>
-  <script th:src="@{/js/popper.min.js}"></script>
-  <script th:src="@{/js/bootstrap.min.js}"></script>
-  <script th:src="@{/js/login.js}"></script>
-  <!-- ALL PLUGINS -->
-  <script th:src="@{/js/jquery.superslides.min.js}"></script>
-  <script th:src="@{/js/images-loded.min.js}"></script>
-  <script th:src="@{/js/form-validator.min.js}"></script>
-  <script th:src="@{/js/contact-form-script.js}"></script>
-  <script th:src="@{/js/custom.js}"></script>
+	</div>
+	<script th:src="@{/plugins/jquery/jquery.min.js}"></script>
+	<script th:src="@{/plugins/jquery-ui/jquery-ui.min.js}"></script>
+	<script th:src="@{/plugins/bootstrap/js/bootstrap.bundle.min.js}"></script>
+	<script th:src="@{/plugins/daterangepicker/daterangepicker.js}"></script>
 
-  <script th:src="@{/plugins/datatables/jquery.dataTables.min.js}"></script>
-  <script th:src="@{/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js}"></script>
-  <script th:src="@{/plugins/datatables-responsive/js/dataTables.responsive.min.js}"></script>
-  <script th:src="@{/plugins/datatables-responsive/js/responsive.bootstrap4.min.js}"></script>
-  <script th:src="@{/plugins/datatables-buttons/js/dataTables.buttons.min.js}"></script>
-  <script th:src="@{/plugins/datatables-buttons/js/buttons.bootstrap4.min.js}"></script>
-  <script th:src="@{/plugins/datatables-buttons/js/buttons.html5.min.js}"></script>
-  <script th:src="@{/plugins/datatables-buttons/js/buttons.print.min.js}"></script>
-  <script th:src="@{/plugins/datatables-buttons/js/buttons.colVis.min.js}"></script>
-	
-<style type="text/css">
+	<script th:src="@{/plugins/summernote/summernote-bs4.min.js}"></script>
+	<script
+		th:src="@{/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js}"></script>
+	<script th:src="@{/dist/js/adminlte.js}"></script>
+	<script th:src="@{/dist/js/demo.js}"></script>
+	<!-- ALL JS FILES -->
+	<script th:src="@{/js/jquery-3.2.1.min.js}"></script>
+	<script th:src="@{/js/popper.min.js}"></script>
+	<script th:src="@{/js/bootstrap.min.js}"></script>
+	<script th:src="@{/js/login.js}"></script>
+	<!-- ALL PLUGINS -->
+	<script th:src="@{/js/jquery.superslides.min.js}"></script>
+	<script th:src="@{/js/images-loded.min.js}"></script>
+	<script th:src="@{/js/form-validator.min.js}"></script>
+	<script th:src="@{/js/contact-form-script.js}"></script>
+	<script th:src="@{/js/custom.js}"></script>
+
+	<script th:src="@{/plugins/datatables/jquery.dataTables.min.js}"></script>
+	<script
+		th:src="@{/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js}"></script>
+	<script
+		th:src="@{/plugins/datatables-responsive/js/dataTables.responsive.min.js}"></script>
+	<script
+		th:src="@{/plugins/datatables-responsive/js/responsive.bootstrap4.min.js}"></script>
+	<script
+		th:src="@{/plugins/datatables-buttons/js/dataTables.buttons.min.js}"></script>
+	<script
+		th:src="@{/plugins/datatables-buttons/js/buttons.bootstrap4.min.js}"></script>
+	<script th:src="@{/plugins/datatables-buttons/js/buttons.html5.min.js}"></script>
+	<script th:src="@{/plugins/datatables-buttons/js/buttons.print.min.js}"></script>
+	<script
+		th:src="@{/plugins/datatables-buttons/js/buttons.colVis.min.js}"></script>
+
+	<style type="text/css">
 .dataTables_filter {
 	float: right
 }
 </style>
 </body>
-	<!-- <script>
+<!-- <script>
 		$(document).ready(function () {
 			$('#inforModal').modal('show');
 

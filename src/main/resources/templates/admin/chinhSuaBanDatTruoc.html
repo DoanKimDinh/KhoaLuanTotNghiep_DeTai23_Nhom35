@@ -5,37 +5,43 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Admin Page</title>
 
-  <link rel="shortcut icon" th:href="@{/images/favicon.ico}" type="image/x-icon">
-  <link rel="apple-touch-icon" th:href="@{/images/apple-touch-icon.png}">
-  <link rel="stylesheet" th:href="@{/plugins/fontawesome-free/css/all.min.css}">
-  <link rel="stylesheet" th:href="@{/css/style.css}">
-  <link rel="stylesheet" th:href="@{/dist/css/adminlte.min.css}">
-  <!-- overlayScrollbars -->
-  <link rel="stylesheet" th:href="@{/plugins/overlayScrollbars/css/OverlayScrollbars.min.css}">
-  <!-- Daterange picker -->
-  <link rel="stylesheet" th:href="@{/plugins/daterangepicker/daterangepicker.css}">
-  <!-- summernote -->
-  <link rel="stylesheet" th:href="@{/plugins/summernote/summernote-bs4.min.css}">
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
-  <!-- Responsive CSS -->
-  <link rel="stylesheet" th:href="@{/css/responsive.css}">
-  <!-- Custom CSS -->
-  <link rel="stylesheet" th:href="@{/css/custom.css}">
-  <link rel="stylesheet" th:href="@{/css/adminCustom.css}">
+<link rel="shortcut icon" th:href="@{/images/favicon.ico}"
+	type="image/x-icon">
+<link rel="apple-touch-icon" th:href="@{/images/apple-touch-icon.png}">
+<link rel="stylesheet"
+	th:href="@{/plugins/fontawesome-free/css/all.min.css}">
+<link rel="stylesheet" th:href="@{/css/style.css}">
+<link rel="stylesheet" th:href="@{/dist/css/adminlte.min.css}">
+<!-- overlayScrollbars -->
+<link rel="stylesheet"
+	th:href="@{/plugins/overlayScrollbars/css/OverlayScrollbars.min.css}">
+<!-- Daterange picker -->
+<link rel="stylesheet"
+	th:href="@{/plugins/daterangepicker/daterangepicker.css}">
+<!-- summernote -->
+<link rel="stylesheet"
+	th:href="@{/plugins/summernote/summernote-bs4.min.css}">
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+<!-- Responsive CSS -->
+<link rel="stylesheet" th:href="@{/css/responsive.css}">
+<!-- Custom CSS -->
+<link rel="stylesheet" th:href="@{/css/custom.css}">
+<link rel="stylesheet" th:href="@{/css/adminCustom.css}">
 
 <style>
+body {
+	position: relative;
+}
 
-body{
-	position:relative;
-}
-.myAlert-top{
-	position:absolute;
+.myAlert-top {
+	position: absolute;
 	z-index: 1222;
-	right:32px;
+	right: 32px;
 	top: 10px;
-	display:none;
+	display: none;
 }
+
 .modal-dialog {
 	max-width: 600px;
 }
@@ -72,268 +78,199 @@ img {
 		<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
 		<strong>Cập nhật thành công!</strong>
 	</div>
-	<div class="wrapper">
 
+	<div class="wrapper">
 		<!-- Preloader -->
 		<div
 			class="preloader flex-column justify-content-center align-items-center">
 			<img class="animation__shake" th:src="@{/dist/img/AdminLTELogo.png}"
 				alt="AdminLTELogo" height="60" width="60">
 		</div>
-		<nav class="navbar navbar-expand-lg navbar-light bg-light"
-			style="margin-left: 250px;">
+	</div>
+
+	<!-- Preloader -->
+	<div th:replace="admin/headeradmin"></div>
+
+	<!-- Main Sidebar Container -->
+	<div th:replace="admin/sibarAdmin"></div>
+
+
+	<!-- Content Wrapper. Contains page content -->
+	<div class="content-wrapper">
+		<!-- Content Header (Page header) -->
+		<div class="reservation-box">
 			<div class="container">
-				<a class="navbar-brand" href="index.html"> <!-- <img th:src="@{/images/logo.png}" alt="" /> -->
-					<h2></h2>
-				</a>
-				<button class="navbar-toggler" type="button" data-toggle="collapse"
-					data-target="#navbars-rs-food" aria-controls="navbars-rs-food"
-					aria-expanded="false" aria-label="Toggle navigation">
-					<span class="navbar-toggler-icon"></span>
-				</button>
-				<div class="collapse navbar-collapse" id="navbars-rs-food">
-					<ul class="navbar-nav ml-auto">
-						<li class="nav-item active"><a class="nav-link"
-							th:href="admin_index.html">Trang chủ</a></li>
-						<li class="nav-item"><a class="nav-link"
-							th:href="admin_menu.html">Món Ăn</a></li>
-						<li class="nav-item"><a class="nav-link"
-							th:href="admin_reservation.html" id="login">Đặt bàn</a></li>
-						<li class="nav-item"><a class="nav-link"
-							th:href="quanlydatban.html" id="login">Quản lý</a></li>
-						<li class="nav-item" id="login"><a class="nav-link" href="#"
-							style="margin-left: 5px; margin-right: -10px;">Admin</a></li>
-						<!-- <li class="nav-item"><a class="nav-link" th:href="contact.html">Contact</a></li> -->
-					</ul>
-				</div>
-			</div>
-		</nav>
-
-		<!-- Main Sidebar Container -->
-		<div th:replace="admin/sibarAdmin"></div>
-
-
-		<!-- Content Wrapper. Contains page content -->
-		<div class="content-wrapper">
-			<!-- Content Header (Page header) -->
-			<div class="reservation-box">
-				<div class="container">
-					<div class="row">
-						<div class="col-lg-12">
-							<div class="heading-title text-center">
-								<h2>Đặt bàn</h2>
-								<p>Nhà hàng chúng tôi rất hân hạnh được phục vụ quý khách</p>
-							</div>
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="heading-title text-center">
+							<h2>Đặt bàn</h2>
+							<p>Nhà hàng chúng tôi rất hân hạnh được phục vụ quý khách</p>
 						</div>
 					</div>
-					<div class="row">
-						<div class="col-lg-12 col-sm-12 col-xs-12">
-							<div class="contact-block">
-								<form
-									th:action="@{/admin/banDatTruoc/edit/updateThongTin}"
-									method="POST">
-									<div class="row">
-										<div class="col-md-6">
-											<h3>Thông tin đặt bàn</h3>
-											<div class="col-md-12">
-												<div class="form-group">
-													<strong><label>Số người:</label></strong> <input
-														id="soluong" class="form-control" name="soNguoi"
-														type="number" th:value="${banDatTruoc.soNguoi}" required
-														data-error="Vui lòng nhập số người" placeholder="Số người"
-														min="1">
-													<div class="help-block with-errors"></div>
-												</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-12 col-sm-12 col-xs-12">
+						<div class="contact-block">
+							<form th:action="@{/admin/banDatTruoc/edit/updateThongTin}"
+								method="POST">
+								<div class="row">
+									<div class="col-md-6">
+										<h3>Thông tin đặt bàn</h3>
+										<div class="col-md-12">
+											<div class="form-group">
+												<strong><label>Số người:</label></strong> <input
+													id="soluong" class="form-control" name="soNguoi"
+													type="number" th:value="${banDatTruoc.soNguoi}" required
+													data-error="Vui lòng nhập số người" placeholder="Số người"
+													min="1">
+												<div class="help-block with-errors"></div>
 											</div>
-											<div class="col-md-12">
-												<div class="form-group">
-													<strong><label>Ngày đến:</label></strong> <input
-														type="date" id="input_date"
-														class="datepicker picker__input form-control"
-														name="ngayDen" th:value="${banDatTruoc.ngayDen}" required
-														data-error="Vui lòng chọn ngày đến" placeholder="Ngày đến">
-													<div class="help-block with-errors"></div>
-												</div>
+										</div>
+										<div class="col-md-12">
+											<div class="form-group">
+												<strong><label>Ngày đến:</label></strong> <input type="date"
+													id="input_date"
+													class="datepicker picker__input form-control"
+													name="ngayDen" th:value="${banDatTruoc.ngayDen}" required
+													data-error="Vui lòng chọn ngày đến" placeholder="Ngày đến">
+												<div class="help-block with-errors"></div>
 											</div>
-											<div class="col-md-12">
-												<div class="form-group">
-													<strong><label>Thời gian đến:</label></strong> <input
-														type="time" id="input_time"
-														class="time form-control picker__input" name="thoiGianDen"
-														th:value="${banDatTruoc.thoiGianDen}"
-														placeholder="Thời gian đến" required
-														data-error="Vui lòng chọn ngày đến">
-													<div class="help-block with-errors"></div>
-												</div>
+										</div>
+										<div class="col-md-12">
+											<div class="form-group">
+												<strong><label>Thời gian đến:</label></strong> <input
+													type="time" id="input_time"
+													class="time form-control picker__input" name="thoiGianDen"
+													th:value="${banDatTruoc.thoiGianDen}"
+													placeholder="Thời gian đến" required
+													data-error="Vui lòng chọn ngày đến">
+												<div class="help-block with-errors"></div>
 											</div>
-											<div class="col-md-12">
-												<div class="form-group">
-													<strong><label>Ghi chú:</label></strong> <input
-														id="input_ghichu" class="form-control"
-														placeholder="Ghi chú" type="text" name="ghiChu"
-														th:value="${banDatTruoc.ghiChu}">
+										</div>
+										<div class="col-md-12">
+											<div class="form-group">
+												<strong><label>Ghi chú:</label></strong> <input
+													id="input_ghichu" class="form-control"
+													placeholder="Ghi chú" type="text" name="ghiChu"
+													th:value="${banDatTruoc.ghiChu}">
 
-												</div>
 											</div>
+										</div>
 
-											<!-- <div class="col-md-12">
+										<!-- <div class="col-md-12">
 										<div class="form-group">
 											<input id="diaChi" class="form-control" placeholder="Địa chỉ" type="text" name="diaChi">
 
 										</div>                                 
 									</div>	-->
+									</div>
+									<div class="col-md-6">
+										<h3>Thông tin liên hệ</h3>
+										<div class="col-md-12">
+											<div class="form-group">
+												<strong><label>Tên người liên hệ:</label></strong> <input
+													type="text" class="form-control" name="tenKhachHang"
+													th:value="${banDatTruoc.khachHang.tenKhachHang}"
+													placeholder="Họ và tên" required
+													data-error="Vui lòng nhập họ và tên" readonly="readonly">
+												<div class="help-block with-errors"></div>
+											</div>
 										</div>
-										<div class="col-md-6">
-											<h3>Thông tin liên hệ</h3>
-											<div class="col-md-12">
-												<div class="form-group">
-													<strong><label>Tên người liên hệ:</label></strong> <input
-														type="text" class="form-control" name="tenKhachHang"
-														th:value="${banDatTruoc.khachHang.tenKhachHang}"
-														placeholder="Họ và tên" required
-														data-error="Vui lòng nhập họ và tên" readonly="readonly">
-													<div class="help-block with-errors"></div>
-												</div>
+										<div class="col-md-12">
+											<div class="form-group">
+												<strong><label>Địa chị email:</label></strong> <input
+													type="text" placeholder="Địa chỉ Email"
+													th:value="${banDatTruoc.khachHang.email}"
+													class="form-control" name="email" required
+													data-error="Vui lòng nhập địa chỉ email"
+													readonly="readonly">
+												<div class="help-block with-errors"></div>
 											</div>
-											<div class="col-md-12">
-												<div class="form-group">
-													<strong><label>Địa chị email:</label></strong> <input
-														type="text" placeholder="Địa chỉ Email"
-														th:value="${banDatTruoc.khachHang.email}"
-														class="form-control" name="email" required
-														data-error="Vui lòng nhập địa chỉ email"
-														readonly="readonly">
-													<div class="help-block with-errors"></div>
-												</div>
+										</div>
+										<div class="col-md-12">
+											<div class="form-group">
+												<strong><label>Số điện thoại:</label></strong> <input
+													type="text" placeholder="Số điện thoại"
+													th:value="${banDatTruoc.khachHang.sdt}"
+													class="form-control" name="phone" required
+													data-error="Vui lòng nhập số điện thoại"
+													readonly="readonly" />
+												<div class="help-block with-errors"></div>
 											</div>
-											<div class="col-md-12">
-												<div class="form-group">
-													<strong><label>Số điện thoại:</label></strong> <input
-														type="text" placeholder="Số điện thoại"
-														th:value="${banDatTruoc.khachHang.sdt}"
-														class="form-control" name="phone" required
-														data-error="Vui lòng nhập số điện thoại"
-														readonly="readonly" />
-													<div class="help-block with-errors"></div>
-												</div>
+										</div>
+										<div class="col-md-12">
+											<div class="form-group">
+												<strong><label>Địa chỉ:</label></strong> <input type="text"
+													placeholder="Địa chỉ" class="form-control"
+													th:value="${banDatTruoc.khachHang.diaChi}" name="diaChi"
+													required data-error="Vui lòng nhập địa chỉ"
+													readonly="readonly" />
+												<div class="help-block with-errors"></div>
 											</div>
-											<div class="col-md-12">
-												<div class="form-group">
-													<strong><label>Địa chỉ:</label></strong> <input type="text"
-														placeholder="Địa chỉ" class="form-control"
-														th:value="${banDatTruoc.khachHang.diaChi}" name="diaChi"
-														required data-error="Vui lòng nhập địa chỉ"
-														readonly="readonly" />
-													<div class="help-block with-errors"></div>
-												</div>
-											</div>
-											<div class="col-md-12">
-												<div class="form-group">
+										</div>
+										<div class="col-md-12">
+											<div class="form-group">
 
-													<!-- <span class="quanlityfood">Bạn đã đặt: 
+												<!-- <span class="quanlityfood">Bạn đã đặt: 
 												<span id="quanlityfoodordered">0 </span>
 												món
 											</span>  -->
-													<div class="help-block with-errors"></div>
+												<div class="help-block with-errors"></div>
 
-												</div>
 											</div>
 										</div>
-
 									</div>
-									<div class="col-md-12">
-										<div class="submit-button text-center">
-											
 
-
-												<input type="hidden" name="id" th:value="${banDatTruoc.maDatTruoc}" />
-												<input class="btn btn-common" type="submit"
-													value="Cập Nhật Thông Tin">
-												
-												<div class="clearfix"></div>
-										
-										</div>
-									</div>
-								</form>
-								<div class="row">
-									<form th:action="@{/admin/chinhSuaMonAn/AddRowMonAn}"
-										method="POST">
-										<table id="myTable" class="table table-bordered table-striped"
-											style="width: 100%">
-											<thead>
-												<tr>
-													<th>Mã món ăn</th>
-													<th>Loại</th>
-													<th>Tên món ăn</th>
-													<th>Đơn giá</th>
-													<th>Số lượng</th>
-													<th>Chỉnh sửa</th>
-												</tr>
-											</thead>
-
-											<tbody>
-												<tr th:each="monAn : ${listMonAn}">
-													<td th:text="${monAn.maMonAn}"></td>
-													<td th:text="${monAn.loaiMonAn.tenLoai}"></td>
-													<td th:text="${monAn.tenMonAn}"></td>
-
-													<td><span
-														th:text="${#numbers.formatDecimal(monAn.DonGia, 0, 'COMMA', 0, 'POINT')}">1000000</span>
-														VNĐ</td>
-													<td><input type="number" name="soLuong" value="1" /></td>
-													<td style="text-align: center;"><input type="hidden"
-														name="id" th:value="${monAn.maMonAn}" /> <input
-														type="hidden" name="donGia" th:value="${monAn.DonGia}" />
-														<input type="hidden" name="tenMonAn"
-
-														th:value="${monAn.tenMonAn}" /> <a
-														th:href="@{/admin/banDatTruoc/edit/add/{idDatTruoc}/{idMonAn}(idMonAn=${monAn.maMonAn},idDatTruoc=${banDatTruoc.maDatTruoc})}">Thêm
-															Món</a></td>
-
-												</tr>
-											</tbody>
-
-											<tfoot>
-											</tfoot>
-										</table>
-
-									</form>
 								</div>
+								<div class="col-md-12">
+									<div class="submit-button text-center">
 
 
-								<div class="row">
 
-									<table id="myTable2" class="table table-bordered table-striped"
+										<input type="hidden" name="id"
+											th:value="${banDatTruoc.maDatTruoc}" /> <input
+											class="btn btn-common" type="submit"
+											value="Cập Nhật Thông Tin">
+
+										<div class="clearfix"></div>
+
+									</div>
+								</div>
+							</form>
+							<div class="row">
+								<form th:action="@{/admin/chinhSuaMonAn/AddRowMonAn}"
+									method="POST">
+									<table id="myTable" class="table table-bordered table-striped"
 										style="width: 100%">
 										<thead>
 											<tr>
-												<th scope="col">#</th>
-												<th scope="col">Tên món</th>
-												<th scope="col">Số lượng</th>
-												<th scope="col">Tổng tiền</th>
-												<th scope="col">Tùy Chọn</th>
+												<th>Mã món ăn</th>
+												<th>Loại</th>
+												<th>Tên món ăn</th>
+												<th>Đơn giá</th>
+												<th>Số lượng</th>
+												<th>Chỉnh sửa</th>
 											</tr>
 										</thead>
 
 										<tbody>
-											<tr th:each="datTruoc : ${listMonDatTruoc}">
-												<form th:action="@{/admin/banDatTruoc/edit/remove}"
-													method="POST">
-													<td th:text="${datTruoc.stt}"></td>
-													<td th:text="${datTruoc.tenMonAn}"></td>
+											<tr th:each="monAn : ${listMonAn}">
+												<td th:text="${monAn.maMonAn}"></td>
+												<td th:text="${monAn.loaiMonAn.tenLoai}"></td>
+												<td th:text="${monAn.tenMonAn}"></td>
 
-													<td><input type="number"
-														th:value="${datTruoc.soLuong}" name="soLuong" value="1" /></td>
-													<td><span
-														th:text="${#numbers.formatDecimal(datTruoc.tongTien, 0, 'COMMA', 0, 'POINT')}">1000000</span>
-														VNĐ</td>
-													<td style="text-align: center;"><input type="hidden"
-														name="id" th:value="${datTruoc.id}" /> <input
-														type="hidden" name="idDatTruoc"
-														th:value="${banDatTruoc.maDatTruoc}" /> <input
-														type="submit" value="Cập Nhật" name="action"><input
-														type="submit" name="action" value="Xóa Bỏ"></td>
-												</form>
+												<td><span
+													th:text="${#numbers.formatDecimal(monAn.DonGia, 0, 'COMMA', 0, 'POINT')}">1000000</span>
+													VNĐ</td>
+												<td><input type="number" name="soLuong" value="1" /></td>
+												<td style="text-align: center;"><input type="hidden"
+													name="id" th:value="${monAn.maMonAn}" /> <input
+													type="hidden" name="donGia" th:value="${monAn.DonGia}" />
+													<input type="hidden" name="tenMonAn"
+													th:value="${monAn.tenMonAn}" /> <a
+													th:href="@{/admin/banDatTruoc/edit/add/{idDatTruoc}/{idMonAn}(idMonAn=${monAn.maMonAn},idDatTruoc=${banDatTruoc.maDatTruoc})}">Thêm
+														Món</a></td>
+
 											</tr>
 										</tbody>
 
@@ -341,29 +278,72 @@ img {
 										</tfoot>
 									</table>
 
-								</div>
+								</form>
+							</div>
 
 
+							<div class="row">
 
-								<div class="row">
-									<div class="col-md-12">
-										<div class="submit-button text-center" th:if="${tongTien}">
-											<h2>
-												Tổng tiền : <span
-													th:text="${#numbers.formatDecimal(tongTien, 0, 'COMMA', 0, 'POINT')}">1000000</span>
-												VNĐ
-											</h2>
-											<form th:action="@{/admin/banDatTruoc/edit/pay}">
-												<input type="hidden" th:value="${banDatTruoc.maDatTruoc}"
-													name="idBanDatTruoc"> <input class="btn btn-common"
-													id="submit" type="submit" value="THANH TOÁN" name="action">
+								<table id="myTable2" class="table table-bordered table-striped"
+									style="width: 100%">
+									<thead>
+										<tr>
+											<th scope="col">#</th>
+											<th scope="col">Tên món</th>
+											<th scope="col">Số lượng</th>
+											<th scope="col">Tổng tiền</th>
+											<th scope="col">Tùy Chọn</th>
+										</tr>
+									</thead>
+
+									<tbody>
+										<tr th:each="datTruoc : ${listMonDatTruoc}">
+											<form th:action="@{/admin/banDatTruoc/edit/remove}"
+												method="POST">
+												<td th:text="${datTruoc.stt}"></td>
+												<td th:text="${datTruoc.tenMonAn}"></td>
+
+												<td><input type="number" th:value="${datTruoc.soLuong}"
+													name="soLuong" value="1" /></td>
+												<td><span
+													th:text="${#numbers.formatDecimal(datTruoc.tongTien, 0, 'COMMA', 0, 'POINT')}">1000000</span>
+													VNĐ</td>
+												<td style="text-align: center;"><input type="hidden"
+													name="id" th:value="${datTruoc.id}" /> <input
+													type="hidden" name="idDatTruoc"
+													th:value="${banDatTruoc.maDatTruoc}" /> <input
+													type="submit" value="Cập Nhật" name="action"><input
+													type="submit" name="action" value="Xóa Bỏ"></td>
 											</form>
-											<div id="msgSubmit" class="h3 text-center hidden"></div>
-											<div class="clearfix"></div>
-										</div>
-										<div class="submit-button text-center" th:unless="${tongTien}">
-											<h2>Vui Lòng Chọn Món Ăn Bất Kỳ</h2>
-										</div>
+										</tr>
+									</tbody>
+
+									<tfoot>
+									</tfoot>
+								</table>
+
+							</div>
+
+
+
+							<div class="row">
+								<div class="col-md-12">
+									<div class="submit-button text-center" th:if="${tongTien}">
+										<h2>
+											Tổng tiền : <span
+												th:text="${#numbers.formatDecimal(tongTien, 0, 'COMMA', 0, 'POINT')}">1000000</span>
+											VNĐ
+										</h2>
+										<form th:action="@{/admin/banDatTruoc/edit/pay}">
+											<input type="hidden" th:value="${banDatTruoc.maDatTruoc}"
+												name="idBanDatTruoc"> <input class="btn btn-common"
+												id="submit" type="submit" value="THANH TOÁN" name="action">
+										</form>
+										<div id="msgSubmit" class="h3 text-center hidden"></div>
+										<div class="clearfix"></div>
+									</div>
+									<div class="submit-button text-center" th:unless="${tongTien}">
+										<h2>Vui Lòng Chọn Món Ăn Bất Kỳ</h2>
 									</div>
 								</div>
 							</div>
@@ -371,95 +351,101 @@ img {
 					</div>
 				</div>
 			</div>
-			<!-- /.content-wrapper -->
+		</div>
+		<!-- /.content-wrapper -->
 
-			<!-- Start Footer -->
-			<footer class="footer-area bg-f">
+		<!-- Start Footer -->
+		<footer class="footer-area bg-f">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-4 col-md-7">
+						<h3>Về chúng tôi</h3>
+						<p>Nhà hàng tiêu chuẩn 5* luôn hướng đến sự hành lòng của
+							khách hàng. Sự ngon miệng và hài lòng của khách hàng là niềm tin
+							vững chắc để chúng tôi tiếp tục phát triển không ngừng.</p>
+					</div>
+					<div class="col-lg-4 col-md-7">
+						<h3>Thời gian hoạt động</h3>
+						<!-- <p><span class="text-color">Thứ 2 - Thứ 6: </span>Closed</p> -->
+						<p>
+							<span class="text-color">Thứ 2 - Thứ 6 :</span> 9:00 - 22:00
+						</p>
+						<p>
+							<span class="text-color">Thứ 7 - Chủ nhật :</span> 9:00 - 00:00
+						</p>
+					</div>
+					<div class="col-lg-4 col-md-7">
+						<h3>Thông tin liên hệ</h3>
+						<p class="lead">12 Nguyễn Văn Bảo, Phường 4, Quận Gò Vấp, Hồ
+							Chí Minh</p>
+						<p class="lead">
+							<a href="#">+01 2000 800 9999</a>
+						</p>
+						<p>
+							<a href="#"> lienhechungtoi@admin.com</a>
+						</p>
+					</div>
+
+				</div>
+			</div>
+
+			<div class="copyright">
 				<div class="container">
 					<div class="row">
-						<div class="col-lg-4 col-md-7">
-							<h3>Về chúng tôi</h3>
-							<p>Nhà hàng tiêu chuẩn 5* luôn hướng đến sự hành lòng của
-								khách hàng. Sự ngon miệng và hài lòng của khách hàng là niềm tin
-								vững chắc để chúng tôi tiếp tục phát triển không ngừng.</p>
-						</div>
-						<div class="col-lg-4 col-md-7">
-							<h3>Thời gian hoạt động</h3>
-							<!-- <p><span class="text-color">Thứ 2 - Thứ 6: </span>Closed</p> -->
-							<p>
-								<span class="text-color">Thứ 2 - Thứ 6 :</span> 9:00 - 22:00
+						<div class="col-lg-12">
+							<p class="company-name">
+								Coppy right. &copy; 2021 <a href="#"></a> Thiết kế : <a href="#">iuh
+									design</a>
 							</p>
-							<p>
-								<span class="text-color">Thứ 7 - Chủ nhật :</span> 9:00 - 00:00
-							</p>
-						</div>
-						<div class="col-lg-4 col-md-7">
-							<h3>Thông tin liên hệ</h3>
-							<p class="lead">12 Nguyễn Văn Bảo, Phường 4, Quận Gò Vấp, Hồ
-								Chí Minh</p>
-							<p class="lead">
-								<a href="#">+01 2000 800 9999</a>
-							</p>
-							<p>
-								<a href="#"> lienhechungtoi@admin.com</a>
-							</p>
-						</div>
-
-					</div>
-				</div>
-
-				<div class="copyright">
-					<div class="container">
-						<div class="row">
-							<div class="col-lg-12">
-								<p class="company-name">
-									Coppy right. &copy; 2021 <a href="#"></a> Thiết kế : <a
-										href="#">iuh design</a>
-								</p>
-							</div>
 						</div>
 					</div>
 				</div>
+			</div>
 
-			</footer>
-			<!-- End Footer -->
+		</footer>
+		<!-- End Footer -->
 
-		</div>
 	</div>
-  <script th:src="@{/plugins/jquery/jquery.min.js}"></script>
-  <script th:src="@{/plugins/jquery-ui/jquery-ui.min.js}"></script>
-  <script th:src="@{/plugins/bootstrap/js/bootstrap.bundle.min.js}"></script>
-  <script th:src="@{/plugins/daterangepicker/daterangepicker.js}"></script>
-  
-  <script th:src="@{/plugins/summernote/summernote-bs4.min.js}"></script>
-  <script th:src="@{/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js}"></script>
-  <script th:src="@{/dist/js/adminlte.js}"></script>
-  <script th:src="@{/dist/js/demo.js}"></script>
-  <!-- ALL JS FILES -->
-  <script th:src="@{/js/jquery-3.2.1.min.js}"></script>
-  <script th:src="@{/js/popper.min.js}"></script>
-  <script th:src="@{/js/bootstrap.min.js}"></script>
-  <script th:src="@{/js/login.js}"></script>
-  <!-- ALL PLUGINS -->
-  <script th:src="@{/js/jquery.superslides.min.js}"></script>
-  <script th:src="@{/js/images-loded.min.js}"></script>
-  <script th:src="@{/js/form-validator.min.js}"></script>
-  <script th:src="@{/js/contact-form-script.js}"></script>
-  <script th:src="@{/js/custom.js}"></script>
 
-  <script th:src="@{/plugins/datatables/jquery.dataTables.min.js}"></script>
-  <script th:src="@{/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js}"></script>
-  <script th:src="@{/plugins/datatables-responsive/js/dataTables.responsive.min.js}"></script>
-  <script th:src="@{/plugins/datatables-responsive/js/responsive.bootstrap4.min.js}"></script>
-  <script th:src="@{/plugins/datatables-buttons/js/dataTables.buttons.min.js}"></script>
-  <script th:src="@{/plugins/datatables-buttons/js/buttons.bootstrap4.min.js}"></script>
-  <script th:src="@{/plugins/datatables-buttons/js/buttons.html5.min.js}"></script>
-  <script th:src="@{/plugins/datatables-buttons/js/buttons.print.min.js}"></script>
-  <script th:src="@{/plugins/datatables-buttons/js/buttons.colVis.min.js}"></script>
+	<script th:src="@{/plugins/jquery/jquery.min.js}"></script>
+	<script th:src="@{/plugins/jquery-ui/jquery-ui.min.js}"></script>
+	<script th:src="@{/plugins/bootstrap/js/bootstrap.bundle.min.js}"></script>
+	<script th:src="@{/plugins/daterangepicker/daterangepicker.js}"></script>
+
+	<script th:src="@{/plugins/summernote/summernote-bs4.min.js}"></script>
+	<script
+		th:src="@{/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js}"></script>
+	<script th:src="@{/dist/js/adminlte.js}"></script>
+	<script th:src="@{/dist/js/demo.js}"></script>
+	<!-- ALL JS FILES -->
+	<script th:src="@{/js/jquery-3.2.1.min.js}"></script>
+	<script th:src="@{/js/popper.min.js}"></script>
+	<script th:src="@{/js/bootstrap.min.js}"></script>
+	<script th:src="@{/js/login.js}"></script>
+	<!-- ALL PLUGINS -->
+	<script th:src="@{/js/jquery.superslides.min.js}"></script>
+	<script th:src="@{/js/images-loded.min.js}"></script>
+	<script th:src="@{/js/form-validator.min.js}"></script>
+	<script th:src="@{/js/contact-form-script.js}"></script>
+	<script th:src="@{/js/custom.js}"></script>
+
+	<script th:src="@{/plugins/datatables/jquery.dataTables.min.js}"></script>
+	<script
+		th:src="@{/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js}"></script>
+	<script
+		th:src="@{/plugins/datatables-responsive/js/dataTables.responsive.min.js}"></script>
+	<script
+		th:src="@{/plugins/datatables-responsive/js/responsive.bootstrap4.min.js}"></script>
+	<script
+		th:src="@{/plugins/datatables-buttons/js/dataTables.buttons.min.js}"></script>
+	<script
+		th:src="@{/plugins/datatables-buttons/js/buttons.bootstrap4.min.js}"></script>
+	<script th:src="@{/plugins/datatables-buttons/js/buttons.html5.min.js}"></script>
+	<script th:src="@{/plugins/datatables-buttons/js/buttons.print.min.js}"></script>
+	<script
+		th:src="@{/plugins/datatables-buttons/js/buttons.colVis.min.js}"></script>
 
 	<script>
-
-
 		$(document).ready(function() {
 			$('#inforModal').modal('show');
 
@@ -468,20 +454,26 @@ img {
 			})
 		});
 
-		$(document).ready(function() {
-			$('#myTable').DataTable({
-				"language" : {
-					"url" : "//cdn.datatables.net/plug-ins/1.10.24/i18n/Vietnamese.json"
-				},
-				"pageLength" : 5
-			});
-			$('#myTable2').DataTable({
-				"language" : {
-					"url" : "//cdn.datatables.net/plug-ins/1.10.24/i18n/Vietnamese.json"
-				},
-				"pageLength" : 5
-				});
-		});
+		$(document)
+				.ready(
+						function() {
+							$('#myTable')
+									.DataTable(
+											{
+												"language" : {
+													"url" : "//cdn.datatables.net/plug-ins/1.10.24/i18n/Vietnamese.json"
+												},
+												"pageLength" : 5
+											});
+							$('#myTable2')
+									.DataTable(
+											{
+												"language" : {
+													"url" : "//cdn.datatables.net/plug-ins/1.10.24/i18n/Vietnamese.json"
+												},
+												"pageLength" : 5
+											});
+						});
 	</script>
 
 

@@ -1,92 +1,92 @@
-  <aside class="main-sidebar sidebar-dark-primary elevation-4">
-    <!-- Brand Logo -->
+<aside class="main-sidebar sidebar-dark-primary elevation-4">
+  <!-- Brand Logo -->
 
-    <!-- Sidebar -->
-    <div class="sidebar">
-      <!-- Sidebar user panel (optional) -->
-      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-        <div class="image">
-          <img th:src="@{/dist/img/avatar5.png}" class="img-circle elevation-2" alt="User Image">
-        </div>
-        <div class="info">
-          <a href="#" class="d-block">Admin</a>
-        </div>
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <!-- Sidebar user panel (optional) -->
+    <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+      <div class="image">
+        <img th:src="@{/dist/img/avatar5.png}" class="img-circle elevation-2" alt="User Image">
       </div>
-      <!-- Sidebar Menu -->
-      <nav class="mt-2">
-        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-          <li class="nav-item">
-              <a th:href="@{/admin/banDatTruoc}" class="nav-link">
-                <i class="nav-icon fas fa-edit"></i>
-                <p>
-                  Quản lý đặt bàn
-                  <i class="fas fa-angle-left right"></i>
-                </p>
+      <div class="info">
+        <a href="#" class="d-block">Admin</a>
+      </div>
+    </div>
+    <!-- Sidebar Menu -->
+    <nav class="mt-2">
+      <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+        <li class="nav-item">
+          <a th:href="@{/admin/banDatTruoc}" class="nav-link">
+            <i class="nav-icon fas fa-edit"></i>
+            <p>
+              Quản lý đặt bàn
+              <i class="fas fa-angle-left right"></i>
+            </p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a th:href="@{/admin/quanlykhachhang}" class="nav-link">
+            <i class="nav-icon fas fa-edit"></i>
+            <p>
+              Quản lý khách hàng
+              <i class="fas fa-angle-left right"></i>
+            </p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a th:href="@{/admin/quanlynhanvien}" class="nav-link">
+            <i class="fas fa-users" style="margin-left: 5px; margin-right: 5px;"></i>
+            <p>
+              Quản lý nhân viên
+              <i class="fas fa-angle-left right"></i>
+            </p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a th:href="@{/admin/monAn}" class="nav-link">
+            <i class="nav-icon fas fa-table"></i>
+            <p>
+              Quản lý món ăn
+              <i class="fas fa-angle-left right"></i>
+            </p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a th:href="@{/admin/thongke}" class="nav-link">
+            <i class="fas fa-chart-line" style="margin-left: 5px; margin-right: 5px;"></i>
+            <p>
+              Thống kê
+              <i class="fas fa-angle-left right"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a th:href="@{/admin/thongke}" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Thống kê doanh thu</p>
               </a>
-          </li>
-          <li class="nav-item">
-            <a th:href="@{/admin/quanlykhachhang}" class="nav-link">
-              <i class="nav-icon fas fa-edit"></i>
-              <p>
-                Quản lý khách hàng
-                <i class="fas fa-angle-left right"></i>
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a th:href="@{/admin/quanlynhanvien}" class="nav-link">
-              <i class="fas fa-users" style="margin-left: 5px; margin-right: 5px;"></i>
-              <p>
-                Quản lý nhân viên
-                <i class="fas fa-angle-left right"></i>
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a th:href="@{/admin/monAn}" class="nav-link">
-              <i class="nav-icon fas fa-table"></i>
-              <p>
-                Quản lý món ăn
-                <i class="fas fa-angle-left right"></i>
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a th:href="@{/admin/thongke}" class="nav-link">
-              <i class="fas fa-chart-line" style="margin-left: 5px; margin-right: 5px;"></i>
-              <p>
-                Thống kê
-                <i class="fas fa-angle-left right"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a th:href="@{/admin/thongke}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Thống kê doanh thu</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a th:href="@{/forms/advanced.html}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Thống kê khách hàng</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a th:href="@{/forms/editors.html}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Thống kê món ăn</p>
-                </a>
-              </li>
-            </ul>
-          </li>
-           <li class="nav-item">
-            <a th:href="@{/admin/hoadon}" class="nav-link">
-              <i class="fas fa-sticky-note" style="margin-left: 5px; margin-right: 5px;"></i>
-              <p>
-                Hóa đơn
-                <i class="fas fa-angle-left right"></i>
-              </p>
-            </a>
-          </li>
-  </aside>
+            </li>
+            <li class="nav-item">
+              <a th:href="@{/forms/advanced.html}" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Thống kê khách hàng</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a th:href="@{/forms/editors.html}" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Thống kê món ăn</p>
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a th:href="@{/admin/hoadon}" class="nav-link">
+            <i class="fas fa-sticky-note" style="margin-left: 5px; margin-right: 5px;"></i>
+            <p>
+              Hóa đơn
+              <i class="fas fa-angle-left right"></i>
+            </p>
+          </a>
+        </li>
+</aside>

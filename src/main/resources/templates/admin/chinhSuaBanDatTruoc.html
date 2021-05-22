@@ -1,90 +1,85 @@
 <!DOCTYPE html>
 <html xmlns:th="http://thymeleaf.org">
+
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Admin Page</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Admin Page</title>
 
-<link rel="shortcut icon" th:href="@{/images/favicon.ico}"
-	type="image/x-icon">
-<link rel="apple-touch-icon" th:href="@{/images/apple-touch-icon.png}">
-<link rel="stylesheet"
-	th:href="@{/plugins/fontawesome-free/css/all.min.css}">
-<link rel="stylesheet" th:href="@{/css/style.css}">
-<link rel="stylesheet" th:href="@{/dist/css/adminlte.min.css}">
-<!-- overlayScrollbars -->
-<link rel="stylesheet"
-	th:href="@{/plugins/overlayScrollbars/css/OverlayScrollbars.min.css}">
-<!-- Daterange picker -->
-<link rel="stylesheet"
-	th:href="@{/plugins/daterangepicker/daterangepicker.css}">
-<!-- summernote -->
-<link rel="stylesheet"
-	th:href="@{/plugins/summernote/summernote-bs4.min.css}">
-<!-- Bootstrap CSS -->
-<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
-<!-- Responsive CSS -->
-<link rel="stylesheet" th:href="@{/css/responsive.css}">
-<!-- Custom CSS -->
-<link rel="stylesheet" th:href="@{/css/custom.css}">
-<link rel="stylesheet" th:href="@{/css/adminCustom.css}">
+	<link rel="shortcut icon" th:href="@{/images/favicon.ico}" type="image/x-icon">
+	<link rel="apple-touch-icon" th:href="@{/images/apple-touch-icon.png}">
+	<link rel="stylesheet" th:href="@{/plugins/fontawesome-free/css/all.min.css}">
+	<link rel="stylesheet" th:href="@{/css/style.css}">
+	<link rel="stylesheet" th:href="@{/dist/css/adminlte.min.css}">
+	<!-- overlayScrollbars -->
+	<link rel="stylesheet" th:href="@{/plugins/overlayScrollbars/css/OverlayScrollbars.min.css}">
+	<!-- Daterange picker -->
+	<link rel="stylesheet" th:href="@{/plugins/daterangepicker/daterangepicker.css}">
+	<!-- summernote -->
+	<link rel="stylesheet" th:href="@{/plugins/summernote/summernote-bs4.min.css}">
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+	<!-- Responsive CSS -->
+	<link rel="stylesheet" th:href="@{/css/responsive.css}">
+	<!-- Custom CSS -->
+	<link rel="stylesheet" th:href="@{/css/custom.css}">
+	<link rel="stylesheet" th:href="@{/css/adminCustom.css}">
 
-<style>
-body {
-	position: relative;
-}
+	<style>
+		body {
+			position: relative;
+		}
 
-.myAlert-top {
-	position: absolute;
-	z-index: 1222;
-	right: 32px;
-	top: 10px;
-	display: none;
-}
+		.myAlert-top {
+			position: absolute;
+			z-index: 1222;
+			right: 32px;
+			top: 10px;
+			display: none;
+		}
 
-.modal-dialog {
-	max-width: 600px;
-}
+		.modal-dialog {
+			max-width: 600px;
+		}
 
-img {
-	width: 25%;
-}
+		img {
+			width: 25%;
+		}
 
-.table td {
-	width: 1%;
-}
-</style>
+		.table td {
+			width: 1%;
+		}
+	</style>
 
-<script th:if="${editsucceess}">
-	window
+	<script th:if="${editsucceess}">
+		window
 			.addEventListener(
-					'DOMContentLoaded',
-					function() {
-						document.getElementById("myAlert-loggin-success").style.display = "block";
-						setTimeout(
-								function() {
-									document
-											.getElementById("myAlert-loggin-success").style.display = "none";
-								}, 2000);
-					});
-</script>
+				'DOMContentLoaded',
+				function () {
+					document.getElementById("myAlert-loggin-success").style.display = "block";
+					setTimeout(
+						function () {
+							document
+								.getElementById("myAlert-loggin-success").style.display = "none";
+						}, 2000);
+				});
+	</script>
 
 
 
 </head>
+
 <body class="hold-transition sidebar-mini layout-fixed">
-	<div class="myAlert-top alert alert-success"
-		id="myAlert-loggin-success">
+	<div class="myAlert-top alert alert-success" id="myAlert-loggin-success">
 		<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
 		<strong>Cập nhật thành công!</strong>
 	</div>
 
 	<div class="wrapper">
 		<!-- Preloader -->
-		<div
-			class="preloader flex-column justify-content-center align-items-center">
-			<img class="animation__shake" th:src="@{/dist/img/AdminLTELogo.png}"
-				alt="AdminLTELogo" height="60" width="60">
+		<div class="preloader flex-column justify-content-center align-items-center">
+			<img class="animation__shake" th:src="@{/dist/img/AdminLTELogo.png}" alt="AdminLTELogo" height="60"
+				width="60">
 		</div>
 	</div>
 
@@ -111,26 +106,23 @@ img {
 				<div class="row">
 					<div class="col-lg-12 col-sm-12 col-xs-12">
 						<div class="contact-block">
-							<form th:action="@{/admin/banDatTruoc/edit/updateThongTin}"
-								method="POST">
+							<form th:action="@{/admin/banDatTruoc/edit/updateThongTin}" method="POST">
 								<div class="row">
 									<div class="col-md-6">
 										<h3>Thông tin đặt bàn</h3>
 										<div class="col-md-12">
 											<div class="form-group">
-												<strong><label>Số người:</label></strong> <input
-													id="soluong" class="form-control" name="soNguoi"
-													type="number" th:value="${banDatTruoc.soNguoi}" required
-													data-error="Vui lòng nhập số người" placeholder="Số người"
-													min="1">
+												<strong><label>Số người:</label></strong> <input id="soluong"
+													class="form-control" name="soNguoi" type="number"
+													th:value="${banDatTruoc.soNguoi}" required
+													data-error="Vui lòng nhập số người" placeholder="Số người" min="1">
 												<div class="help-block with-errors"></div>
 											</div>
 										</div>
 										<div class="col-md-12">
 											<div class="form-group">
 												<strong><label>Ngày đến:</label></strong> <input type="date"
-													id="input_date"
-													class="datepicker picker__input form-control"
+													id="input_date" class="datepicker picker__input form-control"
 													name="ngayDen" th:value="${banDatTruoc.ngayDen}" required
 													data-error="Vui lòng chọn ngày đến" placeholder="Ngày đến">
 												<div class="help-block with-errors"></div>
@@ -138,10 +130,9 @@ img {
 										</div>
 										<div class="col-md-12">
 											<div class="form-group">
-												<strong><label>Thời gian đến:</label></strong> <input
-													type="time" id="input_time"
-													class="time form-control picker__input" name="thoiGianDen"
-													th:value="${banDatTruoc.thoiGianDen}"
+												<strong><label>Thời gian đến:</label></strong> <input type="time"
+													id="input_time" class="time form-control picker__input"
+													name="thoiGianDen" th:value="${banDatTruoc.thoiGianDen}"
 													placeholder="Thời gian đến" required
 													data-error="Vui lòng chọn ngày đến">
 												<div class="help-block with-errors"></div>
@@ -149,9 +140,8 @@ img {
 										</div>
 										<div class="col-md-12">
 											<div class="form-group">
-												<strong><label>Ghi chú:</label></strong> <input
-													id="input_ghichu" class="form-control"
-													placeholder="Ghi chú" type="text" name="ghiChu"
+												<strong><label>Ghi chú:</label></strong> <input id="input_ghichu"
+													class="form-control" placeholder="Ghi chú" type="text" name="ghiChu"
 													th:value="${banDatTruoc.ghiChu}">
 
 											</div>
@@ -168,8 +158,8 @@ img {
 										<h3>Thông tin liên hệ</h3>
 										<div class="col-md-12">
 											<div class="form-group">
-												<strong><label>Tên người liên hệ:</label></strong> <input
-													type="text" class="form-control" name="tenKhachHang"
+												<strong><label>Tên người liên hệ:</label></strong> <input type="text"
+													class="form-control" name="tenKhachHang"
 													th:value="${banDatTruoc.khachHang.tenKhachHang}"
 													placeholder="Họ và tên" required
 													data-error="Vui lòng nhập họ và tên" readonly="readonly">
@@ -178,23 +168,20 @@ img {
 										</div>
 										<div class="col-md-12">
 											<div class="form-group">
-												<strong><label>Địa chị email:</label></strong> <input
-													type="text" placeholder="Địa chỉ Email"
-													th:value="${banDatTruoc.khachHang.email}"
-													class="form-control" name="email" required
-													data-error="Vui lòng nhập địa chỉ email"
+												<strong><label>Địa chị email:</label></strong> <input type="text"
+													placeholder="Địa chỉ Email"
+													th:value="${banDatTruoc.khachHang.email}" class="form-control"
+													name="email" required data-error="Vui lòng nhập địa chỉ email"
 													readonly="readonly">
 												<div class="help-block with-errors"></div>
 											</div>
 										</div>
 										<div class="col-md-12">
 											<div class="form-group">
-												<strong><label>Số điện thoại:</label></strong> <input
-													type="text" placeholder="Số điện thoại"
-													th:value="${banDatTruoc.khachHang.sdt}"
+												<strong><label>Số điện thoại:</label></strong> <input type="text"
+													placeholder="Số điện thoại" th:value="${banDatTruoc.khachHang.sdt}"
 													class="form-control" name="phone" required
-													data-error="Vui lòng nhập số điện thoại"
-													readonly="readonly" />
+													data-error="Vui lòng nhập số điện thoại" readonly="readonly" />
 												<div class="help-block with-errors"></div>
 											</div>
 										</div>
@@ -202,9 +189,8 @@ img {
 											<div class="form-group">
 												<strong><label>Địa chỉ:</label></strong> <input type="text"
 													placeholder="Địa chỉ" class="form-control"
-													th:value="${banDatTruoc.khachHang.diaChi}" name="diaChi"
-													required data-error="Vui lòng nhập địa chỉ"
-													readonly="readonly" />
+													th:value="${banDatTruoc.khachHang.diaChi}" name="diaChi" required
+													data-error="Vui lòng nhập địa chỉ" readonly="readonly" />
 												<div class="help-block with-errors"></div>
 											</div>
 										</div>
@@ -227,10 +213,8 @@ img {
 
 
 
-										<input type="hidden" name="id"
-											th:value="${banDatTruoc.maDatTruoc}" /> <input
-											class="btn btn-common" type="submit"
-											value="Cập Nhật Thông Tin">
+										<input type="hidden" name="id" th:value="${banDatTruoc.maDatTruoc}" /> <input
+											class="btn btn-common" type="submit" value="Cập Nhật Thông Tin">
 
 										<div class="clearfix"></div>
 
@@ -238,10 +222,8 @@ img {
 								</div>
 							</form>
 							<div class="row">
-								<form th:action="@{/admin/chinhSuaMonAn/AddRowMonAn}"
-									method="POST">
-									<table id="myTable" class="table table-bordered table-striped"
-										style="width: 100%">
+								<form th:action="@{/admin/chinhSuaMonAn/AddRowMonAn}" method="POST">
+									<table id="myTable" class="table table-bordered table-striped" style="width: 100%">
 										<thead>
 											<tr>
 												<th>Mã món ăn</th>
@@ -260,16 +242,17 @@ img {
 												<td th:text="${monAn.tenMonAn}"></td>
 
 												<td><span
-													th:text="${#numbers.formatDecimal(monAn.DonGia, 0, 'COMMA', 0, 'POINT')}">1000000</span>
+														th:text="${#numbers.formatDecimal(monAn.DonGia, 0, 'COMMA', 0, 'POINT')}">1000000</span>
 													VNĐ</td>
 												<td><input type="number" name="soLuong" value="1" /></td>
-												<td style="text-align: center;"><input type="hidden"
-													name="id" th:value="${monAn.maMonAn}" /> <input
-													type="hidden" name="donGia" th:value="${monAn.DonGia}" />
-													<input type="hidden" name="tenMonAn"
-													th:value="${monAn.tenMonAn}" /> <a
-													th:href="@{/admin/banDatTruoc/edit/add/{idDatTruoc}/{idMonAn}(idMonAn=${monAn.maMonAn},idDatTruoc=${banDatTruoc.maDatTruoc})}">Thêm
-														Món</a></td>
+												<td style="text-align: center;"><input type="hidden" name="id"
+														th:value="${monAn.maMonAn}" /> <input type="hidden"
+														name="donGia" th:value="${monAn.DonGia}" />
+													<input type="hidden" name="tenMonAn" th:value="${monAn.tenMonAn}" />
+													<a
+														th:href="@{/admin/banDatTruoc/edit/add/{idDatTruoc}/{idMonAn}(idMonAn=${monAn.maMonAn},idDatTruoc=${banDatTruoc.maDatTruoc})}">Thêm
+														Món</a>
+												</td>
 
 											</tr>
 										</tbody>
@@ -284,8 +267,7 @@ img {
 
 							<div class="row">
 
-								<table id="myTable2" class="table table-bordered table-striped"
-									style="width: 100%">
+								<table id="myTable2" class="table table-bordered table-striped" style="width: 100%">
 									<thead>
 										<tr>
 											<th scope="col">#</th>
@@ -298,22 +280,20 @@ img {
 
 									<tbody>
 										<tr th:each="datTruoc : ${listMonDatTruoc}">
-											<form th:action="@{/admin/banDatTruoc/edit/remove}"
-												method="POST">
+											<form th:action="@{/admin/banDatTruoc/edit/remove}" method="POST">
 												<td th:text="${datTruoc.stt}"></td>
 												<td th:text="${datTruoc.tenMonAn}"></td>
 
-												<td><input type="number" th:value="${datTruoc.soLuong}"
-													name="soLuong" value="1" /></td>
+												<td><input type="number" th:value="${datTruoc.soLuong}" name="soLuong"
+														value="1" /></td>
 												<td><span
-													th:text="${#numbers.formatDecimal(datTruoc.tongTien, 0, 'COMMA', 0, 'POINT')}">1000000</span>
+														th:text="${#numbers.formatDecimal(datTruoc.tongTien, 0, 'COMMA', 0, 'POINT')}">1000000</span>
 													VNĐ</td>
-												<td style="text-align: center;"><input type="hidden"
-													name="id" th:value="${datTruoc.id}" /> <input
-													type="hidden" name="idDatTruoc"
-													th:value="${banDatTruoc.maDatTruoc}" /> <input
-													type="submit" value="Cập Nhật" name="action"><input
-													type="submit" name="action" value="Xóa Bỏ"></td>
+												<td style="text-align: center;"><input type="hidden" name="id"
+														th:value="${datTruoc.id}" /> <input type="hidden"
+														name="idDatTruoc" th:value="${banDatTruoc.maDatTruoc}" /> <input
+														type="submit" value="Cập Nhật" name="action"><input
+														type="submit" name="action" value="Xóa Bỏ"></td>
 											</form>
 										</tr>
 									</tbody>
@@ -336,8 +316,8 @@ img {
 										</h2>
 										<form th:action="@{/admin/banDatTruoc/edit/pay}">
 											<input type="hidden" th:value="${banDatTruoc.maDatTruoc}"
-												name="idBanDatTruoc"> <input class="btn btn-common"
-												id="submit" type="submit" value="THANH TOÁN" name="action">
+												name="idBanDatTruoc"> <input class="btn btn-common" id="submit"
+												type="submit" value="THANH TOÁN" name="action">
 										</form>
 										<div id="msgSubmit" class="h3 text-center hidden"></div>
 										<div class="clearfix"></div>
@@ -413,8 +393,7 @@ img {
 	<script th:src="@{/plugins/daterangepicker/daterangepicker.js}"></script>
 
 	<script th:src="@{/plugins/summernote/summernote-bs4.min.js}"></script>
-	<script
-		th:src="@{/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js}"></script>
+	<script th:src="@{/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js}"></script>
 	<script th:src="@{/dist/js/adminlte.js}"></script>
 	<script th:src="@{/dist/js/demo.js}"></script>
 	<!-- ALL JS FILES -->
@@ -430,57 +409,52 @@ img {
 	<script th:src="@{/js/custom.js}"></script>
 
 	<script th:src="@{/plugins/datatables/jquery.dataTables.min.js}"></script>
-	<script
-		th:src="@{/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js}"></script>
-	<script
-		th:src="@{/plugins/datatables-responsive/js/dataTables.responsive.min.js}"></script>
-	<script
-		th:src="@{/plugins/datatables-responsive/js/responsive.bootstrap4.min.js}"></script>
-	<script
-		th:src="@{/plugins/datatables-buttons/js/dataTables.buttons.min.js}"></script>
-	<script
-		th:src="@{/plugins/datatables-buttons/js/buttons.bootstrap4.min.js}"></script>
+	<script th:src="@{/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js}"></script>
+	<script th:src="@{/plugins/datatables-responsive/js/dataTables.responsive.min.js}"></script>
+	<script th:src="@{/plugins/datatables-responsive/js/responsive.bootstrap4.min.js}"></script>
+	<script th:src="@{/plugins/datatables-buttons/js/dataTables.buttons.min.js}"></script>
+	<script th:src="@{/plugins/datatables-buttons/js/buttons.bootstrap4.min.js}"></script>
 	<script th:src="@{/plugins/datatables-buttons/js/buttons.html5.min.js}"></script>
 	<script th:src="@{/plugins/datatables-buttons/js/buttons.print.min.js}"></script>
-	<script
-		th:src="@{/plugins/datatables-buttons/js/buttons.colVis.min.js}"></script>
+	<script th:src="@{/plugins/datatables-buttons/js/buttons.colVis.min.js}"></script>
 
 	<script>
-		$(document).ready(function() {
+		$(document).ready(function () {
 			$('#inforModal').modal('show');
 
-			$(function() {
+			$(function () {
 				$('[data-toggle="tooltip"]').tooltip();
 			})
 		});
 
 		$(document)
-				.ready(
-						function() {
-							$('#myTable')
-									.DataTable(
-											{
-												"language" : {
-													"url" : "//cdn.datatables.net/plug-ins/1.10.24/i18n/Vietnamese.json"
-												},
-												"pageLength" : 5
-											});
-							$('#myTable2')
-									.DataTable(
-											{
-												"language" : {
-													"url" : "//cdn.datatables.net/plug-ins/1.10.24/i18n/Vietnamese.json"
-												},
-												"pageLength" : 5
-											});
-						});
+			.ready(
+				function () {
+					$('#myTable')
+						.DataTable(
+							{
+								"language": {
+									"url": "//cdn.datatables.net/plug-ins/1.10.24/i18n/Vietnamese.json"
+								},
+								"pageLength": 5
+							});
+					$('#myTable2')
+						.DataTable(
+							{
+								"language": {
+									"url": "//cdn.datatables.net/plug-ins/1.10.24/i18n/Vietnamese.json"
+								},
+								"pageLength": 5
+							});
+				});
 	</script>
 
 
 	<style type="text/css">
-.dataTables_filter {
-	float: right
-}
-</style>
+		.dataTables_filter {
+			float: right
+		}
+	</style>
 </body>
+
 </html>

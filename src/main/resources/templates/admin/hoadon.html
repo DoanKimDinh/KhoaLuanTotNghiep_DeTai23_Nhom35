@@ -2,62 +2,55 @@
 <html xmlns:th="http://thymeleaf.org">
 
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Admin Page</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Admin Page</title>
 
-<link rel="shortcut icon" th:href="@{/images/favicon.ico}"
-	type="image/x-icon">
-<link rel="apple-touch-icon" th:href="@{/images/apple-touch-icon.png}">
+	<link rel="shortcut icon" th:href="@{/images/favicon.ico}" type="image/x-icon">
+	<link rel="apple-touch-icon" th:href="@{/images/apple-touch-icon.png}">
 
-<link rel="stylesheet"
-	th:href="@{/plugins/fontawesome-free/css/all.min.css}">
-<link rel="stylesheet"
-	th:href="@{/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css}">
+	<link rel="stylesheet" th:href="@{/plugins/fontawesome-free/css/all.min.css}">
+	<link rel="stylesheet" th:href="@{/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css}">
 
-<!-- Site CSS -->
-<link rel="stylesheet" th:href="@{/css/style.css}">
+	<!-- Site CSS -->
+	<link rel="stylesheet" th:href="@{/css/style.css}">
 
-<link rel="stylesheet" th:href="@{/dist/css/adminlte.min.css}">
-<!-- overlayScrollbars -->
-<link rel="stylesheet"
-	th:href="@{/plugins/overlayScrollbars/css/OverlayScrollbars.min.css}">
-<!-- Daterange picker -->
-<link rel="stylesheet"
-	th:href="@{/plugins/daterangepicker/daterangepicker.css}">
-<!-- summernote -->
-<link rel="stylesheet"
-	th:href="@{/plugins/summernote/summernote-bs4.min.css}">
-<!-- Bootstrap CSS -->
-<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
-<!-- Responsive CSS -->
-<link rel="stylesheet" th:href="@{/css/responsive.css}">
-<!-- Custom CSS -->
-<link rel="stylesheet" th:href="@{/css/custom.css}">
-<link rel="stylesheet" th:href="@{/css/adminCustom.css}">
+	<link rel="stylesheet" th:href="@{/dist/css/adminlte.min.css}">
+	<!-- overlayScrollbars -->
+	<link rel="stylesheet" th:href="@{/plugins/overlayScrollbars/css/OverlayScrollbars.min.css}">
+	<!-- Daterange picker -->
+	<link rel="stylesheet" th:href="@{/plugins/daterangepicker/daterangepicker.css}">
+	<!-- summernote -->
+	<link rel="stylesheet" th:href="@{/plugins/summernote/summernote-bs4.min.css}">
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+	<!-- Responsive CSS -->
+	<link rel="stylesheet" th:href="@{/css/responsive.css}">
+	<!-- Custom CSS -->
+	<link rel="stylesheet" th:href="@{/css/custom.css}">
+	<link rel="stylesheet" th:href="@{/css/adminCustom.css}">
 
-<style>
-.modal-dialog {
-	max-width: 600px;
-}
+	<style>
+		.modal-dialog {
+			max-width: 600px;
+		}
 
-img {
-	width: 25%;
-}
+		img {
+			width: 25%;
+		}
 
-.table td {
-	width: 1%;
-}
-</style>
+		.table td {
+			width: 1%;
+		}
+	</style>
 
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
 	<div class="wrapper">
-		<div
-			class="preloader flex-column justify-content-center align-items-center">
-			<img class="animation__shake" th:src="@{/dist/img/AdminLTELogo.png}"
-				alt="AdminLTELogo" height="60" width="60">
+		<div class="preloader flex-column justify-content-center align-items-center">
+			<img class="animation__shake" th:src="@{/dist/img/AdminLTELogo.png}" alt="AdminLTELogo" height="60"
+				width="60">
 		</div>
 	</div>
 	<div th:replace="admin/headeradmin"></div>
@@ -91,8 +84,7 @@ img {
 								<!-- /.card-header -->
 								<!-- form start -->
 								<div class="card-body">
-									<div id="example1_wrapper"
-										class="dataTables_wrapper dt-bootstrap4 no-footer">
+									<div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
 										<div class="row">
 											<div class="col-sm-12 col-md-6">
 												<div class="dt-buttons btn-group flex-wrap"></div>
@@ -123,10 +115,10 @@ img {
 													<td th:text="${hoaDon.nhanVien.tenNhanVien}"></td>
 
 													<td style="text-align: center;"><a href="#"><i
-															class="fas fa-info-circle inforHoaDon"
-															data-toggle="modal"
-															th:attr="data-maHoaDon=${hoaDon.maHoaDon}"
-															data-target="#inforModal" id="billDetail"></i></a></td>
+																class="fas fa-info-circle inforHoaDon"
+																data-toggle="modal"
+																th:attr="data-maHoaDon=${hoaDon.maHoaDon}"
+																data-target="#inforModal" id="billDetail"></i></a></td>
 												</tr>
 
 											</tbody>
@@ -194,13 +186,12 @@ img {
 		</footer>
 		<!-- End Footer -->
 
-		<div class="modal fade" id="inforModal" tabindex="-1" role="dialog"
-			aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal fade" id="inforModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+			aria-hidden="true">
 			<div class="modal-dialog modal-dialog-centered" role="document">
 				<div class="modal-content">
 					<div class="modal-header border-bottom-0">
-						<button type="button" class="close" data-dismiss="modal"
-							aria-label="Close">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 						</button>
 					</div>
@@ -212,8 +203,8 @@ img {
 							<div class="container">
 								<div class="card">
 									<div class="card-header">
-										Ngày xuất hóa đơn <strong>01/01/2021</strong> <span
-											class="float-right"> <strong>Trạng Thái:</strong> Đã
+										Ngày xuất hóa đơn <strong>01/01/2021</strong> <span class="float-right">
+											<strong>Trạng Thái:</strong> Đã
 											thanh toán
 										</span>
 									</div>
@@ -308,9 +299,8 @@ img {
 					</div>
 					<div class="modal-footer d-flex justify-content-center">
 						<div class="signup-section">
-							Chúc bạn một ngày tốt lành<a href="#a" class="text-info"
-								data-toggle="modal" data-target="#signUpModal"
-								onclick="anModalDangNhap()">...</a>.
+							Chúc bạn một ngày tốt lành<a href="#a" class="text-info" data-toggle="modal"
+								data-target="#signUpModal" onclick="anModalDangNhap()">...</a>.
 						</div>
 					</div>
 				</div>
@@ -323,8 +313,7 @@ img {
 	<script th:src="@{/plugins/bootstrap/js/bootstrap.bundle.min.js}"></script>
 	<script th:src="@{/plugins/daterangepicker/daterangepicker.js}"></script>
 	<script th:src="@{/plugins/summernote/summernote-bs4.min.js}"></script>
-	<script
-		th:src="@{/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js}"></script>
+	<script th:src="@{/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js}"></script>
 	<script th:src="@{/dist/js/adminlte.js}"></script>
 	<script th:src="@{/dist/js/demo.js}"></script>
 	<!-- ALL JS FILES -->
@@ -340,119 +329,114 @@ img {
 	<script th:src="@{/js/custom.js}"></script>
 
 	<script th:src="@{/plugins/datatables/jquery.dataTables.min.js}"></script>
-	<script
-		th:src="@{/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js}"></script>
-	<script
-		th:src="@{/plugins/datatables-responsive/js/dataTables.responsive.min.js}"></script>
-	<script
-		th:src="@{/plugins/datatables-responsive/js/responsive.bootstrap4.min.js}"></script>
-	<script
-		th:src="@{/plugins/datatables-buttons/js/dataTables.buttons.min.js}"></script>
-	<script
-		th:src="@{/plugins/datatables-buttons/js/buttons.bootstrap4.min.js}"></script>
+	<script th:src="@{/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js}"></script>
+	<script th:src="@{/plugins/datatables-responsive/js/dataTables.responsive.min.js}"></script>
+	<script th:src="@{/plugins/datatables-responsive/js/responsive.bootstrap4.min.js}"></script>
+	<script th:src="@{/plugins/datatables-buttons/js/dataTables.buttons.min.js}"></script>
+	<script th:src="@{/plugins/datatables-buttons/js/buttons.bootstrap4.min.js}"></script>
 	<script th:src="@{/plugins/datatables-buttons/js/buttons.html5.min.js}"></script>
 	<script th:src="@{/plugins/datatables-buttons/js/buttons.print.min.js}"></script>
-	<script
-		th:src="@{/plugins/datatables-buttons/js/buttons.colVis.min.js}"></script>
+	<script th:src="@{/plugins/datatables-buttons/js/buttons.colVis.min.js}"></script>
 
 	<script>
 		$(document)
-				.ready(
-						function() {
-							$('#myTable')
-									.DataTable(
-											{
-												"language" : {
-													"url" : "//cdn.datatables.net/plug-ins/1.10.24/i18n/Vietnamese.json"
-												}
-											});
+			.ready(
+				function () {
+					$('#myTable')
+						.DataTable(
+							{
+								"language": {
+									"url": "//cdn.datatables.net/plug-ins/1.10.24/i18n/Vietnamese.json"
+								}
+							});
 
-							$("#buildDetail").click(function() {
-								$('#inforModal').modal();
-							})
-						});
+					$("#buildDetail").click(function () {
+						$('#inforModal').modal();
+					})
+				});
 	</script>
 
 	<style type="text/css">
-.dataTables_filter {
-	float: right
-}
+		.dataTables_filter {
+			float: right
+		}
 
-.modal-dialog {
-	max-width: 66%;
-}
-</style>
+		.modal-dialog {
+			max-width: 66%;
+		}
+	</style>
 </body>
 <script>
 	$(document)
-			.ready(
-					function() {
-						$(document)
-								.on(
-										"click",
-										".inforHoaDon",
-										function(event) {
+		.ready(
+			function () {
+				$(document)
+					.on(
+						"click",
+						".inforHoaDon",
+						function (event) {
 
-											event.preventDefault();
+							event.preventDefault();
 
-											var maMonAn = event.target
-													.getAttribute('data-idMonAn');
+							var maMonAn = event.target
+								.getAttribute('data-idMonAn');
 
-											$
-													.ajax({
-														type : "POST",
-														contentType : "application/json; charset=utf-8",
-														url : "http://localhost:8080/client/removeRowMonAn",
-														data : JSON.stringify({
-															'id' : maMonAn
-														}),
+							$
+								.ajax({
+									type: "POST",
+									contentType: "application/json; charset=utf-8",
+									url: "http://localhost:8080/client/removeRowMonAn",
+									data: JSON.stringify({
+										'id': maMonAn
+									}),
 
-														success : function(
-																result) {
+									success: function (
+										result) {
 
-															var len = result.length;
-															var html = '';
+										var len = result.length;
+										var html = '';
 
-															var totalMoney = 0;
+										var totalMoney = 0;
 
-															for (var i = 0; i < len; i++) {
-																var tongTien = result[i].soLuong
-																		* result[i].donGia;
-																html += '<tr><th scope="row">'
-																		+ (i + 1)
-																		+ '</th>'
-																		+ '<td >'
-																		+ result[i].tenMonAn
-																		+ '</td>'
-																		+ '<td >'
-																		+ result[i].soLuong
-																		+ '</td>'
-																		+ '<td >'
-																		+ tongTien
-																		+ '</td>'
-																		+ '<td><a href="" class="removeFood" data-idMonAn="'+result[i].id+'">Xóa Bỏ</a></td></tr>';
-																totalMoney = totalMoney
-																		+ tongTien;
-															}
-															$("#addItem").html(
-																	html);
+										for (var i = 0; i < len; i++) {
+											var tongTien = result[i].soLuong
+												* result[i].donGia;
+											html += '<tr><th scope="row">'
+												+ (i + 1)
+												+ '</th>'
+												+ '<td >'
+												+ result[i].tenMonAn
+												+ '</td>'
+												+ '<td >'
+												+ result[i].soLuong
+												+ '</td>'
+												+ '<td >'
+												+ tongTien
+												+ '</td>'
+												+ '<td><a href="" class="removeFood" data-idMonAn="' + result[i].id + '">Xóa Bỏ</a></td></tr>';
+											totalMoney = totalMoney
+												+ tongTien;
+										}
+										$("#addItem").html(
+											html);
 
-															totalMoney = totalMoney
-																	.toLocaleString(
-																			'it-IT',
-																			{
-																				style : 'currency',
-																				currency : 'VND'
-																			});
-															var htmlTongTien = '<h2>Tổng tiền : '
-																	+ totalMoney
-																	+ '</h2>'
-															$("#tongTien")
-																	.html(
-																			htmlTongTien);
-														}
-													});
-										});
-					});
+										totalMoney = totalMoney
+											.toLocaleString(
+												'it-IT',
+												{
+													style: 'currency',
+													currency: 'VND'
+												});
+										var htmlTongTien = '<h2>Tổng tiền : '
+											+ totalMoney
+											+ '</h2>'
+										$("#tongTien")
+											.html(
+												htmlTongTien);
+									}
+								});
+						});
+			});
 </script>
+
 </html>

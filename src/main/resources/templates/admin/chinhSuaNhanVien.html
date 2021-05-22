@@ -2,64 +2,57 @@
 <html xmlns:th="http://thymeleaf.org">
 
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Admin Page</title>
-<link rel="shortcut icon" th:href="@{/images/favicon.ico}"
-	type="image/x-icon">
-<link rel="apple-touch-icon" th:href="@{/images/apple-touch-icon.png}">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Admin Page</title>
+	<link rel="shortcut icon" th:href="@{/images/favicon.ico}" type="image/x-icon">
+	<link rel="apple-touch-icon" th:href="@{/images/apple-touch-icon.png}">
 
-<link rel="stylesheet"
-	th:href="@{/plugins/fontawesome-free/css/all.min.css}">
-<link rel="stylesheet"
-	th:href="@{/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css}">
+	<link rel="stylesheet" th:href="@{/plugins/fontawesome-free/css/all.min.css}">
+	<link rel="stylesheet" th:href="@{/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css}">
 
-<!-- Site CSS -->
-<link rel="stylesheet" th:href="@{/css/style.css}">
+	<!-- Site CSS -->
+	<link rel="stylesheet" th:href="@{/css/style.css}">
 
-<link rel="stylesheet" th:href="@{/dist/css/adminlte.min.css}">
-<!-- overlayScrollbars -->
-<link rel="stylesheet"
-	th:href="@{/plugins/overlayScrollbars/css/OverlayScrollbars.min.css}">
-<!-- Daterange picker -->
-<link rel="stylesheet"
-	th:href="@{/plugins/daterangepicker/daterangepicker.css}">
-<!-- summernote -->
-<link rel="stylesheet"
-	th:href="@{/plugins/summernote/summernote-bs4.min.css}">
-<!-- Bootstrap CSS -->
-<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
-<!-- Responsive CSS -->
-<link rel="stylesheet" th:href="@{/css/responsive.css}">
-<!-- Custom CSS -->
-<link rel="stylesheet" th:href="@{/css/custom.css}">
-<link rel="stylesheet" th:href="@{/css/adminCustom.css}">
-<!--   <link rel="stylesheet" th:href="@{/css/adminCustom.css}"> -->
+	<link rel="stylesheet" th:href="@{/dist/css/adminlte.min.css}">
+	<!-- overlayScrollbars -->
+	<link rel="stylesheet" th:href="@{/plugins/overlayScrollbars/css/OverlayScrollbars.min.css}">
+	<!-- Daterange picker -->
+	<link rel="stylesheet" th:href="@{/plugins/daterangepicker/daterangepicker.css}">
+	<!-- summernote -->
+	<link rel="stylesheet" th:href="@{/plugins/summernote/summernote-bs4.min.css}">
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+	<!-- Responsive CSS -->
+	<link rel="stylesheet" th:href="@{/css/responsive.css}">
+	<!-- Custom CSS -->
+	<link rel="stylesheet" th:href="@{/css/custom.css}">
+	<link rel="stylesheet" th:href="@{/css/adminCustom.css}">
+	<!--   <link rel="stylesheet" th:href="@{/css/adminCustom.css}"> -->
 
 
-<style>
-.modal-dialog {
-	max-width: 600px;
-}
+	<style>
+		.modal-dialog {
+			max-width: 600px;
+		}
 
-img {
-	width: 25%;
-}
+		img {
+			width: 25%;
+		}
 
-.table td {
-	width: 1%;
-}
-</style>
+		.table td {
+			width: 1%;
+		}
+	</style>
 
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
 	<div class="wrapper">
 		<!-- Preloader -->
-		<div
-			class="preloader flex-column justify-content-center align-items-center">
-			<img class="animation__shake" th:src="@{/dist/img/AdminLTELogo.png}"
-				alt="AdminLTELogo" height="60" width="60">
+		<div class="preloader flex-column justify-content-center align-items-center">
+			<img class="animation__shake" th:src="@{/dist/img/AdminLTELogo.png}" alt="AdminLTELogo" height="60"
+				width="60">
 		</div>
 	</div>
 
@@ -95,8 +88,7 @@ img {
 								<!-- /.card-header -->
 								<!-- form start -->
 								<div class="card-body">
-									<div id="example1_wrapper"
-										class="dataTables_wrapper dt-bootstrap4 no-footer">
+									<div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
 										<div class="row">
 											<div class="col-sm-12 col-md-6">
 												<div class="dt-buttons btn-group flex-wrap"></div>
@@ -108,24 +100,19 @@ img {
 										<form action="" method="POST" enctype="multipart/form-data">
 
 											<div class="form-group">
-												<label for="maNhanVien">Mã nhân viên:</label> <input
-													type="text" class="form-control" readonly
-													th:value="${nhanVien.maNhanVien}"
+												<label for="maNhanVien">Mã nhân viên:</label> <input type="text"
+													class="form-control" readonly th:value="${nhanVien.maNhanVien}"
 													placeholder="Mã nhân viên" name="maNhanVien">
 											</div>
 											<div class="form-group">
-												<label for="tenNhanVien">Tên nhân viên:</label> <input
-													type="text" class="form-control"
-													th:value="${nhanVien.tenNhanVien}"
-													placeholder="Tên nhân viên" required="required"
-													name="tenNhanVien">
+												<label for="tenNhanVien">Tên nhân viên:</label> <input type="text"
+													class="form-control" th:value="${nhanVien.tenNhanVien}"
+													placeholder="Tên nhân viên" required="required" name="tenNhanVien">
 											</div>
 											<div class="form-group">
-												<label for="soDienThoai">Số điện thoại:</label> <input
-													type="number" class="form-control"
-													th:value="${nhanVien.soDienThoai}"
-													placeholder="Số điện thoại" required="required"
-													name="soDienThoai">
+												<label for="soDienThoai">Số điện thoại:</label> <input type="number"
+													class="form-control" th:value="${nhanVien.soDienThoai}"
+													placeholder="Số điện thoại" required="required" name="soDienThoai">
 											</div>
 											<div class="form-group">
 												<label for="email">Email:</label> <input type="email"
@@ -145,17 +132,15 @@ img {
 													placeholder="Địa chỉ" required="required" name="diaChi">
 											</div>
 											<div class="form-group">
-												<label for="tenTaiKhoan">Tên tài khoản:</label> <input
-													type="text" class="form-control"
-													th:value="${nhanVien.tenTaiKhoan}"
-													placeholder="Tên tài khoản" required="required"
-													name="tenTaiKhoan" readonly>
+												<label for="tenTaiKhoan">Tên tài khoản:</label> <input type="text"
+													class="form-control" th:value="${nhanVien.tenTaiKhoan}"
+													placeholder="Tên tài khoản" required="required" name="tenTaiKhoan"
+													readonly>
 											</div>
 											<div class="form-group">
-												<label for="matKhau">Mật khẩu:</label> <input
-													type="password" class="form-control"
-													th:value="${nhanVien.matKhau}" placeholder="Mật khẩu"
-													required="required" name="matKhau">
+												<label for="matKhau">Mật khẩu:</label> <input type="password"
+													class="form-control" th:value="${nhanVien.matKhau}"
+													placeholder="Mật khẩu" required="required" name="matKhau">
 											</div>
 
 											<!--  <div class="form-group">
@@ -299,8 +284,7 @@ img {
 	<script th:src="@{/plugins/daterangepicker/daterangepicker.js}"></script>
 
 	<script th:src="@{/plugins/summernote/summernote-bs4.min.js}"></script>
-	<script
-		th:src="@{/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js}"></script>
+	<script th:src="@{/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js}"></script>
 	<script th:src="@{/dist/js/adminlte.js}"></script>
 	<script th:src="@{/dist/js/demo.js}"></script>
 	<!-- ALL JS FILES -->
@@ -316,27 +300,21 @@ img {
 	<script th:src="@{/js/custom.js}"></script>
 
 	<script th:src="@{/plugins/datatables/jquery.dataTables.min.js}"></script>
-	<script
-		th:src="@{/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js}"></script>
-	<script
-		th:src="@{/plugins/datatables-responsive/js/dataTables.responsive.min.js}"></script>
-	<script
-		th:src="@{/plugins/datatables-responsive/js/responsive.bootstrap4.min.js}"></script>
-	<script
-		th:src="@{/plugins/datatables-buttons/js/dataTables.buttons.min.js}"></script>
-	<script
-		th:src="@{/plugins/datatables-buttons/js/buttons.bootstrap4.min.js}"></script>
+	<script th:src="@{/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js}"></script>
+	<script th:src="@{/plugins/datatables-responsive/js/dataTables.responsive.min.js}"></script>
+	<script th:src="@{/plugins/datatables-responsive/js/responsive.bootstrap4.min.js}"></script>
+	<script th:src="@{/plugins/datatables-buttons/js/dataTables.buttons.min.js}"></script>
+	<script th:src="@{/plugins/datatables-buttons/js/buttons.bootstrap4.min.js}"></script>
 	<script th:src="@{/plugins/datatables-buttons/js/buttons.html5.min.js}"></script>
 	<script th:src="@{/plugins/datatables-buttons/js/buttons.print.min.js}"></script>
-	<script
-		th:src="@{/plugins/datatables-buttons/js/buttons.colVis.min.js}"></script>
+	<script th:src="@{/plugins/datatables-buttons/js/buttons.colVis.min.js}"></script>
 
 
 	<style type="text/css">
-.dataTables_filter {
-	float: right
-}
-</style>
+		.dataTables_filter {
+			float: right
+		}
+	</style>
 </body>
 <!-- <script>
 		$(document).ready(function () {
@@ -347,4 +325,5 @@ img {
 			})
 		});
 	</script> -->
+
 </html>

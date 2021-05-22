@@ -8,13 +8,8 @@
 
   <link rel="shortcut icon" th:href="@{/images/favicon.ico}" type="image/x-icon">
   <link rel="apple-touch-icon" th:href="@{/images/apple-touch-icon.png}">
-
   <link rel="stylesheet" th:href="@{/plugins/fontawesome-free/css/all.min.css}">
-  <!-- <link rel="stylesheet" th:href="@{/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css}"> -->
-
-  <!-- Site CSS -->
   <link rel="stylesheet" th:href="@{/css/style.css}">
- 
   <link rel="stylesheet" th:href="@{/dist/css/adminlte.min.css}">
   <!-- overlayScrollbars -->
   <link rel="stylesheet" th:href="@{/plugins/overlayScrollbars/css/OverlayScrollbars.min.css}">
@@ -142,8 +137,9 @@
                             <td style="text-align: center;">
                               <a th:href="@{/admin/monAn/edit/{id}(id=${monAn.maMonAn})}"><i class="fas fa-user-edit" 
                                   style="margin-right: 10px;"></i></a>
-                              <a href="#" data-toggle="modal" id="btnDelete"
+                              <a th:href="@{/deleteMonAn/{id}(id=${monAn.maMonAn})}" data-toggle="modal" id="btnDelete"  th:attrappend="data-target=${monAn.maMonAn}"
                               data-target="#mi-modal"><i class="fas fa-trash-alt" id="btn-confirm"></i></a>
+                              <input type="hidden" id="id" th:value="${monAn.maMonAn}">
                             </td>
                           </tr>                      
                         </tbody>
@@ -213,9 +209,10 @@
 					<h5>Bạn có thật sự muốn ngừng kinh sản phẩm này?</h5>
 				</div>
             </div>
-            <form action="" method="POST">
+            <form action="" method="GET">
+            	<input type="hidden" name="id" />
 				<div class="modal-footer" style="height: 60px; padding: 5px 15px 10px;">
-	            	<button type="button" class="btn btn-add" id="modal-btn-no">Đồng ý</button>
+	            	<button class="btn btn-add">Đồng ý</button>
 	              	<button type="button" class="btn btn-default" id="modal-btn-si" data-dismiss="modal" aria-label="Close">Hủy bỏ</button>
             	</div>            
             </form>
@@ -324,7 +321,13 @@
     	  $("#inforModal").modal();
       });
       
-      $("#btnDelete").click(function(){
+      $("table #btnDelete").click(function(event){
+    	  /* var href = $(this).attr("href");
+    	  $("#mi-modal #delRef").attr("href", href); */
+    	  /* $("#mi-modal").modal(); */
+    	  var id = $(this).parent().find('#id').val();
+    	  $("#mi-modal").find("[name=id]").val(id);
+    	  $("#mi-modal").find("form").attr("action", "/deleteMonAn/" + id);
     	  $("#mi-modal").modal();
       })
     });

@@ -38,6 +38,7 @@ public class MonAnController {
 	
 	@GetMapping("/admin/monAn")
 	public ModelAndView getAdminMonAn(HttpServletRequest request) {
+
 			if(request.getSession().getAttribute("idAdmin") != null) {
 				ModelAndView modelAndView = new ModelAndView("admin/quanlymonan");
 				List<MonAn> listMonAn = monAnService.finDall();

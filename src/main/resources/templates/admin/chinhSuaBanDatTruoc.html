@@ -71,8 +71,29 @@ img {
 	});
 </script>
 
+<script th:if="${editsucceess}">
+	window
+			.addEventListener(
+					'DOMContentLoaded',
+					function() {
+						document.getElementById("myAlert-loggin-success").style.display = "block";
+						setTimeout(
+								function() {
+									document
+											.getElementById("myAlert-loggin-success").style.display = "none";
+								}, 2000);
+					});
+</script>
+
+
+
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
+	<div class="myAlert-top alert alert-success"
+		id="myAlert-loggin-success">
+		<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+		<strong>Cập nhật thành công!</strong>
+	</div>
 	<div class="wrapper">
 
 		<!-- Preloader -->
@@ -113,6 +134,7 @@ img {
 		<!-- Main Sidebar Container -->
 		<div th:replace="admin/sibarAdmin"></div>
 
+
 		<!-- Content Wrapper. Contains page content -->
 		<div class="content-wrapper">
 			<!-- Content Header (Page header) -->
@@ -129,7 +151,8 @@ img {
 					<div class="row">
 						<div class="col-lg-12 col-sm-12 col-xs-12">
 							<div class="contact-block">
-								<form id="contactForm" th:action="@{/client/datBan}" action=""
+								<form
+									th:action="@{/admin/banDatTruoc/edit/updateThongTin}"
 									method="POST">
 									<div class="row">
 										<div class="col-md-6">
@@ -174,6 +197,7 @@ img {
 
 												</div>
 											</div>
+
 											<!-- <div class="col-md-12">
 										<div class="form-group">
 											<input id="diaChi" class="form-control" placeholder="Địa chỉ" type="text" name="diaChi">
@@ -227,8 +251,7 @@ img {
 											</div>
 											<div class="col-md-12">
 												<div class="form-group">
-													<input type="submit" id="order" class="btn btn-common"
-														name="action" value="Đặt món">
+
 													<!-- <span class="quanlityfood">Bạn đã đặt: 
 												<span id="quanlityfoodordered">0 </span>
 												món
@@ -238,13 +261,19 @@ img {
 												</div>
 											</div>
 										</div>
-										<div class="col-md-12">
-											<div class="submit-button text-center">
-												<input class="btn btn-common" id="submit" type="submit"
-													value="Đặt Bàn" name="action">
-												<div id="msgSubmit" class="h3 text-center hidden"></div>
+
+									</div>
+									<div class="col-md-12">
+										<div class="submit-button text-center">
+											
+
+
+												<input type="hidden" name="id" th:value="${banDatTruoc.maDatTruoc}" />
+												<input class="btn btn-common" type="submit"
+													value="Cập Nhật Thông Tin">
+												
 												<div class="clearfix"></div>
-											</div>
+										
 										</div>
 									</div>
 								</form>
@@ -269,13 +298,18 @@ img {
 													<td th:text="${monAn.maMonAn}"></td>
 													<td th:text="${monAn.loaiMonAn.tenLoai}"></td>
 													<td th:text="${monAn.tenMonAn}"></td>
-													<td th:text="${monAn.DonGia}"></td>
+
+													<td><span
+														th:text="${#numbers.formatDecimal(monAn.DonGia, 0, 'COMMA', 0, 'POINT')}">1000000</span>
+														VNĐ</td>
 													<td><input type="number" name="soLuong" value="1" /></td>
 													<td style="text-align: center;"><input type="hidden"
 														name="id" th:value="${monAn.maMonAn}" /> <input
 														type="hidden" name="donGia" th:value="${monAn.DonGia}" />
 														<input type="hidden" name="tenMonAn"
-														th:value="${monAn.tenMonAn}" /> <a th:href="@{/admin/banDatTruoc/edit/add/{id}(id=${banDatTruoc.maDatTruoc})/{idMonAn}(idMonAn=${monAn.maMonAn})"></a></td>
+														th:value="${monAn.tenMonAn}" /> <a
+														th:href="@{/admin/banDatTruoc/edit/add/{idDatTruoc}/{idMonAn}(idMonAn=${monAn.maMonAn},idDatTruoc=${banDatTruoc.maDatTruoc})}">Thêm
+															Món</a></td>
 
 												</tr>
 											</tbody>
@@ -283,45 +317,75 @@ img {
 											<tfoot>
 											</tfoot>
 										</table>
+
 									</form>
 								</div>
 
 
 								<div class="row">
-									<form th:action="@{/admin/chinhSuaMonAn/AddRowMonAn}"
-										method="POST">
-										<table id="myTable2"
-											class="table table-bordered table-striped"
-											style="width: 100%">
-											<thead>
-												<tr>
-													<th scope="col">#</th>
-													<th scope="col">Tên món</th>
-													<th scope="col">Số lượng</th>
-													<th scope="col">Tổng tiền</th>
-													<th scope="col">Tùy Chọn</th>
-												</tr>
-											</thead>
 
-											<tbody>
-												<tr th:each="datTruoc : ${listMonDatTruoc}">
+									<table id="myTable2" class="table table-bordered table-striped"
+										style="width: 100%">
+										<thead>
+											<tr>
+												<th scope="col">#</th>
+												<th scope="col">Tên món</th>
+												<th scope="col">Số lượng</th>
+												<th scope="col">Tổng tiền</th>
+												<th scope="col">Tùy Chọn</th>
+											</tr>
+										</thead>
+
+										<tbody>
+											<tr th:each="datTruoc : ${listMonDatTruoc}">
+												<form th:action="@{/admin/banDatTruoc/edit/remove}"
+													method="POST">
 													<td th:text="${datTruoc.stt}"></td>
 													<td th:text="${datTruoc.tenMonAn}"></td>
-													<td><input type="number" name="soLuong" value="1" /></td>
-													<td ><input type="number" th:value="${datTruoc.soLuong}"
-														name="soLuong" value="1"/></td>
-													<td th:text="${datTruoc.tongTien}"></td>
-													<td style="text-align: center;"><input type="hidden"
-														name="id" /> <input type="submit" value="Cập Nhật"
-														name="action"><input type="submit" name="action"
-														value="Xóa Bỏ"></td>
-												</tr>
-											</tbody>
 
-											<tfoot>
-											</tfoot>
-										</table>
-									</form>
+													<td><input type="number"
+														th:value="${datTruoc.soLuong}" name="soLuong" value="1" /></td>
+													<td><span
+														th:text="${#numbers.formatDecimal(datTruoc.tongTien, 0, 'COMMA', 0, 'POINT')}">1000000</span>
+														VNĐ</td>
+													<td style="text-align: center;"><input type="hidden"
+														name="id" th:value="${datTruoc.id}" /> <input
+														type="hidden" name="idDatTruoc"
+														th:value="${banDatTruoc.maDatTruoc}" /> <input
+														type="submit" value="Cập Nhật" name="action"><input
+														type="submit" name="action" value="Xóa Bỏ"></td>
+												</form>
+											</tr>
+										</tbody>
+
+										<tfoot>
+										</tfoot>
+									</table>
+
+								</div>
+
+
+
+								<div class="row">
+									<div class="col-md-12">
+										<div class="submit-button text-center" th:if="${tongTien}">
+											<h2>
+												Tổng tiền : <span
+													th:text="${#numbers.formatDecimal(tongTien, 0, 'COMMA', 0, 'POINT')}">1000000</span>
+												VNĐ
+											</h2>
+											<form th:action="@{/admin/banDatTruoc/edit/pay}">
+												<input type="hidden" th:value="${banDatTruoc.maDatTruoc}"
+													name="idBanDatTruoc"> <input class="btn btn-common"
+													id="submit" type="submit" value="THANH TOÁN" name="action">
+											</form>
+											<div id="msgSubmit" class="h3 text-center hidden"></div>
+											<div class="clearfix"></div>
+										</div>
+										<div class="submit-button text-center" th:unless="${tongTien}">
+											<h2>Vui Lòng Chọn Món Ăn Bất Kỳ</h2>
+										</div>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -381,62 +445,6 @@ img {
 			</footer>
 			<!-- End Footer -->
 
-			<div class="modal fade" id="inforModal" tabindex="-1" role="dialog"
-				aria-labelledby="exampleModalLabel" aria-hidden="true">
-				<div class="modal-dialog modal-dialog-centered" role="document">
-					<div class="modal-content">
-						<div class="modal-header border-bottom-0">
-							<div class="form-title text-center">
-								<h4>Cập nhật món ăn</h4>
-							</div>
-							<button type="button" class="close" data-dismiss="modal"
-								aria-label="Close">
-								<span aria-hidden="true">&times;</span>
-							</button>
-						</div>
-						<div class="modal-body">
-							<div>
-								<div class="panel-body">
-									<form action="#" th:action="@{/addMonAn}" th:object="${monAn}"
-										method="post">
-										<div class="form-group">
-											<label class="col-sm-6 control-label">Tên Món Ăn</label> <input
-												class="form-control" type="text" name="tenMonAn"
-												placeholder="Nhập tên món ăn" ng-model="me.email">
-										</div>
-										<div class="form-group">
-											<label class="col-sm-6 control-label">Đơn Giá</label> <input
-												class="form-control" type="text" name="donGia"
-												placeholder="Nhập đơn giá" ng-model="me.email">
-										</div>
-										<div class="form-group">
-											<label class="col-sm-6 control-label">Mô Tả</label> <input
-												class="form-control" type="text" name="moTa"
-												placeholder="Nhập mô tả" ng-model="me.email">
-										</div>
-										<div class="form-group">
-											<label class="col-sm-6 control-label">Loại Món Ăn</label> <select
-												class="form-control" aria-label=".form-select-lg example"
-												name="idLoaiMonAn">
-												<option selected th:each="loai : ${listLoaiMonAn}"
-													th:text="${loai.tenLoai}" th:value="${loai.maLoaiMonAn}"></option>
-											</select>
-										</div>
-										<button type="submit" class="btn btn-primary">Thêm
-											Món Ăn</button>
-									</form>
-								</div>
-							</div>
-						</div>
-						<div class="modal-footer">
-							<div class="col-sm-offset-2 col-sm-10">
-								<button class="btn btn-common" ng-click="updateMe()"
-									style="margin-left: 350px;">Submit</button>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
 		</div>
 
 		<!-- Control Sidebar -->
@@ -531,6 +539,8 @@ img {
         });
       });
     </script> -->
+
+
 
 
 	<script>

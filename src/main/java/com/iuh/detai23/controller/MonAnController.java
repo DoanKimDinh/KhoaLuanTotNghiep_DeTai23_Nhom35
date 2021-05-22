@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.mongo.MongoAutoConfiguration;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -132,4 +133,16 @@ public class MonAnController {
 //		monAnService.save(monAn);
 //		return Optional.ofNullable(monAn);
 //	}
+	
+	@GetMapping("/monAn")
+	public ModelAndView getMonAn() {
+		ModelAndView modelAndView = new ModelAndView("menu");
+		List<MonAn> listMonAn = monAnService.finDall();
+		for(MonAn monAn : listMonAn) {
+			monAn.setHinhAnh("http://localhost:8080/download/"+monAn.getHinhAnh());
+		}
+		modelAndView.addObject("listMonAn", listMonAn);
+		modelAndView.addObject("listLoaiMonAn", loaiMonAnService.findAll());
+		return modelAndView;
+	}
 }

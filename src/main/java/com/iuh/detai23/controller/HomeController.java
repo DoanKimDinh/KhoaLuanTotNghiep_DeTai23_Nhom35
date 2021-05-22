@@ -47,11 +47,9 @@ public class HomeController {
 	@GetMapping("/")
 	public ModelAndView getHome() {
 		ModelAndView modelAndView = new ModelAndView("index");
-		List<MonAn> listMonAn = monAnService.findAll();
-		System.out.println(listMonAn.size());
+		List<MonAn> listMonAn = monAnService.finDall();
 		for (MonAn monAn : listMonAn) {
 			monAn.setHinhAnh("http://localhost:8080/download/"+monAn.getHinhAnh());
-			System.out.println(monAn.getTenMonAn());
 		}
 		modelAndView.addObject("listMonAn", listMonAn);
 		modelAndView.addObject("listLoaiMonAn", loaiMonAnService.findAll());

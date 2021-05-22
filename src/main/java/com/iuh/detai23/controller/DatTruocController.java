@@ -1,19 +1,20 @@
 package com.iuh.detai23.controller;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -22,19 +23,23 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.thymeleaf.TemplateEngine;
 
 import com.iuh.detai23.entities.BanDatTruoc;
+import com.iuh.detai23.entities.ChiTietHoaDon;
+import com.iuh.detai23.entities.ChiTietHoaDonKey;
 import com.iuh.detai23.entities.ChiTietMonDatTruoc;
 import com.iuh.detai23.entities.ChiTietMonDatTruocKey;
+import com.iuh.detai23.entities.HoaDon;
 import com.iuh.detai23.entities.KhachHang;
 import com.iuh.detai23.entities.MonAn;
-import com.iuh.detai23.model.BanDatTruocAddModel;
-import com.iuh.detai23.model.UpdateMonAnModel;
 import com.iuh.detai23.model.AddMonAnEditDatBanModel;
 import com.iuh.detai23.model.AddMonAnModel;
+import com.iuh.detai23.model.BanDatTruocAddModel;
+import com.iuh.detai23.repositoties.ChiTietMonDatTruocRepository;
 import com.iuh.detai23.service.BanDatTruocService;
+import com.iuh.detai23.service.HoaDonService;
 import com.iuh.detai23.service.KhachHangService;
 import com.iuh.detai23.service.MonAnService;
-
-import javassist.expr.NewArray;
+import com.iuh.detai23.service.NhanVienService;
+import com.iuh.detai23.type.TypeHoaDon;
 
 @Controller
 public class DatTruocController {
@@ -49,6 +54,12 @@ public class DatTruocController {
 
 	@Autowired
 	private KhachHangService khachHangService;
+	
+	@Autowired
+	private NhanVienService nhanVienService;
+	
+	@Autowired 
+	private HoaDonService hoaDonService;
 
 	@GetMapping("client/datBan")
 	public ModelAndView getDatBan(HttpServletRequest request) {
@@ -201,6 +212,52 @@ public class DatTruocController {
 //		redirect.addAttribute("susscess", "thanhCong");
 //		return "redirect:/admin/monAn/";
 //	}
+	
+	@GetMapping("/admin/banDatTruoc/edit/pay")
+	public String getEditMonAnPAY(@RequestParam("idBanDatTruoc") int id, HttpServletRequest request) {
+		ModelAndView modelAndView = new ModelAndView("admin/chinhSuaBanDatTruoc");
+		// @RequestBody AddMonAnModel monAn
+		BanDatTruoc banDatTruoc = banDatTruocService.findById(id).get();
+		List<ChiTietMonDatTruoc> listChiTietMonDatTruocs = banDatTruoc.getChiTietMonDatTruoc();
+		
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+		HoaDon hoaDon = new HoaDon(LocalDate.parse( banDatTruoc.getNgayDen(),formatter).atStartOfDay(), LocalDateTime.now(), TypeHoaDon.DaThanhToan, banDatTruoc.getGhiChu());
+		List<ChiTietHoaDon> listcthd = new ArrayList<ChiTietHoaDon>();
+		hoaDon.setKhachHang(banDatTruoc.getKhachHang());
+		hoaDon.setNhanVien(nhanVienService.findById(1));
+		
+		for (ChiTietMonDatTruoc chiDatTruoc : banDatTruoc.getChiTietMonDatTruoc()) {
+			listcthd.add(new ChiTietHoaDon(new ChiTietHoaDonKey(), chiDatTruoc.getMonAn(), hoaDon, chiDatTruoc.getSoLuong(), chiDatTruoc.getMonAn().getDonGia()));
+		}
+		hoaDon.setChiTietHoadon(listcthd);
+		
+		hoaDonService.save(hoaDon);
+		
+		banDatTruocService.delete(id);
+
+		return "redirect:/admin/banDatTruoc";
+	}
+	
+	
+	@PostMapping("/admin/banDatTruoc/edit/updateThongTin")
+	public String updateThongTin(@RequestParam("id") int id,@RequestParam("soNguoi") int soNguoi,@RequestParam("ngayDen") String ngayDen,@RequestParam("thoiGianDen") String thoiGianDen,@RequestParam("ghiChu") String ghiChu, HttpServletRequest request) {
+		
+		
+//		System.out.println(id);
+//		System.out.println(soNguoi);
+//		System.out.println(ngayDen);
+//		System.out.println(thoiGianDen);
+//		System.out.println(ghiChu);
+		
+		BanDatTruoc banDatTruoc = banDatTruocService.findById(id).get();
+		banDatTruoc.setSoNguoi(soNguoi);
+		banDatTruoc.setNgayDen(ngayDen);
+		banDatTruoc.setThoiGianDen(thoiGianDen);
+		banDatTruoc.setGhiChu(ghiChu);
+
+		return "redirect:/admin/banDatTruoc";
+	}
+	
 
 	@GetMapping("/admin/banDatTruoc/edit/{id}")
 	public ModelAndView getEditMonAn(@PathVariable("id") int id, HttpServletRequest request) {
@@ -211,14 +268,19 @@ public class DatTruocController {
 
 		List<AddMonAnEditDatBanModel> listMonAnEdit = new ArrayList<AddMonAnEditDatBanModel>();
 		int i = 0;
+		double tongTien = 0;
 		for (ChiTietMonDatTruoc chiTietMonAnDatTruoc : banDatTruoc.getChiTietMonDatTruoc()) {
 			listMonAnEdit.add(new AddMonAnEditDatBanModel(chiTietMonAnDatTruoc.getMonAn().getMaMonAn(),
 					chiTietMonAnDatTruoc.getSoLuong(), chiTietMonAnDatTruoc.getMonAn().getTenMonAn(),
 					chiTietMonAnDatTruoc.getMonAn().getDonGia() * chiTietMonAnDatTruoc.getSoLuong(), ++i));
+			tongTien+=chiTietMonAnDatTruoc.getMonAn().getDonGia()*chiTietMonAnDatTruoc.getSoLuong();
 		}
 		modelAndView.addObject("listMonDatTruoc", listMonAnEdit);
-
 		modelAndView.addObject("listMonAn", monAnService.findAll());
+		if(tongTien!=0) {
+			modelAndView.addObject("tongTien", tongTien);
+		}
+		
 
 		request.getSession().setAttribute("edit-banDatTruoc", banDatTruoc);
 		request.getSession().setAttribute("list-food-edit", banDatTruoc.getChiTietMonDatTruoc());
@@ -226,13 +288,14 @@ public class DatTruocController {
 		return modelAndView;
 	}
 
-	@GetMapping("/admin/banDatTruoc/edit/add/{id}/{idMonAn}")
-	public ModelAndView getEditMonAnAdd(@PathVariable("id") int id, @PathVariable("idMonAn") int idMonAn,
+	@GetMapping("/admin/banDatTruoc/edit/add/{idDatTruoc}/{idMonAn}")
+	public ModelAndView getEditMonAnAdd(@PathVariable("idDatTruoc") int id, @PathVariable("idMonAn") int idMonAn,
 			HttpServletRequest request) {
+		
 		ModelAndView modelAndView = new ModelAndView("admin/chinhSuaBanDatTruoc");
 		// @RequestBody AddMonAnModel monAn
 		BanDatTruoc banDatTruoc = banDatTruocService.findById(id).get();
-		MonAn monAn = monAnService.findById(id);
+		MonAn monAn = monAnService.findById(idMonAn);
 
 		List<ChiTietMonDatTruoc> list = banDatTruoc.getChiTietMonDatTruoc();
 		int tamp = 0;
@@ -240,6 +303,7 @@ public class DatTruocController {
 			if (chiTietMonDatTruoc.getMonAn().getMaMonAn() == monAn.getMaMonAn()) {
 				chiTietMonDatTruoc.setSoLuong(chiTietMonDatTruoc.getSoLuong() + 1);
 				tamp = 1;
+				System.out.println("mon da chon ròi");
 			}
 		}
 		if (tamp == 0) {
@@ -247,8 +311,6 @@ public class DatTruocController {
 		}
 		banDatTruoc.setChiTietMonDatTruoc(list);
 		banDatTruocService.save(banDatTruoc);
-		
-		
 		
 
 		modelAndView.addObject("banDatTruoc", banDatTruoc);
@@ -260,16 +322,79 @@ public class DatTruocController {
 			listMonAnEdit.add(new AddMonAnEditDatBanModel(chiTietMonAnDatTruoc.getMonAn().getMaMonAn(),
 					chiTietMonAnDatTruoc.getSoLuong(), chiTietMonAnDatTruoc.getMonAn().getTenMonAn(),
 					chiTietMonAnDatTruoc.getMonAn().getDonGia() * chiTietMonAnDatTruoc.getSoLuong(), ++i));
+				System.out.println(chiTietMonAnDatTruoc.getMonAn().getTenMonAn());
 		}
 		modelAndView.addObject("listMonDatTruoc", listMonAnEdit);
 
 		modelAndView.addObject("listMonAn", monAnService.findAll());
 
-		request.getSession().setAttribute("edit-banDatTruoc", banDatTruoc);
-		request.getSession().setAttribute("list-food-edit", banDatTruoc.getChiTietMonDatTruoc());
+//		request.getSession().setAttribute("edit-banDatTruoc", banDatTruoc);
+//		request.getSession().setAttribute("list-food-edit", banDatTruoc.getChiTietMonDatTruoc());
 
 		return modelAndView;
 	}
+	
+	
+	@Autowired
+	ChiTietMonDatTruocRepository ctmdtRepo;
+	
+	
+	
+	
+	
+	@PostMapping("/admin/banDatTruoc/edit/remove")
+	public String getEditMonAnRemove(RedirectAttributes redirect,@RequestParam("soLuong") int soLuong,@RequestParam("action") String action,@RequestParam("idDatTruoc") int id,  @RequestParam("id") int idMonAn,
+			HttpServletRequest request) {
+		
+		redirect.addFlashAttribute("editsucceess", "hihi");
+		
+		if(action.toLowerCase().equals("xóa bỏ")||soLuong==0) {
+			BanDatTruoc banDatTruoc = banDatTruocService.findById(id).get();
+			MonAn monAn = monAnService.findById(idMonAn);
+			
+			System.out.println(banDatTruoc.getChiTietMonDatTruoc().size());
+			
+			for (ChiTietMonDatTruoc chiTietMonDatTruoc : banDatTruoc.getChiTietMonDatTruoc()) {
+				if (chiTietMonDatTruoc.getMonAn().getMaMonAn() == monAn.getMaMonAn()) {
+					banDatTruoc.getChiTietMonDatTruoc().remove(chiTietMonDatTruoc);
+					banDatTruocService.save(banDatTruoc);
+					ctmdtRepo.delete(chiTietMonDatTruoc);
+					break;
+				}
+			}
+			
+//			 Iterator i = (Iterator) banDatTruoc.getChiTietMonDatTruoc();
+//			
+//			while (i.hasNext()) {
+//				ChiTietMonDatTruoc chiTietMonDatTruoc = (ChiTietMonDatTruoc)i.next();
+//				if (chiTietMonDatTruoc.getMonAn().getMaMonAn() == monAn.getMaMonAn()) {
+//					//banDatTruoc.getChiTietMonDatTruoc().remove(chiTietMonDatTruoc);
+//					i.remove();
+//					ctmdtRepo.delete(chiTietMonDatTruoc);
+//				}
+//			}
+//			banDatTruocService.save(banDatTruoc);
+			
+			System.out.println(banDatTruoc.getChiTietMonDatTruoc().size());
+
+		}
+		else {
+			BanDatTruoc banDatTruoc = banDatTruocService.findById(id).get();
+			MonAn monAn = monAnService.findById(idMonAn);
+			for (ChiTietMonDatTruoc chiTietMonDatTruoc : banDatTruoc.getChiTietMonDatTruoc()) {
+				if (chiTietMonDatTruoc.getMonAn().getMaMonAn() == monAn.getMaMonAn()) {
+					System.out.println("1234444"+chiTietMonDatTruoc.getMonAn().getTenMonAn());
+					chiTietMonDatTruoc.setSoLuong(soLuong);
+					break;
+				}
+			}
+			banDatTruocService.save(banDatTruoc);
+		}
+		
+
+		return "redirect:/admin/banDatTruoc/edit/"+id;
+	}
+	
 
 	@PostMapping("/admin/chinhSuaMonAn/AddRowMonAn")
 	public String addRowMonAnEdit(@RequestBody AddMonAnModel monAn, HttpServletRequest request) {

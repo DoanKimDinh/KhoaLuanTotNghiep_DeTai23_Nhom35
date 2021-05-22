@@ -161,7 +161,7 @@ public class InstallController {
 		
 		HoaDon hoaDon1= new HoaDon(LocalDateTime.of(2021, 4, 12, 4, 2), LocalDateTime.now(), TypeHoaDon.DaThanhToan, "khách đến trễ 20'");
 		List<ChiTietHoaDon> listcthd1 = new ArrayList<ChiTietHoaDon>();
-		System.out.println(hoaDon1.getMaHoaDon()+"====");
+		//System.out.println(hoaDon1.getMaHoaDon()+"====");
 		hoaDon1.setKhachHang(kh1);
 		hoaDon1.setNhanVien(nv1);
 		listcthd1.add(new ChiTietHoaDon(new ChiTietHoaDonKey(), monAn1, hoaDon1, 3, 120000));

@@ -240,22 +240,19 @@ public class DatTruocController {
 	
 	
 	@PostMapping("/admin/banDatTruoc/edit/updateThongTin")
-	public String updateThongTin(@RequestParam("id") int id,@RequestParam("soNguoi") int soNguoi,@RequestParam("ngayDen") String ngayDen,@RequestParam("thoiGianDen") String thoiGianDen,@RequestParam("ghiChu") String ghiChu, HttpServletRequest request) {
-		
-		
-//		System.out.println(id);
-//		System.out.println(soNguoi);
-//		System.out.println(ngayDen);
-//		System.out.println(thoiGianDen);
-//		System.out.println(ghiChu);
+	public String updateThongTin(RedirectAttributes redirect,@RequestParam("id") int id,@RequestParam("soNguoi") int soNguoi,@RequestParam("ngayDen") String ngayDen,@RequestParam("thoiGianDen") String thoiGianDen,@RequestParam("ghiChu") String ghiChu, HttpServletRequest request) {
 		
 		BanDatTruoc banDatTruoc = banDatTruocService.findById(id).get();
 		banDatTruoc.setSoNguoi(soNguoi);
 		banDatTruoc.setNgayDen(ngayDen);
 		banDatTruoc.setThoiGianDen(thoiGianDen);
 		banDatTruoc.setGhiChu(ghiChu);
+		
+		redirect.addFlashAttribute("editsucceess", "dft");
+		
+		banDatTruocService.save(banDatTruoc);
 
-		return "redirect:/admin/banDatTruoc";
+		return "redirect:/admin/banDatTruoc/edit/"+id;
 	}
 	
 
@@ -289,7 +286,7 @@ public class DatTruocController {
 	}
 
 	@GetMapping("/admin/banDatTruoc/edit/add/{idDatTruoc}/{idMonAn}")
-	public ModelAndView getEditMonAnAdd(@PathVariable("idDatTruoc") int id, @PathVariable("idMonAn") int idMonAn,
+	public String getEditMonAnAdd(@PathVariable("idDatTruoc") int id, @PathVariable("idMonAn") int idMonAn,
 			HttpServletRequest request) {
 		
 		ModelAndView modelAndView = new ModelAndView("admin/chinhSuaBanDatTruoc");
@@ -331,7 +328,7 @@ public class DatTruocController {
 //		request.getSession().setAttribute("edit-banDatTruoc", banDatTruoc);
 //		request.getSession().setAttribute("list-food-edit", banDatTruoc.getChiTietMonDatTruoc());
 
-		return modelAndView;
+		return "redirect:/admin/banDatTruoc/edit/"+id;
 	}
 	
 	
@@ -426,7 +423,7 @@ public class DatTruocController {
 
 //		request.getSession().setAttribute("edit-banDatTruoc", banDatTruoc);
 //		request.getSession().setAttribute("list-food-edit", banDatTruoc.getChiTietMonDatTruoc());
-
+	
 		return "redirect:/admin/banDatTruoc/edit/" + banDatTruoc.getMaDatTruoc();
 	}
 

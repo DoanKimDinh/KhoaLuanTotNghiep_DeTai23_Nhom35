@@ -11,6 +11,6 @@ public interface MonAnService {
 	public MonAn findById(int id);
 	public Optional<MonAn> findBy(int id);
 	public void delete(int id);
-	public List<MonAn> finDall();
+	public List<MonAn> finDall(); 
 	
 }

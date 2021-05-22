@@ -44,5 +44,10 @@ public class MonAnServiceImpl implements MonAnService{
 		// TODO Auto-generated method stub
 		return monAnRepository.findById(id);
 	}
+
+	@Override
+	public List<MonAn> finDall() {
+		return monAnRepository.timMonAnDangKinhDoanh();
+	}
 	
 }

@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.iuh.detai23.entities.KhachHang;
@@ -32,12 +33,12 @@ public class DangNhapController {
 		if(flag == 1) {
 			KhachHang kh = dangNhapService.getKhachHangByTenTaiKhoan(dangNhapModel.getTenDangNhap());
 			request.getSession().setAttribute("idAccount", kh.getMaKhachHang());
-			redirectAttributes.addFlashAttribute("message", "Thêm thành công");
+			redirectAttributes.addFlashAttribute("message", "Đăng nhập thành công");
 		} else if(flag == 2) {
 			NhanVien nv = dangNhapService.getNhanVienByTenTaiKhoan(dangNhapModel.getTenDangNhap());
 			request.getSession().setAttribute("idAccount", nv.getMaNhanVien());
 			request.getSession().setAttribute("idAdmin", nv.getMaNhanVien());
-			redirectAttributes.addFlashAttribute("message", "Thêm thành công");
+			redirectAttributes.addFlashAttribute("message", "Đăng nhập thành công");
 		}else if(flag == 0) {
 //			request.getSession().setAttribute("idUser", "Không thành công");
 			redirectAttributes.addFlashAttribute("faild", "Đăng nhập không thành công");
@@ -45,4 +46,22 @@ public class DangNhapController {
 		}
 		return "redirect:/";
 	}
+	
+	/*
+	 * @PostMapping("/user/dangnHap")
+	 * 
+	 * @ResponseBody public String dangNhapAyPiAi(DangNhapModel dangNhapModel,
+	 * HttpServletRequest request) { System.out.println(dangNhapModel); int flag =
+	 * dangNhapService.checkUserDangNhap(dangNhapModel); if(flag == 1) { KhachHang
+	 * kh =
+	 * dangNhapService.getKhachHangByTenTaiKhoan(dangNhapModel.getTenDangNhap());
+	 * request.getSession().setAttribute("idAccount", kh.getMaKhachHang()); return
+	 * "thanhcong"; } else if(flag == 2) { NhanVien nv =
+	 * dangNhapService.getNhanVienByTenTaiKhoan(dangNhapModel.getTenDangNhap());
+	 * request.getSession().setAttribute("idAccount", nv.getMaNhanVien());
+	 * request.getSession().setAttribute("idAdmin", nv.getMaNhanVien()); return
+	 * "thanhcong"; }else if(flag == 0) { //
+	 * request.getSession().setAttribute("idUser", "Không thành công");
+	 * System.err.println("dsnefsd"); return "nhucuz"; } return "nhucuz"; }
+	 */
 }

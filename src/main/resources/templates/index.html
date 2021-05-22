@@ -67,20 +67,32 @@
 </script>
 <script th:if="${message}">
 	window.addEventListener('DOMContentLoaded',function(){
-		document.getElementById("myAlert-loggin-success").style.display = "block";
-		setTimeout(function(){
+		//document.getElementById("myAlert-loggin-success").style.display = "block";
+		/* setTimeout(function(){
 			document.getElementById("myAlert-loggin-success").style.display = "none";
-		}, 2000); 
+		}, 2000);fad  */
+		$("#myAlert-loggin-success").css({"display":"block"});
+		setTimeout(function (){
+			$("#myAlert-loggin-success").fadeOut(1000);
+		},2000);
 	});
 </script>
 
 <script th:if="${faild}">
+	$(document).ready(function() {
+		$("#loginModal").modal();
+	});
 	window.addEventListener('DOMContentLoaded',function(){
-		document.getElementById("notifyToast").style.display = "block";
+		/* document.getElementById("myAlert-loggin-fail").style.display = "block";
 		console.log("enfsdnfsd");
-		/* setTimeout(function(){
-			document.getElementById("myAlert-loggin-success").style.display = "none";
-		}, 2000);  */
+		setTimeout(function(){
+			document.getElementById("myAlert-loggin-fail").style.display = "none";
+		}, 2000); */
+		$("#notifyToast").css({"display":"block"});	
+		$("#myAlert-loggin-fail").css({"display":"block"});
+		setTimeout(function() {
+			$("#myAlert-loggin-fail").fadeOut(1000);
+		},1500);
 	});
 </script>
 
@@ -119,6 +131,12 @@
 		<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
 		<strong>Đăng Nhập Thành Công!</strong>
 	</div>
+	
+	<div class="myAlert-top alert alert-warning" id="myAlert-loggin-fail">
+		<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+		<strong>Đăng nhập không thành công! Tên đăng nhập hoặc mật khẩu không chính xác</strong>
+	</div>
+	
 	<!-- Start header -->
 	<div th:replace="header"></div>
 	<!-- End header -->
@@ -202,10 +220,14 @@
 					<div class="gallery-single fix">
 						<img th:src="@{${monAn.hinhAnh}}" class="img-fluid" alt="Image">
 						<div class="why-text">
-							<h4></h4>
-							<p th:text="${monAn.tenMonAn}"></p>
-							<h5 th:text="${monAn.DonGia}+' VNĐ'"></h5>
+							<!-- <h4 th:text="${monAn.tenMonAn}"></h4> -->
+							<p th:text="${monAn.moTa}"></p>
+							<!-- <h5 th:text="${monAn.DonGia}+' VNĐ'"></h5> -->
 						</div>
+					</div>
+					<div class="food-detail" style="text-align: center;font-size: 24px;/* position: absolute; */">
+						<h4 style="font-size: 24px;" th:text="${monAn.tenMonAn}"></h4>
+						<h5 style="font-size: 24px;" th:text="${monAn.DonGia}+' VNĐ'"></h5>
 					</div>
 				</div>			
 			</div>

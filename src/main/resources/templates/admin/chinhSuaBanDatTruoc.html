@@ -5,48 +5,24 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Admin Page</title>
 
-<!-- Site Icons -->
-<link rel="shortcut icon" th:href="@{/images/favicon.ico}"
-	type="image/x-icon">
-<link rel="apple-touch-icon" th:href="@{/images/apple-touch-icon.png}">
-
-<!-- Google Font: Source Sans Pro -->
-<!-- <link rel="stylesheet" th:href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback"> -->
-<!-- Font Awesome -->
-<link rel="stylesheet"
-	th:href="@{/plugins/fontawesome-free/css/all.min.css}">
-<!-- Ionicons -->
-<!-- <link rel="stylesheet" th:href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css}"> -->
-<!-- Tempusdominus Bootstrap 4 -->
-<link rel="stylesheet"
-	th:href="@{/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css}">
-
-<!-- Site CSS -->
-<link rel="stylesheet" th:href="@{/css/style.css}">
-<!-- iCheck -->
-<link rel="stylesheet"
-	th:href="@{/plugins/icheck-bootstrap/icheck-bootstrap.min.css}">
-<!-- JQVMap -->
-<link rel="stylesheet" th:href="@{/plugins/jqvmap/jqvmap.min.css}">
-<!-- Theme style -->
-<link rel="stylesheet" th:href="@{/dist/css/adminlte.min.css}">
-<!-- overlayScrollbars -->
-<link rel="stylesheet"
-	th:href="@{/plugins/overlayScrollbars/css/OverlayScrollbars.min.css}">
-<!-- Daterange picker -->
-<link rel="stylesheet"
-	th:href="@{/plugins/daterangepicker/daterangepicker.css}">
-<!-- summernote -->
-<link rel="stylesheet"
-	th:href="@{/plugins/summernote/summernote-bs4.min.css}">
-
-<!-- Bootstrap CSS -->
-<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
-
-<!-- Responsive CSS -->
-<link rel="stylesheet" th:href="@{/css/responsive.css}">
-<!-- Custom CSS -->
-<link rel="stylesheet" th:href="@{/css/custom.css}">
+  <link rel="shortcut icon" th:href="@{/images/favicon.ico}" type="image/x-icon">
+  <link rel="apple-touch-icon" th:href="@{/images/apple-touch-icon.png}">
+  <link rel="stylesheet" th:href="@{/plugins/fontawesome-free/css/all.min.css}">
+  <link rel="stylesheet" th:href="@{/css/style.css}">
+  <link rel="stylesheet" th:href="@{/dist/css/adminlte.min.css}">
+  <!-- overlayScrollbars -->
+  <link rel="stylesheet" th:href="@{/plugins/overlayScrollbars/css/OverlayScrollbars.min.css}">
+  <!-- Daterange picker -->
+  <link rel="stylesheet" th:href="@{/plugins/daterangepicker/daterangepicker.css}">
+  <!-- summernote -->
+  <link rel="stylesheet" th:href="@{/plugins/summernote/summernote-bs4.min.css}">
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+  <!-- Responsive CSS -->
+  <link rel="stylesheet" th:href="@{/css/responsive.css}">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" th:href="@{/css/custom.css}">
+  <link rel="stylesheet" th:href="@{/css/adminCustom.css}">
 
 <style>
 .modal-dialog {
@@ -61,15 +37,6 @@ img {
 	width: 1%;
 }
 </style>
-<script>
-	$(document).ready(function() {
-		$('#inforModal').modal('show');
-
-		$(function() {
-			$('[data-toggle="tooltip"]').tooltip()
-		})
-	});
-</script>
 
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -438,122 +405,62 @@ img {
 				</div>
 			</div>
 		</div>
-
-		<!-- Control Sidebar -->
-		<aside class="control-sidebar control-sidebar-dark">
-			<!-- Control sidebar content goes here -->
-		</aside>
-		<!-- /.control-sidebar -->
 	</div>
-	<!-- ./wrapper -->
+  <script th:src="@{/plugins/jquery/jquery.min.js}"></script>
+  <script th:src="@{/plugins/jquery-ui/jquery-ui.min.js}"></script>
+  <script th:src="@{/plugins/bootstrap/js/bootstrap.bundle.min.js}"></script>
+  <script th:src="@{/plugins/daterangepicker/daterangepicker.js}"></script>
+  
+  <script th:src="@{/plugins/summernote/summernote-bs4.min.js}"></script>
+  <script th:src="@{/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js}"></script>
+  <script th:src="@{/dist/js/adminlte.js}"></script>
+  <script th:src="@{/dist/js/demo.js}"></script>
+  <!-- ALL JS FILES -->
+  <script th:src="@{/js/jquery-3.2.1.min.js}"></script>
+  <script th:src="@{/js/popper.min.js}"></script>
+  <script th:src="@{/js/bootstrap.min.js}"></script>
+  <script th:src="@{/js/login.js}"></script>
+  <!-- ALL PLUGINS -->
+  <script th:src="@{/js/jquery.superslides.min.js}"></script>
+  <script th:src="@{/js/images-loded.min.js}"></script>
+  <script th:src="@{/js/form-validator.min.js}"></script>
+  <script th:src="@{/js/contact-form-script.js}"></script>
+  <script th:src="@{/js/custom.js}"></script>
 
-
-	<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
-	<script>
-		$.widget.bridge('uibutton', $.ui.button)
-	</script>
-	<!-- jQuery -->
-	<script th:src="@{/plugins/jquery/jquery.min.js}"></script>
-	<!-- jQuery UI 1.11.4 -->
-	<script th:src="@{/plugins/jquery-ui/jquery-ui.min.js}"></script>
-	<!-- Bootstrap 4 -->
-	<script th:src="@{/plugins/bootstrap/js/bootstrap.bundle.min.js}"></script>
-
-	<!-- <script th:src="@{/plugins/moment/moment.min.js"></script> -->
-	<script th:src="@{/plugins/daterangepicker/daterangepicker.js}"></script>
-	<!-- Tempusdominus Bootstrap 4 -->
-	<script
-		th:src="@{/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js}"></script>
-	<!-- Summernote -->
-	<script th:src="@{/plugins/summernote/summernote-bs4.min.js}"></script>
-	<!-- overlayScrollbars -->
-	<script
-		th:src="@{/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js}"></script>
-	<!-- AdminLTE App -->
-	<script th:src="@{/dist/js/adminlte.js}"></script>
-	<!-- AdminLTE for demo purposes -->
-	<script th:src="@{/dist/js/demo.js}"></script>
-	<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-	<script th:src="@{/dist/js/pages/dashboard.js}"></script>
-
-	<!-- ALL JS FILES -->
-	<script th:src="@{/js/jquery-3.2.1.min.js}"></script>
-	<script th:src="@{/js/popper.min.js}"></script>
-	<script th:src="@{/js/bootstrap.min.js}"></script>
-	<script th:src="@{/js/login.js}"></script>
-	<!-- ALL PLUGINS -->
-	<script th:src="@{/js/jquery.superslides.min.js}"></script>
-	<script th:src="@{/js/images-loded.min.js}"></script>
-	<script th:src="@{/js/isotope.min.js}"></script>
-	<script th:src="@{/js/baguetteBox.min.js}"></script>
-	<script th:src="@{/js/form-validator.min.js}"></script>
-	<script th:src="@{/js/contact-form-script.js}"></script>
-	<script th:src="@{/js/custom.js}"></script>
-
-	<script th:src="@{/plugins/datatables/jquery.dataTables.min.js}"></script>
-	<script
-		th:src="@{/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js}"></script>
-	<script
-		th:src="@{/plugins/datatables-responsive/js/dataTables.responsive.min.js}"></script>
-	<script
-		th:src="@{/plugins/datatables-responsive/js/responsive.bootstrap4.min.js}"></script>
-	<script
-		th:src="@{/plugins/datatables-buttons/js/dataTables.buttons.min.js}"></script>
-	<script
-		th:src="@{/plugins/datatables-buttons/js/buttons.bootstrap4.min.js}"></script>
-	<script th:src="@{/plugins/jszip/jszip.min.js}"></script>
-	<script th:src="@{/plugins/pdfmake/pdfmake.min.js}"></script>
-	<script th:src="@{/plugins/pdfmake/vfs_fonts.js}"></script>
-	<script th:src="@{/plugins/datatables-buttons/js/buttons.html5.min.js}"></script>
-	<script th:src="@{/plugins/datatables-buttons/js/buttons.print.min.js}"></script>
-	<script
-		th:src="@{/plugins/datatables-buttons/js/buttons.colVis.min.js}"></script>
-
-	<!-- AdminLTE App -->
-	<script th:src="@{/dist/js/adminlte.min.js}"></script>
-	<!-- AdminLTE for demo purposes -->
-	<script th:src="@{/dist/js/demo.js}"></script>
-	<!-- Page specific script -->
-	<!--  <script>
-      $(function () {
-        $("#example1").DataTable({
-          "responsive": true, "lengthChange": false, "autoWidth": false,
-          "buttons": []
-        }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-        $('#example2').DataTable({
-          "paging": true,
-          "lengthChange": false,
-          "searching": false,
-          "ordering": true,
-          "info": true,
-          "autoWidth": false,
-          "responsive": true,
-        });
-      });
-    </script> -->
-
+  <script th:src="@{/plugins/datatables/jquery.dataTables.min.js}"></script>
+  <script th:src="@{/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js}"></script>
+  <script th:src="@{/plugins/datatables-responsive/js/dataTables.responsive.min.js}"></script>
+  <script th:src="@{/plugins/datatables-responsive/js/responsive.bootstrap4.min.js}"></script>
+  <script th:src="@{/plugins/datatables-buttons/js/dataTables.buttons.min.js}"></script>
+  <script th:src="@{/plugins/datatables-buttons/js/buttons.bootstrap4.min.js}"></script>
+  <script th:src="@{/plugins/datatables-buttons/js/buttons.html5.min.js}"></script>
+  <script th:src="@{/plugins/datatables-buttons/js/buttons.print.min.js}"></script>
+  <script th:src="@{/plugins/datatables-buttons/js/buttons.colVis.min.js}"></script>
 
 	<script>
-		$(document)
-				.ready(
-						function() {
-							$('#myTable')
-									.DataTable(
-											{
-												"language" : {
-													"url" : "//cdn.datatables.net/plug-ins/1.10.24/i18n/Vietnamese.json"
-												},
-												"pageLength" : 5
-											});
-							$('#myTable2')
-									.DataTable(
-											{
-												"language" : {
-													"url" : "//cdn.datatables.net/plug-ins/1.10.24/i18n/Vietnamese.json"
-												},
-												"pageLength" : 5
-											});
-						});
+
+		$(document).ready(function() {
+			$('#inforModal').modal('show');
+
+			$(function() {
+				$('[data-toggle="tooltip"]').tooltip();
+			})
+		});
+
+		$(document).ready(function() {
+			$('#myTable').DataTable({
+				"language" : {
+					"url" : "//cdn.datatables.net/plug-ins/1.10.24/i18n/Vietnamese.json"
+				},
+				"pageLength" : 5
+			});
+			$('#myTable2').DataTable({
+				"language" : {
+					"url" : "//cdn.datatables.net/plug-ins/1.10.24/i18n/Vietnamese.json"
+				},
+				"pageLength" : 5
+				});
+		});
 	</script>
 
 

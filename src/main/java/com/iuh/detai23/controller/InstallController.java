@@ -122,7 +122,7 @@ public class InstallController {
 		
 		nv1.setQuyenTruyCap(quyen2); 
 		nv2.setQuyenTruyCap(quyen2); 
-		nv3.setQuyenTruyCap(quyen2);
+		nv3.setQuyenTruyCap(quyen3);
 		
 		nhanVienService.save(nv1);
 		nhanVienService.save(nv2);

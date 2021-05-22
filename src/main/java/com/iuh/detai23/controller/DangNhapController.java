@@ -33,16 +33,17 @@ public class DangNhapController {
 		if(flag == 1) {
 			KhachHang kh = dangNhapService.getKhachHangByTenTaiKhoan(dangNhapModel.getTenDangNhap());
 			request.getSession().setAttribute("idAccount", kh.getMaKhachHang());
+			request.getSession().setAttribute("userName", kh.getTenKhachHang());
 			redirectAttributes.addFlashAttribute("message", "Đăng nhập thành công");
 		} else if(flag == 2) {
 			NhanVien nv = dangNhapService.getNhanVienByTenTaiKhoan(dangNhapModel.getTenDangNhap());
 			request.getSession().setAttribute("idAccount", nv.getMaNhanVien());
 			request.getSession().setAttribute("idAdmin", nv.getMaNhanVien());
+			request.getSession().setAttribute("userName", nv.getTenNhanVien());
 			redirectAttributes.addFlashAttribute("message", "Đăng nhập thành công");
 		}else if(flag == 0) {
 //			request.getSession().setAttribute("idUser", "Không thành công");
 			redirectAttributes.addFlashAttribute("faild", "Đăng nhập không thành công");
-			System.err.println("dsnefsd");
 		}
 		return "redirect:/";
 	}

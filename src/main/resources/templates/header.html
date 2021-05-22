@@ -17,18 +17,19 @@
 				<ul class="navbar-nav ml-auto">
 					<li class="nav-item active"><a class="nav-link"
 						th:href="@{/}">Trang chủ</a></li>
-					<li class="nav-item"><a class="nav-link" th:href="@{/}">Món
-							Ăn</a></li>
+					<li class="nav-item"><a class="nav-link" th:href="@{/}">Món Ăn</a></li>
 					<li class="nav-item"><a class="nav-link" href="#"
 						onClick="datBan()" th:data-session="${session.idAccount}" id="datBan">Đặt bàn</a></li>
 					<li class="nav-item" th:if="${session.idAdmin}"><a class="nav-link" th:href="@{/admin/quanlykhachhang}">Quản lý</a></li>
 					<li class="nav-item" id="login" th:unless="${session.idAccount}"><a class="nav-link" href="#"
 						style="margin-left: 5px; margin-right: -10px;" data-toggle="modal"
 						data-target="#loginModal">Đăng Nhập</a></li>
-					<li class="nav-item" th:if="${session.idAccount}"><a class="nav-link" th:href="@{/client/dangXuat}"
-						style="margin-left: 5px; margin-right: -10px;"
-						>Đăng xuất</a></li>
-					<!-- <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li> -->
+					<li class="nav-item dropdown" th:if="${session.idAccount} ">
+						<a th:utext="${session.userName}" class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" style="margin-left: 5px; margin-right: -10px;"></a>
+						<div class="dropdown-menu" aria-labelledby="dropdown-a">
+							<a class="dropdown-item" th:href="@{/client/dangXuat}">Đăng xuất</a>
+						</div>
+					</li>
 				</ul>
 			</div>
 		</div>

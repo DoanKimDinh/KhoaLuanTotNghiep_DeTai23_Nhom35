@@ -12,9 +12,9 @@
 
 <link rel="stylesheet"
 	th:href="@{/plugins/fontawesome-free/css/all.min.css}">
-<link rel="stylesheet"
+<!-- <link rel="stylesheet"
 	th:href="@{/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css}">
-
+ -->
 <!-- Site CSS -->
 <link rel="stylesheet" th:href="@{/css/style.css}">
 
@@ -161,7 +161,7 @@ img {
 													<td th:text="${nhanVien.quyenTruyCap.tenQuyenTruyCap}"></td>
 													<td style="text-align: center;"><a
 														th:href="@{/admin/quanlynhanvien/edit/{id}(id=${nhanVien.maNhanVien})}"><i
-															class="fas fa-user-edit" style="margin-right: 10px;"></i></a>
+															class="fas fa-user-edit" style="margin-right: 7px;"></i></a>
 														<a href="#" data-toggle="modal" id="btnDelete"
 														data-target="#mi-modal"><i class="fas fa-trash-alt" id="btn-confirm"></i></a>
 												</tr>
@@ -308,12 +308,12 @@ img {
 									<label class="col-sm-3 control-label">Giới tính:</label>
 									<div class="form-check-inline">
 										<label class="form-check-label"> <input type="radio"
-											class="form-check-input" name="gioiTinh" value="0" checked>Nam
+											class="form-check-input" name="gioiTinh" value="Nam" checked>Nam
 										</label>
 									</div>
 									<div class="form-check-inline">
 										<label class="form-check-label"> <input type="radio"
-											class="form-check-input" name="gioiTinh" value="1">Nữ
+											class="form-check-input" name="gioiTinh" value="Nữ">Nữ
 										</label>
 									</div>
 								</div>
@@ -330,7 +330,7 @@ img {
 								<div class="form-group" style="display: none">
 									<input class="form-control" type="password"
 										name="maQuyenTruyCap" placeholder="Nhập mật khẩu"
-										ng-model="me.email" value="1">
+										ng-model="me.email" value="2">
 								</div>
 								<button type="submit" class="btn btn-add">Thêm Nhân
 									viên</button>

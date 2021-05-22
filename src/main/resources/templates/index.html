@@ -94,6 +94,15 @@
 			$("#myAlert-loggin-fail").fadeOut(1000);
 		},1500);
 	});
+</script> 
+
+<script th:if="${registerSuccess}">
+	window.addEventListener('DOMContentLoaded',function(){
+		$("#myAlert-register-success").css({"display":"block"});
+		setTimeout(function() {
+			$("#myAlert-register-success").fadeOut(1000);
+		},1500);
+	});
 </script>
 
 <script th:if="${completedDatBan}">
@@ -135,6 +144,11 @@
 	<div class="myAlert-top alert alert-warning" id="myAlert-loggin-fail">
 		<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
 		<strong>Đăng nhập không thành công! Tên đăng nhập hoặc mật khẩu không chính xác</strong>
+	</div>
+	
+	<div class="myAlert-top alert alert-success" id="myAlert-register-success">
+		<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+		<strong>Đăng ký thành công!</strong>
 	</div>
 	
 	<!-- Start header -->

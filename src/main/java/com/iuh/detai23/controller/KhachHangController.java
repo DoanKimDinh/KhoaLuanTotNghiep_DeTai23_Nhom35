@@ -48,6 +48,7 @@ public class KhachHangController {
 	public String getDangKyTaiKhoan(@ModelAttribute KhachHang khachHang, RedirectAttributes redirectAttributes, HttpServletRequest request) {
 		khachHang.setQuyenTruyCap(quyenTruyCapService.findById(1).get());
 		khachHangService.save(khachHang);
+		redirectAttributes.addFlashAttribute("registerSuccess", "Đăng ký thành công");
 		return "redirect:/";
 	}
 	

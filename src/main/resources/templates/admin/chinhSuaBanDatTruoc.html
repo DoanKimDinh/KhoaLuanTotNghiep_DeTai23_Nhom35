@@ -81,35 +81,8 @@
 			<img class="animation__shake" th:src="@{/dist/img/AdminLTELogo.png}" alt="AdminLTELogo" height="60"
 				width="60">
 		</div>
-<<<<<<< HEAD
-		<nav class="navbar navbar-expand-lg navbar-light bg-light"
-			style="margin-left: 250px;">
-			<div class="container">
-				<a class="navbar-brand" href="index.html"> <!-- <img th:src="@{/images/logo.png}" alt="" /> -->
-					<h2></h2>
-				</a>
-				<button class="navbar-toggler" type="button" data-toggle="collapse"
-					data-target="#navbars-rs-food" aria-controls="navbars-rs-food"
-					aria-expanded="false" aria-label="Toggle navigation">
-					<span class="navbar-toggler-icon"></span>
-				</button>
-				<div class="collapse navbar-collapse" id="navbars-rs-food">
-					<ul class="navbar-nav ml-auto">
-						<li class="nav-item active"><a class="nav-link"
-							th:href="admin_index.html">Trang chủ</a></li>
-						<li class="nav-item"><a class="nav-link"
-							th:href="admin_menu.html">Món Ăn</a></li>
-						<li class="nav-item"><a class="nav-link"
-							th:href="admin_reservation.html" id="login">Đặt bàn</a></li>
-						<li class="nav-item"><a class="nav-link"
-							th:href="quanlydatban.html" id="login">Quản lý</a></li>
-						<li class="nav-item" id="login"><a class="nav-link" href="#"
-							style="margin-left: 5px; margin-right: -10px;">Admin</a></li>
-						<!-- <li class="nav-item"><a class="nav-link" th:href="contact.html">Contact</a></li> -->
-					</ul>
-				</div>
-			</div>
-		</nav>
+	</div>
+	<div th:replace="admin/headeradmin"></div>
 		<!-- Main Sidebar Container -->
 		<div th:replace="admin/sibarAdmin"></div>
 
@@ -235,8 +208,6 @@
 								<div class="col-md-12">
 									<div class="submit-button text-center">
 
-
-
 										<input type="hidden" name="id" th:value="${banDatTruoc.maDatTruoc}" /> <input
 											class="btn btn-common" type="submit" value="Cập Nhật Thông Tin">
 
@@ -245,7 +216,7 @@
 								</div>
 							</form>
 							<div class="row">
-								<form th:action="@{/admin/chinhSuaMonAn/AddRowMonAn}" method="POST">
+								<form th:action="@{/admin/chinhSuaMonAn/AddRowMonAn}" method="POST" style="position: relative;left: 35px;top: 20px;border-top: 1px dashed;padding-top: 10px;">
 									<table id="myTable" class="table table-bordered table-striped" style="width: 100%">
 										<thead>
 											<tr>
@@ -288,9 +259,8 @@
 							</div>
 
 
-							<div class="row">
-
-								<table id="myTable2" class="table table-bordered table-striped" style="width: 100%">
+							<div class="row" style="position: relative;left: 35px;top: 30px;border-top: 1px dashed;padding-top: 20px;">
+								<table id="myTableResult" class="table table-bordered table-striped">
 									<thead>
 										<tr>
 											<th scope="col">#</th>
@@ -331,7 +301,7 @@
 
 							<div class="row">
 								<div class="col-md-12">
-									<div class="submit-button text-center" th:if="${tongTien}">
+									<div class="submit-button text-center" th:if="${tongTien}" style="positon:relative; top:20px;">
 										<h2>
 											Tổng tiền : <span
 												th:text="${#numbers.formatDecimal(tongTien, 0, 'COMMA', 0, 'POINT')}">1000000</span>
@@ -408,8 +378,6 @@
 		</footer>
 		<!-- End Footer -->
 
-	</div>
-
 	<script th:src="@{/plugins/jquery/jquery.min.js}"></script>
 	<script th:src="@{/plugins/jquery-ui/jquery-ui.min.js}"></script>
 	<script th:src="@{/plugins/bootstrap/js/bootstrap.bundle.min.js}"></script>
@@ -461,7 +429,7 @@
 								},
 								"pageLength": 5
 							});
-					$('#myTable2')
+					$('#myTableResult')
 						.DataTable(
 							{
 								"language": {

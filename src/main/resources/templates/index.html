@@ -1,156 +1,155 @@
 <!DOCTYPE html>
 <html xmlns:th="http://thymeleaf.org">
 <!-- Basic -->
+
 <head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-<!-- Mobile Metas -->
-<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- Mobile Metas -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-<!-- Site Metas -->
-<title>Trang chủ</title>
-<meta name="keywords" content="">
-<meta name="description" content="">
-<meta name="author" content="">
+	<!-- Site Metas -->
+	<title>Trang chủ</title>
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<meta name="author" content="">
 
-<!-- Site Icons -->
-<link rel="shortcut icon" th:href="@{/images/favicon.ico}"
-	type="image/x-icon">
-<link rel="apple-touch-icon" th:href="@{/images/apple-touch-icon.png}">
-<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
-<!-- Site CSS -->
-<link rel="stylesheet" th:href="@{/css/style.css}">
-<!-- Responsive CSS -->
-<link rel="stylesheet" th:href="@{/css/responsive.css}">
-<!-- Custom CSS -->
-<link rel="stylesheet" th:href="@{/css/custom.css}">
-<style type="text/css">
-.alert {
-	position: fixed;
-	height: fit-content;
-	z-index: 999;
-	width: 100%;
-	display: none;
-}
-</style>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script>
-	$(document).ready(function() {
-		$(function() {
-			$('[data-toggle="tooltip"]').tooltip()
-		})
-	});
+	<!-- Site Icons -->
+	<link rel="shortcut icon" th:href="@{/images/favicon.ico}" type="image/x-icon">
+	<link rel="apple-touch-icon" th:href="@{/images/apple-touch-icon.png}">
+	<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+	<!-- Site CSS -->
+	<link rel="stylesheet" th:href="@{/css/style.css}">
+	<!-- Responsive CSS -->
+	<link rel="stylesheet" th:href="@{/css/responsive.css}">
+	<!-- Custom CSS -->
+	<link rel="stylesheet" th:href="@{/css/custom.css}">
+	<style type="text/css">
+		.alert {
+			position: fixed;
+			height: fit-content;
+			z-index: 999;
+			width: 100%;
+			display: none;
+		}
+	</style>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script>
+		$(document).ready(function () {
+			$(function () {
+				$('[data-toggle="tooltip"]').tooltip()
+			})
+		});
 
-	function anModalDangNhap() {
-		$('#loginModal').modal('hide');
-	};
-	function anModalDangKy() {
-		$('#signUpModal').modal('hide');
-	};
-	
-	function datBan(){
-		var order = document.getElementById("datBan");
-		var datBan = order.getAttribute("data-session");
-		
-		if (datBan == null) {
-			document.getElementById("myAlert").style.display = "block";
-			setTimeout(function(){
-				document.getElementById("myAlert").style.display = "none";
+		function anModalDangNhap() {
+			$('#loginModal').modal('hide');
+		};
+		function anModalDangKy() {
+			$('#signUpModal').modal('hide');
+		};
+
+		function datBan() {
+			var order = document.getElementById("datBan");
+			var datBan = order.getAttribute("data-session");
+
+			if (datBan == null) {
+				document.getElementById("myAlert").style.display = "block";
+				setTimeout(function () {
+					document.getElementById("myAlert").style.display = "none";
+				}, 2000);
+			}
+			else {
+				window.location.href = "/client/datBan";
+			}
+		}
+	</script>
+	<script th:if="${message}">
+		window.addEventListener('DOMContentLoaded', function () {
+			//document.getElementById("myAlert-loggin-success").style.display = "block";
+			/* setTimeout(function(){
+				document.getElementById("myAlert-loggin-success").style.display = "none";
+			}, 2000);fad  */
+			$("#myAlert-loggin-success").css({ "display": "block" });
+			setTimeout(function () {
+				$("#myAlert-loggin-success").fadeOut(1000);
 			}, 2000);
-		}
-		else{
-			window.location.href="/client/datBan";
-		}
-	}
-</script>
-<script th:if="${message}">
-	window.addEventListener('DOMContentLoaded',function(){
-		//document.getElementById("myAlert-loggin-success").style.display = "block";
-		/* setTimeout(function(){
-			document.getElementById("myAlert-loggin-success").style.display = "none";
-		}, 2000);fad  */
-		$("#myAlert-loggin-success").css({"display":"block"});
-		setTimeout(function (){
-			$("#myAlert-loggin-success").fadeOut(1000);
-		},2000);
-	});
-</script>
+		});
+	</script>
 
-<script th:if="${faild}">
-	$(document).ready(function() {
-		$("#loginModal").modal();
-	});
-	window.addEventListener('DOMContentLoaded',function(){
-		/* document.getElementById("myAlert-loggin-fail").style.display = "block";
-		console.log("enfsdnfsd");
-		setTimeout(function(){
-			document.getElementById("myAlert-loggin-fail").style.display = "none";
-		}, 2000); */
-		$("#notifyToast").css({"display":"block"});	
-		$("#myAlert-loggin-fail").css({"display":"block"});
-		setTimeout(function() {
-			$("#myAlert-loggin-fail").fadeOut(1000);
-		},1500);
-	});
-</script> 
+	<script th:if="${faild}">
+		$(document).ready(function () {
+			$("#loginModal").modal();
+		});
+		window.addEventListener('DOMContentLoaded', function () {
+			/* document.getElementById("myAlert-loggin-fail").style.display = "block";
+			console.log("enfsdnfsd");
+			setTimeout(function(){
+				document.getElementById("myAlert-loggin-fail").style.display = "none";
+			}, 2000); */
+			$("#notifyToast").css({ "display": "block" });
+			$("#myAlert-loggin-fail").css({ "display": "block" });
+			setTimeout(function () {
+				$("#myAlert-loggin-fail").fadeOut(1000);
+			}, 1500);
+		});
+	</script>
 
-<script th:if="${registerSuccess}">
-	window.addEventListener('DOMContentLoaded',function(){
-		$("#myAlert-register-success").css({"display":"block"});
-		setTimeout(function() {
-			$("#myAlert-register-success").fadeOut(1000);
-		},1500);
-	});
-</script>
+	<script th:if="${registerSuccess}">
+		window.addEventListener('DOMContentLoaded', function () {
+			$("#myAlert-register-success").css({ "display": "block" });
+			setTimeout(function () {
+				$("#myAlert-register-success").fadeOut(1000);
+			}, 1500);
+		});
+	</script>
 
-<script th:if="${completedDatBan}">
-	window.addEventListener('DOMContentLoaded',function(){
-		document.getElementById("myAlert-datBan-Completed").style.display = "block";
-		setTimeout(function(){
-			document.getElementById("myAlert-datBan-Completed").style.display = "none";
-		}, 2000); 
-	});
-</script>
+	<script th:if="${completedDatBan}">
+		window.addEventListener('DOMContentLoaded', function () {
+			document.getElementById("myAlert-datBan-Completed").style.display = "block";
+			setTimeout(function () {
+				document.getElementById("myAlert-datBan-Completed").style.display = "none";
+			}, 2000);
+		});
+	</script>
 
-<script th:if="${datThanhCong}">
-	window.addEventListener('DOMContentLoaded',function(){
-		document.getElementById("myAlert-datBan-Completed").style.display = "block";
-		setTimeout(function(){
-			document.getElementById("myAlert-datBan-Completed").style.display = "none";
-		}, 2000); 
-	});
-</script>
+	<script th:if="${datThanhCong}">
+		window.addEventListener('DOMContentLoaded', function () {
+			document.getElementById("myAlert-datBan-Completed").style.display = "block";
+			setTimeout(function () {
+				document.getElementById("myAlert-datBan-Completed").style.display = "none";
+			}, 2000);
+		});
+	</script>
 </head>
 
 <body>
-	
+
 	<div class="myAlert-top alert alert-warning" id="myAlert">
 		<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-		<strong>Bạn chưa đăng nhập!</strong> Vui lòng đăng nhập tài khoản để thực hiện đặt bàn. 
+		<strong>Bạn chưa đăng nhập!</strong> Vui lòng đăng nhập tài khoản để thực hiện đặt bàn.
 	</div>
-	
+
 	<div class="myAlert-top alert alert-success" id="myAlert-datBan-Completed">
 		<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
 		<strong>Đặt Bàn Thành Công !</strong>
 	</div>
-	
+
 	<div class="myAlert-top alert alert-success" id="myAlert-loggin-success">
 		<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
 		<strong>Đăng Nhập Thành Công!</strong>
 	</div>
-	
+
 	<div class="myAlert-top alert alert-warning" id="myAlert-loggin-fail">
 		<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
 		<strong>Đăng nhập không thành công! Tên đăng nhập hoặc mật khẩu không chính xác</strong>
 	</div>
-	
+
 	<div class="myAlert-top alert alert-success" id="myAlert-register-success">
 		<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
 		<strong>Đăng ký thành công!</strong>
 	</div>
-	
+
 	<!-- Start header -->
 	<div th:replace="header"></div>
 	<!-- End header -->
@@ -179,8 +178,7 @@
 							điểm luôn đáp ứng theo khẩu vị khách hàng bạn sẽ có được bữa ngon
 							hòa vị.</p>
 						<p>Hãy để chúng tôi phục vụ khách</p>
-						<a class="btn btn-lg btn-circle btn-outline-new-white"
-							href="reservation.html">Đặt bàn</a>
+						<a class="btn btn-lg btn-circle btn-outline-new-white" href="reservation.html">Đặt bàn</a>
 					</div>
 				</div>
 			</div>
@@ -218,8 +216,7 @@
 					<div class="special-menu text-center">
 						<div class="button-group filter-button-group">
 							<button class="active" data-filter="*">Tất cả</button>
-							<button data-filter=".drinks"
-								th:each="loaiMonAn: ${listLoaiMonAn}"
+							<button data-filter=".drinks" th:each="loaiMonAn: ${listLoaiMonAn}"
 								th:text="${loaiMonAn.tenLoai}"></button>
 							<!-- <button data-filter=".lunch">Món ăn nhẹ</button>
 							<button data-filter=".dinner">Món ăn chính</button> -->
@@ -229,8 +226,7 @@
 			</div>
 
 			<div class="row special-list">
-				<div class="col-lg-4 col-md-6 special-grid drinks"
-					th:each="monAn: ${listMonAn}">
+				<div class="col-lg-4 col-md-6 special-grid drinks" th:each="monAn: ${listMonAn}">
 					<div class="gallery-single fix">
 						<img th:src="@{${monAn.hinhAnh}}" class="img-fluid" alt="Image">
 						<div class="why-text">
@@ -243,7 +239,7 @@
 						<h4 style="font-size: 24px;" th:text="${monAn.tenMonAn}"></h4>
 						<h5 style="font-size: 24px;" th:text="${monAn.DonGia}+' VNĐ'"></h5>
 					</div>
-				</div>			
+				</div>
 			</div>
 		</div>
 	</div>
@@ -263,39 +259,33 @@
 			<div class="tz-gallery">
 				<div class="row">
 					<div class="col-sm-12 col-md-4 col-lg-4">
-						<a class="lightbox" th:href="@{/images/gallery-img-01.jpg}"> <img
-							class="img-fluid" th:src="@{/images/gallery-img-01.jpg}"
-							alt="Gallery Images">
+						<a class="lightbox" th:href="@{/images/gallery-img-01.jpg}"> <img class="img-fluid"
+								th:src="@{/images/gallery-img-01.jpg}" alt="Gallery Images">
 						</a>
 					</div>
 					<div class="col-sm-6 col-md-4 col-lg-4">
-						<a class="lightbox" th:href="@{/images/gallery-img-02.jpg}"> <img
-							class="img-fluid" th:src="@{/images/gallery-img-02.jpg}"
-							alt="Gallery Images">
+						<a class="lightbox" th:href="@{/images/gallery-img-02.jpg}"> <img class="img-fluid"
+								th:src="@{/images/gallery-img-02.jpg}" alt="Gallery Images">
 						</a>
 					</div>
 					<div class="col-sm-6 col-md-4 col-lg-4">
-						<a class="lightbox" th:href="@{/images/gallery-img-03.jpg}"> <img
-							class="img-fluid" th:src="@{/images/gallery-img-03.jpg}"
-							alt="Gallery Images">
+						<a class="lightbox" th:href="@{/images/gallery-img-03.jpg}"> <img class="img-fluid"
+								th:src="@{/images/gallery-img-03.jpg}" alt="Gallery Images">
 						</a>
 					</div>
 					<div class="col-sm-12 col-md-4 col-lg-4">
-						<a class="lightbox" th:href="@{/images/gallery-img-04.jpg}"> <img
-							class="img-fluid" th:src="@{/images/gallery-img-04.jpg}"
-							alt="Gallery Images">
+						<a class="lightbox" th:href="@{/images/gallery-img-04.jpg}"> <img class="img-fluid"
+								th:src="@{/images/gallery-img-04.jpg}" alt="Gallery Images">
 						</a>
 					</div>
 					<div class="col-sm-6 col-md-4 col-lg-4">
-						<a class="lightbox" th:href="@{/images/gallery-img-05.jpg}"> <img
-							class="img-fluid" th:src="@{/images/gallery-img-05.jpg}"
-							alt="Gallery Images">
+						<a class="lightbox" th:href="@{/images/gallery-img-05.jpg}"> <img class="img-fluid"
+								th:src="@{/images/gallery-img-05.jpg}" alt="Gallery Images">
 						</a>
 					</div>
 					<div class="col-sm-6 col-md-4 col-lg-4">
-						<a class="lightbox" th:href="@{/images/gallery-img-06.jpg}"> <img
-							class="img-fluid" th:src="@{/images/gallery-img-06.jpg}"
-							alt="Gallery Images">
+						<a class="lightbox" th:href="@{/images/gallery-img-06.jpg}"> <img class="img-fluid"
+								th:src="@{/images/gallery-img-06.jpg}" alt="Gallery Images">
 						</a>
 					</div>
 				</div>
@@ -374,8 +364,8 @@
 				<div class="row">
 					<div class="col-lg-12">
 						<p class="company-name">
-							Coppy right. &copy; 2021 <a href="#"></a> Thiết kế : <a
-								href="https://html.design/">iuh design</a>
+							Coppy right. &copy; 2021 <a href="#"></a> Thiết kế : <a href="https://html.design/">iuh
+								design</a>
 						</p>
 					</div>
 				</div>
@@ -398,24 +388,23 @@
 	<script th:src="@{/js/isotope.min.js}"></script>
 	<script th:src="@{/js/baguetteBox.min.js}"></script>
 	<script th:src="@{/js/form-validator.min.js}"></script>
-   	<script th:src="@{/js/contact-form-script.js}"></script>
+	<script th:src="@{/js/contact-form-script.js}"></script>
 	<script th:src="@{/js/custom.js}"></script>
 
 	<!-- FORM LOGIN -->
-	<div class="modal fade" id="loginModal" tabindex="-1" role="dialog"
-		aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+		aria-hidden="true">
 		<div class="modal-dialog modal-dialog-centered" role="document">
 			<div class="modal-content">
 				<div class="modal-header border-bottom-0">
 					<div class="form-title text-center">
 						<h2 style="font-weight: bold">Đăng nhập</h2>
 					</div>
-					<button type="button" class="close" data-dismiss="modal"
-						aria-label="Close">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
-				<div class="modal-body">				
+				<div class="modal-body">
 					<div class="d-flex flex-column text-center">
 						<form th:action="@{/user/dangNhap}" method="POST" action="">
 							<div class="form-group">
@@ -427,18 +416,17 @@
 									placeholder="Mật khẩu">
 							</div>
 							<div id="notifyToast" style="display: none">
-								<span style="color: red">Tên đăng nhập hoặc mật khẩu không chính xác. Vui lòng đăng nhập lại! </span>
+								<span style="color: red">Tên đăng nhập hoặc mật khẩu không chính xác. Vui lòng đăng nhập
+									lại! </span>
 							</div>
-							<button type="submit" class="btn btn-add btn-block btn-round"
-								>Đăng Nhập</button>
+							<button type="submit" class="btn btn-add btn-block btn-round">Đăng Nhập</button>
 						</form>
 					</div>
 				</div>
 				<div class="modal-footer d-flex justify-content-center">
 					<div class="signup-section">
-						Bạn không phải thành viên? <a href="#a" class="text-info"
-							data-toggle="modal" data-target="#signUpModal"
-							onclick="anModalDangNhap()"> Đăng ký</a>.
+						Bạn không phải thành viên? <a href="#a" class="text-info" data-toggle="modal"
+							data-target="#signUpModal" onclick="anModalDangNhap()"> Đăng ký</a>.
 					</div>
 				</div>
 			</div>
@@ -446,16 +434,15 @@
 	</div>
 
 	<!-- FORM REGISTER -->
-	<div class="modal fade" id="signUpModal" tabindex="-1" role="dialog"
-		aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal fade" id="signUpModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+		aria-hidden="true">
 		<div class="modal-dialog modal-dialog-centered" role="document">
 			<div class="modal-content">
 				<div class="modal-header border-bottom-0">
 					<div class="form-title text-center">
 						<h2 style="font-weight: bold">Đăng ký tài khoản</h2>
 					</div>
-					<button type="button" class="close" data-dismiss="modal"
-						aria-label="Close">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
@@ -464,9 +451,8 @@
 						<form action="" th:action="@{client/dangKyTaiKhoan}" method="POST">
 							<div class="form-group">
 								<input type="text" class="form-control" name="tenKhachHang"
-									placeholder="Nhập họ tên của bạn ..."> <input
-									type="hidden" class="form-control" name="maKhachHang"
-									value="-1" placeholder="Nhập họ tên của bạn ...">
+									placeholder="Nhập họ tên của bạn ..."> <input type="hidden" class="form-control"
+									name="maKhachHang" value="-1" placeholder="Nhập họ tên của bạn ...">
 							</div>
 							<div class="form-group">
 								<input type="text" class="form-control" name="sdt" id="sdt"
@@ -477,16 +463,16 @@
 									placeholder="Nhập địa chỉ email ...">
 							</div>
 							<div class="form-group">
-								<input type="text" class="form-control" id="lienhe"
-									name="diaChi" placeholder="Nhập thông tin liên hệ ...">
+								<input type="text" class="form-control" id="lienhe" name="diaChi"
+									placeholder="Nhập thông tin liên hệ ...">
 							</div>
 							<div class="form-group">
 								<input type="text" class="form-control" name="tenTaiKhoan"
 									placeholder="Nhập tên tài khoản ...">
 							</div>
 							<div class="form-group">
-								<input type="password" class="form-control" id="password1"
-									name="matKhau" placeholder="Nhập mật khẩu ...">
+								<input type="password" class="form-control" id="password1" name="matKhau"
+									placeholder="Nhập mật khẩu ...">
 							</div>
 							<div class="form-group">
 								<input type="password" class="form-control" id="password2"
@@ -498,8 +484,7 @@
 				</div>
 				<div class="modal-footer d-flex justify-content-center">
 					<div class="signup-section">
-						Bạn là thành viên? <a href="#a" class="text-info"
-							data-toggle="modal" data-target="#loginModal"
+						Bạn là thành viên? <a href="#a" class="text-info" data-toggle="modal" data-target="#loginModal"
 							onclick="anModalDangKy()"> Đăng nhập</a>.
 					</div>
 				</div>
@@ -507,4 +492,5 @@
 		</div>
 	</div>
 </body>
+
 </html>

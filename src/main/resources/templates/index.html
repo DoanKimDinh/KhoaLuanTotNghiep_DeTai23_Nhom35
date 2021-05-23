@@ -216,10 +216,11 @@
 					<div class="special-menu text-center">
 						<div class="button-group filter-button-group">
 							<button class="active" data-filter="*">Tất cả</button>
-							<button data-filter=".drinks" th:each="loaiMonAn: ${listLoaiMonAn}"
-								th:text="${loaiMonAn.tenLoai}"></button>
-							<!-- <button data-filter=".lunch">Món ăn nhẹ</button>
-							<button data-filter=".dinner">Món ăn chính</button> -->
+							<button data-filter=".drinks"
+								th:each="loaiMonAn: ${listLoaiMonAn}"
+								th:text="${loaiMonAn.tenLoai}">
+							</button>
+
 						</div>
 					</div>
 				</div>

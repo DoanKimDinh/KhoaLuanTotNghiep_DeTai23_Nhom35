@@ -62,9 +62,7 @@
 			$('#quanlityfoodordered').html(checkboxes);
 		};
 
-		function UserLogin() {
-			//window.location = '/TRANMINHTRUC/KLTN/KLTN_UI/UI/yamifood/html/user_index.html';
-		};
+
 	</script>
 </head>
 
@@ -333,99 +331,6 @@
 	</footer>
 	<!-- End Footer -->
 
-	<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-		aria-hidden="true">
-		<div class="modal-dialog modal-dialog-centered" role="document">
-			<div class="modal-content">
-				<div class="modal-header border-bottom-0">
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
-				<div class="modal-body">
-					<div class="form-title text-center">
-						<h2>Đăng nhập</h2>
-					</div>
-					<div class="d-flex flex-column text-center">
-						<form>
-							<div class="form-group">
-								<input type="email" class="form-control" id="email1"
-									placeholder="Địa chỉ mail của bạn ...">
-							</div>
-							<div class="form-group">
-								<input type="password" class="form-control" id="password1" placeholder="Mật khẩu ...">
-							</div>
-							<button type="button" class="btn btn-info btn-block btn-round" id="loginUser"
-								onclick="UserLogin()">Đăng Nhập</button>
-						</form>
-
-						<div class="text-center text-muted delimiter">or ...</div>
-
-					</div>
-				</div>
-				<div class="modal-footer d-flex justify-content-center">
-					<div class="signup-section">
-						Bạn không phải thành viên? <a href="#a" class="text-info" data-toggle="modal"
-							data-target="#signUpModal" onclick="anModalDangNhap()"> Đăng ký</a>.
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-
-
-
-	<div class="modal fade" id="signUpModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-		aria-hidden="true">
-		<div class="modal-dialog modal-dialog-centered" role="document">
-			<div class="modal-content">
-				<div class="modal-header border-bottom-0">
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
-				<div class="modal-body">
-					<div class="form-title text-center">
-						<h2>ĐĂNG KÝ TÀI KHOẢN</h2>
-					</div>
-					<div class="d-flex flex-column text-center">
-						<form>
-							<div class="form-group">
-								<input type="email" class="form-control" id="name"
-									placeholder="Nhập họ tên của bạn ...">
-							</div>
-							<div class="form-group">
-								<input type="email" class="form-control" id="sdt" placeholder="Nhập số điện thoại ...">
-							</div>
-							<div class="form-group">
-								<input type="email" class="form-control" id="email"
-									placeholder="Nhập địa chỉ email ...">
-							</div>
-							<div class="form-group">
-								<input type="password" class="form-control" id="password1"
-									placeholder="Nhập mật khẩu ...">
-							</div>
-							<div class="form-group">
-								<input type="password" class="form-control" id="password2"
-									placeholder="Nhập lại mật khẩu ...">
-							</div>
-							<button type="button" class="btn btn-info btn-block btn-round">Đăng
-								Ký</button>
-						</form>
-
-						<div class="text-center text-muted delimiter">or ...</div>
-
-					</div>
-				</div>
-				<div class="modal-footer d-flex justify-content-center">
-					<div class="signup-section">
-						Bạn là thành viên? <a href="#a" class="text-info" data-toggle="modal" data-target="#loginModal"
-							onclick="anModalDangKy()"> Đăng nhập</a>.
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
 
 	<a href="#" id="back-to-top" title="Back to top" style="display: none;">&uarr;</a>
 
@@ -437,14 +342,7 @@
 	<script th:src="@{/js/jquery.superslides.min.js}"></script>
 	<script th:src="@{/js/images-loded.min.js}"></script>
 	<script th:src="@{/js/isotope.min.js}"></script>
-	<!--<script th:src="@{/js/baguetteBox.min.js"></script>-->
-	<!--  <script th:src="@{/js/picker.js"></script> -->
-	<!--  <script th:src="@{/js/picker.date.js"></script>
-	<script th:src="@{/js/picker.time.js"></script>
-	<script th:src="@{/js/legacy.js"></script>
-	<script th:src="@{/js/form-validator.min.js"></script>
-    <script th:src="@{/js/contact-form-script.js"></script> -->
-	<!--  <script th:src="@{/js/custom.js"></script> -->
+
 </body>
 
 </html>

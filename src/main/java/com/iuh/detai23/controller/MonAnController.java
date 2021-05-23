@@ -134,11 +134,11 @@ public class MonAnController {
 //		return Optional.ofNullable(monAn);
 //	}
 	
-	@GetMapping("/monAn")
+	@GetMapping("/monan")
 	public ModelAndView getMonAn() {
 		ModelAndView modelAndView = new ModelAndView("menu");
 		List<MonAn> listMonAn = monAnService.finDall();
-		for(MonAn monAn : listMonAn) {
+		for (MonAn monAn : listMonAn) {
 			monAn.setHinhAnh("http://localhost:8080/download/"+monAn.getHinhAnh());
 		}
 		modelAndView.addObject("listMonAn", listMonAn);

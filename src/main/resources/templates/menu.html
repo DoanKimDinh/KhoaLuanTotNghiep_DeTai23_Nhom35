@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 <html xmlns:th="http://thymeleaf.org">
+
 <head>
 	<meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">   
-   
-    <!-- Mobile Metas -->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
- 
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  	<meta name="viewport" content="width=device-width, initial-scale=1">
      <!-- Site Metas -->
     <title>Món ăn</title>  
-    <!-- Site Icons -->
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+
 	<link rel="shortcut icon" th:href="@{/images/favicon.ico}"
 		type="image/x-icon">
 	<link rel="apple-touch-icon" th:href="@{/images/apple-touch-icon.png}">
@@ -31,7 +33,30 @@
 	</style>
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-	
+	<script>
+		function anModalDangNhap() {
+			$('#loginModal').modal('hide');
+		};
+		function anModalDangKy() {
+			$('#signUpModal').modal('hide');
+		};
+		
+		function datBan(){
+			var order = document.getElementById("datBan");
+			var datBan = order.getAttribute("data-session");
+			
+			if (datBan == null) {
+				document.getElementById("myAlert").style.display = "block";
+				setTimeout(function(){
+					document.getElementById("myAlert").style.display = "none";
+				}, 2000);
+			}
+			else{
+				window.location.href="/client/datBan";
+			}
+		}
+	</script>
+
 	<script th:if="${message}">
 		window.addEventListener('DOMContentLoaded',function(){
 			//document.getElementById("myAlert-loggin-success").style.display = "block";
@@ -92,8 +117,70 @@
 </head>
 
 <body>
+
+	<div class="myAlert-top alert alert-warning" id="myAlert">
+		<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+		<strong>Bạn chưa đăng nhập!</strong> Vui lòng đăng nhập tài khoản để thực hiện đặt bàn. 
+	</div>
+	
+	<div class="myAlert-top alert alert-success" id="myAlert-datBan-Completed">
+		<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+		<strong>Đặt Bàn Thành Công !</strong>
+	</div>
+	
+	<div class="myAlert-top alert alert-success" id="myAlert-loggin-success">
+		<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+		<strong>Đăng Nhập Thành Công!</strong>
+	</div>
+	
+	<div class="myAlert-top alert alert-warning" id="myAlert-loggin-fail">
+		<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+		<strong>Đăng nhập không thành công! Tên đăng nhập hoặc mật khẩu không chính xác</strong>
+	</div>
+	
+	<div class="myAlert-top alert alert-success" id="myAlert-register-success">
+		<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+		<strong>Đăng ký thành công!</strong>
+	</div>
+
 	<!-- Start header -->
-	<div th:replace="header"></div>
+	<header class="top-navbar">
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+		<div class="container">
+			<a class="navbar-brand" th:href="@{/}"> <!-- <img src="@{/images/logo.png" alt="" /> -->
+				<h2>LOGO</h2>
+			</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse"
+				data-target="#navbars-rs-food" aria-controls="navbars-rs-food"
+				aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<form class="form-inline my-2 my-lg-0 form-search">
+				<input class="form-control mr-sm-2 input-search" type="search"
+					placeholder="Tìm kiếm" aria-label="Search" style="width: 100%;">
+			</form>
+			<div class="collapse navbar-collapse" id="navbars-rs-food">
+				<ul class="navbar-nav ml-auto">
+					<li class="nav-item"><a class="nav-link"
+						th:href="@{/}">Trang chủ</a></li>
+					<li class="nav-item active"><a class="nav-link" th:href="@{/monan}">Món Ăn</a></li>
+					<li class="nav-item"><a class="nav-link" href="#"
+						onClick="datBan()" th:data-session="${session.idAccount}" id="datBan">Đặt bàn</a></li>
+					<li class="nav-item" th:if="${session.idAdmin}"><a class="nav-link" th:href="@{/admin/quanlykhachhang}">Quản lý</a></li>
+					<li class="nav-item" id="login" th:unless="${session.idAccount}"><a class="nav-link" href="#"
+						style="margin-left: 5px; margin-right: -10px;" data-toggle="modal"
+						data-target="#loginModal">Đăng Nhập</a></li>
+					<li class="nav-item dropdown" th:if="${session.idAccount} ">
+						<a th:utext="${session.userName}" class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" style="margin-left: 5px; margin-right: -10px;"></a>
+						<div class="dropdown-menu" aria-labelledby="dropdown-a">
+							<a class="dropdown-item" th:href="@{/client/dangXuat}">Đăng xuất</a>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+</header>
 	<!-- End header -->
 	
 	<!-- Start All Pages -->
@@ -126,9 +213,9 @@
 							<button class="active" data-filter="*">Tất cả</button>
 							<button data-filter=".drinks"
 								th:each="loaiMonAn: ${listLoaiMonAn}"
-								th:text="${loaiMonAn.tenLoai}"></button>
-							<!-- <button data-filter=".lunch">Món ăn nhẹ</button>
-							<button data-filter=".dinner">Món ăn chính</button> -->
+								th:text="${loaiMonAn.tenLoai}">
+							</button>
+
 						</div>
 					</div>
 				</div>
@@ -149,7 +236,8 @@
 						<h4 style="font-size: 24px;" th:text="${monAn.tenMonAn}"></h4>
 						<h5 style="font-size: 24px;" th:text="${monAn.DonGia}+' VNĐ'"></h5>
 					</div>
-				</div>			
+				</div>
+
 			</div>
 		</div>
 	</div>
@@ -216,16 +304,14 @@
 				</div>
 				<div class="col-lg-4 col-md-7">
 					<h3>Thời gian hoạt động</h3>
-					<!-- <p><span class="text-color">Thứ 2 - Thứ 6: </span>Closed</p> -->
 					<p><span class="text-color">Thứ 2 - Thứ 6 :</span> 9:00 - 22:00</p>
 					<p><span class="text-color">Thứ 7 - Chủ nhật :</span> 9:00 - 00:00</p>
-					<!-- <p><span class="text-color">Thu-Fri :</span> 9:Am - 10PM</p>
-					<p><span class="text-color">Sat-Sun :</span> 5:PM - 10PM</p> -->
+
 				</div>
 				<div class="col-lg-4 col-md-7">
 					<h3>Thông tin liên hệ</h3>
 					<p class="lead" style="font-size: 17px;">12 Nguyễn Văn Bảo, Phường 4, Quận Gò Vấp, Hồ Chí Minh</p>
-					<p class="lead" style="font-size: 17px;><a href="#">+01 2000 800 9999</a></p>
+					<p class="lead" style="font-size: 17px;"> <a href="#">+01 2000 800 9999</a></p>
 					<p><a href="#" > lienhechungtoi@admin.com</a></p>
 				</div>
 
@@ -245,8 +331,8 @@
 		
 	</footer>
 	<!-- End Footer -->
+	<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
 
-<!-- 	<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
@@ -282,62 +368,9 @@
         </div>
       </div>
     </div>
-  </div> -->
-
-
-<!-- 
-  <div class="modal fade" id="signUpModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header border-bottom-0">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <div class="form-title text-center">
-            <h2>ĐĂNG KÝ TÀI KHOẢN</h2>
-          </div>
-          <div class="d-flex flex-column text-center">
-            <form>
-              <div class="form-group">
-                <input type="email" class="form-control" id="name"
-                  placeholder="Nhập họ tên của bạn ...">
-              </div>
-              <div class="form-group">
-                <input type="email" class="form-control" id="sdt" placeholder="Nhập số điện thoại ...">
-              </div>
-              <div class="form-group">
-                <input type="email" class="form-control" id="email"
-                  placeholder="Nhập địa chỉ email ...">
-              </div>
-              <div class="form-group">
-                <input type="password" class="form-control" id="password1"
-                  placeholder="Nhập mật khẩu ...">
-              </div>
-              <div class="form-group">
-                <input type="password" class="form-control" id="password2"
-                  placeholder="Nhập lại mật khẩu ...">
-              </div>
-              <button type="button" class="btn btn-info btn-block btn-round">Đăng Ký</button>
-            </form>
-
-            <div class="text-center text-muted delimiter">or ...</div>
-
-          </div>
-        </div>
-        <div class="modal-footer d-flex justify-content-center">
-          <div class="signup-section">Bạn là thành viên? <a href="#a" class="text-info" data-toggle="modal"
-              data-target="#loginModal" onclick="anModalDangKy()"> Đăng nhập</a>.</div>
-        </div>
-      </div>
-    </div>
-  </div> -->
-	
+  </div>
 	<a href="#" id="back-to-top" title="Back to top" style="display: none;">&uarr;</a>
-
-<!-- ALL JS FILES -->
+		<!-- ALL JS FILES -->
 	<script th:src="@{/js/jquery-3.2.1.min.js}"></script>
 	<script th:src="@{/js/popper.min.js}"></script>
 	<script th:src="@{/js/bootstrap.min.js}"></script>
@@ -351,34 +384,121 @@
    	<script th:src="@{/js/contact-form-script.js}"></script>
 	<script th:src="@{/js/custom.js}"></script>
    
-	<script>
-		$(document).ready(function() {
+
+   	<script>
+	   	$(document).ready(function() {
+
 			$(function() {
 				$('[data-toggle="tooltip"]').tooltip()
 			})
 		});
-	
-		function anModalDangNhap() {
-			$('#loginModal').modal('hide');
-		};
-		function anModalDangKy() {
-			$('#signUpModal').modal('hide');
-		};
-		
-		function datBan(){
-			var order = document.getElementById("datBan");
-			var datBan = order.getAttribute("data-session");
-			
-			if (datBan == null) {
-				document.getElementById("myAlert").style.display = "block";
-				setTimeout(function(){
-					document.getElementById("myAlert").style.display = "none";
-				}, 2000);
-			}
-			else{
-				window.location.href="/client/datBan";
-			}
-		}
-	</script>
+   	</script>
+   	
+   		<!-- FORM LOGIN -->
+	<div class="modal fade" id="loginModal" tabindex="-1" role="dialog"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-header border-bottom-0">
+					<div class="form-title text-center">
+						<h2 style="font-weight: bold">Đăng nhập</h2>
+					</div>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">				
+					<div class="d-flex flex-column text-center">
+						<form th:action="@{/user/dangNhap}" method="POST" action="">
+							<div class="form-group">
+								<input type="text" class="form-control" id="email1" name="tenDangNhap"
+									placeholder="Tên đăng nhập">
+							</div>
+							<div class="form-group">
+								<input type="password" class="form-control" id="password1" name="matKhau"
+									placeholder="Mật khẩu">
+							</div>
+							<div id="notifyToast" style="display: none">
+								<span style="color: red">Tên đăng nhập hoặc mật khẩu không chính xác. Vui lòng đăng nhập lại! </span>
+							</div>
+							<button type="submit" class="btn btn-add btn-block btn-round"
+								>Đăng Nhập</button>
+						</form>
+					</div>
+				</div>
+				<div class="modal-footer d-flex justify-content-center">
+					<div class="signup-section">
+						Bạn không phải thành viên? <a href="#a" class="text-info"
+							data-toggle="modal" data-target="#signUpModal"
+							onclick="anModalDangNhap()"> Đăng ký</a>.
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+   	
+   		<!-- FORM REGISTER -->
+	<div class="modal fade" id="signUpModal" tabindex="-1" role="dialog"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-header border-bottom-0">
+					<div class="form-title text-center">
+						<h2 style="font-weight: bold">Đăng ký tài khoản</h2>
+					</div>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<div class="d-flex flex-column text-center">
+						<form action="" th:action="@{client/dangKyTaiKhoan}" method="POST">
+							<div class="form-group">
+								<input type="text" class="form-control" name="tenKhachHang"
+									placeholder="Nhập họ tên của bạn ..."> <input
+									type="hidden" class="form-control" name="maKhachHang"
+									value="-1" placeholder="Nhập họ tên của bạn ...">
+							</div>
+							<div class="form-group">
+								<input type="text" class="form-control" name="sdt" id="sdt"
+									placeholder="Nhập số điện thoại ...">
+							</div>
+							<div class="form-group">
+								<input type="email" class="form-control" id="email" name="email"
+									placeholder="Nhập địa chỉ email ...">
+							</div>
+							<div class="form-group">
+								<input type="text" class="form-control" id="lienhe"
+									name="diaChi" placeholder="Nhập thông tin liên hệ ...">
+							</div>
+							<div class="form-group">
+								<input type="text" class="form-control" name="tenTaiKhoan"
+									placeholder="Nhập tên tài khoản ...">
+							</div>
+							<div class="form-group">
+								<input type="password" class="form-control" id="password1"
+									name="matKhau" placeholder="Nhập mật khẩu ...">
+							</div>
+							<div class="form-group">
+								<input type="password" class="form-control" id="password2"
+									placeholder="Nhập lại mật khẩu ...">
+							</div>
+							<button type="submit" class="btn btn-add btn-block btn-round">Đăng
+								Ký</button>
+						</form>
+					</div>
+				</div>
+				<div class="modal-footer d-flex justify-content-center">
+					<div class="signup-section">
+						Bạn là thành viên? <a href="#a" class="text-info"
+							data-toggle="modal" data-target="#loginModal"
+							onclick="anModalDangKy()"> Đăng nhập</a>.
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </body>
 </html>

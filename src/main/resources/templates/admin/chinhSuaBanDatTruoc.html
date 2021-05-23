@@ -80,11 +80,8 @@
 				<img class="animation__shake" th:src="@{/dist/img/AdminLTELogo.png}" alt="AdminLTELogo" height="60"
 					width="60">
 		</div>
-	</div>
-		<!-- Preloader -->
-		
-	<div th:replace="admin/headeradmin"></div>
-		
+	</div>		
+  <div th:replace="admin/headeradmin"></div>
 		<!-- Main Sidebar Container -->
 		<div th:replace="admin/sibarAdmin"></div>
 
@@ -210,8 +207,6 @@
 								<div class="col-md-12">
 									<div class="submit-button text-center">
 
-
-
 										<input type="hidden" name="id" th:value="${banDatTruoc.maDatTruoc}" /> <input
 											class="btn btn-common" type="submit" value="Cập Nhật Thông Tin">
 
@@ -220,8 +215,10 @@
 								</div>
 							</form>
 							<div class="row">
+
 								<form th:action="@{/admin/chinhSuaMonAn/AddRowMonAn}" method="POST" style="width:100%">
 									<table id="myTable" class="table table-bordered table-striped">
+
 										<thead>
 											<tr>
 												<th>Mã món ăn</th>
@@ -261,8 +258,6 @@
 
 								</form>
 							</div>
-
-
 							<div class="row">
 								<div id="chinh" style="width:100%">
 									<table id="myTable2" class="table table-bordered table-striped" style="width:100%">
@@ -306,7 +301,7 @@
 
 							<div class="row">
 								<div class="col-md-12">
-									<div class="submit-button text-center" th:if="${tongTien}">
+									<div class="submit-button text-center" th:if="${tongTien}" style="positon:relative; top:20px;">
 										<h2>
 											Tổng tiền : <span
 												th:text="${#numbers.formatDecimal(tongTien, 0, 'COMMA', 0, 'POINT')}">1000000</span>
@@ -382,9 +377,6 @@
 
 		</footer>
 		<!-- End Footer -->
-
-	
-
 	<script th:src="@{/plugins/jquery/jquery.min.js}"></script>
 	<script th:src="@{/plugins/jquery-ui/jquery-ui.min.js}"></script>
 	<script th:src="@{/plugins/bootstrap/js/bootstrap.bundle.min.js}"></script>
@@ -436,7 +428,7 @@
 								},
 								"pageLength": 5
 							});
-					$('#myTable2')
+					$('#myTableResult')
 						.DataTable(
 							{
 								"language": {

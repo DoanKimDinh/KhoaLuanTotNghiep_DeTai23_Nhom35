@@ -75,8 +75,6 @@ public class DatTruocController {
 		} catch (Exception e) {
 
 		}
-		// System.out.println(id+"============>");
-		// modelAndView.addObject("datBan",new BanDatTruocAddModel());
 		return modelAndView;
 	}
 

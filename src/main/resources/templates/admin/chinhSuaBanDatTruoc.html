@@ -76,13 +76,12 @@
 	</div>
 
 	<div class="wrapper">
-		<!-- Preloader -->
 		<div class="preloader flex-column justify-content-center align-items-center">
-			<img class="animation__shake" th:src="@{/dist/img/AdminLTELogo.png}" alt="AdminLTELogo" height="60"
-				width="60">
+				<img class="animation__shake" th:src="@{/dist/img/AdminLTELogo.png}" alt="AdminLTELogo" height="60"
+					width="60">
 		</div>
-	</div>
-	<div th:replace="admin/headeradmin"></div>
+	</div>		
+  <div th:replace="admin/headeradmin"></div>
 		<!-- Main Sidebar Container -->
 		<div th:replace="admin/sibarAdmin"></div>
 
@@ -100,7 +99,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="row">
+				<div class="container">
 					<div class="col-lg-12 col-sm-12 col-xs-12">
 						<div class="contact-block">
 							<form th:action="@{/admin/banDatTruoc/edit/updateThongTin}" method="POST">
@@ -216,8 +215,10 @@
 								</div>
 							</form>
 							<div class="row">
-								<form th:action="@{/admin/chinhSuaMonAn/AddRowMonAn}" method="POST" style="position: relative;left: 35px;top: 20px;border-top: 1px dashed;padding-top: 10px;">
-									<table id="myTable" class="table table-bordered table-striped" style="width: 100%">
+
+								<form th:action="@{/admin/chinhSuaMonAn/AddRowMonAn}" method="POST" style="width:100%">
+									<table id="myTable" class="table table-bordered table-striped">
+
 										<thead>
 											<tr>
 												<th>Mã món ăn</th>
@@ -257,44 +258,43 @@
 
 								</form>
 							</div>
-
-
-							<div class="row" style="position: relative;left: 35px;top: 30px;border-top: 1px dashed;padding-top: 20px;">
-								<table id="myTableResult" class="table table-bordered table-striped">
-									<thead>
-										<tr>
-											<th scope="col">#</th>
-											<th scope="col">Tên món</th>
-											<th scope="col">Số lượng</th>
-											<th scope="col">Tổng tiền</th>
-											<th scope="col">Tùy Chọn</th>
-										</tr>
-									</thead>
-
-									<tbody>
-										<tr th:each="datTruoc : ${listMonDatTruoc}">
-											<form th:action="@{/admin/banDatTruoc/edit/remove}" method="POST">
-												<td th:text="${datTruoc.stt}"></td>
-												<td th:text="${datTruoc.tenMonAn}"></td>
-
-												<td><input type="number" th:value="${datTruoc.soLuong}" name="soLuong"
-														value="1" /></td>
-												<td><span
-														th:text="${#numbers.formatDecimal(datTruoc.tongTien, 0, 'COMMA', 0, 'POINT')}">1000000</span>
-													VNĐ</td>
-												<td style="text-align: center;"><input type="hidden" name="id"
-														th:value="${datTruoc.id}" /> <input type="hidden"
-														name="idDatTruoc" th:value="${banDatTruoc.maDatTruoc}" /> <input
-														type="submit" value="Cập Nhật" name="action"><input
-														type="submit" name="action" value="Xóa Bỏ"></td>
-											</form>
-										</tr>
-									</tbody>
-
-									<tfoot>
-									</tfoot>
-								</table>
-
+							<div class="row">
+								<div id="chinh" style="width:100%">
+									<table id="myTable2" class="table table-bordered table-striped" style="width:100%">
+										<thead>
+											<tr>
+												<th scope="col">#</th>
+												<th scope="col">Tên món</th>
+												<th scope="col">Số lượng</th>
+												<th scope="col">Tổng tiền</th>
+												<th scope="col">Tùy Chọn</th>
+											</tr>
+										</thead>
+	
+										<tbody>
+											<tr th:each="datTruoc : ${listMonDatTruoc}">
+												<form th:action="@{/admin/banDatTruoc/edit/remove}" method="POST">
+													<td th:text="${datTruoc.stt}"></td>
+													<td th:text="${datTruoc.tenMonAn}"></td>
+	
+													<td><input type="number" th:value="${datTruoc.soLuong}" name="soLuong"
+															value="1" /></td>
+													<td><span
+															th:text="${#numbers.formatDecimal(datTruoc.tongTien, 0, 'COMMA', 0, 'POINT')}">1000000</span>
+														VNĐ</td>
+													<td style="text-align: center;"><input type="hidden" name="id"
+															th:value="${datTruoc.id}" /> <input type="hidden"
+															name="idDatTruoc" th:value="${banDatTruoc.maDatTruoc}" /> <input
+															type="submit" value="Cập Nhật" name="action"><input
+															type="submit" name="action" value="Xóa Bỏ"></td>
+												</form>
+											</tr>
+										</tbody>
+	
+										<tfoot>
+										</tfoot>
+									</table>
+								</div>
 							</div>
 
 
@@ -377,7 +377,6 @@
 
 		</footer>
 		<!-- End Footer -->
-
 	<script th:src="@{/plugins/jquery/jquery.min.js}"></script>
 	<script th:src="@{/plugins/jquery-ui/jquery-ui.min.js}"></script>
 	<script th:src="@{/plugins/bootstrap/js/bootstrap.bundle.min.js}"></script>
@@ -437,6 +436,7 @@
 								},
 								"pageLength": 5
 							});
+					
 				});
 	</script>
 

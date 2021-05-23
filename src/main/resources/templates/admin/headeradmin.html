@@ -1,0 +1,52 @@
+<header class="top-navbar">
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+		<div class="container">
+			<a class="navbar-brand" href="index.html">
+				<!-- <img th:src="@{/images/logo.png}" alt="" /> -->
+				<h2>LOGO</h2>
+			</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbars-rs-food"
+				aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbars-rs-food">
+				<ul class="navbar-nav ml-auto">
+					<li class="nav-item"><a class="nav-link" th:href="@{/}">Trang
+							chủ</a></li>
+					<li class="nav-item"><a class="nav-link" th:href="@{/}">Món
+							Ăn</a></li>
+					<li class="nav-item"><a class="nav-link" href="#" onClick="datBan()"
+							th:data-session="${session.idAccount}" id="datBan">Đặt bàn</a></li>
+					<li class="nav-item active" th:if="${session.idAdmin}"><a class="nav-link"
+							th:href="@{/admin/quanlykhachhang}">Quản lý</a></li>
+					<li class="nav-item" id="login" th:unless="${session.idAccount}"><a class="nav-link" href="#"
+							style="margin-left: 5px; margin-right: -10px;" data-toggle="modal"
+							data-target="#loginModal">Đăng Nhập</a></li>
+					<li class="nav-item dropdown" th:if="${session.idAccount} "><a th:utext="${session.userName}"
+							class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"
+							style="margin-left: 5px; margin-right: -10px;"></a>
+						<div class="dropdown-menu" aria-labelledby="dropdown-a">
+							<a class="dropdown-item" th:href="@{/client/dangXuat}">Đăng
+								xuất</a>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+</header>
+<script>
+	function datBan() {
+		var order = document.getElementById("datBan");
+		var datBan = order.getAttribute("data-session");
+
+		if (datBan == null) {
+			document.getElementById("myAlert").style.display = "block";
+			setTimeout(function () {
+				document.getElementById("myAlert").style.display = "none";
+			}, 2000);
+		} else {
+			window.location.href = "/client/datBan";
+		}
+	}
+</script>

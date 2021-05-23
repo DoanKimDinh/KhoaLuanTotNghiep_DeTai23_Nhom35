@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.mongo.MongoAutoConfiguration;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -38,6 +39,7 @@ public class MonAnController {
 	
 	@GetMapping("/admin/monAn")
 	public ModelAndView getAdminMonAn(HttpServletRequest request) {
+
 			if(request.getSession().getAttribute("idAdmin") != null) {
 				ModelAndView modelAndView = new ModelAndView("admin/quanlymonan");
 				List<MonAn> listMonAn = monAnService.finDall();

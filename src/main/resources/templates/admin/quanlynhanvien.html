@@ -2,95 +2,60 @@
 <html xmlns:th="http://thymeleaf.org">
 
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Admin Page</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Admin Page</title>
 
-<link rel="shortcut icon" th:href="@{/images/favicon.ico}"
-	type="image/x-icon">
-<link rel="apple-touch-icon" th:href="@{/images/apple-touch-icon.png}">
+	<link rel="shortcut icon" th:href="@{/images/favicon.ico}" type="image/x-icon">
+	<link rel="apple-touch-icon" th:href="@{/images/apple-touch-icon.png}">
 
-<link rel="stylesheet"
-	th:href="@{/plugins/fontawesome-free/css/all.min.css}">
-<!-- <link rel="stylesheet"
+	<link rel="stylesheet" th:href="@{/plugins/fontawesome-free/css/all.min.css}">
+	<!-- <link rel="stylesheet"
 	th:href="@{/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css}">
  -->
-<!-- Site CSS -->
-<link rel="stylesheet" th:href="@{/css/style.css}">
+	<!-- Site CSS -->
+	<link rel="stylesheet" th:href="@{/css/style.css}">
 
-<link rel="stylesheet" th:href="@{/dist/css/adminlte.min.css}">
-<!-- overlayScrollbars -->
-<link rel="stylesheet"
-	th:href="@{/plugins/overlayScrollbars/css/OverlayScrollbars.min.css}">
-<!-- Daterange picker -->
-<link rel="stylesheet"
-	th:href="@{/plugins/daterangepicker/daterangepicker.css}">
-<!-- summernote -->
-<link rel="stylesheet"
-	th:href="@{/plugins/summernote/summernote-bs4.min.css}">
-<!-- Bootstrap CSS -->
-<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
-<!-- Responsive CSS -->
-<link rel="stylesheet" th:href="@{/css/responsive.css}">
-<!-- Custom CSS -->
-<link rel="stylesheet" th:href="@{/css/custom.css}">
-<link rel="stylesheet" th:href="@{/css/adminCustom.css}">
+	<link rel="stylesheet" th:href="@{/dist/css/adminlte.min.css}">
+	<!-- overlayScrollbars -->
+	<link rel="stylesheet" th:href="@{/plugins/overlayScrollbars/css/OverlayScrollbars.min.css}">
+	<!-- Daterange picker -->
+	<link rel="stylesheet" th:href="@{/plugins/daterangepicker/daterangepicker.css}">
+	<!-- summernote -->
+	<link rel="stylesheet" th:href="@{/plugins/summernote/summernote-bs4.min.css}">
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+	<!-- Responsive CSS -->
+	<link rel="stylesheet" th:href="@{/css/responsive.css}">
+	<!-- Custom CSS -->
+	<link rel="stylesheet" th:href="@{/css/custom.css}">
+	<link rel="stylesheet" th:href="@{/css/adminCustom.css}">
 
-<style>
-.modal-dialog {
-	max-width: 600px;
-}
+	<style>
+		.modal-dialog {
+			max-width: 600px;
+		}
 
-img {
-	width: 25%;
-}
+		img {
+			width: 25%;
+		}
 
-.table td {
-	width: 1%;
-}
-</style>
+		.table td {
+			width: 1%;
+		}
+	</style>
 
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
 	<div class="wrapper">
 		<!-- Preloader -->
-		<div
-			class="preloader flex-column justify-content-center align-items-center">
-			<img class="animation__shake" th:src="@{/dist/img/AdminLTELogo.png}"
-				alt="AdminLTELogo" height="60" width="60">
+		<div class="preloader flex-column justify-content-center align-items-center">
+			<img class="animation__shake" th:src="@{/dist/img/AdminLTELogo.png}" alt="AdminLTELogo" height="60"
+				width="60">
 		</div>
 	</div>
-	<header class="top-navbar">
-		<nav class="navbar navbar-expand-lg navbar-light bg-light">
-			<div class="container">
-				<a class="navbar-brand" href="index.html"> <!-- <img th:src="@{/images/logo.png}" alt="" /> -->
-					<h2>LOGO</h2>
-				</a>
-				<button class="navbar-toggler" type="button" data-toggle="collapse"
-					data-target="#navbars-rs-food" aria-controls="navbars-rs-food"
-					aria-expanded="false" aria-label="Toggle navigation">
-					<span class="navbar-toggler-icon"></span>
-				</button>
-				<div class="collapse navbar-collapse" id="navbars-rs-food">
-					<ul class="navbar-nav ml-auto">
-						<li class="nav-item"><a class="nav-link" th:href="@{/}">Trang
-								chủ</a></li>
-						<li class="nav-item"><a class="nav-link"
-							th:href="admin_menu.html">Món Ăn</a></li>
-						<li class="nav-item"><a class="nav-link"
-							th:href="admin_reservation.html" id="login">Đặt bàn</a></li>
-						<li class="nav-item active"><a class="nav-link"
-							th:href="@{/admin/quanlynhanvien}" id="login">Quản lý</a></li>
-						<li class="nav-item" id="login"><a class="nav-link" href="#"
-							style="margin-left: 5px; margin-right: -10px;">Admin</a></li>
-						<!-- <li class="nav-item"><a class="nav-link" th:href="contact.html">Contact</a></li> -->
-					</ul>
-				</div>
-			</div>
-		</nav>
-
-	</header>
+	<div th:replace="admin/headeradmin"></div>
 	<!-- Main Sidebar Container -->
 	<div th:replace="admin/sibarAdmin"></div>
 
@@ -121,13 +86,12 @@ img {
 								<!-- /.card-header -->
 								<!-- form start -->
 								<div class="card-body">
-									<div id="example1_wrapper"
-										class="dataTables_wrapper dt-bootstrap4 no-footer">
+									<div id="example1_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
 										<div class="row">
 											<div class="col-sm-12 col-md-6">
 												<div class="dt-buttons btn-group flex-wrap">
-													<button class="btn btn-add" type="button"
-														data-toggle="modal" data-target="#inforModal" id="btnAdd">Thêm
+													<button class="btn btn-add" type="button" data-toggle="modal"
+														data-target="#inforModal" id="btnAdd">Thêm
 														nhân viên</button>
 												</div>
 											</div>
@@ -160,10 +124,12 @@ img {
 													<td th:text="${nhanVien.gioiTinh}"></td>
 													<td th:text="${nhanVien.quyenTruyCap.tenQuyenTruyCap}"></td>
 													<td style="text-align: center;"><a
-														th:href="@{/admin/quanlynhanvien/edit/{id}(id=${nhanVien.maNhanVien})}"><i
-															class="fas fa-user-edit" style="margin-right: 7px;"></i></a>
+															th:href="@{/admin/quanlynhanvien/edit/{id}(id=${nhanVien.maNhanVien})}"><i
+																class="fas fa-user-edit"
+																style="margin-right: 7px;"></i></a>
 														<a href="#" data-toggle="modal" id="btnDelete"
-														data-target="#mi-modal"><i class="fas fa-trash-alt" id="btn-confirm"></i></a>
+															data-target="#mi-modal"><i class="fas fa-trash-alt"
+																id="btn-confirm"></i></a>
 												</tr>
 											</tbody>
 											<tfoot>
@@ -230,14 +196,12 @@ img {
 		<!-- End Footer -->
 
 		<!-- MODAL DELETE FOR ALL -->
-		<div class="modal fade" tabindex="-1" role="dialog"
-			aria-labelledby="mySmallModalLabel" aria-hidden="true" id="mi-modal">
+		<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true"
+			id="mi-modal">
 			<div class="modal-dialog modal-dialog-centered" style="width: 475px;">
 				<div class="modal-content">
-					<div class="modal-header border-bottom-0"
-						style="height: 35px; padding: 5px 10px 10px;">
-						<button type="button" class="close" data-dismiss="modal"
-							aria-label="Close">
+					<div class="modal-header border-bottom-0" style="height: 35px; padding: 5px 10px 10px;">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 						</button>
 					</div>
@@ -246,11 +210,10 @@ img {
 							<h5>Bạn có thật sự muốn xóa nhân viên này?</h5>
 						</div>
 					</div>
-					<div class="modal-footer"
-						style="height: 60px; padding: 5px 15px 10px;">
+					<div class="modal-footer" style="height: 60px; padding: 5px 15px 10px;">
 						<button type="button" class="btn btn-add" id="modal-btn-no">Đồng ý</button>
-						<button type="button" class="btn btn-default" id="modal-btn-si"
-							data-dismiss="modal" aria-label="Close">Hủy bỏ</button>
+						<button type="button" class="btn btn-default" id="modal-btn-si" data-dismiss="modal"
+							aria-label="Close">Hủy bỏ</button>
 					</div>
 				</div>
 			</div>
@@ -258,24 +221,22 @@ img {
 	</div>
 
 	<!-- FORM ADD NEW STAFF -->
-	<div class="modal fade" id="inforModal" tabindex="-1" role="dialog"
-		aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal fade" id="inforModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+		aria-hidden="true">
 		<div class="modal-dialog modal-dialog-centered" role="document">
 			<div class="modal-content">
 				<div class="modal-header border-bottom-0">
 					<div class="form-title text-center">
 						<h4>Thêm nhân viên</h4>
 					</div>
-					<button type="button" class="close" data-dismiss="modal"
-						aria-label="Close">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
 				<div class="modal-body">
 					<div>
 						<div class="panel-body">
-							<form action="#" th:action="@{/addNhanVien}"
-								th:object="${khachHang}" method="post"
+							<form action="#" th:action="@{/addNhanVien}" th:object="${khachHang}" method="post"
 								enctype="multipart/form-data">
 								<div class="form-group">
 									<label class="col-sm-6 control-label">Tên nhân viên</label> <input
@@ -284,36 +245,33 @@ img {
 								</div>
 								<div class="form-group">
 									<label class="col-sm-6 control-label">Số điện thoại</label> <input
-										class="form-control" required="required" type="number"
-										name="soDienThoai" placeholder="Nhập số điện thoại"
-										ng-model="me.email">
+										class="form-control" required="required" type="number" name="soDienThoai"
+										placeholder="Nhập số điện thoại" ng-model="me.email">
 								</div>
 								<div class="form-group">
-									<label class="col-sm-6 control-label">Email</label> <input
-										class="form-control" type="email" name="email"
-										placeholder="Nhập Email" ng-model="me.email">
+									<label class="col-sm-6 control-label">Email</label> <input class="form-control"
+										type="email" name="email" placeholder="Nhập Email" ng-model="me.email">
 								</div>
 								<div class="form-group">
 									<label class="col-sm-6 control-label">Chứng minh nhân
-										dân</label> <input class="form-control" required="required"
-										type="number" name="chungMinhNhanDan"
-										placeholder="Nhập chứng minh nhân dân" ng-model="me.email">
+										dân</label> <input class="form-control" required="required" type="number"
+										name="chungMinhNhanDan" placeholder="Nhập chứng minh nhân dân"
+										ng-model="me.email">
 								</div>
 								<div class="form-group">
-									<label class="col-sm-6 control-label">Địa chỉ</label> <input
-										class="form-control" type="text" name="diaChi"
-										placeholder="Nhập địa chỉ" ng-model="me.email">
+									<label class="col-sm-6 control-label">Địa chỉ</label> <input class="form-control"
+										type="text" name="diaChi" placeholder="Nhập địa chỉ" ng-model="me.email">
 								</div>
 								<div class="form-group">
 									<label class="col-sm-3 control-label">Giới tính:</label>
 									<div class="form-check-inline">
-										<label class="form-check-label"> <input type="radio"
-											class="form-check-input" name="gioiTinh" value="Nam" checked>Nam
+										<label class="form-check-label"> <input type="radio" class="form-check-input"
+												name="gioiTinh" value="Nam" checked>Nam
 										</label>
 									</div>
 									<div class="form-check-inline">
-										<label class="form-check-label"> <input type="radio"
-											class="form-check-input" name="gioiTinh" value="Nữ">Nữ
+										<label class="form-check-label"> <input type="radio" class="form-check-input"
+												name="gioiTinh" value="Nữ">Nữ
 										</label>
 									</div>
 								</div>
@@ -323,14 +281,12 @@ img {
 										placeholder="Nhập tên tài khoản" ng-model="me.email">
 								</div>
 								<div class="form-group">
-									<label class="col-sm-6 control-label">Mật khẩu</label> <input
-										class="form-control" type="password" name="matKhau"
-										placeholder="Nhập mật khẩu" ng-model="me.email">
+									<label class="col-sm-6 control-label">Mật khẩu</label> <input class="form-control"
+										type="password" name="matKhau" placeholder="Nhập mật khẩu" ng-model="me.email">
 								</div>
 								<div class="form-group" style="display: none">
-									<input class="form-control" type="password"
-										name="maQuyenTruyCap" placeholder="Nhập mật khẩu"
-										ng-model="me.email" value="2">
+									<input class="form-control" type="password" name="maQuyenTruyCap"
+										placeholder="Nhập mật khẩu" ng-model="me.email" value="2">
 								</div>
 								<button type="submit" class="btn btn-add">Thêm Nhân
 									viên</button>
@@ -355,8 +311,7 @@ img {
 	<script th:src="@{/plugins/daterangepicker/daterangepicker.js}"></script>
 
 	<script th:src="@{/plugins/summernote/summernote-bs4.min.js}"></script>
-	<script
-		th:src="@{/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js}"></script>
+	<script th:src="@{/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js}"></script>
 	<script th:src="@{/dist/js/adminlte.js}"></script>
 	<script th:src="@{/dist/js/demo.js}"></script>
 	<!-- ALL JS FILES -->
@@ -372,40 +327,34 @@ img {
 	<script th:src="@{/js/custom.js}"></script>
 
 	<script th:src="@{/plugins/datatables/jquery.dataTables.min.js}"></script>
-	<script
-		th:src="@{/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js}"></script>
-	<script
-		th:src="@{/plugins/datatables-responsive/js/dataTables.responsive.min.js}"></script>
-	<script
-		th:src="@{/plugins/datatables-responsive/js/responsive.bootstrap4.min.js}"></script>
-	<script
-		th:src="@{/plugins/datatables-buttons/js/dataTables.buttons.min.js}"></script>
-	<script
-		th:src="@{/plugins/datatables-buttons/js/buttons.bootstrap4.min.js}"></script>
+	<script th:src="@{/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js}"></script>
+	<script th:src="@{/plugins/datatables-responsive/js/dataTables.responsive.min.js}"></script>
+	<script th:src="@{/plugins/datatables-responsive/js/responsive.bootstrap4.min.js}"></script>
+	<script th:src="@{/plugins/datatables-buttons/js/dataTables.buttons.min.js}"></script>
+	<script th:src="@{/plugins/datatables-buttons/js/buttons.bootstrap4.min.js}"></script>
 	<script th:src="@{/plugins/datatables-buttons/js/buttons.html5.min.js}"></script>
 	<script th:src="@{/plugins/datatables-buttons/js/buttons.print.min.js}"></script>
-	<script
-		th:src="@{/plugins/datatables-buttons/js/buttons.colVis.min.js}"></script>
+	<script th:src="@{/plugins/datatables-buttons/js/buttons.colVis.min.js}"></script>
 	<script>
-    $(document).ready(function () {
-      $('#myTable').DataTable({
-    	  "language": {
-              "url": "//cdn.datatables.net/plug-ins/1.10.24/i18n/Vietnamese.json"
-          }
-      });
-      
-      $("#btnAdd").click(function(){
-    	  $("#inforModal").modal();
-      })
-    });
+		$(document).ready(function () {
+			$('#myTable').DataTable({
+				"language": {
+					"url": "//cdn.datatables.net/plug-ins/1.10.24/i18n/Vietnamese.json"
+				}
+			});
 
-  </script>
+			$("#btnAdd").click(function () {
+				$("#inforModal").modal();
+			})
+		});
+
+	</script>
 
 	<style type="text/css">
-.dataTables_filter {
-	float: right
-}
-</style>
+		.dataTables_filter {
+			float: right
+		}
+	</style>
 </body>
 
 </html>

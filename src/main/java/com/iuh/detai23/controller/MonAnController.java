@@ -131,4 +131,16 @@ public class MonAnController {
 //		monAnService.save(monAn);
 //		return Optional.ofNullable(monAn);
 //	}
+	
+	@GetMapping("/monan")
+	public ModelAndView getMonAn() {
+		ModelAndView modelAndView = new ModelAndView("menu");
+		List<MonAn> listMonAn = monAnService.finDall();
+		for (MonAn monAn : listMonAn) {
+			monAn.setHinhAnh("http://localhost:8080/download/"+monAn.getHinhAnh());
+		}
+		modelAndView.addObject("listMonAn", listMonAn);
+		modelAndView.addObject("listLoaiMonAn", loaiMonAnService.findAll());
+		return modelAndView;
+	}
 }

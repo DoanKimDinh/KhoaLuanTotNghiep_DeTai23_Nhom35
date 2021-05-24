@@ -16,6 +16,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.iuh.detai23.type.TypeHoaDon;
 
 import lombok.AllArgsConstructor;
@@ -40,13 +41,14 @@ public class HoaDon {
 	@Enumerated(EnumType.STRING)
 	private TypeHoaDon tinhTrang;
 	
+	
 	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private KhachHang khachHang;
 	
 	@ManyToOne
 	private NhanVien nhanVien;
 	
-	 
+	
 	@OneToMany(mappedBy = "hoaDon", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private List<ChiTietHoaDon> chiTietHoadon;
 	

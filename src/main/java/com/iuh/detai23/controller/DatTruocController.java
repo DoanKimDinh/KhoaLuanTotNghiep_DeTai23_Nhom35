@@ -71,6 +71,7 @@ public class DatTruocController {
 				int id = (int) request.getSession().getAttribute("idAccount");
 				KhachHang kh = khachHangService.findById(id);
 				modelAndView.addObject("khachHang", kh);
+				
 			}
 		} catch (Exception e) {
 
@@ -424,5 +425,11 @@ public class DatTruocController {
 	
 		return "redirect:/admin/banDatTruoc/edit/" + banDatTruoc.getMaDatTruoc();
 	}
-
+	@GetMapping("/deleteBanDatTruoc/{id}")
+	public String deleteBanDatTruoc(@PathVariable("id") int id) {
+		
+		banDatTruocService.delete(id);
+		
+		return "redirect:/admin/banDatTruoc";
+	}
 }

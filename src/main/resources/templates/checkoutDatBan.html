@@ -46,8 +46,7 @@
 		<nav class="navbar navbar-expand-lg navbar-light bg-light">
 			<div class="container">
 				<a class="navbar-brand" th:href="@{/}">
-					<!-- <img src="@{/images/logo.png" alt="" /> -->
-					<h2>LOGO</h2>
+					<img th:src="@{/images/logoo.png}" alt="" />
 				</a>
 				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbars-rs-food"
 					aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
@@ -105,16 +104,6 @@
 							<img th:src="@{${monAn.hinhAnh}}" class="img-fluid" alt="Image">
 							<div class="why-text">
 								<p th:text="${monAn.moTa}"></p>
-								<!-- <h5 th:text="${monAn.DonGia}+' VNĐ'"></h5> -->
-								<!-- <div class="d-flex justify-content-around">
-									<input type="hidden" value="${monAn.tenMonAn}" name="tenMonAn">
-									<input type="hidden" value="${monAn.maMonAn}" name="maMonAn">
-									<input type="hidden" th:value="${monAn.DonGia}" name="donGia">
-									<input type="number" class="p-2 bd-highlight"
-										style="width: 20%" value="1" name="soLuong"> 
-									<input type="button" class="p-2 bd-highlight btn btn-primary addRow" 
-										style="background-color: #ffc107;" th:data-idMonAn="${monAn.maMonAn}" th:data-donGia="${monAn.DonGia}" th:data-tenMon="${monAn.tenMonAn}" value="Thêm Món">
-								</div> -->
 							</div>
 						</div>
 						<div class="food-detail" style="text-align: center; font-size: 24px;">
@@ -123,7 +112,8 @@
 							<input type="hidden" value="${monAn.tenMonAn}" name="tenMonAn">
 							<input type="hidden" value="${monAn.maMonAn}" name="maMonAn">
 							<input type="hidden" th:value="${monAn.DonGia}" name="donGia">
-							<input type="number" class="food-quanlity" value="1" name="soLuong" min="1" max="100">
+							<h4 style="position: absolute;left: 60px;margin: -9px; font-weight: bold;">Số lượng</h4>
+							<input type="number" class="food-quanlity" value="1" name="soLuong" min="1" max="100" style="margin-right:27px;">
 							<input type="button" class="p-2 bd-highlight btn btn-add addRow"
 								th:data-idMonAn="${monAn.maMonAn}" th:data-donGia="${monAn.DonGia}"
 								th:data-tenMon="${monAn.tenMonAn}" value="Thêm Món">

@@ -58,6 +58,8 @@ public class InstallController {
 	
 	@Autowired 
 	private HoaDonService hoaDonService;
+
+	
 	
 	@GetMapping("/install")
 	public LoaiMonAn ten() {
@@ -69,15 +71,15 @@ public class InstallController {
 		loaiMonAnService.save(loaiMonAn2);
 		loaiMonAnService.save(loaiMonAn3);
 
-		MonAn monAn1 = new MonAn("Lẩu Thái", 120000, "Món Ăn Hà Nội", "img-01.jpg", loaiMonAn1,"DangKinhDoanh");
-		MonAn monAn2 = new MonAn("Lẩu Hải Sản", 130000, "Món Ăn Hà Nội", "img-02.jpg", loaiMonAn1,"DangKinhDoanh");
-		MonAn monAn3 = new MonAn("Lẩu Cá Kèo", 140000, "Món Ăn Hà Nội", "img-03.jpg", loaiMonAn1,"DangKinhDoanh");
-		MonAn monAn4 = new MonAn("Tôm Sú", 160000, "Món Ăn Hà Nội", "img-04.jpg", loaiMonAn2,"DangKinhDoanh");
-		MonAn monAn5 = new MonAn("Tôm Càng", 110000, "Món Ăn Hà Nội", "img-05.jpg", loaiMonAn2,"DangKinhDoanh");
-		MonAn monAn6 = new MonAn("Tôm Hùm", 220000, "Món Ăn Hà Nội", "img-06.jpg", loaiMonAn2,"DangKinhDoanh");
-		MonAn monAn7 = new MonAn("Cá Lăng", 320000, "Món Ăn Hà Nội", "img-07.jpg", loaiMonAn2,"DangKinhDoanh");
-		MonAn monAn8 = new MonAn("Gỏi Cá Trích", 1220000, "Món Ăn Hà Nội", "img-08.jpg", loaiMonAn3,"NgungKinhDoanh");
-		MonAn monAn9 = new MonAn("Gỏi Tiến Vua", 1210000, "Món Ăn Hà Nội", "img-09.jpg", loaiMonAn3,"NgungKinhDoanh");
+		MonAn monAn1 = new MonAn("Lẩu Thái", 35000, "Món Ăn Hà Nội", "img-01.jpg", loaiMonAn1,"DangKinhDoanh");
+		MonAn monAn2 = new MonAn("Lẩu Hải Sản", 20000, "Món Ăn Hà Nội", "img-02.jpg", loaiMonAn1,"DangKinhDoanh");
+		MonAn monAn3 = new MonAn("Lẩu Cá Kèo", 50000, "Món Ăn Hà Nội", "img-03.jpg", loaiMonAn1,"DangKinhDoanh");
+		MonAn monAn4 = new MonAn("Tôm Sú", 10000, "Món Ăn Hà Nội", "img-04.jpg", loaiMonAn2,"DangKinhDoanh");
+		MonAn monAn5 = new MonAn("Tôm Càng", 12000, "Món Ăn Hà Nội", "img-05.jpg", loaiMonAn2,"DangKinhDoanh");
+		MonAn monAn6 = new MonAn("Tôm Hùm", 22000, "Món Ăn Hà Nội", "img-06.jpg", loaiMonAn2,"DangKinhDoanh");
+		MonAn monAn7 = new MonAn("Cá Lăng", 32000, "Món Ăn Hà Nội", "img-07.jpg", loaiMonAn2,"DangKinhDoanh");
+		MonAn monAn8 = new MonAn("Gỏi Cá Trích", 32000, "Món Ăn Hà Nội", "img-08.jpg", loaiMonAn3,"NgungKinhDoanh");
+		MonAn monAn9 = new MonAn("Gỏi Tiến Vua", 40000, "Món Ăn Hà Nội", "img-09.jpg", loaiMonAn3,"NgungKinhDoanh");
 		
 		monAnService.save(monAn1);
 		monAnService.save(monAn2);

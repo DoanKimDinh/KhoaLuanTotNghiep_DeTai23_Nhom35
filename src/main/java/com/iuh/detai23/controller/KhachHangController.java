@@ -67,7 +67,7 @@ public class KhachHangController {
 
 	@GetMapping("client/dangXuat")
 	public String destroySession(HttpServletRequest request) {
-		if(request.getSession().getAttribute("idAccount")!=null) {
+		if((request.getSession().getAttribute("idAccount")!=null)||(request.getSession().getAttribute("idAdmin")!=null)) {
 			request.getSession().removeAttribute("idAccount");
 			request.getSession().removeAttribute("idAdmin");
 		}

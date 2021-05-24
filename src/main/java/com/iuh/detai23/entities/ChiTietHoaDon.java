@@ -26,11 +26,13 @@ public class ChiTietHoaDon {
 	private ChiTietHoaDonKey chiTietHoaDon;
 	
 	
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "maMonAn_key")
 	@MapsId(value = "maMonAn")
 	private MonAn monAn;
 	
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "maHoaDon_key")
 	@MapsId(value = "maHoaDon")

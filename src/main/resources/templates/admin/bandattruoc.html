@@ -109,7 +109,9 @@
 															th:href="@{/admin/banDatTruoc/edit/{id}(id=${banDatTruoc.maDatTruoc})}"><i
 																class="fas fa-user-edit"
 																style="margin-right: 10px;"></i></a>
-														<a href="#"><i class="fas fa-trash-alt"></i></a>
+														 <a href="#" data-toggle="modal" id="btnDelete" 
+							                              data-target="#mi-modal"><i class="fas fa-trash-alt" id="btn-confirm"></i></a>
+							                              <input type="hidden" id="id" th:value="${banDatTruoc.maDatTruoc}">
 													</td>
 												</tr>
 												<!-- <tr>
@@ -203,6 +205,30 @@
 			</div>
 
 		</footer>
+		
+		<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true"
+        id="mi-modal">
+        <div class="modal-dialog modal-dialog-centered" style="width: 475px;">
+          <div class="modal-content">
+            <div class="modal-header border-bottom-0" style="height: 35px; padding: 5px 10px 10px;">
+              	<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                  aria-hidden="true">&times;</span></button>              
+            </div>
+            <div class="modal-body">
+				<div class="form-title text-center">
+					<h5>Bạn thực sự muốn hủy bàn đặt trước này ?</h5>
+				</div>
+            </div>
+            <form action="" method="GET">
+            	<input type="hidden" name="id" />
+				<div class="modal-footer" style="height: 60px; padding: 5px 15px 10px;">
+	            	<button class="btn btn-add">Đồng ý</button>
+	              	<button type="button" class="btn btn-default" id="modal-btn-si" data-dismiss="modal" aria-label="Close">Hủy bỏ</button>
+            	</div>            
+            </form>
+          </div>
+        </div>
+      </div>
 		<!-- End Footer -->
 
 		<div class="modal fade" id="inforModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
@@ -298,6 +324,15 @@
 			$(function () {
 				$('[data-toggle="tooltip"]').tooltip()
 			})
+			
+			
+			$("table #btnDelete").click(function(event){
+    	
+	    	  var id = $(this).parent().find('#id').val();
+	    	  $("#mi-modal").find("[name=id]").val(id);
+	    	  $("#mi-modal").find("form").attr("action", "/deleteBanDatTruoc/" + id);
+	    	  $("#mi-modal").modal();
+     	 })
 		});
 
 		$(document).ready(function () {

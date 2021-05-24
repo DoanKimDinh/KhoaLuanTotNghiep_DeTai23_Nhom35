@@ -117,7 +117,7 @@
 													<td style="text-align: center;"><a href="#"><i
 																class="fas fa-info-circle inforHoaDon"
 																data-toggle="modal"
-																th:attr="data-maHoaDon=${hoaDon.maHoaDon}"
+																th:data-maHoaDon="${hoaDon.maHoaDon}"
 																data-target="#inforModal" id="billDetail"></i></a></td>
 												</tr>
 
@@ -203,7 +203,7 @@
 							<div class="container">
 								<div class="card">
 									<div class="card-header">
-										Ngày xuất hóa đơn <strong>01/01/2021</strong> <span class="float-right">
+										Ngày xuất hóa đơn <strong id="ngayXuatHoaDon">01/01/2021</strong> <span class="float-right">
 											<strong>Trạng Thái:</strong> Đã
 											thanh toán
 										</span>
@@ -220,7 +220,7 @@
 												<div>Email: nhahang@gmail.com.vn</div>
 												<div>Phone: +́84 444 666 3333</div>
 											</div>
-											<div class="col-sm-6">
+											<div class="col-sm-6" id="inforKhachHang">
 												<h6 class="mb-3">Thông tin khách hàng:</h6>
 												<div>
 													<strong>Trần Minh Trúc</strong>
@@ -241,7 +241,7 @@
 														<th class="right">Tổng tiền</th>
 													</tr>
 												</thead>
-												<tbody>
+												<tbody id="inforChiTietHoaDon">
 													<tr>
 														<td class="center">1</td>
 														<td class="left strong">Cá Hấp</td>
@@ -272,19 +272,19 @@
 											<div class="col-lg-5 col-sm-5 ml-auto">
 												<table class="table table-clear">
 													<tbody>
-														<tr>
+														<tr id="tamTinh">
 															<td class="left"><strong>Tạm tính</strong></td>
 															<td class="right">629.000 VNĐ</td>
 														</tr>
 														<tr>
-															<td class="left"><strong>Discount (0%)</strong></td>
-															<td class="right">629.000 VNĐ</td>
+															<td class="left"><strong>Discount (%)</strong></td>
+															<td class="right"> 0%</td>
 														</tr>
-														<tr>
+														<tr id="vat">
 															<td class="left"><strong>VAT (10%)</strong></td>
 															<td class="right">62.900 VNĐ</td>
 														</tr>
-														<tr>
+														<tr id="tongTienAll">
 															<td class="left"><strong>Tổng tiền</strong></td>
 															<td class="right"><strong>691.900 VNĐ</strong></td>
 														</tr>
@@ -377,62 +377,107 @@
 						function (event) {
 
 							event.preventDefault();
-
+							
 							var maMonAn = event.target
-								.getAttribute('data-idMonAn');
+								.getAttribute('data-maHoaDon');
 
+							
 							$
 								.ajax({
 									type: "POST",
 									contentType: "application/json; charset=utf-8",
-									url: "http://localhost:8080/client/removeRowMonAn",
+									url: "http://localhost:8080/admin/getHoaDon",
 									data: JSON.stringify({
 										'id': maMonAn
 									}),
 
 									success: function (
 										result) {
-
-										var len = result.length;
-										var html = '';
-
-										var totalMoney = 0;
-
-										for (var i = 0; i < len; i++) {
-											var tongTien = result[i].soLuong
-												* result[i].donGia;
-											html += '<tr><th scope="row">'
-												+ (i + 1)
-												+ '</th>'
-												+ '<td >'
-												+ result[i].tenMonAn
-												+ '</td>'
-												+ '<td >'
-												+ result[i].soLuong
-												+ '</td>'
-												+ '<td >'
-												+ tongTien
-												+ '</td>'
-												+ '<td><a href="" class="removeFood" data-idMonAn="' + result[i].id + '">Xóa Bỏ</a></td></tr>';
-											totalMoney = totalMoney
-												+ tongTien;
+										
+										var htmlInforKhachHang = '';
+										var htmlInforChiTietHoaDon = '';
+										
+										htmlInforKhachHang +='<h6 class="mb-3">Thông tin khách hàng:</h6><div><strong>'+result.tenKhachHang+'</strong>'
+										+'</div>'
+										+'<div>Địa chỉ Email: '+result.diaChiEmail+'</div>'
+										+'<div>Số điện thoại: '+result.sdt+'</div>'
+										+'<div>Địa chỉ: '+result.diaChi+'</div>';
+										
+										
+										var stt = 0;
+										var doDai = result.chiTiet.length;
+										var monAns = result.chiTiet;
+										var tongTienTotal = 0;
+										for(var i=0;i<doDai;i++){
+											
+											var tongTien = 0;
+											
+											tongTien =monAns[i].donGia*monAns[i].soLuong;
+											stt++;
+											tongTienTotal+=tongTien;
+											var stringDonGia = monAns[i].donGia.toLocaleString(
+													'it-IT',
+													{
+														style: 'currency',
+														currency: 'VND'
+													});
+											htmlInforChiTietHoaDon += '<tr>'
+											+'<td class="center">'+stt+'</td>'
+											+'<td class="left strong">'+monAns[i].tenMonAn+'</td>'
+											+'<td class="right">'+stringDonGia+'</td>'
+											+'<td class="center">'+monAns[i].soLuong+'</td>'
+											+'<td class="right">'+tongTien.toLocaleString(
+													'it-IT',
+													{
+														style: 'currency',
+														currency: 'VND'
+													});+'</td>'
+										+'</tr>';
 										}
-										$("#addItem").html(
-											html);
-
-										totalMoney = totalMoney
-											.toLocaleString(
-												'it-IT',
-												{
-													style: 'currency',
-													currency: 'VND'
-												});
-										var htmlTongTien = '<h2>Tổng tiền : '
-											+ totalMoney
-											+ '</h2>'
-										$("#tongTien")
-											.html(
-												htmlTongTien);
+										
+										
+										
+										var htmlTamTinh ='<td class="left"><strong>Tạm tính</strong></td>'
+											+'<td class="right">'+tongTienTotal.toLocaleString(
+													'it-IT',
+													{
+														style: 'currency',
+														currency: 'VND'
+													});+'</td>';
+										
+										$("#tamTinh").html(htmlTamTinh);
+													
+													
+										var vat = tongTienTotal*0.1;
+										var htmlVAT = '<td class="left"><strong>VAT (10%)</strong></td>'
+													+'<td class="right">'+vat.toLocaleString(
+															'it-IT',
+															{
+																style: 'currency',
+																currency: 'VND'
+															});+'</td>';
+										$("#vat").html(htmlVAT);
+															
+															
+										var tongTienall = vat+tongTienTotal;				
+										var htmlTongTienAll	='<td class="left"><strong>Tổng tiền</strong></td>'
+													+'<td class="right"><strong>'+tongTienall.toLocaleString(
+															'it-IT',
+															{
+																style: 'currency',
+																currency: 'VND'
+															});+'</strong></td>';
+												
+										
+										$("#tongTienAll").html(htmlTongTienAll);
+										
+										
+										$("#inforChiTietHoaDon").html(htmlInforChiTietHoaDon);
+										
+										
+										$("#inforKhachHang").html(htmlInforKhachHang);
+										
+										$("#ngayXuatHoaDon").html(result.ngayLapHoaDon);
 									}
 								});
 						});

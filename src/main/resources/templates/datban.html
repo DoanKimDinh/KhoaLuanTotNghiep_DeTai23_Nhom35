@@ -182,10 +182,23 @@
 								</div>
 								<div class="col-md-6">
 									<h3>Thông tin liên hệ</h3>
+									
+									<div class="col-md-12" th:if="${session.idAdmin}">
+										<div class="form-group">
+											<strong><label>Lựa chọn khách hàng:</label></strong> 
+											 <select class="form-control" aria-label="Default select example">
+											  <option selected="">Open this select menu</option>
+											  <option value="1">One</option>
+											  <option value="2">Two</option>
+											  <option value="3">Three</option>
+											</select>
+										</div>
+									</div>
+									
 									<div class="col-md-12">
 										<div class="form-group">
 											<strong><label>Tên người liên hệ:</label></strong> <input type="text"
-												class="form-control" name="tenKhachHang"
+												class="form-control" name="tenKhachHang" id="tenKhachHang"
 												th:value="${khachHang.tenKhachHang}" placeholder="Họ và tên" required
 												data-error="Vui lòng nhập họ và tên" readonly="readonly">
 											<div class="help-block with-errors"></div>
@@ -195,7 +208,7 @@
 										<div class="form-group">
 											<strong><label>Địa chị email:</label></strong> <input type="text"
 												placeholder="Địa chỉ Email" th:value="${khachHang.email}"
-												class="form-control" name="email" required
+												class="form-control" name="email" id="email" required
 												data-error="Vui lòng nhập địa chỉ email" readonly="readonly">
 											<div class="help-block with-errors"></div>
 										</div>
@@ -204,7 +217,7 @@
 										<div class="form-group">
 											<strong><label>Số điện thoại:</label></strong> <input type="text"
 												placeholder="Số điện thoại" th:value="${khachHang.sdt}"
-												class="form-control" name="phone" required
+												class="form-control" name="phone" id="phone" required
 												data-error="Vui lòng nhập số điện thoại" readonly="readonly" />
 											<div class="help-block with-errors"></div>
 										</div>
@@ -213,7 +226,7 @@
 										<div class="form-group">
 											<strong><label>Địa chỉ:</label></strong> <input type="text"
 												placeholder="Địa chỉ" class="form-control"
-												th:value="${khachHang.diaChi}" name="diaChi" required
+												th:value="${khachHang.diaChi}" id="diaChi" name="diaChi" required
 												data-error="Vui lòng nhập địa chỉ" readonly="readonly" />
 											<div class="help-block with-errors"></div>
 										</div>
@@ -342,7 +355,38 @@
 	<script th:src="@{/js/jquery.superslides.min.js}"></script>
 	<script th:src="@{/js/images-loded.min.js}"></script>
 	<script th:src="@{/js/isotope.min.js}"></script>
+	
+	<script>
+		$(document).ready(function () {	
+		
+			var today = new Date();
+			var dd = today.getDate();
+			var mm = today.getMonth()+1; //January is 0!
+			var yyyy = today.getFullYear();
+			 if(dd<10){
+			        dd='0'+dd
+			    } 
+			    if(mm<10){
+			        mm='0'+mm
+			    } 
 
+			today = yyyy+'-'+mm+'-'+dd;
+			document.getElementById("input_date").setAttribute("min", today);
+		});
+		$( "#contactForm").submit(function( event ) {
+			 
+			  <!-- event.preventDefault();-->
+		});
+	</script>
+	<script th:if="${session.idAdmin}">
+		window.onload = (event) => {
+			$("#tenKhachHang").val('');
+			$("#diaChi").val('');
+			$("#phone").val('');
+			$("#email").val('');
+			
+		};
+	</script>
 </body>
 
 </html>

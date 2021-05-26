@@ -119,7 +119,7 @@ public class DatTruocController {
 		if (listMonAn != null) {
 			for (MonAn monAn : listMonAn) {
 				monAn.setHinhAnh("http://localhost:8080/download/" + monAn.getHinhAnh());
-				System.out.println(monAn.getDonGia());
+				
 			}
 			modelAndView.addObject("listMonAn", listMonAn);
 		}
@@ -135,7 +135,7 @@ public class DatTruocController {
 //		System.out.println(monAn.getId());
 //		System.out.println(monAn.getSoLuong());
 //		System.out.println(monAn.getTenMonAn());
-		System.out.println("dong gia " + monAn.getDonGia());
+		
 		ArrayList<AddMonAnModel> list;
 		if (request.getSession().getAttribute("list-cart-food") == null) {
 			list = new ArrayList<AddMonAnModel>();

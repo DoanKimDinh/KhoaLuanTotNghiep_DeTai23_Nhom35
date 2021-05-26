@@ -318,6 +318,47 @@
                                 class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
                     </div>
 
+
+					<div class="row container"><span>Năm : </span>
+    					<form th:action="@{/admin/hoadon/thongke/thang}" method="post">
+					    <select class="form-select" name="yearSelect">
+						  <option value="2014">2010</option>
+						  <option value="2013">2011</option>
+						  <option value="2012">2012</option>
+						  <option value="2011">2013</option>
+						  <option value="2010">2014</option>
+						  <option value="2015">2015</option>
+						  <option value="2016">2016</option>
+						  <option value="2017">2017</option>
+						  <option value="2018">2018</option>
+						  <option value="2019">2019</option>
+						  <option value="2020">2020</option>
+						  <option selected value="2021">2021</option>
+						  
+						  
+						</select>
+					    
+					    <span>Tháng : </span>
+					    
+					    <select class="form-select" name="monthSelect">
+						  
+						  <option value="1">1</option>
+						  <option value="2">2</option>
+						  <option value="3">3</option>
+						  <option selected value="4">4</option>
+						  <option value="5">5</option>
+						  <option value="6">6</option>
+						  <option value="7">7</option>
+						  <option value="8">8</option>
+						  <option value="9">9</option>
+						  <option value="10">10</option>
+						  <option value="11">11</option>
+						  <option value="12">12</option>
+						</select>
+					    <input class="btn btn-primary" value="Kiểm tra ngay" type="submit"/>
+						</form>
+					</div>
+
                     <!-- Content Row -->
                     <div class="row">
 
@@ -328,8 +369,8 @@
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                Earnings (Monthly)</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div>
+                                               Tổng danh thu </div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800" th:utext="${#numbers.formatDecimal(totalMoney, 0, 'COMMA', 0, 'POINT')}"></div> VNĐ
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-calendar fa-2x text-gray-300"></i>
@@ -346,8 +387,8 @@
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                                Earnings (Annual)</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">$215,000</div>
+                                                Doanh Thu Tháng <span th:utext="${selectMonth}" ></span> Năm <span th:utext="${selectYear}"></span></div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800" th:utext="${#numbers.formatDecimal(totalMoneyMonth, 0, 'COMMA', 0, 'POINT')}">$215,000</div> VNĐ
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -363,11 +404,11 @@
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Tasks
+                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Tổng số hóa đơn
                                             </div>
                                             <div class="row no-gutters align-items-center">
                                                 <div class="col-auto">
-                                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">50%</div>
+                                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800" th:utext="${totalBill}">50%</div>
                                                 </div>
                                                 <div class="col">
                                                     <div class="progress progress-sm mr-2">
@@ -393,8 +434,8 @@
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                                Pending Requests</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
+                                                Tổng số khách hàng </div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800" th:utext="${totalCustomer}"></div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-comments fa-2x text-gray-300"></i>

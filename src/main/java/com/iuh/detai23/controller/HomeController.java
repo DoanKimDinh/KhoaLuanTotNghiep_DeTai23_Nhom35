@@ -120,15 +120,5 @@ public class HomeController {
 	
 	
 	
-	@GetMapping("/admin/thongke")
-	public ModelAndView getPageThongKe() {
-		ModelAndView modelAndView = new ModelAndView("admin/thongke");
-		List<BanDatTruoc> listBanDatTruoc = banDatTruocService.findAll();
-		
-		modelAndView.addObject("listBanDatTruoc", listBanDatTruoc);
-		modelAndView.addObject("listLoaiMonAn", loaiMonAnService.findAll());
-		modelAndView.addObject("monAn", new MonAnModel());
-		return modelAndView;
-	}
-	
+
 }

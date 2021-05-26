@@ -28,6 +28,7 @@ import com.iuh.detai23.model.MonAnModel;
 import com.iuh.detai23.model.UpdateMonAnModel;
 import com.iuh.detai23.service.LoaiMonAnService;
 import com.iuh.detai23.service.MonAnService;
+import com.iuh.detai23.type.TypeMonAn;
 
 @Controller
 public class MonAnController {
@@ -65,10 +66,12 @@ public class MonAnController {
 		MonAn monAn = new MonAn();
 		monAn.setHinhAnh(file.getOriginalFilename());
 		monAn.setDonGia(monanmodel.getDonGia());
-		
 		monAn.setLoaiMonAn(loaiMonAnService.findByMaLoaiMonAn(monanmodel.getIdLoaiMonAn()));
 		monAn.setMoTa(monanmodel.getMoTa());
 		monAn.setTenMonAn(monanmodel.getTenMonAn());
+		monAn.setTinhTrang(TypeMonAn.DangKinhDoanh.toString());
+		
+		System.out.println("Huuuuuuuuuuu");
 		
 		monAnService.save(monAn);
 		return "redirect:/admin/monAn";

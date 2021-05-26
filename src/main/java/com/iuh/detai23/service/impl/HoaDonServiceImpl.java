@@ -11,10 +11,11 @@ import com.iuh.detai23.repositoties.HoaDonRepository;
 import com.iuh.detai23.service.HoaDonService;
 
 @Service
-public class HoaDonServiceImpl  implements HoaDonService{
+public class HoaDonServiceImpl implements HoaDonService {
 
 	@Autowired
 	private HoaDonRepository hoaDonRepository;
+
 	@Override
 	public HoaDon save(HoaDon hoaDon) {
 		// TODO Auto-generated method stub
@@ -36,7 +37,29 @@ public class HoaDonServiceImpl  implements HoaDonService{
 	@Override
 	public void delete(int id) {
 		// TODO Auto-generated method stub
-		
+
 	}
-	
+
+	@Override
+	public double getTotalMoney() {
+		// TODO Auto-generated method stub
+		return hoaDonRepository.getTotalMoneyStore();
+	}
+
+	@Override
+	public double getTotalMoneyWithMonth(int year, int month) {
+		// TODO Auto-generated method stub
+		String string;
+		if (month > 9)
+			string = year + "-" + month + "%";
+		else
+			string = year + "-0" + month + "%";
+		System.out.println(string);
+		Object object = hoaDonRepository.getTotalMoneyStoreWithMonth(string);
+		if (object != null)
+			return (double) object;
+		else
+			return 0;
+	}
+
 }

@@ -11,4 +11,6 @@ public interface HoaDonService {
 	public List<HoaDon> findAll();
 	public Optional<HoaDon> findById(int id);
 	public void delete(int id);
+	public double getTotalMoney();
+	public double getTotalMoneyWithMonth(int year, int month);
 }

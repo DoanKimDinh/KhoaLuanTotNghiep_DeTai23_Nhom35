@@ -410,11 +410,11 @@
 						<form th:action="@{/user/dangNhap}" method="POST" action="">
 							<div class="form-group">
 								<input type="text" class="form-control" id="email1" name="tenDangNhap"
-									placeholder="Tên đăng nhập">
+									placeholder="Tên đăng nhập" required="required">
 							</div>
 							<div class="form-group">
 								<input type="password" class="form-control" id="password1" name="matKhau"
-									placeholder="Mật khẩu">
+									placeholder="Mật khẩu" required="required">
 							</div>
 							<div id="notifyToast" style="display: none">
 								<span style="color: red">Tên đăng nhập hoặc mật khẩu không chính xác. Vui lòng đăng nhập
@@ -449,37 +449,50 @@
 				</div>
 				<div class="modal-body">
 					<div class="d-flex flex-column text-center">
-						<form action="" th:action="@{client/dangKyTaiKhoan}" method="POST">
+						<form action="" th:action="@{client/dangKyTaiKhoan}" method="POST" id="formRegis" name="formRegister">
 							<div class="form-group">
+								
 								<input type="text" class="form-control" name="tenKhachHang"
-									placeholder="Nhập họ tên của bạn ..."> <input type="hidden" class="form-control"
-									name="maKhachHang" value="-1" placeholder="Nhập họ tên của bạn ...">
+									placeholder="Nhập họ tên của bạn ..." required="required"> <input type="hidden" class="form-control"
+									name="maKhachHang" value="-1" placeholder="Nhập họ tên của bạn ..." >
+								
 							</div>
 							<div class="form-group">
+								
 								<input type="text" class="form-control" name="sdt" id="sdt"
-									placeholder="Nhập số điện thoại ...">
+									placeholder="Nhập số điện thoại ..." required="required">
+								<span style="color: red; display:none;" id = "errorSDT">Số điện thoại đã tồn tại. Vui lòng nhập lại! </span>
 							</div>
 							<div class="form-group">
+								
 								<input type="email" class="form-control" id="email" name="email"
-									placeholder="Nhập địa chỉ email ...">
+									placeholder="Nhập địa chỉ email ..." required="required">
+								<span style="color: red; display:none;" id="errorDiaChi">Địa chỉ email đã tồn tại. Vui lòng nhập lại! </span>
+							
 							</div>
 							<div class="form-group">
 								<input type="text" class="form-control" id="lienhe" name="diaChi"
-									placeholder="Nhập thông tin liên hệ ...">
+									placeholder="Nhập địa chỉ liên hệ ..." required="required">
 							</div>
 							<div class="form-group">
+								
 								<input type="text" class="form-control" name="tenTaiKhoan"
-									placeholder="Nhập tên tài khoản ...">
+									placeholder="Nhập tên tài khoản ..." required="required" id="tenTaiKhoan">
+								<span style="color: red; display:none;" id="errorTaiKhoan">Tên tài khoản đã tồn tại. Vui lòng nhập lại! </span>
+							
 							</div>
 							<div class="form-group">
-								<input type="password" class="form-control" id="password1" name="matKhau"
-									placeholder="Nhập mật khẩu ...">
+								
+								<input type="password" class="form-control" id="pass" name="matKhau"
+									placeholder="Nhập mật khẩu ..." required="required">
 							</div>
 							<div class="form-group">
-								<input type="password" class="form-control" id="password2"
-									placeholder="Nhập lại mật khẩu ...">
+								
+								<input type="password" class="form-control" id="passrepeat"
+									placeholder="Nhập lại mật khẩu ..." required="required">
+								<span style="color: red; display:none;" id="errorPassReset">Mật khẩu không khớp. Vui lòng nhập lại! </span>
 							</div>
-							<button type="submit" class="btn btn-add btn-block btn-round">Đăng Ký</button>
+							<input type="submit" class="btn btn-add btn-block btn-round btn-register" value="Đăng Ký"/>
 						</form>
 					</div>
 				</div>
@@ -493,5 +506,71 @@
 		</div>
 	</div>
 </body>
+<script>
+	$(document).ready(function(){
+		
+		document.formRegister.addEventListener("submit", function(event){
+			
+			var sdtString = $("#sdt").val();
+			var emailString = $("#email").val();
+			var accountString = $("#tenTaiKhoan").val();
+			
+			event.preventDefault();
+			
+			$.ajax({
+				type:"POST",
+				contentType: "application/json; charset=utf-8",
+				url: "http://localhost:8080/client/check/dangKyTaiKhoan",
+				data: JSON.stringify({
+					sdt: true,
+					email: true,
+					account: true,
+					sdtString: sdtString,
+					emailString: emailString,
+					accountString: accountString,
+					
+				}),
+				success: function(result){
+					if(!result.sdt){
+						document.getElementById("errorSDT").style.display = "block";
+					}
+					else{
+						document.getElementById("errorSDT").style.display = "none";
+					}
+					if(!result.email){
+						document.getElementById("errorDiaChi").style.display = "block";
+					}
+					else{
+						document.getElementById("errorDiaChi").style.display = "none";
+					}
+					if(!result.account){
+						document.getElementById("errorTaiKhoan").style.display = "block";
+					}
+					else{
+						document.getElementById("errorTaiKhoan").style.display = "none";
+					}
+					var matKhau = $("#pass").val();
+					var nhapLai = $("#passrepeat").val();
+					
+					var booleanPass = true;
+					if(matKhau == nhapLai){
+						document.getElementById("errorPassReset").style.display = "none";
+					}else{
+						document.getElementById("errorPassReset").style.display = "block";
+						booleanPass = false;
+					}
+					
+					if(result.account==true&&result.email==true&&result.sdt==true&&booleanPass==true){
+						$("#formRegis").unbind("submit").submit();
+					}
+				}
+			})
+		})
+		
+		$(document).on("click",".btn-registr",function(event){
+			event.preventDefault();
+		});
+	});
+</script>
 
 </html>

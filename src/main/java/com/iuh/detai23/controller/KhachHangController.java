@@ -9,13 +9,20 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.iuh.detai23.entities.KhachHang;
+import com.iuh.detai23.entities.NhanVien;
 import com.iuh.detai23.entities.QuyenTruyCap;
 import com.iuh.detai23.service.KhachHangService;
+import com.iuh.detai23.service.NhanVienService;
+
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import com.iuh.detai23.model.CheckRegisterModel;
 import com.iuh.detai23.model.DangNhapModel;
 import com.iuh.detai23.model.KhachHangModel;
 import com.iuh.detai23.model.MonAnModel;
@@ -30,6 +37,9 @@ public class KhachHangController {
 	
 	@Autowired 
 	private QuyenTruyCapService quyenTruyCapService;
+	
+	@Autowired
+	private NhanVienService nhanVienService;
 
 //	@Autowired
 //	private ModelAndView modelAndView;
@@ -51,6 +61,56 @@ public class KhachHangController {
 		redirectAttributes.addFlashAttribute("registerSuccess", "Đăng ký thành công");
 		return "redirect:/";
 	}
+	
+	
+	@PostMapping("/client/check/dangKyTaiKhoan")
+	@ResponseBody
+	public CheckRegisterModel checkDangKyTaiKhoan(@RequestBody CheckRegisterModel checkRegis, RedirectAttributes redirectAttributes, HttpServletRequest request) {
+		
+		//khachHang.setQuyenTruyCap(quyenTruyCapService.findById(1).get());
+	//	khachHangService.save(khachHang);
+		//redirectAttributes.addFlashAttribute("registerSuccess", "Đăng ký thành công");
+		CheckRegisterModel checkRegisterModel = new CheckRegisterModel();
+		System.out.println(checkRegis.isAccount());
+		System.out.println(checkRegis.isEmail());
+		System.out.println(checkRegis.isSdt());
+		
+		for (KhachHang khachHang : khachHangService.findAll()) {
+			if(checkRegis.getAccountString().equals(khachHang.getTenTaiKhoan())) {
+				checkRegis.setAccount(false);
+			}
+			if(checkRegis.getEmailString().equals(khachHang.getEmail())) {
+				checkRegis.setEmail(false);
+			}
+			if(checkRegis.getSdtString().equals(khachHang.getSdt())) {
+				checkRegis.setSdt(false);
+			}
+		}
+		
+		for (NhanVien nhanVien : nhanVienService.findAll()) {
+			if(checkRegis.getAccountString().equals(nhanVien.getTenTaiKhoan())) {
+				checkRegis.setAccount(false);
+			}
+			if(checkRegis.getEmailString().equals(nhanVien.getEmail())) {
+				checkRegis.setEmail(false);
+			}
+			if(checkRegis.getSdtString().equals(nhanVien.getSoDienThoai())) {
+				checkRegis.setSdt(false);
+			}
+		}
+		
+		System.out.println(checkRegis.getAccountString());
+		System.out.println(checkRegis.getEmailString());
+		System.out.println(checkRegis.getSdtString());
+		
+		System.out.println(checkRegis.isAccount());
+		System.out.println(checkRegis.isEmail());
+		System.out.println(checkRegis.isSdt());
+		System.out.println("================");
+		
+		return checkRegis;
+	}
+	
 	
 //	  @PostMapping("client/dangNhap") public String getDangNhap(DangNhapModel
 //	  dangNhapModel,RedirectAttributes redirectAttributes, HttpServletRequest

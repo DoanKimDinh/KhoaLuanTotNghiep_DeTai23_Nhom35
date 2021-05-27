@@ -130,6 +130,7 @@ public class KhachHangController {
 		if((request.getSession().getAttribute("idAccount")!=null)||(request.getSession().getAttribute("idAdmin")!=null)) {
 			request.getSession().removeAttribute("idAccount");
 			request.getSession().removeAttribute("idAdmin");
+			request.getSession().removeAttribute("idAdminMaster");
 		}
 		return "redirect:/";
 	}

@@ -33,7 +33,7 @@
             </p>
           </a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" th:if="${session.idAdminMaster} ">
           <a th:href="@{/admin/quanlynhanvien}" class="nav-link">
             <i class="fas fa-users" style="margin-left: 5px; margin-right: 5px;"></i>
             <p>

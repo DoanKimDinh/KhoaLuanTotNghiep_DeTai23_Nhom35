@@ -30,7 +30,7 @@ public class NhanVienController {
 	
 	@GetMapping("admin/quanlynhanvien")
 	public ModelAndView getQuanLyNhanVien(HttpServletRequest request) {
-		if(request.getSession().getAttribute("idAdmin") != null) {
+		if(request.getSession().getAttribute("idAdminMaster") != null) {
 			ModelAndView modelAndView = new ModelAndView("admin/quanLyNhanVien");
 			List<NhanVien> listNhanVien = nhanVienService.findAll();
 			modelAndView.addObject("listNhanVien", listNhanVien);
@@ -41,7 +41,7 @@ public class NhanVienController {
 	
 	@GetMapping("admin/quanlynhanvien/edit/{id}")
 	public ModelAndView getEditNhanVien(@PathVariable("id") int id, HttpServletRequest request) {
-		if(request.getSession().getAttribute("idAdmin") != null) {
+		if(request.getSession().getAttribute("idAdminMaster") != null) {
 			ModelAndView modelAndView = new ModelAndView("admin/chinhSuaNhanVien");
 			NhanVien nhanVien = nhanVienService.findById(id);
 			UpdateNhanVienModel nhanVienModel = new UpdateNhanVienModel(nhanVien.getMaNhanVien(), nhanVien.getTenNhanVien(), nhanVien.getSoDienThoai(), nhanVien.getEmail(), nhanVien.getChungMinhNhanDan(), nhanVien.getDiaChi(), nhanVien.getGioiTinh(), nhanVien.getTenTaiKhoan(), nhanVien.getMatKhau());

@@ -38,6 +38,9 @@ public class DangNhapServiceImpl implements DangNhapService{
 			if(nv.getTenTaiKhoan().equals(dangNhapModel.getTenDangNhap()) && nv.getMatKhau().equals(dangNhapModel.getMatKhau()) && nv.getQuyenTruyCap().getMaQuyenTruyCap() == 2){
 				return 2;
 			}
+			else if(nv.getTenTaiKhoan().equals(dangNhapModel.getTenDangNhap()) && nv.getMatKhau().equals(dangNhapModel.getMatKhau()) && nv.getQuyenTruyCap().getMaQuyenTruyCap() == 3){
+				return 3;
+			}
 		}
 		return 0;
 	}

@@ -13,4 +13,5 @@ public interface HoaDonService {
 	public void delete(int id);
 	public double getTotalMoney();
 	public double getTotalMoneyWithMonth(int year, int month);
+	public List<HoaDon> getListHoaDonByMonth( int year, int month);
 }

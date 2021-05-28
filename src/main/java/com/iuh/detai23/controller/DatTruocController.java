@@ -223,7 +223,7 @@ public class DatTruocController {
 		HoaDon hoaDon = new HoaDon(LocalDate.parse( banDatTruoc.getNgayDen(),formatter).atStartOfDay(), LocalDateTime.now(), TypeHoaDon.DaThanhToan, banDatTruoc.getGhiChu());
 		List<ChiTietHoaDon> listcthd = new ArrayList<ChiTietHoaDon>();
 		hoaDon.setKhachHang(banDatTruoc.getKhachHang());
-		hoaDon.setNhanVien(nhanVienService.findById(1));
+		hoaDon.setNhanVien(nhanVienService.findById(Integer.parseInt(request.getSession().getAttribute("idAdmin").toString())));
 		
 		for (ChiTietMonDatTruoc chiDatTruoc : banDatTruoc.getChiTietMonDatTruoc()) {
 			listcthd.add(new ChiTietHoaDon(new ChiTietHoaDonKey(), chiDatTruoc.getMonAn(), hoaDon, chiDatTruoc.getSoLuong(), chiDatTruoc.getMonAn().getDonGia()));

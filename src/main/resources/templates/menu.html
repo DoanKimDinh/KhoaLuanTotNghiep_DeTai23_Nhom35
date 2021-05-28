@@ -234,7 +234,7 @@
 					</div>
 					<div class="food-detail" style="text-align: center;font-size: 24px;/* position: absolute; */">
 						<h4 style="font-size: 24px;" th:text="${monAn.tenMonAn}"></h4>
-						<h5 style="font-size: 24px;" th:text="${monAn.DonGia}+' VNĐ'"></h5>
+						<h5 style="font-size: 24px;" th:text="${#numbers.formatDecimal(monAn.DonGia, 0, 'COMMA', 0, 'POINT')}"></h5>
 					</div>
 				</div>
 

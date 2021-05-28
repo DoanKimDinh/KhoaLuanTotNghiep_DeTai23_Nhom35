@@ -54,12 +54,30 @@ public class HoaDonServiceImpl implements HoaDonService {
 			string = year + "-" + month + "%";
 		else
 			string = year + "-0" + month + "%";
-		System.out.println(string);
+		
 		Object object = hoaDonRepository.getTotalMoneyStoreWithMonth(string);
 		if (object != null)
 			return (double) object;
 		else
 			return 0;
 	}
+
+	@Override
+	public List<HoaDon> getListHoaDonByMonth(int year, int month) {
+		// TODO Auto-generated method stub
+		String string;
+		if (month > 9)
+			string = year + "-" + month + "%";
+		else
+			string = year + "-0" + month + "%";
+		
+		List<HoaDon> object = hoaDonRepository.getListHoaDonByMonth(string);
+		if (object != null)
+			return object;
+		else
+			return null;
+	}
+
+
 
 }

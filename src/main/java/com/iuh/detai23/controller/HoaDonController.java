@@ -68,6 +68,7 @@ public class HoaDonController {
 		modelAndView.addObject("totalMoney", moneytotal);
 		modelAndView.addObject("totalBill", hoaDonService.findAll().size());
 		modelAndView.addObject("totalCustomer", khachHangService.findAll().size());
+		modelAndView.addObject("listHoaDon", hoaDonService.getListHoaDonByMonth(year, month));
 		return modelAndView;
 	}
 	
@@ -81,6 +82,7 @@ public class HoaDonController {
 		modelAndView.addObject("totalMoney", hoaDonService.getTotalMoney());
 		modelAndView.addObject("totalBill", hoaDonService.findAll().size());
 		modelAndView.addObject("totalCustomer", khachHangService.findAll().size());
+		modelAndView.addObject("listHoaDon", hoaDonService.getListHoaDonByMonth(2021, 4));
 		return modelAndView;
 	}
 	

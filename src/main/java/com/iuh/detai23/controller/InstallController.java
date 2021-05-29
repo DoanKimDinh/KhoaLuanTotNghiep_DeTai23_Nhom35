@@ -71,13 +71,14 @@ public class InstallController {
 		loaiMonAnService.save(loaiMonAn2);
 		loaiMonAnService.save(loaiMonAn3);
 
-		MonAn monAn1 = new MonAn("Lẩu Thái", 35000, "Món Ăn Hà Nội", "img-01.jpg", loaiMonAn1,"DangKinhDoanh");
-		MonAn monAn2 = new MonAn("Lẩu Hải Sản", 20000, "Món Ăn Hà Nội", "img-02.jpg", loaiMonAn1,"DangKinhDoanh");
-		MonAn monAn3 = new MonAn("Lẩu Cá Kèo", 50000, "Món Ăn Hà Nội", "img-03.jpg", loaiMonAn1,"DangKinhDoanh");
-		MonAn monAn4 = new MonAn("Tôm Sú", 10000, "Món Ăn Hà Nội", "img-04.jpg", loaiMonAn2,"DangKinhDoanh");
-		MonAn monAn5 = new MonAn("Tôm Càng", 12000, "Món Ăn Hà Nội", "img-05.jpg", loaiMonAn2,"DangKinhDoanh");
-		MonAn monAn6 = new MonAn("Tôm Hùm", 22000, "Món Ăn Hà Nội", "img-06.jpg", loaiMonAn2,"DangKinhDoanh");
-		MonAn monAn7 = new MonAn("Cá Lăng", 32000, "Món Ăn Hà Nội", "img-07.jpg", loaiMonAn2,"DangKinhDoanh");
+		MonAn monAn1 = new MonAn("Lẩu Thái", 350000, "Lẫu là món ăn thơm ngon và bổ dưỡng. Nguyên liệu bao gồm: Thịt bò, mực, tôm, bạch tuột, nghêu, bún tươi, mì hoặc miếng.", "lau_thai.jpg", loaiMonAn1,"DangKinhDoanh");
+		MonAn monAn2 = new MonAn("Lẫu hải sản", 200000, "Nguyên liệu chính bao gồm: 500gr tôm tươi, 500gr mực tươi, 1 bát con ngao, 1 bó nấm kim châm, 1 thìa bột me,2 cái xương ức gà, 500gr cá phi lê, 1 ít giò cá viên, Vài miếng đậu phụ non", "lau-hai-san-1.jpg", loaiMonAn1,"DangKinhDoanh");
+		MonAn monAn3 = new MonAn("Lẩu Cá Kèo", 250000, "Cá kèo nguyên con được làm sạch, cùng với các loại gia vị khác tạo nên món lẫu có kèo thơm ngon", "lau-ca-keo-1.jpg", loaiMonAn1,"DangKinhDoanh");
+		MonAn monAn4 = new MonAn("Salad Hoàng đế", 150000, "Nguyên liệu chính bao gồm: thịt ba chỉ, salad, cà chua bi, quả ô-liu, bơ lạt, trứng gà.", "img-06.jpg", loaiMonAn2,"DangKinhDoanh");
+		MonAn monAn5 = new MonAn("Salad thịt bò", 120000, "Nguyên liệu: Thịt bò 400gram, hành ngò, lá bạc hà, dưa leo, hành tây, cà chua", "img-05.jpg", loaiMonAn2,"DangKinhDoanh");
+		MonAn monAn6 = new MonAn("Combo món Việt", 400000, "Phù hợp với 2 người ăn. Bao gồm: kimchi, thịt kho, trứng chiên, cá kho.", "img-08.jpg", loaiMonAn2,"DangKinhDoanh");
+		MonAn monAn7 = new MonAn("Kem socola", 120000, "Thành phần bao gồm: socola, kem tươi, sữa giúp tăng cảm giác ngon miệng khi ăn", "img-07.jpg", loaiMonAn2,"DangKinhDoanh");
+		MonAn monAn10 = new MonAn("Soup nghêu kem sửa", 120000, "Thành phần bao gồm: 200g nghêu, 150ml sữa tươi, 150g cooking cream và một số gia vị khác", "sup-ngheu-kem-sua.jpg", loaiMonAn2,"DangKinhDoanh");
 		MonAn monAn8 = new MonAn("Gỏi Cá Trích", 32000, "Món Ăn Hà Nội", "img-08.jpg", loaiMonAn3,"NgungKinhDoanh");
 		MonAn monAn9 = new MonAn("Gỏi Tiến Vua", 40000, "Món Ăn Hà Nội", "img-09.jpg", loaiMonAn3,"NgungKinhDoanh");
 		
@@ -90,6 +91,7 @@ public class InstallController {
 		monAnService.save(monAn7);
 		monAnService.save(monAn8);
 		monAnService.save(monAn9);
+		monAnService.save(monAn10);
 		
 		QuyenTruyCap quyen1 = new QuyenTruyCap(TypeQuuyen.KhachHang);
 		QuyenTruyCap quyen2 = new QuyenTruyCap(TypeQuuyen.NguoiQuanLy);

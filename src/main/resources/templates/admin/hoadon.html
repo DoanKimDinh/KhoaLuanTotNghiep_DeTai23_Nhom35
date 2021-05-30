@@ -10,7 +10,7 @@
 	<link rel="apple-touch-icon" th:href="@{/images/apple-touch-icon.png}">
 
 	<link rel="stylesheet" th:href="@{/plugins/fontawesome-free/css/all.min.css}">
-	<link rel="stylesheet" th:href="@{/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css}">
+
 
 	<!-- Site CSS -->
 	<link rel="stylesheet" th:href="@{/css/style.css}">
@@ -280,7 +280,7 @@
 															<td class="left"><strong>Discount (%)</strong></td>
 															<td class="right"> 0%</td>
 														</tr>
-														<tr id="vat">
+														<tr id="vat" style="display:none;">
 															<td class="left"><strong>VAT (10%)</strong></td>
 															<td class="right">62.900 VNĐ</td>
 														</tr>
@@ -448,7 +448,7 @@
 										$("#tamTinh").html(htmlTamTinh);
 													
 													
-										var vat = tongTienTotal*0.1;
+										var vat = tongTienTotal*0;
 										var htmlVAT = '<td class="left"><strong>VAT (10%)</strong></td>'
 													+'<td class="right">'+vat.toLocaleString(
 															'it-IT',

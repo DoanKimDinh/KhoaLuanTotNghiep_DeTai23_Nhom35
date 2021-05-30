@@ -108,7 +108,8 @@
 						</div>
 						<div class="food-detail" style="text-align: center; font-size: 24px;">
 							<h4 style="font-size: 24px;" th:text="${monAn.tenMonAn}"></h4>
-							<h5 style="font-size: 24px;" th:text="${#numbers.formatDecimal(monAn.DonGia, 0, 'COMMA', 0, 'POINT')}"></h5>
+							<h5 style="font-size: 24px;" th:text="${#numbers.formatDecimal(monAn.DonGia, 0, 'COMMA', 0, 'POINT')}  + ' VNĐ'"></h5>
+						
 							<input type="hidden" value="${monAn.tenMonAn}" name="tenMonAn">
 							<input type="hidden" value="${monAn.maMonAn}" name="maMonAn">
 							<input type="hidden" th:value="${monAn.DonGia}" name="donGia">

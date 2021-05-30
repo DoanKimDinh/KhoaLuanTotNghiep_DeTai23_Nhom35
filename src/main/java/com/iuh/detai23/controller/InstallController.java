@@ -94,8 +94,8 @@ public class InstallController {
 		monAnService.save(monAn10);
 		
 		QuyenTruyCap quyen1 = new QuyenTruyCap(TypeQuuyen.KhachHang);
-		QuyenTruyCap quyen2 = new QuyenTruyCap(TypeQuuyen.NguoiQuanLy);
-		QuyenTruyCap quyen3 = new QuyenTruyCap(TypeQuuyen.NhanVien);
+		QuyenTruyCap quyen2 = new QuyenTruyCap(TypeQuuyen.NhanVien);
+		QuyenTruyCap quyen3 = new QuyenTruyCap(TypeQuuyen.NguoiQuanLy);
 		
 		
 		quyenTruyCapService.save(quyen1);

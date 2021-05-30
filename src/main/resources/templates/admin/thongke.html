@@ -17,14 +17,14 @@
     <!-- Ionicons -->
     <!-- <link rel="stylesheet" th:href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css}"> -->
     <!-- Tempusdominus Bootstrap 4 -->
-    <link rel="stylesheet" th:href="@{/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css}">
+
 
     <!-- Site CSS -->
     <link rel="stylesheet" th:href="@{/css/style.css}">
     <!-- iCheck -->
     <link rel="stylesheet" th:href="@{/plugins/icheck-bootstrap/icheck-bootstrap.min.css}">
     <!-- JQVMap -->
-    <link rel="stylesheet" th:href="@{/plugins/jqvmap/jqvmap.min.css}">
+  
     <!-- Theme style -->
     <link rel="stylesheet" th:href="@{/dist/css/adminlte.min.css}">
     <!-- overlayScrollbars -->
@@ -55,15 +55,7 @@
             width: 1%;
         }
     </style>
-    <script>
-        $(document).ready(function () {
-            $('#inforModal').modal('show');
 
-            $(function () {
-                $('[data-toggle="tooltip"]').tooltip()
-            })
-        });
-    </script>
 
 </head>
 
@@ -202,7 +194,7 @@
                                 </h6>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="img/undraw_profile_1.svg" alt="">
+                                       
                                         <div class="status-indicator bg-success"></div>
                                     </div>
                                     <div class="font-weight-bold">
@@ -213,7 +205,7 @@
                                 </a>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="img/undraw_profile_2.svg" alt="">
+                                      
                                         <div class="status-indicator"></div>
                                     </div>
                                     <div>
@@ -224,7 +216,7 @@
                                 </a>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="img/undraw_profile_3.svg" alt="">
+                                        
                                         <div class="status-indicator bg-warning"></div>
                                     </div>
                                     <div>
@@ -256,7 +248,7 @@
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
-                                <img class="img-profile rounded-circle" src="img/undraw_profile.svg">
+                              
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -291,9 +283,9 @@
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
-                        <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                                class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
+                        <h1 class="h3 mb-0 text-gray-800">Thống kê doanh thu</h1>
+                      <!--   <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" style="display:none;"><i
+                                class="fas fa-download fa-sm text-white-50"></i> Generate Report</a> -->
                     </div>
 
 
@@ -429,19 +421,19 @@
                     <div class="row">
 
                         <!-- Area Chart -->
-                        <div class="col-xl-8 col-lg-7">
+                        <div class="col-xl-12 col-lg-12">
                             <div class="card shadow mb-4">
                                 <!-- Card Header - Dropdown -->
                                 <div
                                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Earnings Overview</h6>
+                                    <h6 class="m-0 font-weight-bold text-primary">Danh sách hóa đơn trong tháng</h6>
                                     <div class="dropdown no-arrow">
                                         <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
                                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
                                         </a>
                                         <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                                            aria-labelledby="dropdownMenuLink">
+                                            aria-labelledby="dropdownMenuLink" style="display:none;">
                                             <div class="dropdown-header">Dropdown Header:</div>
                                             <a class="dropdown-item" href="#">Action</a>
                                             <a class="dropdown-item" href="#">Another action</a>
@@ -492,7 +484,7 @@
                         </div>
 
                         <!-- Pie Chart -->
-                        <div class="col-xl-4 col-lg-5">
+                        <div class="col-xl-4 col-lg-5" style="display:none;">
                             <div class="card shadow mb-4">
                                 <!-- Card Header - Dropdown -->
                                 <div
@@ -535,7 +527,7 @@
                     </div>
 
                     <!-- Content Row -->
-                    <div class="row">
+                    <div class="row" style="display:none;">
 
                         <!-- Content Column -->
                         <div class="col-lg-6 mb-4">
@@ -658,8 +650,7 @@
                                 </div>
                                 <div class="card-body">
                                     <div class="text-center">
-                                        <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;"
-                                            src="img/undraw_posting_photo.svg" alt="">
+                                        
                                     </div>
                                     <p>Add some quality, svg illustrations to your project courtesy of <a
                                             target="_blank" rel="nofollow" href="https://undraw.co/">unDraw</a>, a
@@ -815,20 +806,18 @@
 	</script>
 
     <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
-    <script>
-        $.widget.bridge('uibutton', $.ui.button)
-    </script>
+
     <!-- jQuery -->
-    <script th:src="@{/plugins/jquery/jquery.min.js}"></script>
+   
     <!-- jQuery UI 1.11.4 -->
-    <script th:src="@{/plugins/jquery-ui/jquery-ui.min.js}"></script>
+
     <!-- Bootstrap 4 -->
     <script th:src="@{/plugins/bootstrap/js/bootstrap.bundle.min.js}"></script>
 
     <!-- <script th:src="@{/plugins/moment/moment.min.js"></script> -->
     <script th:src="@{/plugins/daterangepicker/daterangepicker.js}"></script>
     <!-- Tempusdominus Bootstrap 4 -->
-    <script th:src="@{/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js}"></script>
+   <!--   <script th:src="@{/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js}"></script> -->
     <!-- Summernote -->
     <script th:src="@{/plugins/summernote/summernote-bs4.min.js}"></script>
     <!-- overlayScrollbars -->
@@ -860,9 +849,9 @@
     <script th:src="@{/plugins/datatables-responsive/js/responsive.bootstrap4.min.js}"></script>
     <script th:src="@{/plugins/datatables-buttons/js/dataTables.buttons.min.js}"></script>
     <script th:src="@{/plugins/datatables-buttons/js/buttons.bootstrap4.min.js}"></script>
-    <script th:src="@{/plugins/jszip/jszip.min.js}"></script>
-    <script th:src="@{/plugins/pdfmake/pdfmake.min.js}"></script>
-    <script th:src="@{/plugins/pdfmake/vfs_fonts.js}"></script>
+
+
+
     <script th:src="@{/plugins/datatables-buttons/js/buttons.html5.min.js}"></script>
     <script th:src="@{/plugins/datatables-buttons/js/buttons.print.min.js}"></script>
     <script th:src="@{/plugins/datatables-buttons/js/buttons.colVis.min.js}"></script>

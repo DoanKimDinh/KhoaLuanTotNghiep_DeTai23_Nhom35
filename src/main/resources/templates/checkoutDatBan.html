@@ -348,8 +348,15 @@
 											var totalMoney = 0;
 
 											for (var i = 0; i < len; i++) {
+												
 												var tongTien = result[i].soLuong
 													* result[i].donGia;
+												var tongTienFormat = tongTien.toLocaleString(
+														'it-IT',
+														{
+															style: 'currency',
+															currency: 'VND'
+														});
 												html += '<tr><th scope="row">'
 													+ (i + 1)
 													+ '</th>'
@@ -360,12 +367,7 @@
 													+ result[i].soLuong
 													+ '</td>'
 													+ '<td >'
-													+ tongTien.toLocaleString(
-															'it-IT',
-															{
-																style: 'currency',
-																currency: 'VND'
-															});
+													+ tongTienFormat
 													+ '</td>'
 													+ '<td><a href="" class="removeFood" data-idMonAn="' + result[i].id + '">Xóa Bỏ</a></td></tr>';
 												totalMoney = totalMoney
@@ -425,7 +427,12 @@
 											for (var i = 0; i < len; i++) {
 												var tongTien = result[i].soLuong
 													* result[i].donGia;
-				
+												var tongTienFormat = tongTien.toLocaleString(
+														'it-IT',
+														{
+															style: 'currency',
+															currency: 'VND'
+														});
 												html += '<tr><th scope="row">'
 													+ (i + 1)
 													+ '</th>'
@@ -436,7 +443,7 @@
 													+ result[i].soLuong
 													+ '</td>'
 													+ '<td >'
-													+ tongTien
+													+ tongTienFormat
 													+ '</td>'
 													+ '<td><a href="" class="removeFood" data-idMonAn="' + result[i].id + '">Xóa Bỏ</a></td></tr>';
 												totalMoney = totalMoney

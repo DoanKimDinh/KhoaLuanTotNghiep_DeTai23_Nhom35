@@ -81,6 +81,9 @@ public class InstallController {
 		MonAn monAn10 = new MonAn("Soup nghêu kem sửa", 120000, "Thành phần bao gồm: 200g nghêu, 150ml sữa tươi, 150g cooking cream và một số gia vị khác", "sup-ngheu-kem-sua.jpg", loaiMonAn2,"DangKinhDoanh");
 		MonAn monAn8 = new MonAn("Gỏi Cá Trích", 32000, "Món Ăn Hà Nội", "img-08.jpg", loaiMonAn3,"NgungKinhDoanh");
 		MonAn monAn9 = new MonAn("Gỏi Tiến Vua", 40000, "Món Ăn Hà Nội", "img-09.jpg", loaiMonAn3,"NgungKinhDoanh");
+		MonAn monAn11 = new MonAn("Gà hầm thuốc bắc", 150000, "Nguyên liệu: Gà nguyên con, các gia vị thuốc bắc", "ga-ham-thuoc-bac.jpg", loaiMonAn2,"DangKinhDoanh");
+//		MonAn monAn12 = new MonAn("Moscow Mule Cocktail", 75000, "Nguyên liệu: Vodka: 50ml, Cốt chanh tươi: 15ml, Bia vị gừng: 10ml, Chanh thái múi cau: 1lát", "img-03.jpg", loaiMonAn2,"DangKinhDoanh");
+		
 		
 		monAnService.save(monAn1);
 		monAnService.save(monAn2);
@@ -92,6 +95,7 @@ public class InstallController {
 		monAnService.save(monAn8);
 		monAnService.save(monAn9);
 		monAnService.save(monAn10);
+		monAnService.save(monAn11);
 		
 		QuyenTruyCap quyen1 = new QuyenTruyCap(TypeQuuyen.KhachHang);
 		QuyenTruyCap quyen2 = new QuyenTruyCap(TypeQuuyen.NhanVien);

@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Admin Page</title>
+	<title>Quản lý khách hàng</title>
 
 	<link rel="shortcut icon" th:href="@{/images/favicon.ico}" type="image/x-icon">
 	<link rel="apple-touch-icon" th:href="@{/images/apple-touch-icon.png}">
@@ -274,67 +274,6 @@
 			</div>
 		</div>
 	</div>
-	<!-- Chinh sua thong tin khach hang -->
-	<!--  <div class="modal fade" id="modal_edit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true" th:action="@{/admin/quanlykhachhang/edit/{id}(id=${khachHang.maKhachHang})}">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-          <div class="modal-content">
-            <div class="modal-header border-bottom-0">
-              <div class="form-title text-center">
-                <h4>Thông tin khách hàng</h4>
-              </div>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              <div>
-                <div class="panel-body">
-                  <form th:action="" method="POST" enctype="multipart/form-data">
-					<div class="form-group">
-						<label for="maKhachHang">Mã khách hàng:</label>
-						<input type="text" class="form-control" readonly
-							th:value="${khachHang.maKhachHang}" placeholder="Mã khách hàng" name="maKhachHang">
-					</div>
-					<div class="form-group">	
-						<label for="tenKhachHang">Tên khách hàng:</label>
-							<input type="text" class="form-control" th:value="${khachHang.tenKhachHang}"
-								placeholder="Tên khách hàng" required="required" name="tenKhachHang">
-					</div>
-					<div class="form-group">
-						<label for="soDienThoai">Số điện thoại:</label>
-						<input type="number" class="form-control" th:value="${khachHang.sdt}" 
-							placeholder="Số điện thoại" required="required" name="sdt">
-					</div>
-					<div class="form-group">
-						<label for="email">Email:</label>
-						<input type="email" class="form-control" th:value="${khachHang.email}" 
-							placeholder="Email" required="required" name="email">
-					 </div>
-					 <div class="form-group">
-						<label for="tenTaiKhoan">Tên tài khoản:</label>
-						<input type="text" class="form-control" th:value="${khachHang.tenTaiKhoan}" 
-							placeholder="Tên tài khoản" required="required" name="tenTaiKhoan" readonly>
-					 </div>
-					 <div class="form-group">
-						<label for="matKhau">Mật khẩu:</label>
-						<input type="password" class="form-control" th:value="${khachHang.matKhau}" 
-							placeholder="Mật khẩu" required="required" name="matKhau">
-					 </div>
-					 <div class="form-group">
-						<label for="diaChi">Địa chỉ:</label>
-						<input type="text" class="form-control" th:value="${khachHang.diaChi}" 
-							placeholder="Địa chỉ" required="required" name="diaChi">
-					 </div>					 
-						<button type="submit" class="btn btn-update">Cập Nhật khách hàng</button>
-					</form>
-                </div>
-              </div>
-            </div>            
-          </div>
-        </div>
-      </div> -->
-	<!-- end modal chinh sua thong tin khach hang -->
 	</div>
 
 	<script th:src="@{/plugins/jquery/jquery.min.js}"></script>

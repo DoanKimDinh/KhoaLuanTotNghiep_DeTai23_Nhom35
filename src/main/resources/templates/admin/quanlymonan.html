@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Admin Page</title>
+  <title>Quản lý món ăn</title>
 
   <link rel="shortcut icon" th:href="@{/images/favicon.ico}" type="image/x-icon">
   <link rel="apple-touch-icon" th:href="@{/images/apple-touch-icon.png}">
@@ -245,11 +245,6 @@
                 </div>
               </div>
             </div>
-           <!-- <div class="modal-footer">
-              <div class="col-sm-offset-2 col-sm-10">
-                <button class="btn btn-common" ng-click="updateMe()" style="margin-left: 350px;">Submit</button>
-              </div>
-            </div> -->
           </div>
         </div>
       </div>
@@ -298,9 +293,6 @@
       });
       
       $("table #btnDelete").click(function(event){
-    	  /* var href = $(this).attr("href");
-    	  $("#mi-modal #delRef").attr("href", href); */
-    	  /* $("#mi-modal").modal(); */
     	  var id = $(this).parent().find('#id').val();
     	  $("#mi-modal").find("[name=id]").val(id);
     	  $("#mi-modal").find("form").attr("action", "/deleteMonAn/" + id);
@@ -308,18 +300,6 @@
       })
     });
  
-    /* $(document).ready(function () {
-      $('#inforModal').modal('show');
-
-      $(function () {
-        $('[data-toggle="tooltip"]').tooltip()
-      });
-      
-    });
-    
-    $(document).ready(function() {
-    	$('#mi-modal').modal('show');
-    }) */
   </script>
   
   <style type="text/css">

@@ -59,10 +59,6 @@
 
 	<script th:if="${message}">
 		window.addEventListener('DOMContentLoaded',function(){
-			//document.getElementById("myAlert-loggin-success").style.display = "block";
-			/* setTimeout(function(){
-				document.getElementById("myAlert-loggin-success").style.display = "none";
-			}, 2000);fad  */
 			$("#myAlert-loggin-success").css({"display":"block"});
 			setTimeout(function (){
 				$("#myAlert-loggin-success").fadeOut(1000);
@@ -75,11 +71,6 @@
 			$("#loginModal").modal();
 		});
 		window.addEventListener('DOMContentLoaded',function(){
-			/* document.getElementById("myAlert-loggin-fail").style.display = "block";
-			console.log("enfsdnfsd");
-			setTimeout(function(){
-				document.getElementById("myAlert-loggin-fail").style.display = "none";
-			}, 2000); */
 			$("#notifyToast").css({"display":"block"});	
 			$("#myAlert-loggin-fail").css({"display":"block"});
 			setTimeout(function() {

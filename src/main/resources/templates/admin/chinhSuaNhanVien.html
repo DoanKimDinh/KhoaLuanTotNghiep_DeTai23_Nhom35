@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Admin Page</title>
+	<title>Quản lý nhân viên</title>
 	<link rel="shortcut icon" th:href="@{/images/favicon.ico}" type="image/x-icon">
 	<link rel="apple-touch-icon" th:href="@{/images/apple-touch-icon.png}">
 
@@ -142,15 +142,6 @@
 													class="form-control" th:value="${nhanVien.matKhau}"
 													placeholder="Mật khẩu" required="required" name="matKhau">
 											</div>
-
-											<!--  <div class="form-group">
-													<label for="quyenTruyCap">Quyền truy cập:</label>
-													<select class="form-select" name="maQuyenTruyCap">
-														<option th:each="item : ${quyenTruyCap}" th:value="${item.maQuyenTruyCap}" th:text="${item.tenQuyenTruyCap}" th:selected="(${item.maQuyenTruyCap}==${khachHang.maQuyenTruyCap})">
-
-														</option>
-													</select>
-												  </div> -->
 											<button type="submit" class="btn btn-update">Cập
 												nhật thông tin</button>
 										</form>
@@ -213,68 +204,6 @@
 
 		</footer>
 		<!-- End Footer -->
-
-		<!-- 			<div class="modal fade" id="inforModal" tabindex="-1" role="dialog"
-				aria-labelledby="exampleModalLabel" aria-hidden="true">
-				<div class="modal-dialog modal-dialog-centered" role="document">
-					<div class="modal-content">
-						<div class="modal-header border-bottom-0">
-							<div class="form-title text-center">
-								<h4>Cập nhật món ăn</h4>
-							</div>
-							<button type="button" class="close" data-dismiss="modal"
-								aria-label="Close">
-								<span aria-hidden="true">&times;</span>
-							</button>
-						</div>
-						<div class="modal-body">
-							<div>
-								<div class="panel-body">
-									<form action="#" th:action="@{/addMonAn}" th:object="${monAn}"
-										method="post" enctype="multipart/form-data">
-										<div class="form-group">
-											<label class="col-sm-6 control-label">Tên Món Ăn</label> <input
-												class="form-control" type="text" name="tenMonAn"
-												placeholder="Nhập tên món ăn" ng-model="me.email">
-										</div>
-										<div class="form-group">
-											<label class="col-sm-6 control-label">Đơn Giá</label> <input
-												class="form-control" required="required" type="text"
-												name="donGia" placeholder="Nhập đơn giá" ng-model="me.email">
-										</div>
-										<div class="form-group">
-											<label class="col-sm-6 control-label">Mô Tả</label> <input
-												class="form-control" type="text" name="moTa"
-												placeholder="Nhập mô tả" ng-model="me.email">
-										</div>
-										<div class="form-group">
-											<label class="col-sm-6 control-label">Hình Ảnh</label> <input
-												class="form-control" type="file" name="file">
-										</div>
-										<div class="form-group">
-											<label class="col-sm-6 control-label">Loại Món Ăn</label> <select
-												class="form-control" aria-label=".form-select-lg example"
-												name="idLoaiMonAn">
-												<option selected th:each="loai : ${listLoaiMonAn}"
-													th:text="${loai.tenLoai}" th:value="${loai.maLoaiMonAn}"></option>
-											</select>
-										</div>
-
-										<button type="submit" class="btn btn-primary">Thêm
-											Món Ăn</button>
-									</form>
-								</div>
-							</div>
-						</div>
-						<div class="modal-footer">
-							<div class="col-sm-offset-2 col-sm-10">
-								<button class="btn btn-common" ng-click="updateMe()"
-									style="margin-left: 350px;">Submit</button>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div> -->
 	</div>
 
 	<!-- ./wrapper -->
@@ -316,14 +245,4 @@
 		}
 	</style>
 </body>
-<!-- <script>
-		$(document).ready(function () {
-			$('#inforModal').modal('show');
-
-			$(function () {
-				$('[data-toggle="tooltip"]').tooltip()
-			})
-		});
-	</script> -->
-
 </html>

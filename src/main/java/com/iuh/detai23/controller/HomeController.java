@@ -82,14 +82,9 @@ public class HomeController {
 	@GetMapping("/download/{filename}")
 	public ResponseEntity downloadFile(@PathVariable("filename") String file) {
 		Path path = Paths.get(file);
-		System.out.println(path);
 		Resource resource = null; 
 		try {
 			resource = new UrlResource(path.toUri());
-			System.out.println(path.toAbsolutePath());
-			System.out.println(path.getFileSystem());
-			System.out.println(path.getRoot());
-			System.out.println(path.getParent());
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
@@ -103,7 +98,6 @@ public class HomeController {
 		MultipartFile multipartFile = files[0];
 		String filename = multipartFile.getOriginalFilename();
 
-		System.out.println(System.getProperty("user.dir"));
 		
 		try {
 			FileCopyUtils.copy(multipartFile.getBytes(), new File(System.getProperty("user.dir") +"\\"+ filename));

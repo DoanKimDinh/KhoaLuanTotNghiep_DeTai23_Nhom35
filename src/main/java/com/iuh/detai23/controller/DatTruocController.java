@@ -64,7 +64,6 @@ public class DatTruocController {
 	@GetMapping("client/datBan")
 	public ModelAndView getDatBan(HttpServletRequest request) {
 
-//		System.out.println(engine.getTemplateResolvers().);
 		ModelAndView modelAndView = new ModelAndView("datban");
 		try {
 			if (request.getSession().getAttribute("idAccount") != null) {
@@ -83,7 +82,6 @@ public class DatTruocController {
 	public String getAddDatBan(HttpServletRequest request, @ModelAttribute BanDatTruocAddModel banDatTruoc,
 			@RequestParam("action") String action, RedirectAttributes redirect) {
 
-		// System.out.println(banDatTruoc.getSoNguoi());
 		if (action.toUpperCase().equals("ĐẶT MÓN")) {
 			request.getSession().setAttribute("banDatTruoc", banDatTruoc);
 			// redirect.addFlashAttribute("banDatTruoc", banDatTruoc);
@@ -93,22 +91,12 @@ public class DatTruocController {
 			banDatTruocService.save(banDatTruoc, new ArrayList<AddMonAnModel>());
 			redirect.addFlashAttribute("datThanhCong", banDatTruoc);
 			return "redirect:/";
-		}
-//		System.out.println(banDatTruoc.getSoNguoi());
-//		System.out.println(banDatTruoc.getNgayDen());
-//		System.out.println(banDatTruoc.getThoiGianDen());
-//		System.out.println(banDatTruoc.getGhiChu());
-//		System.out.println(banDatTruoc.getTenKhachHang());
-//		System.out.println(banDatTruoc.getEmail());
-//		System.out.println(banDatTruoc.getPhone());
-//		System.out.println(banDatTruoc.getDiaChi());		     
+		}	     
 	}
 
 	@GetMapping("/client/checkoutDatBan")
 	public ModelAndView getCheckoutDatBan(@ModelAttribute("banDatTRuoc") BanDatTruocAddModel banDatTRuoc,
 			HttpServletRequest request) {
-		// System.out.println("=====================>>>>>");
-		// System.out.println(banDatTRuoc.getTenKhachHang());
 		ModelAndView modelAndView = new ModelAndView("checkoutDatBan");
 		List<MonAn> listMonAn = monAnService.findAll();
 
@@ -124,18 +112,13 @@ public class DatTruocController {
 			modelAndView.addObject("listMonAn", listMonAn);
 		}
 		BanDatTruocAddModel fawef = (BanDatTruocAddModel) request.getSession().getAttribute("banDatTruoc");
-		// System.out.println("hihi" + fawef.getSoNguoi());
 		modelAndView.addObject("banDatTruoc", fawef);
 		return modelAndView;
 	}
 
 	@PostMapping("/client/addRowMonAn")
 	@ResponseBody
-	public List<AddMonAnModel> addRowMonAn(@RequestBody AddMonAnModel monAn, HttpServletRequest request) {
-//		System.out.println(monAn.getId());
-//		System.out.println(monAn.getSoLuong());
-//		System.out.println(monAn.getTenMonAn());
-		
+	public List<AddMonAnModel> addRowMonAn(@RequestBody AddMonAnModel monAn, HttpServletRequest request) {		
 		ArrayList<AddMonAnModel> list;
 		if (request.getSession().getAttribute("list-cart-food") == null) {
 			list = new ArrayList<AddMonAnModel>();
@@ -146,15 +129,14 @@ public class DatTruocController {
 			list = (ArrayList<AddMonAnModel>) request.getSession().getAttribute("list-cart-food");
 			int tamp = 0;
 			for (int i = 0; i < list.size(); i++) {
-				// System.out.println(monAn.getId()+"=========="+list.get(i).getId());
 				if (list.get(i).getId() == monAn.getId()) {
-					// System.out.println("con don");
+				
 					list.get(i).setSoLuong(list.get(i).getSoLuong() + monAn.getSoLuong());
 					tamp = 1;
 				}
 			}
 			if (tamp == 0) {
-				// System.err.println("da vao");
+				
 				list.add(monAn);
 			}
 		}
@@ -164,7 +146,6 @@ public class DatTruocController {
 	@PostMapping("/client/removeRowMonAn")
 	@ResponseBody
 	public List<AddMonAnModel> removeRowMonAn(@RequestBody AddMonAnModel monAn, HttpServletRequest request) {
-		// System.out.println(monAn.getId());
 		ArrayList<AddMonAnModel> list;
 		ArrayList<AddMonAnModel> listNew = new ArrayList<AddMonAnModel>();
 		if (request.getSession().getAttribute("list-cart-food") == null) {
@@ -191,26 +172,10 @@ public class DatTruocController {
 
 		banDatTruocService.save(banDatTruoc, list);
 		redirect.addFlashAttribute("datThanhCong", banDatTruoc);
-//		System.err.println(bn.getTenKhachHang()+"ffffffffffffffff");
-//		System.out.println(list.get(0).getTenMonAn()+"ttttt");
+
 
 		return "redirect:/";
 	}
-
-//	@PostMapping("/admin/banDatTruoc/edit/{id}")
-//	public String getEditBanDatTruocUpdate(@PathVariable("id") int id, @ModelAttribute UpdateMonAnModel monAnModel, RedirectAttributes redirect) {
-//		ModelAndView modelAndView = new ModelAndView("admin/chinhSuaBanDatTruoc");
-//		
-//		MonAn monAn =  monAnService.findById(id);
-//		monAn.setTenMonAn(monAnModel.getTenMonAn());
-//		monAn.setDonGia(monAnModel.getDonGia());
-//		monAn.setMoTa(monAnModel.getMoTa());
-//		
-//		monAnService.save(monAn);
-//
-//		redirect.addAttribute("susscess", "thanhCong");
-//		return "redirect:/admin/monAn/";
-//	}
 	
 	@GetMapping("/admin/banDatTruoc/edit/pay")
 	public String getEditMonAnPAY(@RequestParam("idBanDatTruoc") int id, HttpServletRequest request) {
@@ -299,7 +264,6 @@ public class DatTruocController {
 			if (chiTietMonDatTruoc.getMonAn().getMaMonAn() == monAn.getMaMonAn()) {
 				chiTietMonDatTruoc.setSoLuong(chiTietMonDatTruoc.getSoLuong() + 1);
 				tamp = 1;
-				System.out.println("mon da chon ròi");
 			}
 		}
 		if (tamp == 0) {
@@ -318,7 +282,6 @@ public class DatTruocController {
 			listMonAnEdit.add(new AddMonAnEditDatBanModel(chiTietMonAnDatTruoc.getMonAn().getMaMonAn(),
 					chiTietMonAnDatTruoc.getSoLuong(), chiTietMonAnDatTruoc.getMonAn().getTenMonAn(),
 					chiTietMonAnDatTruoc.getMonAn().getDonGia() * chiTietMonAnDatTruoc.getSoLuong(), ++i));
-				System.out.println(chiTietMonAnDatTruoc.getMonAn().getTenMonAn());
 		}
 		modelAndView.addObject("listMonDatTruoc", listMonAnEdit);
 
@@ -348,7 +311,6 @@ public class DatTruocController {
 			BanDatTruoc banDatTruoc = banDatTruocService.findById(id).get();
 			MonAn monAn = monAnService.findById(idMonAn);
 			
-			System.out.println(banDatTruoc.getChiTietMonDatTruoc().size());
 			
 			for (ChiTietMonDatTruoc chiTietMonDatTruoc : banDatTruoc.getChiTietMonDatTruoc()) {
 				if (chiTietMonDatTruoc.getMonAn().getMaMonAn() == monAn.getMaMonAn()) {
@@ -371,7 +333,6 @@ public class DatTruocController {
 //			}
 //			banDatTruocService.save(banDatTruoc);
 			
-			System.out.println(banDatTruoc.getChiTietMonDatTruoc().size());
 
 		}
 		else {
@@ -379,7 +340,6 @@ public class DatTruocController {
 			MonAn monAn = monAnService.findById(idMonAn);
 			for (ChiTietMonDatTruoc chiTietMonDatTruoc : banDatTruoc.getChiTietMonDatTruoc()) {
 				if (chiTietMonDatTruoc.getMonAn().getMaMonAn() == monAn.getMaMonAn()) {
-					System.out.println("1234444"+chiTietMonDatTruoc.getMonAn().getTenMonAn());
 					chiTietMonDatTruoc.setSoLuong(soLuong);
 					break;
 				}

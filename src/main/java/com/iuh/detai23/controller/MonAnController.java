@@ -71,7 +71,6 @@ public class MonAnController {
 		monAn.setTenMonAn(monanmodel.getTenMonAn());
 		monAn.setTinhTrang(TypeMonAn.DangKinhDoanh.toString());
 		
-		System.out.println("Huuuuuuuuuuu");
 		
 		monAnService.save(monAn);
 		return "redirect:/admin/monAn";
@@ -89,7 +88,6 @@ public class MonAnController {
 	@GetMapping("/getMonAn/{id}")
 	@ResponseBody
 	public MonAn getGetMonAn(@PathVariable("id") String id) {
-		//System.out.println(postM);
 		//postService.deletePost(postModel.getId());
 		MonAn monAn = monAnService.findBy(Integer.valueOf(id)).get();
 		return monAn;

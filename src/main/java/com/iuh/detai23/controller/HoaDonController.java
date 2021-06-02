@@ -57,9 +57,7 @@ public class HoaDonController {
 	
 	@PostMapping("/admin/hoadon/thongke/thang")
 	public ModelAndView getHoaDon(@RequestParam("yearSelect") int year, @RequestParam("monthSelect") int month, RedirectAttributes redirect) {
-		System.out.println(year + "======" + month);
 		ModelAndView modelAndView = new ModelAndView("admin/thongke");
-//		System.out.println(hoaDonService.getTotalMoneyWithMonth(year, month));
 
 		double moneytotal = hoaDonService.getTotalMoney();
 		modelAndView.addObject("selectMonth", month);
@@ -90,9 +88,7 @@ public class HoaDonController {
 	@PostMapping("/admin/getHoaDon")
 	@ResponseBody
 	public ChiTietHoaDonModel getGetHoaDon(@RequestBody AddMonAnModel monAn, HttpServletRequest request) {
-		//System.out.println(postM);
-		//postService.deletePost(postModel.getId());
-		System.out.println(monAn.getId());
+
 		HoaDon hoaDon = hoaDonService.findById(Integer.valueOf(monAn.getId())).get();
 		ChiTietHoaDonModel hd = new ChiTietHoaDonModel();
 		hd.setTenKhachHang(hoaDon.getKhachHang().getTenKhachHang());
@@ -104,11 +100,6 @@ public class HoaDonController {
 		List<ChiTietMonAnModel> list = new ArrayList<ChiTietMonAnModel>();
 		for (ChiTietHoaDon chiTietHoaDon : hoaDon.getChiTietHoadon()) {
 			list.add(new ChiTietMonAnModel(chiTietHoaDon.getMonAn().getTenMonAn(), chiTietHoaDon.getMonAn().getDonGia(), chiTietHoaDon.getSoLuong()));
-		}
-		for (ChiTietMonAnModel chiTietMonAnModel : list) {
-			System.out.println(chiTietMonAnModel.getTenMonAn());
-			System.out.println(chiTietMonAnModel.getDonGia());
-			System.out.println(chiTietMonAnModel.getSoLuong());
 		}
 		
 		hd.setChiTiet(list);

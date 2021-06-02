@@ -64,21 +64,4 @@ public class DangNhapController {
 		return "redirect:/";
 	}
 	
-	/*
-	 * @PostMapping("/user/dangnHap")
-	 * 
-	 * @ResponseBody public String dangNhapAyPiAi(DangNhapModel dangNhapModel,
-	 * HttpServletRequest request) { System.out.println(dangNhapModel); int flag =
-	 * dangNhapService.checkUserDangNhap(dangNhapModel); if(flag == 1) { KhachHang
-	 * kh =
-	 * dangNhapService.getKhachHangByTenTaiKhoan(dangNhapModel.getTenDangNhap());
-	 * request.getSession().setAttribute("idAccount", kh.getMaKhachHang()); return
-	 * "thanhcong"; } else if(flag == 2) { NhanVien nv =
-	 * dangNhapService.getNhanVienByTenTaiKhoan(dangNhapModel.getTenDangNhap());
-	 * request.getSession().setAttribute("idAccount", nv.getMaNhanVien());
-	 * request.getSession().setAttribute("idAdmin", nv.getMaNhanVien()); return
-	 * "thanhcong"; }else if(flag == 0) { //
-	 * request.getSession().setAttribute("idUser", "Không thành công");
-	 * System.err.println("dsnefsd"); return "nhucuz"; } return "nhucuz"; }
-	 */
 }

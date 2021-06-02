@@ -36,6 +36,8 @@ import com.iuh.detai23.type.TypeGioiTinh;
 import com.iuh.detai23.type.TypeHoaDon;
 import com.iuh.detai23.type.TypeQuuyen;
 
+import lombok.Data;
+
 @RestController
 public class InstallController {
 	@Autowired
@@ -162,7 +164,6 @@ public class InstallController {
 		
 		BanDatTruoc ban1 = new BanDatTruoc(LocalDate.now().toString(), 12, "ghi chú 1", TypeDatTruoc.ChuaXacNhan);
 		ban1.setThoiGianDen(LocalTime.of(9, 30).toString());
-		System.out.println(ban1.getMaDatTruoc()+"===>");
 		List<ChiTietMonDatTruoc> listct1 = new ArrayList<ChiTietMonDatTruoc>();
 		listct1.add(new ChiTietMonDatTruoc( new ChiTietMonDatTruocKey(),monAn1, ban1, 2, monAn1.getDonGia()));
 		listct1.add(new ChiTietMonDatTruoc( new ChiTietMonDatTruocKey(),monAn2, ban1, 4, monAn2.getDonGia()));
@@ -277,7 +278,25 @@ public class InstallController {
 		hoaDon9.setChiTietHoadon(listcthd9);
 		hoaDon9.setKhachHang(kh7);
 		hoaDon9.setNhanVien(nv2);
-	
+		
+		
+		HoaDon hoaDon10= new HoaDon(LocalDateTime.of(2021, 5, 8, 12, 7), LocalDateTime.of(2021, 5, 8, 13, 30), TypeHoaDon.DaThanhToan, "");
+		List<ChiTietHoaDon> listcthd10 = new ArrayList<ChiTietHoaDon>();
+		listcthd10.add(new ChiTietHoaDon(new ChiTietHoaDonKey(), monAn1, hoaDon10, 1, monAn1.getDonGia()));
+		
+		
+		hoaDon10.setChiTietHoadon(listcthd10);
+		hoaDon10.setKhachHang(kh6);
+		hoaDon10.setNhanVien(nv2);
+		
+		HoaDon hoaDon11= new HoaDon(LocalDateTime.of(2021, 3, 8, 12, 7), LocalDateTime.of(2021, 3, 8, 13, 30), TypeHoaDon.DaThanhToan, "");
+		List<ChiTietHoaDon> listcthd11 = new ArrayList<ChiTietHoaDon>();
+		listcthd11.add(new ChiTietHoaDon(new ChiTietHoaDonKey(), monAn2, hoaDon10, 1, monAn2.getDonGia()));
+		
+		
+		hoaDon11.setChiTietHoadon(listcthd10);
+		hoaDon11.setKhachHang(kh2);
+		hoaDon11.setNhanVien(nv1);
 		
 		
 		hoaDonService.save(hoaDon1);
@@ -289,6 +308,8 @@ public class InstallController {
 		hoaDonService.save(hoaDon7);
 		hoaDonService.save(hoaDon8);
 		hoaDonService.save(hoaDon9);
+		hoaDonService.save(hoaDon10);
+		
 		
 		return loaiMonAn1;
 	}

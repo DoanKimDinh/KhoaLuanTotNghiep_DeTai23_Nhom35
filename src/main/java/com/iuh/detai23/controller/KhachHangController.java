@@ -71,9 +71,6 @@ public class KhachHangController {
 	//	khachHangService.save(khachHang);
 		//redirectAttributes.addFlashAttribute("registerSuccess", "Đăng ký thành công");
 		CheckRegisterModel checkRegisterModel = new CheckRegisterModel();
-		System.out.println(checkRegis.isAccount());
-		System.out.println(checkRegis.isEmail());
-		System.out.println(checkRegis.isSdt());
 		
 		for (KhachHang khachHang : khachHangService.findAll()) {
 			if(checkRegis.getAccountString().equals(khachHang.getTenTaiKhoan())) {
@@ -99,30 +96,13 @@ public class KhachHangController {
 			}
 		}
 		
-		System.out.println(checkRegis.getAccountString());
-		System.out.println(checkRegis.getEmailString());
-		System.out.println(checkRegis.getSdtString());
-		
-		System.out.println(checkRegis.isAccount());
-		System.out.println(checkRegis.isEmail());
-		System.out.println(checkRegis.isSdt());
-		System.out.println("================");
+
 		
 		return checkRegis;
 	}
 	
 	
-//	  @PostMapping("client/dangNhap") public String getDangNhap(DangNhapModel
-//	  dangNhapModel,RedirectAttributes redirectAttributes, HttpServletRequest
-//	  request) { boolean flag = khachHangService.checkDangNhap(dangNhapModel);
-//	  System.out.println("hello"); if(flag) { KhachHang kh =
-//	  khachHangService.getKhachHangByAccount(dangNhapModel.getTenDangNhap());
-//	  //redirectAttributes.addFlashAttribute("idAccount", kh.getMaKhachHang());
-//	  request.getSession().setAttribute("idAccount", kh.getMaKhachHang());
-//	  System.out.println("da vao nha");
-//	  redirectAttributes.addFlashAttribute("message", "Thêm thành công"); }
-//	  
-//	  return "redirect:/"; }
+
 	 
 
 	@GetMapping("client/dangXuat")

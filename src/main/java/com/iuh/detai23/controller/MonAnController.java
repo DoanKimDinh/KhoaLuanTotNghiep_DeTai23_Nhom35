@@ -45,7 +45,7 @@ public class MonAnController {
 				ModelAndView modelAndView = new ModelAndView("admin/quanlymonan");
 				List<MonAn> listMonAn = monAnService.finDall();
 				for (MonAn monAn : listMonAn) {
-					monAn.setHinhAnh("http://localhost:8080/download/"+monAn.getHinhAnh());
+					monAn.setHinhAnh("http://localhost:8080/image/"+monAn.getHinhAnh());
 				}
 				modelAndView.addObject("listMonAn", listMonAn);
 				modelAndView.addObject("listLoaiMonAn", loaiMonAnService.findAll());
@@ -58,7 +58,7 @@ public class MonAnController {
 	@PostMapping("/addMonAn")
 	public String addMonAn(@ModelAttribute MonAnModel monanmodel,@RequestParam("file") MultipartFile file) {
 		try {
-			FileCopyUtils.copy(file.getBytes(), new File(System.getProperty("user.dir") +"\\"+ file.getOriginalFilename()));
+			FileCopyUtils.copy(file.getBytes(), new File(System.getProperty("user.dir") +"\\src\\main\\resources\\static\\image\\"+ file.getOriginalFilename()));
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
@@ -140,7 +140,7 @@ public class MonAnController {
 		ModelAndView modelAndView = new ModelAndView("menu");
 		List<MonAn> listMonAn = monAnService.finDall();
 		for (MonAn monAn : listMonAn) {
-			monAn.setHinhAnh("http://localhost:8080/download/"+monAn.getHinhAnh());
+			monAn.setHinhAnh("http://localhost:8080/image/"+monAn.getHinhAnh());
 		}
 		modelAndView.addObject("listMonAn", listMonAn);
 		modelAndView.addObject("listLoaiMonAn", loaiMonAnService.findAll());

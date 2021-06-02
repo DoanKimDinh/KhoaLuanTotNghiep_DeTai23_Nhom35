@@ -106,7 +106,7 @@ public class DatTruocController {
 
 		if (listMonAn != null) {
 			for (MonAn monAn : listMonAn) {
-				monAn.setHinhAnh("http://localhost:8080/download/" + monAn.getHinhAnh());
+				monAn.setHinhAnh("http://localhost:8080/image/" + monAn.getHinhAnh());
 				
 			}
 			modelAndView.addObject("listMonAn", listMonAn);

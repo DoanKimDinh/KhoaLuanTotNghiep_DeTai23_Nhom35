@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Admin Page</title>
+  <title>Quản lý món ăn</title>
 
   <link rel="shortcut icon" th:href="@{/images/favicon.ico}" type="image/x-icon">
   <link rel="apple-touch-icon" th:href="@{/images/apple-touch-icon.png}">
@@ -142,7 +142,6 @@
             </div>
             <div class="col-lg-4 col-md-7">
               <h3>Thời gian hoạt động</h3>
-              <!-- <p><span class="text-color">Thứ 2 - Thứ 6: </span>Closed</p> -->
               <p><span class="text-color">Thứ 2 - Thứ 6 :</span> 9:00 - 22:00</p>
               <p><span class="text-color">Thứ 7 - Chủ nhật :</span> 9:00 - 00:00</p>
             </div>
@@ -298,28 +297,12 @@
       });
       
       $("table #btnDelete").click(function(event){
-    	  /* var href = $(this).attr("href");
-    	  $("#mi-modal #delRef").attr("href", href); */
-    	  /* $("#mi-modal").modal(); */
     	  var id = $(this).parent().find('#id').val();
     	  $("#mi-modal").find("[name=id]").val(id);
     	  $("#mi-modal").find("form").attr("action", "/deleteMonAn/" + id);
     	  $("#mi-modal").modal();
       })
     });
- 
-    /* $(document).ready(function () {
-      $('#inforModal').modal('show');
-
-      $(function () {
-        $('[data-toggle="tooltip"]').tooltip()
-      });
-      
-    });
-    
-    $(document).ready(function() {
-    	$('#mi-modal').modal('show');
-    }) */
   </script>
   
   <style type="text/css">

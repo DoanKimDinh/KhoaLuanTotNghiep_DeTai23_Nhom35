@@ -320,20 +320,6 @@ public class DatTruocController {
 					break;
 				}
 			}
-			
-//			 Iterator i = (Iterator) banDatTruoc.getChiTietMonDatTruoc();
-//			
-//			while (i.hasNext()) {
-//				ChiTietMonDatTruoc chiTietMonDatTruoc = (ChiTietMonDatTruoc)i.next();
-//				if (chiTietMonDatTruoc.getMonAn().getMaMonAn() == monAn.getMaMonAn()) {
-//					//banDatTruoc.getChiTietMonDatTruoc().remove(chiTietMonDatTruoc);
-//					i.remove();
-//					ctmdtRepo.delete(chiTietMonDatTruoc);
-//				}
-//			}
-//			banDatTruocService.save(banDatTruoc);
-			
-
 		}
 		else {
 			BanDatTruoc banDatTruoc = banDatTruocService.findById(id).get();
@@ -374,15 +360,6 @@ public class DatTruocController {
 		}
 
 		banDatTruocService.save(banDatTruoc);
-
-		// BanDatTruoc banDatTruoc = banDatTruocService.findById(id).get();
-//		modelAndView.addObject("banDatTruoc", banDatTruoc);
-//		modelAndView.addObject("listMonDatTruoc", banDatTruoc.getChiTietMonDatTruoc());
-//		modelAndView.addObject("listMonAn", monAnService.findAll());
-
-//		request.getSession().setAttribute("edit-banDatTruoc", banDatTruoc);
-//		request.getSession().setAttribute("list-food-edit", banDatTruoc.getChiTietMonDatTruoc());
-	
 		return "redirect:/admin/banDatTruoc/edit/" + banDatTruoc.getMaDatTruoc();
 	}
 	@GetMapping("/deleteBanDatTruoc/{id}")

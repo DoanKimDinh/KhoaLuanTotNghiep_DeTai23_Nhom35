@@ -66,10 +66,6 @@ public class KhachHangController {
 	@PostMapping("/client/check/dangKyTaiKhoan")
 	@ResponseBody
 	public CheckRegisterModel checkDangKyTaiKhoan(@RequestBody CheckRegisterModel checkRegis, RedirectAttributes redirectAttributes, HttpServletRequest request) {
-		
-		//khachHang.setQuyenTruyCap(quyenTruyCapService.findById(1).get());
-	//	khachHangService.save(khachHang);
-		//redirectAttributes.addFlashAttribute("registerSuccess", "Đăng ký thành công");
 		CheckRegisterModel checkRegisterModel = new CheckRegisterModel();
 		
 		for (KhachHang khachHang : khachHangService.findAll()) {
@@ -95,15 +91,8 @@ public class KhachHangController {
 				checkRegis.setSdt(false);
 			}
 		}
-		
-
-		
 		return checkRegis;
 	}
-	
-	
-
-	 
 
 	@GetMapping("client/dangXuat")
 	public String destroySession(HttpServletRequest request) {

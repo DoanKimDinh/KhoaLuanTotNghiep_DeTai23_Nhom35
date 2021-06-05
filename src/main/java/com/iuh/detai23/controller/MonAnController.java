@@ -118,23 +118,6 @@ public class MonAnController {
 			return "redirect:/admin/monAn/";
 	}
 	
-//	@PostMapping("admin/monAn/delete/{id}")
-//	public String deleteMonAn(@PathVariable("id") int id, @ModelAttribute UpdateMonAnModel monAnModel, RedirectAttributes redirect) {
-//		//ModelAndView modelAndView - new ModelAndView("");
-//		MonAn monAn = monAnService.findById(id);
-//		monAn.setTinhTrang(monAnModel.getTinhTrang());
-//		monAnService.save(monAn);
-//		redirect.addAttribute("susscess", "thanhCong");
-//		return "redirect:/admin/monAn";
-//	}
-	
-//	@PostMapping("/admin/monAn/deleteMonAn")
-//	public Optional<MonAn> deleteMonAn(@RequestBody MonAn monAn){
-//		monAn.setTinhTrang("");
-//		monAnService.save(monAn);
-//		return Optional.ofNullable(monAn);
-//	}
-	
 	@GetMapping("/monan")
 	public ModelAndView getMonAn() {
 		ModelAndView modelAndView = new ModelAndView("menu");

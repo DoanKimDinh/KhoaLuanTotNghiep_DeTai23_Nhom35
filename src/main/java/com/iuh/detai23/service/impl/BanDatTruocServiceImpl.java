@@ -57,7 +57,6 @@ public class BanDatTruocServiceImpl implements BanDatTruocService{
 	@Override
 	public BanDatTruocAddModel save(BanDatTruocAddModel banDatTruocAddModel, ArrayList<AddMonAnModel> list) {
 		// TODO Auto-generated method stub
-		//ArrayList<AddMonAnModel> list = (ArrayList<AddMonAnModel>) request.getSession().getAttribute("list-cart-food");
 		
 		BanDatTruoc datTruoc = new BanDatTruoc();
 		datTruoc.setDatTruoc(TypeDatTruoc.ChuaXacNhan);

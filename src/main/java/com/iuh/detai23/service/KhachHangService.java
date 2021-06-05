@@ -14,4 +14,5 @@ public interface KhachHangService {
 	public boolean checkDangNhap(DangNhapModel dangNhapModel);
 	public KhachHang getKhachHangByAccount(String tenTaiKhoan);
 	public KhachHang getKhachHangByEmail(String email);
+	public KhachHang getKhachHangBySDT(String sdt);
 }

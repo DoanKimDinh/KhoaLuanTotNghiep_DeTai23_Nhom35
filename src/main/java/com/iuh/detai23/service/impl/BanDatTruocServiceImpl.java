@@ -20,13 +20,13 @@ import com.iuh.detai23.service.MonAnService;
 import com.iuh.detai23.type.TypeDatTruoc;
 
 @Service
-public class BanDatTruocServiceImpl implements BanDatTruocService{
-	@Autowired 
+public class BanDatTruocServiceImpl implements BanDatTruocService {
+	@Autowired
 	private BanDatTruocRepository banDatTruocRepo;
-	
+
 	@Autowired
 	private KhachHangService khachHangService;
-	
+
 	@Autowired
 	private MonAnService monAnService;
 
@@ -65,18 +65,21 @@ public class BanDatTruocServiceImpl implements BanDatTruocService{
 		datTruoc.setNgayDen(banDatTruocAddModel.getNgayDen());
 		datTruoc.setSoNguoi(banDatTruocAddModel.getSoNguoi());
 		datTruoc.setThoiGianDen(banDatTruocAddModel.getThoiGianDen());
-		
-		if(list.size()>0) {
-			List<ChiTietMonDatTruoc> listChiTietMonDatTruoc = new ArrayList<ChiTietMonDatTruoc>();
-			for (AddMonAnModel addMonAnModel : list) {
-				MonAn monAn = monAnService.findById(addMonAnModel.getId());
-				listChiTietMonDatTruoc.add(new ChiTietMonDatTruoc(new ChiTietMonDatTruocKey(), monAn, datTruoc, addMonAnModel.getSoLuong(), monAn.getDonGia()));
+
+		if (list != null) {
+			if (list.size() > 0) {
+				List<ChiTietMonDatTruoc> listChiTietMonDatTruoc = new ArrayList<ChiTietMonDatTruoc>();
+				for (AddMonAnModel addMonAnModel : list) {
+					MonAn monAn = monAnService.findById(addMonAnModel.getId());
+					listChiTietMonDatTruoc.add(new ChiTietMonDatTruoc(new ChiTietMonDatTruocKey(), monAn, datTruoc,
+							addMonAnModel.getSoLuong(), monAn.getDonGia()));
+				}
+				datTruoc.setChiTietMonDatTruoc(listChiTietMonDatTruoc);
 			}
-			datTruoc.setChiTietMonDatTruoc(listChiTietMonDatTruoc);
 		}
-		
+
 		banDatTruocRepo.save(datTruoc);
-		
+
 		return null;
-	}	
+	}
 }

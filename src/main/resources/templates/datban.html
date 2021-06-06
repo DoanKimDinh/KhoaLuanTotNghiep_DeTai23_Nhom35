@@ -171,22 +171,10 @@
 												class="form-control" placeholder="Ghi chú" type="text" name="ghiChu">
 
 										</div>
+									</div>
 								</div>
 								<div class="col-md-6">
-									<h3>Thông tin liên hệ</h3>
-									
-									<div class="col-md-12" th:if="${session.idAdmin}">
-										<div class="form-group">
-											<strong><label>Lựa chọn khách hàng:</label></strong> 
-											 <select class="form-control" aria-label="Default select example">
-											  <option selected="">Open this select menu</option>
-											  <option value="1">One</option>
-											  <option value="2">Two</option>
-											  <option value="3">Three</option>
-											</select>
-										</div>
-									</div>
-									
+									<h3>Thông tin liên hệ <span id="idLienheerror" style="color:red; display:none;">Vui lòng điền đầy đủ thông tin liên hệ</span></h3>
 									<div class="col-md-12">
 										<div class="form-group">
 											<strong><label>Tên người liên hệ:</label></strong> <input type="text"
@@ -196,7 +184,17 @@
 											<div class="help-block with-errors"></div>
 										</div>
 									</div>
-									<div class="col-md-12">
+									<div class="col-md-12" th:if="${session.idAdmin}">
+										<div class="form-group">
+											<strong><label>Địa chị email:</label></strong> <input type="text"
+												placeholder="Địa chỉ Email" th:value="${khachHang.email}"
+												class="form-control" name="email" id="email"
+												data-error="Vui lòng nhập địa chỉ email">
+											<div class="help-block with-errors"></div>
+											<span id="idEmailerror" style="color:red; display:none;">Không tìm thấy địa chỉ này</span></h3>
+										</div>
+									</div>
+									<div class="col-md-12" th:unless="${session.idAdmin}">
 										<div class="form-group">
 											<strong><label>Địa chị email:</label></strong> <input type="text"
 												placeholder="Địa chỉ Email" th:value="${khachHang.email}"
@@ -205,7 +203,17 @@
 											<div class="help-block with-errors"></div>
 										</div>
 									</div>
-									<div class="col-md-12">
+									<div class="col-md-12" th:if="${session.idAdmin}">
+										<div class="form-group">
+											<strong><label>Số điện thoại:</label></strong> <input type="text"
+												placeholder="Số điện thoại" th:value="${khachHang.sdt}"
+												class="form-control" name="phone" id="phone"
+												data-error="Vui lòng nhập số điện thoại"/>
+											<div class="help-block with-errors"></div>
+											<span id="idSDTerror" style="color:red; display:none;">Không tìm thấy số điện thoại này</span></h3>
+										</div>
+									</div>
+									<div class="col-md-12" th:unless="${session.idAdmin}">
 										<div class="form-group">
 											<strong><label>Số điện thoại:</label></strong> <input type="text"
 												placeholder="Số điện thoại" th:value="${khachHang.sdt}"
@@ -368,9 +376,78 @@
 			$("#tenKhachHang").val('');
 			$("#diaChi").val('');
 			$("#phone").val('');
-			$("#email").val('');
+			$("#email").val('');	
+			
+			$("#phone").on("input",function(){
+				var phone = $("#phone").val();
+				$.ajax({
+					type:"POST",
+					contentType: "application/json; charset=utf-8",
+					url:"http://localhost:8080/client/checkPhone",
+					data:JSON.stringify({
+						"phone": phone
+					}),
+					success: function(result){
+						$("#idEmailerror").css("display","none");
+						if(result.tenKhachHang!=null){
+							$("#tenKhachHang").val(result.tenKhachHang);
+							$("#diaChi").val(result.diaChi);
+							$("#email").val(result.email);		
+							$("#idSDTerror").css("display","none");
+							$("#idLienheerror").css("display","none");
+						}
+						else{
+							$("#tenKhachHang").val('');
+							$("#diaChi").val('');
+							$("#email").val('');
+							$("#idSDTerror").css("display","block");
+						}
+					}
+				});
+			});
+			
+			$("#email").on("input",function(){
+				var email = $("#email").val();
+				$.ajax({
+					type:"POST",
+					contentType: "application/json; charset=utf-8",
+					url:"http://localhost:8080/client/checkPhone",
+					data:JSON.stringify({
+						"email": email
+					}),
+					success: function(result){
+						$("#idSDTerror").css("display","none");
+						if(result.tenKhachHang!=null){
+							$("#tenKhachHang").val(result.tenKhachHang);
+							$("#diaChi").val(result.diaChi);
+							$("#phone").val(result.sdt);		
+							$("#idEmailerror").css("display","none");
+							$("#idLienheerror").css("display","none");
+						}
+						else{
+							$("#tenKhachHang").val('');
+							$("#diaChi").val('');
+							$("#phone").val('');
+							$("#idEmailerror").css("display","block");
+						}
+					}
+				});
+			});
+			
+			$("#contactForm").on("submit", function(){
+				var tenKH = $("#tenKhachHang").val();
+				
+				if(tenKH===""){
+					$("#idLienheerror").css("display","block");
+					return false;
+				}
+				$("#idLienheerror").css("display","none");
+			});
+			
 			
 		};
+		
+		
 	</script>
 </body>
 

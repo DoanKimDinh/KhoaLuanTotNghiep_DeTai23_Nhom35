@@ -3,7 +3,7 @@ package com.iuh.detai23.controller;
 import org.springframework.boot.CommandLineRunner;
 
 public class Main implements CommandLineRunner{
-	
+
 	public static void main(String[] args) {
 
 	}

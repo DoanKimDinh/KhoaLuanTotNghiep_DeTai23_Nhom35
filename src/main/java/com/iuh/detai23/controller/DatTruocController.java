@@ -33,6 +33,8 @@ import com.iuh.detai23.entities.MonAn;
 import com.iuh.detai23.model.AddMonAnEditDatBanModel;
 import com.iuh.detai23.model.AddMonAnModel;
 import com.iuh.detai23.model.BanDatTruocAddModel;
+import com.iuh.detai23.model.KhachHangModel;
+import com.iuh.detai23.model.PhoneEmailModel;
 import com.iuh.detai23.repositoties.ChiTietMonDatTruocRepository;
 import com.iuh.detai23.service.BanDatTruocService;
 import com.iuh.detai23.service.HoaDonService;
@@ -54,11 +56,11 @@ public class DatTruocController {
 
 	@Autowired
 	private KhachHangService khachHangService;
-	
+
 	@Autowired
 	private NhanVienService nhanVienService;
-	
-	@Autowired 
+
+	@Autowired
 	private HoaDonService hoaDonService;
 
 	@GetMapping("client/datBan")
@@ -70,7 +72,7 @@ public class DatTruocController {
 				int id = (int) request.getSession().getAttribute("idAccount");
 				KhachHang kh = khachHangService.findById(id);
 				modelAndView.addObject("khachHang", kh);
-				
+
 			}
 		} catch (Exception e) {
 
@@ -91,7 +93,7 @@ public class DatTruocController {
 			banDatTruocService.save(banDatTruoc, new ArrayList<AddMonAnModel>());
 			redirect.addFlashAttribute("datThanhCong", banDatTruoc);
 			return "redirect:/";
-		}	     
+		}
 	}
 
 	@GetMapping("/client/checkoutDatBan")
@@ -107,7 +109,7 @@ public class DatTruocController {
 		if (listMonAn != null) {
 			for (MonAn monAn : listMonAn) {
 				monAn.setHinhAnh("http://localhost:8080/download/" + monAn.getHinhAnh());
-				
+
 			}
 			modelAndView.addObject("listMonAn", listMonAn);
 		}
@@ -118,7 +120,7 @@ public class DatTruocController {
 
 	@PostMapping("/client/addRowMonAn")
 	@ResponseBody
-	public List<AddMonAnModel> addRowMonAn(@RequestBody AddMonAnModel monAn, HttpServletRequest request) {		
+	public List<AddMonAnModel> addRowMonAn(@RequestBody AddMonAnModel monAn, HttpServletRequest request) {
 		ArrayList<AddMonAnModel> list;
 		if (request.getSession().getAttribute("list-cart-food") == null) {
 			list = new ArrayList<AddMonAnModel>();
@@ -130,13 +132,13 @@ public class DatTruocController {
 			int tamp = 0;
 			for (int i = 0; i < list.size(); i++) {
 				if (list.get(i).getId() == monAn.getId()) {
-				
+
 					list.get(i).setSoLuong(list.get(i).getSoLuong() + monAn.getSoLuong());
 					tamp = 1;
 				}
 			}
 			if (tamp == 0) {
-				
+
 				list.add(monAn);
 			}
 		}
@@ -165,6 +167,34 @@ public class DatTruocController {
 		return listNew;
 	}
 
+	@PostMapping("/client/checkPhone")
+	@ResponseBody
+	public KhachHangModel getKhachHangWhenCheckPhone(@RequestBody PhoneEmailModel phoneEmailModel) {
+		KhachHangModel khachHangModel = new KhachHangModel();
+
+		System.out.println(phoneEmailModel.getEmail());
+		System.out.println(phoneEmailModel.getPhone());
+
+		if (phoneEmailModel.getEmail() != null) {
+			KhachHang kh = khachHangService.getKhachHangByEmail(phoneEmailModel.getEmail());
+			if (kh != null) {
+				khachHangModel.setDiaChi(kh.getDiaChi());
+				khachHangModel.setEmail(kh.getEmail());
+				khachHangModel.setSdt(kh.getSdt());
+				khachHangModel.setTenKhachHang(kh.getTenKhachHang());
+			}
+		} else if (phoneEmailModel.getPhone() != null) {
+			KhachHang kh = khachHangService.getKhachHangBySDT(phoneEmailModel.getPhone());
+			if (kh != null) {
+				khachHangModel.setDiaChi(kh.getDiaChi());
+				khachHangModel.setEmail(kh.getEmail());
+				khachHangModel.setSdt(kh.getSdt());
+				khachHangModel.setTenKhachHang(kh.getTenKhachHang());
+			}
+		}
+		return khachHangModel;
+	}
+
 	@PostMapping("/client/completedDatBan")
 	public String completedDatBan(HttpServletRequest request, RedirectAttributes redirect) {
 		BanDatTruocAddModel banDatTruoc = (BanDatTruocAddModel) request.getSession().getAttribute("banDatTruoc");
@@ -173,52 +203,55 @@ public class DatTruocController {
 		banDatTruocService.save(banDatTruoc, list);
 		redirect.addFlashAttribute("datThanhCong", banDatTruoc);
 
-
 		return "redirect:/";
 	}
-	
+
 	@GetMapping("/admin/banDatTruoc/edit/pay")
 	public String getEditMonAnPAY(@RequestParam("idBanDatTruoc") int id, HttpServletRequest request) {
 		ModelAndView modelAndView = new ModelAndView("admin/chinhSuaBanDatTruoc");
 		// @RequestBody AddMonAnModel monAn
 		BanDatTruoc banDatTruoc = banDatTruocService.findById(id).get();
 		List<ChiTietMonDatTruoc> listChiTietMonDatTruocs = banDatTruoc.getChiTietMonDatTruoc();
-		
+
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-		HoaDon hoaDon = new HoaDon(LocalDate.parse( banDatTruoc.getNgayDen(),formatter).atStartOfDay(), LocalDateTime.now(), TypeHoaDon.DaThanhToan, banDatTruoc.getGhiChu());
+		HoaDon hoaDon = new HoaDon(LocalDate.parse(banDatTruoc.getNgayDen(), formatter).atStartOfDay(),
+				LocalDateTime.now(), TypeHoaDon.DaThanhToan, banDatTruoc.getGhiChu());
 		List<ChiTietHoaDon> listcthd = new ArrayList<ChiTietHoaDon>();
 		hoaDon.setKhachHang(banDatTruoc.getKhachHang());
-		hoaDon.setNhanVien(nhanVienService.findById(Integer.parseInt(request.getSession().getAttribute("idAdmin").toString())));
-		
+		hoaDon.setNhanVien(
+				nhanVienService.findById(Integer.parseInt(request.getSession().getAttribute("idAdmin").toString())));
+
 		for (ChiTietMonDatTruoc chiDatTruoc : banDatTruoc.getChiTietMonDatTruoc()) {
-			listcthd.add(new ChiTietHoaDon(new ChiTietHoaDonKey(), chiDatTruoc.getMonAn(), hoaDon, chiDatTruoc.getSoLuong(), chiDatTruoc.getMonAn().getDonGia()));
+			listcthd.add(new ChiTietHoaDon(new ChiTietHoaDonKey(), chiDatTruoc.getMonAn(), hoaDon,
+					chiDatTruoc.getSoLuong(), chiDatTruoc.getMonAn().getDonGia()));
 		}
 		hoaDon.setChiTietHoadon(listcthd);
-		
+
 		hoaDonService.save(hoaDon);
-		
+
 		banDatTruocService.delete(id);
 
 		return "redirect:/admin/banDatTruoc";
 	}
-	
-	
+
 	@PostMapping("/admin/banDatTruoc/edit/updateThongTin")
-	public String updateThongTin(RedirectAttributes redirect,@RequestParam("id") int id,@RequestParam("soNguoi") int soNguoi,@RequestParam("ngayDen") String ngayDen,@RequestParam("thoiGianDen") String thoiGianDen,@RequestParam("ghiChu") String ghiChu, HttpServletRequest request) {
-		
+	public String updateThongTin(RedirectAttributes redirect, @RequestParam("id") int id,
+			@RequestParam("soNguoi") int soNguoi, @RequestParam("ngayDen") String ngayDen,
+			@RequestParam("thoiGianDen") String thoiGianDen, @RequestParam("ghiChu") String ghiChu,
+			HttpServletRequest request) {
+
 		BanDatTruoc banDatTruoc = banDatTruocService.findById(id).get();
 		banDatTruoc.setSoNguoi(soNguoi);
 		banDatTruoc.setNgayDen(ngayDen);
 		banDatTruoc.setThoiGianDen(thoiGianDen);
 		banDatTruoc.setGhiChu(ghiChu);
-		
+
 		redirect.addFlashAttribute("editsucceess", "dft");
-		
+
 		banDatTruocService.save(banDatTruoc);
 
-		return "redirect:/admin/banDatTruoc/edit/"+id;
+		return "redirect:/admin/banDatTruoc/edit/" + id;
 	}
-	
 
 	@GetMapping("/admin/banDatTruoc/edit/{id}")
 	public ModelAndView getEditMonAn(@PathVariable("id") int id, HttpServletRequest request) {
@@ -234,14 +267,13 @@ public class DatTruocController {
 			listMonAnEdit.add(new AddMonAnEditDatBanModel(chiTietMonAnDatTruoc.getMonAn().getMaMonAn(),
 					chiTietMonAnDatTruoc.getSoLuong(), chiTietMonAnDatTruoc.getMonAn().getTenMonAn(),
 					chiTietMonAnDatTruoc.getMonAn().getDonGia() * chiTietMonAnDatTruoc.getSoLuong(), ++i));
-			tongTien+=chiTietMonAnDatTruoc.getMonAn().getDonGia()*chiTietMonAnDatTruoc.getSoLuong();
+			tongTien += chiTietMonAnDatTruoc.getMonAn().getDonGia() * chiTietMonAnDatTruoc.getSoLuong();
 		}
 		modelAndView.addObject("listMonDatTruoc", listMonAnEdit);
 		modelAndView.addObject("listMonAn", monAnService.findAll());
-		if(tongTien!=0) {
+		if (tongTien != 0) {
 			modelAndView.addObject("tongTien", tongTien);
 		}
-		
 
 		request.getSession().setAttribute("edit-banDatTruoc", banDatTruoc);
 		request.getSession().setAttribute("list-food-edit", banDatTruoc.getChiTietMonDatTruoc());
@@ -252,7 +284,7 @@ public class DatTruocController {
 	@GetMapping("/admin/banDatTruoc/edit/add/{idDatTruoc}/{idMonAn}")
 	public String getEditMonAnAdd(@PathVariable("idDatTruoc") int id, @PathVariable("idMonAn") int idMonAn,
 			HttpServletRequest request) {
-		
+
 		ModelAndView modelAndView = new ModelAndView("admin/chinhSuaBanDatTruoc");
 		// @RequestBody AddMonAnModel monAn
 		BanDatTruoc banDatTruoc = banDatTruocService.findById(id).get();
@@ -271,7 +303,6 @@ public class DatTruocController {
 		}
 		banDatTruoc.setChiTietMonDatTruoc(list);
 		banDatTruocService.save(banDatTruoc);
-		
 
 		modelAndView.addObject("banDatTruoc", banDatTruoc);
 
@@ -288,22 +319,21 @@ public class DatTruocController {
 		modelAndView.addObject("listMonAn", monAnService.findAll());
 		return "redirect:/admin/banDatTruoc/edit/"+id;
 	}
-	
-	
+
 	@Autowired
 	ChiTietMonDatTruocRepository ctmdtRepo;
-	
+
 	@PostMapping("/admin/banDatTruoc/edit/remove")
-	public String getEditMonAnRemove(RedirectAttributes redirect,@RequestParam("soLuong") int soLuong,@RequestParam("action") String action,@RequestParam("idDatTruoc") int id,  @RequestParam("id") int idMonAn,
+	public String getEditMonAnRemove(RedirectAttributes redirect, @RequestParam("soLuong") int soLuong,
+			@RequestParam("action") String action, @RequestParam("idDatTruoc") int id, @RequestParam("id") int idMonAn,
 			HttpServletRequest request) {
-		
+
 		redirect.addFlashAttribute("editsucceess", "hihi");
-		
-		if(action.toLowerCase().equals("xóa bỏ")||soLuong==0) {
+
+		if (action.toLowerCase().equals("xóa bỏ") || soLuong == 0) {
 			BanDatTruoc banDatTruoc = banDatTruocService.findById(id).get();
 			MonAn monAn = monAnService.findById(idMonAn);
-			
-			
+
 			for (ChiTietMonDatTruoc chiTietMonDatTruoc : banDatTruoc.getChiTietMonDatTruoc()) {
 				if (chiTietMonDatTruoc.getMonAn().getMaMonAn() == monAn.getMaMonAn()) {
 					banDatTruoc.getChiTietMonDatTruoc().remove(chiTietMonDatTruoc);
@@ -324,11 +354,9 @@ public class DatTruocController {
 			}
 			banDatTruocService.save(banDatTruoc);
 		}
-		
 
-		return "redirect:/admin/banDatTruoc/edit/"+id;
+		return "redirect:/admin/banDatTruoc/edit/" + id;
 	}
-	
 
 	@PostMapping("/admin/chinhSuaMonAn/AddRowMonAn")
 	public String addRowMonAnEdit(@RequestBody AddMonAnModel monAn, HttpServletRequest request) {
@@ -352,14 +380,14 @@ public class DatTruocController {
 		}
 
 		banDatTruocService.save(banDatTruoc);
-	
 		return "redirect:/admin/banDatTruoc/edit/" + banDatTruoc.getMaDatTruoc();
 	}
+
 	@GetMapping("/deleteBanDatTruoc/{id}")
 	public String deleteBanDatTruoc(@PathVariable("id") int id) {
-		
+
 		banDatTruocService.delete(id);
-		
+
 		return "redirect:/admin/banDatTruoc";
 	}
 }

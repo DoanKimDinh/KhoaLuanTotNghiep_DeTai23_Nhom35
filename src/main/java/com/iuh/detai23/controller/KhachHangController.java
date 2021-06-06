@@ -66,7 +66,6 @@ public class KhachHangController {
 	@PostMapping("/client/check/dangKyTaiKhoan")
 	@ResponseBody
 	public CheckRegisterModel checkDangKyTaiKhoan(@RequestBody CheckRegisterModel checkRegis, RedirectAttributes redirectAttributes, HttpServletRequest request) {
-
 		CheckRegisterModel checkRegisterModel = new CheckRegisterModel();
 		
 		for (KhachHang khachHang : khachHangService.findAll()) {
@@ -92,10 +91,9 @@ public class KhachHangController {
 				checkRegis.setSdt(false);
 			}
 		}
-		
 		return checkRegis;
 	}
-	
+
 	@GetMapping("client/dangXuat")
 	public String destroySession(HttpServletRequest request) {
 		if((request.getSession().getAttribute("idAccount")!=null)||(request.getSession().getAttribute("idAdmin")!=null)) {

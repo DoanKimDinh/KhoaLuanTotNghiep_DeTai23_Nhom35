@@ -257,7 +257,13 @@ public class DatTruocController {
 	public ModelAndView getEditMonAn(@PathVariable("id") int id, HttpServletRequest request) {
 		ModelAndView modelAndView = new ModelAndView("admin/chinhSuaBanDatTruoc");
 		// @RequestBody AddMonAnModel monAn
+		
+		if(!banDatTruocService.findById(id).isPresent()) {
+			return new ModelAndView("redirect:/admin/banDatTruoc");
+		}
+		
 		BanDatTruoc banDatTruoc = banDatTruocService.findById(id).get();
+		
 		modelAndView.addObject("banDatTruoc", banDatTruoc);
 
 		List<AddMonAnEditDatBanModel> listMonAnEdit = new ArrayList<AddMonAnEditDatBanModel>();
@@ -393,4 +399,7 @@ public class DatTruocController {
 
 		return "redirect:/admin/banDatTruoc";
 	}
+//	@PostMapping("/admin/getChiTietDatTruoc")
+//	@ResponseBody
+//	public 
 }

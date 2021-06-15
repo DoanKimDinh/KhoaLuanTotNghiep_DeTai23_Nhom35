@@ -75,14 +75,20 @@ public class HoaDonController {
 		ModelAndView modelAndView = new ModelAndView("admin/thongke");
 
 		double moneytotal = hoaDonService.getTotalMoney();
+		
 		modelAndView.addObject("selectMonth", month);
 		modelAndView.addObject("selectYear", year);
 		modelAndView.addObject("totalMoneyMonth", hoaDonService.getTotalMoneyWithMonth(year, month));
 		modelAndView.addObject("totalMoney", moneytotal);
-		modelAndView.addObject("totalBill", hoaDonService.findAll().size());
-		modelAndView.addObject("totalCustomer", khachHangService.findAll().size());
+		//modelAndView.addObject("totalBill", hoaDonService.findAll().size());
+		modelAndView.addObject("totalBill", hoaDonService.getListHoaDonByMonth(year, month).size());
+		
+		//modelAndView.addObject("totalCustomer", khachHangService.findAll().size());
+		modelAndView.addObject("totalCustomer", hoaDonService.getTotalAmountPersonInBill(year, month));
+		
 		modelAndView.addObject("listHoaDon", hoaDonService.getListHoaDonByMonth(year, month));
 		modelAndView.addObject("selectPresent", String.valueOf(month));
+		modelAndView.addObject("selectPresentYear", String.valueOf(year));
 		return modelAndView;
 	}
 	
@@ -98,6 +104,7 @@ public class HoaDonController {
 		modelAndView.addObject("totalCustomer", khachHangService.findAll().size());
 		modelAndView.addObject("listHoaDon", hoaDonService.getListHoaDonByMonth(2021, 4));
 		modelAndView.addObject("selectPresent", "4");
+		modelAndView.addObject("selectPresentYear", "2021");
 		return modelAndView;
 	}
 	

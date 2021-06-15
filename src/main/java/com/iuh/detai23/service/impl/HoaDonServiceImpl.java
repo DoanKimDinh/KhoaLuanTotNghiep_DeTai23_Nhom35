@@ -1,7 +1,9 @@
 package com.iuh.detai23.service.impl;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -76,6 +78,26 @@ public class HoaDonServiceImpl implements HoaDonService {
 			return object;
 		else
 			return null;
+	}
+
+	@Override
+	public int getTotalAmountPersonInBill(int year, int month) {
+		// TODO Auto-generated method stub
+		String string;
+		if (month > 9)
+			string = year + "-" + month + "%";
+		else
+			string = year + "-0" + month + "%";
+		
+		List<HoaDon> object = hoaDonRepository.getListHoaDonByMonth(string);
+		
+		Set<Integer> soluong = new HashSet<Integer>();
+		for (HoaDon hoaDon : object) {
+			if(hoaDon.getKhachHang()!=null) {
+				soluong.add(hoaDon.getKhachHang().getMaKhachHang());
+			}
+		}
+		return soluong.size();
 	}
 
 

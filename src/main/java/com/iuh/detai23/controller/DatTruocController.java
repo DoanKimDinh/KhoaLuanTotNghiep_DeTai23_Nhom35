@@ -276,7 +276,7 @@ public class DatTruocController {
 			tongTien += chiTietMonAnDatTruoc.getMonAn().getDonGia() * chiTietMonAnDatTruoc.getSoLuong();
 		}
 		modelAndView.addObject("listMonDatTruoc", listMonAnEdit);
-		modelAndView.addObject("listMonAn", monAnService.findAll());
+		modelAndView.addObject("listMonAn",  monAnService.finDall());
 		if (tongTien != 0) {
 			modelAndView.addObject("tongTien", tongTien);
 		}

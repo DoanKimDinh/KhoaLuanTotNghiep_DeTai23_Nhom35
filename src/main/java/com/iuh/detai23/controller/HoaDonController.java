@@ -100,8 +100,8 @@ public class HoaDonController {
 		modelAndView.addObject("selectYear", 2021);
 		modelAndView.addObject("totalMoneyMonth", hoaDonService.getTotalMoneyWithMonth(2021, 4));
 		modelAndView.addObject("totalMoney", hoaDonService.getTotalMoney());
-		modelAndView.addObject("totalBill", hoaDonService.findAll().size());
-		modelAndView.addObject("totalCustomer", khachHangService.findAll().size());
+		modelAndView.addObject("totalBill", hoaDonService.getListHoaDonByMonth(2021, 4).size());
+		modelAndView.addObject("totalCustomer", hoaDonService.getTotalAmountPersonInBill(2021, 4));
 		modelAndView.addObject("listHoaDon", hoaDonService.getListHoaDonByMonth(2021, 4));
 		modelAndView.addObject("selectPresent", "4");
 		modelAndView.addObject("selectPresentYear", "2021");

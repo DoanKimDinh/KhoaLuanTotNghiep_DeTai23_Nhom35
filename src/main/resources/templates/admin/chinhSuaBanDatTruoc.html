@@ -227,7 +227,7 @@
 												<td><span
 														th:text="${#numbers.formatDecimal(monAn.DonGia, 0, 'COMMA', 0, 'POINT')}">1000000</span>
 													VNĐ</td>
-												<td><input type="number" name="soLuong" value="1" /></td>
+												<td><input type="number" name="soLuong" value="1"/></td>
 												<td style="text-align: center;"><input type="hidden" name="id"
 														th:value="${monAn.maMonAn}" /> <input type="hidden"
 														name="donGia" th:value="${monAn.DonGia}" />
@@ -314,7 +314,7 @@
 		<!-- /.content-wrapper -->
 
 		<!-- Start Footer -->
-		<footer class="footer-area bg-f">
+		<footer class="footer-area bg-f" style="margin-left: 250px;">
 			<div class="container">
 				<div class="row">
 					<div class="col-lg-4 col-md-7">
@@ -663,7 +663,9 @@
 		.dataTables_filter {
 			float: right
 		}
-		
+		.modal-dialog {
+			max-width: 66%;
+		}
 	</style>
 </body>
 

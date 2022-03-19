@@ -80,4 +80,17 @@ public class KhachHangServiceImpl implements KhachHangService{
 		return null;
 	}
 
+	@Override
+	public KhachHang getKhachHangBySDT(String sdt) {
+		// TODO Auto-generated method stub
+		List<KhachHang> listKhachHang = new ArrayList<KhachHang>();
+		listKhachHang = khachHangRepository.findAll();
+		for (KhachHang khachHang : listKhachHang) {
+			if(khachHang.getSdt().equals(sdt)) {
+				return khachHang;
+			}
+		}		
+		return null;
+	}
+
 }

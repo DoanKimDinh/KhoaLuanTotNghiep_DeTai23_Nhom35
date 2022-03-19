@@ -93,7 +93,7 @@
 													<th>Tên khách hàng</th>
 													<th>Số người</th>
 													<th>Ngày đến</th>
-													<th>Ghi Chú</th>
+													<th>Thời Gian Đến</th>
 													<th>Tùy Chỉnh</th>
 												</tr>
 											</thead>
@@ -103,7 +103,7 @@
 													<td th:text="${banDatTruoc.khachHang.tenKhachHang}"></td>
 													<td th:text="${banDatTruoc.soNguoi}"></td>
 													<td th:text="${banDatTruoc.ngayDen}"></td>
-													<td th:text="${banDatTruoc.ghiChu}"></td>
+													<td th:text="${banDatTruoc.thoiGianDen}"></td>
 
 													<td style="text-align: center;"><a
 															th:href="@{/admin/banDatTruoc/edit/{id}(id=${banDatTruoc.maDatTruoc})}"><i

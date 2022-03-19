@@ -197,7 +197,7 @@
 
 										<input type="hidden" name="id" th:value="${banDatTruoc.maDatTruoc}" /> <input
 											class="btn btn-common" type="submit" value="Cập Nhật Thông Tin">
-
+					
 										<div class="clearfix"></div>
 									</div>
 								</div>
@@ -227,7 +227,7 @@
 												<td><span
 														th:text="${#numbers.formatDecimal(monAn.DonGia, 0, 'COMMA', 0, 'POINT')}">1000000</span>
 													VNĐ</td>
-												<td><input type="number" name="soLuong" value="1" /></td>
+												<td><input type="number" name="soLuong" value="1"/></td>
 												<td style="text-align: center;"><input type="hidden" name="id"
 														th:value="${monAn.maMonAn}" /> <input type="hidden"
 														name="donGia" th:value="${monAn.DonGia}" />
@@ -295,11 +295,9 @@
 												th:text="${#numbers.formatDecimal(tongTien, 0, 'COMMA', 0, 'POINT')}">1000000</span>
 											VNĐ
 										</h2>
-										<form th:action="@{/admin/banDatTruoc/edit/pay}">
-											<input type="hidden" th:value="${banDatTruoc.maDatTruoc}"
-												name="idBanDatTruoc"> <input class="btn btn-common" id="submit"
-												type="submit" value="THANH TOÁN" name="action">
-										</form>
+										 <input class="btn btn-common inforHoaDon" id="billDetail"
+												type="button" value="THANH TOÁN" name="action" data-toggle="modal" th:data-maBanDatTruoc=${banDatTruoc.maDatTruoc} data-target="#inforModal" data-backdrop="static" data-keyboard="false">
+										
 										<div id="msgSubmit" class="h3 text-center hidden"></div>
 										<div class="clearfix"></div>
 									</div>
@@ -316,7 +314,7 @@
 		<!-- /.content-wrapper -->
 
 		<!-- Start Footer -->
-		<footer class="footer-area bg-f">
+		<footer class="footer-area bg-f" style="margin-left: 250px;">
 			<div class="container">
 				<div class="row">
 					<div class="col-lg-4 col-md-7">
@@ -364,6 +362,133 @@
 			</div>
 
 		</footer>
+		
+		
+		<div class="modal fade" id="inforModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+			aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered" role="document">
+				<div class="modal-content">
+					<div class="modal-header border-bottom-0">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<div class="form-title text-center">
+							<h4>THÔNG TIN HÓA ĐƠN</h4>
+						</div>
+						<div class="d-flex flex-column text-center">
+							<div class="container">
+								<div class="card">
+									<div class="card-header">
+										Ngày xuất hóa đơn <strong id="ngayXuatHoaDon">01/01/2021</strong> <span class="float-right">
+											<strong>Trạng Thái:</strong> Đã
+											thanh toán
+										</span>
+									</div>
+									<div class="card-body">
+										<div class="row mb-4">
+											<div class="col-sm-6">
+												<h6 class="mb-3">Thông tin nhà hàng:</h6>
+												<div>
+													<strong>Nhà Hàng</strong>
+												</div>
+												<div>23 Nguyễn Hữu Cảnh</div>
+												<div>Gò Vấp, Tp Hồ Chí Minh</div>
+												<div>Email: nhahang@gmail.com.vn</div>
+												<div>Phone: +́84 444 666 3333</div>
+											</div>
+											<div class="col-sm-6" id="inforKhachHang">
+												<h6 class="mb-3">Thông tin khách hàng:</h6>
+												<div>
+													<strong>Trần Minh Trúc</strong>
+												</div>
+												<div>Email: trminhtruc99@gmail.com</div>
+												<div>Phone: +84 123 456 789</div>
+												<div>12 Lê Lai, Quận 1</div>
+											</div>
+										</div>
+										<div class="table-responsive-sm">
+											<table class="table table-striped">
+												<thead>
+													<tr>
+														<th class="center">#</th>
+														<th>Tên món</th>
+														<th class="right">Đơn giá</th>
+														<th class="center">Số lượng</th>
+														<th class="right">Tổng tiền</th>
+													</tr>
+												</thead>
+												<tbody id="inforChiTietHoaDon">
+													<tr>
+														<td class="center">1</td>
+														<td class="left strong">Cá Hấp</td>
+														<td class="right">129.000 VNĐ</td>
+														<td class="center">1</td>
+														<td class="right">129.000 VNĐ</td>
+													</tr>
+													<tr>
+														<td class="center">2</td>
+														<td class="left">Lẩu Thái</td>
+														<td class="right">200.000 VNĐ</td>
+														<td class="center">2</td>
+														<td class="right">400.000 VNĐ</td>
+													</tr>
+													<tr>
+														<td class="center">3</td>
+														<td class="left">Bia Tiger</td>
+														<td class="right">20.000 VNĐ</td>
+														<td class="center">5</td>
+														<td class="right">100.000 VNĐ</td>
+													</tr>
+
+												</tbody>
+											</table>
+										</div>
+										<div class="row">
+											<div class="col-lg-5 col-sm-5"></div>
+											<div class="col-lg-5 col-sm-5 ml-auto">
+												<table class="table table-clear">
+													<tbody>
+														<tr id="tamTinh">
+															<td class="left"><strong>Tạm tính</strong></td>
+															<td class="right">629.000 VNĐ</td>
+														</tr>
+														<tr>
+															<td class="left"><strong>Discount (%)</strong></td>
+															<td class="right"> 0%</td>
+														</tr>
+														<tr id="vat" style="display:none;">
+															<td class="left"><strong>VAT (10%)</strong></td>
+															<td class="right">62.900 VNĐ</td>
+														</tr>
+														<tr id="tongTienAll">
+															<td class="left"><strong>Tổng tiền</strong></td>
+															<td class="right"><strong>691.900 VNĐ</strong></td>
+														</tr>
+													</tbody>
+												</table>
+											</div>
+										</div>
+										<div>
+											<input class="btn btn-common" value="In Hóa Đơn">
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer d-flex justify-content-center">
+						<div class="signup-section">
+							Chúc bạn một ngày tốt lành<a href="#a" class="text-info" data-toggle="modal"
+								data-target="#signUpModal" onclick="anModalDangNhap()">...</a>.
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		
 		<!-- End Footer -->
 	<script th:src="@{/plugins/jquery/jquery.min.js}"></script>
 	<script th:src="@{/plugins/jquery-ui/jquery-ui.min.js}"></script>
@@ -398,7 +523,112 @@
 
 	<script>
 		$(document).ready(function () {
-			$('#inforModal').modal('show');
+			$("#inforModal").on("hidden.bs.modal", function(e){
+				
+			});
+			
+			$(document).on("click",".close",function(){
+				window.location.href = "http://localhost:8080/admin/banDatTruoc";
+			})
+			
+			$(document).on("click",".inforHoaDon",function(event){
+				event.preventDefault();
+				var maBanDatTruoc = event.target.getAttribute('data-maBanDatTruoc');
+				$.ajax({
+					type:"POST",
+					contentType:"application/json;charset=utf-8",
+					url:"http://localhost:8080/admin/getChiTietDatTruoc",
+					data: JSON.stringify({
+						'id':maBanDatTruoc
+					}),
+					success:function(result){
+						var htmlInforKhachHang = '';
+						var htmlInforChiTietHoaDon = '';
+						
+						htmlInforKhachHang +='<h6 class="mb-3">Thông tin khách hàng:</h6><div><strong>'+result.tenKhachHang+'</strong>'
+						+'</div>'
+						+'<div>Địa chỉ Email: '+result.diaChiEmail+'</div>'
+						+'<div>Số điện thoại: '+result.sdt+'</div>'
+						+'<div>Địa chỉ: '+result.diaChi+'</div>';
+						
+						
+						var stt = 0;
+						var doDai = result.chiTiet.length;
+						var monAns = result.chiTiet;
+						var tongTienTotal = 0;
+						for(var i=0;i<doDai;i++){
+							
+							var tongTien = 0;
+							
+							tongTien =monAns[i].donGia*monAns[i].soLuong;
+							stt++;
+							tongTienTotal+=tongTien;
+							var stringDonGia = monAns[i].donGia.toLocaleString(
+									'it-IT',
+									{
+										style: 'currency',
+										currency: 'VND'
+									});
+							htmlInforChiTietHoaDon += '<tr>'
+							+'<td class="center">'+stt+'</td>'
+							+'<td class="left strong">'+monAns[i].tenMonAn+'</td>'
+							+'<td class="right">'+stringDonGia+'</td>'
+							+'<td class="center">'+monAns[i].soLuong+'</td>'
+							+'<td class="right">'+tongTien.toLocaleString(
+									'it-IT',
+									{
+										style: 'currency',
+										currency: 'VND'
+									});+'</td>'
+							+'</tr>';
+							}
+							
+							
+							
+							var htmlTamTinh ='<td class="left"><strong>Tạm tính</strong></td>'
+								+'<td class="right">'+tongTienTotal.toLocaleString(
+										'it-IT',
+										{
+											style: 'currency',
+											currency: 'VND'
+										});+'</td>';
+							
+							$("#tamTinh").html(htmlTamTinh);
+										
+										
+							var vat = tongTienTotal*0;
+							var htmlVAT = '<td class="left"><strong>VAT (10%)</strong></td>'
+										+'<td class="right">'+vat.toLocaleString(
+												'it-IT',
+												{
+													style: 'currency',
+													currency: 'VND'
+												});+'</td>';
+							$("#vat").html(htmlVAT);
+												
+												
+							var tongTienall = vat+tongTienTotal;				
+							var htmlTongTienAll	='<td class="left"><strong>Tổng tiền</strong></td>'
+										+'<td class="right"><strong>'+tongTienall.toLocaleString(
+												'it-IT',
+												{
+													style: 'currency',
+													currency: 'VND'
+												});+'</strong></td>';
+									
+							
+							$("#tongTienAll").html(htmlTongTienAll);
+							
+							
+							$("#inforChiTietHoaDon").html(htmlInforChiTietHoaDon);
+							
+							
+							$("#inforKhachHang").html(htmlInforKhachHang);
+							
+							$("#ngayXuatHoaDon").html(result.ngayLapHoaDon);	
+					}
+				})
+			});
 
 			$(function () {
 				$('[data-toggle="tooltip"]').tooltip();
@@ -432,6 +662,9 @@
 	<style type="text/css">
 		.dataTables_filter {
 			float: right
+		}
+		.modal-dialog {
+			max-width: 66%;
 		}
 	</style>
 </body>
